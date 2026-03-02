@@ -1,0 +1,152 @@
+<?php
+
+use App\Enums\AnimeRelationEnum;
+use App\Enums\AnimeTypeEnum;
+use App\Enums\AnimeStatusEnum;
+use App\Enums\PersonJobPosition;
+use App\Enums\SourceTypeEnum;
+use App\Enums\EpisodeTypeEnum;
+use App\Enums\CharacterRoleEnum;
+use App\Enums\WatchlistStatusEnum;
+
+return [
+    AnimeTypeEnum::class => [
+        AnimeTypeEnum::TV => 'TV Series',
+        AnimeTypeEnum::OVA => 'OVA',
+        AnimeTypeEnum::MOVIE => 'Movie',
+        AnimeTypeEnum::SPECIAL => 'Special',
+        AnimeTypeEnum::ONA => 'ONA',
+        AnimeTypeEnum::MUSIC => 'Music Video',
+        AnimeTypeEnum::UNKNOWN => 'Unknown',
+    ],
+
+    AnimeStatusEnum::class => [
+        AnimeStatusEnum::AIRING => 'Airing',
+        AnimeStatusEnum::FINISHED => 'Finished',
+        AnimeStatusEnum::NOT_YET_AIRED => 'Not Yet Aired',
+    ],
+
+    SourceTypeEnum::class => [
+        SourceTypeEnum::ORIGINAL => 'Original',
+        SourceTypeEnum::MANGA => 'Manga',
+        SourceTypeEnum::FOUR_KOMA_MANGA => 'Yonkoma Manga',
+        SourceTypeEnum::WEB_MANGA => 'Web Manga',
+        SourceTypeEnum::DIGITAL_MANGA => 'Digital Manga',
+        SourceTypeEnum::NOVEL => 'Novel',
+        SourceTypeEnum::LIGHT_NOVEL => 'Light Novel',
+        SourceTypeEnum::VISUAL_NOVEL => 'Visual Novel',
+        SourceTypeEnum::GAME => 'Video Game',
+        SourceTypeEnum::CARD_GAME => 'Card Game',
+        SourceTypeEnum::BOOK => 'Book',
+        SourceTypeEnum::PICTURE_BOOK => 'Picture Book',
+        SourceTypeEnum::RADIO => 'Radio',
+        SourceTypeEnum::MUSIC => 'Music',
+        SourceTypeEnum::OTHER => 'Other',
+    ],
+
+    EpisodeTypeEnum::class => [
+        EpisodeTypeEnum::REGULAR => 'Regular',
+        EpisodeTypeEnum::RECAP => 'Recap',
+        EpisodeTypeEnum::FILLER => 'Filler',
+    ],
+
+    CharacterRoleEnum::class => [
+        CharacterRoleEnum::MAIN => 'Main',
+        CharacterRoleEnum::SUPPORTING => 'Supporting',
+        CharacterRoleEnum::BACKGROUND => 'Background',
+    ],
+
+    WatchlistStatusEnum::class => [
+        WatchlistStatusEnum::WATCHING => 'Watching',
+        WatchlistStatusEnum::COMPLETED => 'Completed',
+        WatchlistStatusEnum::ON_HOLD => 'On Hold',
+        WatchlistStatusEnum::DROPPED => 'Dropped',
+        WatchlistStatusEnum::PLAN_TO_WATCH => 'Plan to Watch',
+    ],
+
+    PersonJobPosition::class => [
+        PersonJobPosition::DIRECTOR => 'Director',
+        PersonJobPosition::SCRIPT => 'Script',
+        PersonJobPosition::STORYBOARD => 'Storyboard',
+        PersonJobPosition::EPISODE_DIRECTOR => 'Episode Director',
+        PersonJobPosition::MUSIC => 'Music',
+        PersonJobPosition::ORIGINAL_CREATOR => 'Original Creator',
+        PersonJobPosition::ORIGINAL_CHARACTER_DESIGN => 'Original Character Design',
+        PersonJobPosition::CREATOR => 'Creator',
+        PersonJobPosition::CHARACTER_DESIGN => 'Character Design',
+        PersonJobPosition::ART_DIRECTOR => 'Art Director',
+        PersonJobPosition::CHIEF_ANIMATION_DIRECTOR => 'Chief Animation Director',
+        PersonJobPosition::ANIMATION_DIRECTOR => 'Animation Director',
+        PersonJobPosition::MECHANICAL_DESIGN => 'Mechanical Design',
+        PersonJobPosition::DIRECTOR_OF_PHOTOGRAPHY => 'Director of Photography',
+        PersonJobPosition::EXECUTIVE_PRODUCER => 'Executive Producer',
+        PersonJobPosition::SECOND_KEY_ANIMATION => '2nd Key Animation',
+        PersonJobPosition::ANIMATION_CHECK => 'Animation Check',
+        PersonJobPosition::ASSISTANT_DIRECTOR => 'Assistant Director',
+        PersonJobPosition::ASSOCIATE_PRODUCER => 'Associate Producer',
+        PersonJobPosition::BACKGROUND_ART => 'Background Art',
+        PersonJobPosition::COLOR_DESIGN => 'Color Design',
+        PersonJobPosition::COLOR_SETTING => 'Color Setting',
+        PersonJobPosition::DIGITAL_PAINT => 'Digital Paint',
+        PersonJobPosition::EDITING => 'Editing',
+        PersonJobPosition::IN_BETWEEN_ANIMATION => 'In-Between Animation',
+        PersonJobPosition::KEY_ANIMATION => 'Key Animation',
+        PersonJobPosition::ONLINE_EDITING_SUPERVISION => 'Online Editing Supervision',
+        PersonJobPosition::ONLINE_EDITOR => 'Online Editor',
+        PersonJobPosition::PLANNING => 'Planning',
+        PersonJobPosition::PLANNING_PRODUCER => 'Planning Producer',
+        PersonJobPosition::PRODUCTION_MANAGER => 'Production Manager',
+        PersonJobPosition::PUBLICITY => 'Publicity',
+        PersonJobPosition::RECORDING => 'Recording',
+        PersonJobPosition::RECORDING_ASSISTANT => 'Recording Assistant',
+        PersonJobPosition::SERIES_PRODUCTION_DIRECTOR => 'Series Production Director',
+        PersonJobPosition::SETTING => 'Setting',
+        PersonJobPosition::SETTING_MANAGER => 'Setting Manager',
+        PersonJobPosition::SOUND_DIRECTOR => 'Sound Director',
+        PersonJobPosition::SOUND_EFFECTS => 'Sound Effects',
+        PersonJobPosition::SOUND_MANAGER => 'Sound Manager',
+        PersonJobPosition::SPECIAL_EFFECTS => 'Special Effects',
+        PersonJobPosition::THEME_SONG_ARRANGEMENT => 'Theme Song Arrangement',
+        PersonJobPosition::THEME_SONG_COMPOSITION => 'Theme Song Composition',
+        PersonJobPosition::THEME_SONG_LYRICS => 'Theme Song Lyrics',
+        PersonJobPosition::THEME_SONG_PERFORMANCE => 'Theme Song Performance',
+        PersonJobPosition::ADR_DIRECTOR => 'ADR Director',
+        PersonJobPosition::CO_DIRECTOR => 'Co-Director',
+        PersonJobPosition::ASSISTANT_PRODUCER => 'Assistant Producer',
+        PersonJobPosition::PRODUCER => 'Producer',
+        PersonJobPosition::ASSISTANT_ENGINEER => 'Assistant Engineer',
+        PersonJobPosition::ASSISTANT_PRODUCTION_COORDINATOR => 'Assistant Production Coordinator',
+        PersonJobPosition::ASSOCIATE_CASTING_DIRECTOR => 'Associate Casting Director',
+        PersonJobPosition::CASTING_DIRECTOR => 'Casting Director',
+        PersonJobPosition::CHIEF_PRODUCER => 'Chief Producer',
+        PersonJobPosition::CO_PRODUCER => 'Co-Producer',
+        PersonJobPosition::DIALOGUE_EDITING => 'Dialogue Editing',
+        PersonJobPosition::INSERTED_SONG_PERFORMANCE => 'Inserted Song Performance',
+        PersonJobPosition::POST_PRODUCTION_ASSISTANT => 'Post-Production Assistant',
+        PersonJobPosition::PRODUCTION_ASSISTANT => 'Production Assistant',
+        PersonJobPosition::PRODUCTION_COORDINATION => 'Production Coordination',
+        PersonJobPosition::RE_RECORDING_MIXING => 'Re-Recording Mixing',
+        PersonJobPosition::RECORDING_ENGINEER => 'Recording Engineer',
+        PersonJobPosition::SOUND_SUPERVISOR => 'Sound Supervisor',
+        PersonJobPosition::SPOTTING => 'Spotting',
+        PersonJobPosition::ASSISTANT_ANIMATION_DIRECTOR => 'Assistant Animation Director',
+        PersonJobPosition::PRINCIPLE_DRAWING => 'Principle Drawing',
+        PersonJobPosition::LAYOUT => 'Layout',
+        PersonJobPosition::SCREENPLAY => 'Screenplay',
+        PersonJobPosition::SERIES_COMPOSITION => 'Series Composition',
+    ],
+
+    AnimeRelationEnum::class => [
+        AnimeRelationEnum::SEQUEL => 'Sequel',
+        AnimeRelationEnum::PREQUEL => 'Prequel',
+        AnimeRelationEnum::ALTERNATIVE => 'Alternative Version',
+        AnimeRelationEnum::SPIN_OFF => 'Spin-off',
+        AnimeRelationEnum::ADAPTATION => 'Adaptation',
+        AnimeRelationEnum::SIDE_STORY => 'Side Story',
+        AnimeRelationEnum::SUMMARY => 'Summary',
+        AnimeRelationEnum::PARENT_STORY => 'Parent Story',
+        AnimeRelationEnum::CHARACTER_STORY => 'Character Story',
+        AnimeRelationEnum::FULL_STORY => 'Full Story',
+        AnimeRelationEnum::OTHER => 'Other'
+    ],
+];

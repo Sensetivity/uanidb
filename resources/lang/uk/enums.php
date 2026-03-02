@@ -1,0 +1,152 @@
+<?php
+
+use App\Enums\AnimeRelationEnum;
+use App\Enums\AnimeTypeEnum;
+use App\Enums\AnimeStatusEnum;
+use App\Enums\PersonJobPosition;
+use App\Enums\SourceTypeEnum;
+use App\Enums\EpisodeTypeEnum;
+use App\Enums\CharacterRoleEnum;
+use App\Enums\WatchlistStatusEnum;
+
+return [
+    AnimeTypeEnum::class => [
+        AnimeTypeEnum::TV => 'Серіал',
+        AnimeTypeEnum::OVA => 'OVA',
+        AnimeTypeEnum::MOVIE => 'Фільм',
+        AnimeTypeEnum::SPECIAL => 'Спецвипуск',
+        AnimeTypeEnum::ONA => 'ONA',
+        AnimeTypeEnum::MUSIC => 'Кліп',
+        AnimeTypeEnum::UNKNOWN => 'Невідомо',
+    ],
+
+    AnimeStatusEnum::class => [
+        AnimeStatusEnum::AIRING => 'Триває',
+        AnimeStatusEnum::FINISHED => 'Закінчився',
+        AnimeStatusEnum::NOT_YET_AIRED => 'Ще не було',
+    ],
+
+    SourceTypeEnum::class => [
+        SourceTypeEnum::ORIGINAL => 'Оригінал',
+        SourceTypeEnum::MANGA => 'Манґа',
+        SourceTypeEnum::FOUR_KOMA_MANGA => 'Йонком-манґа',
+        SourceTypeEnum::WEB_MANGA => 'Веб-манґа',
+        SourceTypeEnum::DIGITAL_MANGA => 'Цифрова-манґа',
+        SourceTypeEnum::NOVEL => 'Роман',
+        SourceTypeEnum::LIGHT_NOVEL => 'Ранобе',
+        SourceTypeEnum::VISUAL_NOVEL => 'Візуальний роман',
+        SourceTypeEnum::GAME => 'Відеогра',
+        SourceTypeEnum::CARD_GAME => 'Карткова гра',
+        SourceTypeEnum::BOOK => 'Книга',
+        SourceTypeEnum::PICTURE_BOOK => 'Книжка-картинка',
+        SourceTypeEnum::RADIO => 'Радіо',
+        SourceTypeEnum::MUSIC => 'Кліп',
+        SourceTypeEnum::OTHER => 'Інше',
+    ],
+
+    EpisodeTypeEnum::class => [
+        EpisodeTypeEnum::REGULAR => 'Звичайний',
+        EpisodeTypeEnum::RECAP => 'Компіляція',
+        EpisodeTypeEnum::FILLER => 'Філер',
+    ],
+
+    CharacterRoleEnum::class => [
+        CharacterRoleEnum::MAIN => 'Головний',
+        CharacterRoleEnum::SUPPORTING => 'Другорядний',
+        CharacterRoleEnum::BACKGROUND => 'Фоновий',
+    ],
+
+    WatchlistStatusEnum::class => [
+        WatchlistStatusEnum::WATCHING => 'Дивлюся',
+        WatchlistStatusEnum::COMPLETED => 'Переглянуто',
+        WatchlistStatusEnum::ON_HOLD => 'Відкладено',
+        WatchlistStatusEnum::DROPPED => 'Покинуто',
+        WatchlistStatusEnum::PLAN_TO_WATCH => 'Планую дивитися',
+    ],
+
+    PersonJobPosition::class => [
+        PersonJobPosition::DIRECTOR => 'Режисер',
+        PersonJobPosition::SCRIPT => 'Сценарист',
+        PersonJobPosition::STORYBOARD => 'Розкадровка',
+        PersonJobPosition::EPISODE_DIRECTOR => 'Режисер епізоду',
+        PersonJobPosition::MUSIC => 'Композитор',
+        PersonJobPosition::ORIGINAL_CREATOR => 'Оригінальний творець',
+        PersonJobPosition::ORIGINAL_CHARACTER_DESIGN => 'Оригінальний дизайн персонажів',
+        PersonJobPosition::CREATOR => 'Творець',
+        PersonJobPosition::CHARACTER_DESIGN => 'Дизайн персонажів',
+        PersonJobPosition::ART_DIRECTOR => 'Арт-директор',
+        PersonJobPosition::CHIEF_ANIMATION_DIRECTOR => 'Головний директор анімації',
+        PersonJobPosition::ANIMATION_DIRECTOR => 'Директор анімації',
+        PersonJobPosition::MECHANICAL_DESIGN => 'Дизайн механіки',
+        PersonJobPosition::DIRECTOR_OF_PHOTOGRAPHY => 'Оператор-постановник',
+        PersonJobPosition::EXECUTIVE_PRODUCER => 'Виконавчий продюсер',
+        PersonJobPosition::SECOND_KEY_ANIMATION => 'Вторинна ключова анімація',
+        PersonJobPosition::ANIMATION_CHECK => 'Перевірка анімації',
+        PersonJobPosition::ASSISTANT_DIRECTOR => 'Помічник режисера',
+        PersonJobPosition::ASSOCIATE_PRODUCER => 'Асоційований продюсер',
+        PersonJobPosition::BACKGROUND_ART => 'Художник фонів',
+        PersonJobPosition::COLOR_DESIGN => 'Розробка колірної гами',
+        PersonJobPosition::COLOR_SETTING => 'Колірне оформлення',
+        PersonJobPosition::DIGITAL_PAINT => 'Цифрове розфарбовування',
+        PersonJobPosition::EDITING => 'Монтаж',
+        PersonJobPosition::IN_BETWEEN_ANIMATION => 'Проміжна анімація',
+        PersonJobPosition::KEY_ANIMATION => 'Ключова анімація',
+        PersonJobPosition::ONLINE_EDITING_SUPERVISION => 'Нагляд за онлайн-монтажем',
+        PersonJobPosition::ONLINE_EDITOR => 'Онлайн-монтажер',
+        PersonJobPosition::PLANNING => 'Планування',
+        PersonJobPosition::PLANNING_PRODUCER => 'Продюсер з планування',
+        PersonJobPosition::PRODUCTION_MANAGER => 'Керівник виробництва',
+        PersonJobPosition::PUBLICITY => 'Реклама',
+        PersonJobPosition::RECORDING => 'Запис',
+        PersonJobPosition::RECORDING_ASSISTANT => 'Асистент запису',
+        PersonJobPosition::SERIES_PRODUCTION_DIRECTOR => 'Керівник виробництва серіалу',
+        PersonJobPosition::SETTING => 'Розробка світу',
+        PersonJobPosition::SETTING_MANAGER => 'Керівник розробки світу',
+        PersonJobPosition::SOUND_DIRECTOR => 'Звукорежисер',
+        PersonJobPosition::SOUND_EFFECTS => 'Звукові ефекти',
+        PersonJobPosition::SOUND_MANAGER => 'Звуковий координатор',
+        PersonJobPosition::SPECIAL_EFFECTS => 'Спецефекти',
+        PersonJobPosition::THEME_SONG_ARRANGEMENT => 'Аранжування тематичної пісні',
+        PersonJobPosition::THEME_SONG_COMPOSITION => 'Композиція тематичної пісні',
+        PersonJobPosition::THEME_SONG_LYRICS => 'Текст тематичної пісні',
+        PersonJobPosition::THEME_SONG_PERFORMANCE => 'Виконання тематичної пісні',
+        PersonJobPosition::ADR_DIRECTOR => 'Режисер ADR',
+        PersonJobPosition::CO_DIRECTOR => 'Співрежисер',
+        PersonJobPosition::ASSISTANT_PRODUCER => 'Помічник продюсера',
+        PersonJobPosition::PRODUCER => 'Продюсер',
+        PersonJobPosition::ASSISTANT_ENGINEER => 'Помічник інженера',
+        PersonJobPosition::ASSISTANT_PRODUCTION_COORDINATOR => 'Помічник координатора виробництва',
+        PersonJobPosition::ASSOCIATE_CASTING_DIRECTOR => 'Асоційований директор кастингу',
+        PersonJobPosition::CASTING_DIRECTOR => 'Директор кастингу',
+        PersonJobPosition::CHIEF_PRODUCER => 'Головний продюсер',
+        PersonJobPosition::CO_PRODUCER => 'Співпродюсер',
+        PersonJobPosition::DIALOGUE_EDITING => 'Монтаж діалогів',
+        PersonJobPosition::INSERTED_SONG_PERFORMANCE => 'Виконання вставної пісні',
+        PersonJobPosition::POST_PRODUCTION_ASSISTANT => 'Асистент постпродакшну',
+        PersonJobPosition::PRODUCTION_ASSISTANT => 'Асистент виробництва',
+        PersonJobPosition::PRODUCTION_COORDINATION => 'Координація виробництва',
+        PersonJobPosition::RE_RECORDING_MIXING => 'Зведення перезапису',
+        PersonJobPosition::RECORDING_ENGINEER => 'Інженер звукозапису',
+        PersonJobPosition::SOUND_SUPERVISOR => 'Супервайзер звуку',
+        PersonJobPosition::SPOTTING => 'Споттінг',
+        PersonJobPosition::ASSISTANT_ANIMATION_DIRECTOR => 'Помічник директора анімації',
+        PersonJobPosition::PRINCIPLE_DRAWING => 'Базові моделі персонажів',
+        PersonJobPosition::LAYOUT => 'Компонування',
+        PersonJobPosition::SCREENPLAY => 'Кіносценарій',
+        PersonJobPosition::SERIES_COMPOSITION => 'Композиція серіалу',
+    ],
+
+    AnimeRelationEnum::class => [
+        AnimeRelationEnum::SEQUEL => 'Продовження',
+        AnimeRelationEnum::PREQUEL => 'Передісторія',
+        AnimeRelationEnum::ALTERNATIVE => 'Альтернативна версія',
+        AnimeRelationEnum::SPIN_OFF => 'Відгалуження',
+        AnimeRelationEnum::ADAPTATION => 'Адаптація',
+        AnimeRelationEnum::SIDE_STORY => 'Побічна історія',
+        AnimeRelationEnum::SUMMARY => 'Стислий огляд',
+        AnimeRelationEnum::PARENT_STORY => 'Оригінальна історія',
+        AnimeRelationEnum::CHARACTER_STORY => 'Історія персонажа',
+        AnimeRelationEnum::FULL_STORY => 'Повна версія',
+        AnimeRelationEnum::OTHER => 'Інше'
+    ],
+];

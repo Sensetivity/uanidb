@@ -1,0 +1,76 @@
+<?php
+
+namespace App\Enums;
+
+enum PersonJobPosition: int
+{
+    case DIRECTOR = 2;
+    case SCRIPT = 3;
+    case STORYBOARD = 4;
+    case EPISODE_DIRECTOR = 5;
+    case MUSIC = 6;
+    case ORIGINAL_CREATOR = 7;
+    case ORIGINAL_CHARACTER_DESIGN = 8;
+    case CREATOR = 9;
+    case CHARACTER_DESIGN = 10;
+    case ART_DIRECTOR = 11;
+    case CHIEF_ANIMATION_DIRECTOR = 12;
+    case ANIMATION_DIRECTOR = 13;
+    case MECHANICAL_DESIGN = 14;
+    case DIRECTOR_OF_PHOTOGRAPHY = 15;
+    case EXECUTIVE_PRODUCER = 16;
+    case SECOND_KEY_ANIMATION = 17;
+    case ANIMATION_CHECK = 18;
+    case ASSISTANT_DIRECTOR = 19;
+    case ASSOCIATE_PRODUCER = 20;
+    case BACKGROUND_ART = 21;
+    case COLOR_DESIGN = 22;
+    case COLOR_SETTING = 23;
+    case DIGITAL_PAINT = 24;
+    case EDITING = 25;
+    case IN_BETWEEN_ANIMATION = 26;
+    case KEY_ANIMATION = 27;
+    case ONLINE_EDITING_SUPERVISION = 28;
+    case ONLINE_EDITOR = 29;
+    case PLANNING = 30;
+    case PLANNING_PRODUCER = 31;
+    case PRODUCTION_MANAGER = 32;
+    case PUBLICITY = 33;
+    case RECORDING = 34;
+    case RECORDING_ASSISTANT = 35;
+    case SERIES_PRODUCTION_DIRECTOR = 36;
+    case SETTING = 37;
+    case SETTING_MANAGER = 38;
+    case SOUND_DIRECTOR = 39;
+    case SOUND_EFFECTS = 40;
+    case SOUND_MANAGER = 41;
+    case SPECIAL_EFFECTS = 42;
+    case THEME_SONG_ARRANGEMENT = 43;
+    case THEME_SONG_COMPOSITION = 44;
+    case THEME_SONG_LYRICS = 45;
+    case THEME_SONG_PERFORMANCE = 46;
+    case ADR_DIRECTOR = 47;
+    case CO_DIRECTOR = 48;
+    case ASSISTANT_PRODUCER = 50;
+    case PRODUCER = 51;
+    case ASSISTANT_ENGINEER = 52;
+    case ASSISTANT_PRODUCTION_COORDINATOR = 53;
+    case ASSOCIATE_CASTING_DIRECTOR = 54;
+    case CASTING_DIRECTOR = 55;
+    case CHIEF_PRODUCER = 56;
+    case CO_PRODUCER = 57;
+    case DIALOGUE_EDITING = 58;
+    case INSERTED_SONG_PERFORMANCE = 59;
+    case POST_PRODUCTION_ASSISTANT = 60;
+    case PRODUCTION_ASSISTANT = 61;
+    case PRODUCTION_COORDINATION = 62;
+    case RE_RECORDING_MIXING = 64;
+    case RECORDING_ENGINEER = 65;
+    case SOUND_SUPERVISOR = 66;
+    case SPOTTING = 67;
+    case ASSISTANT_ANIMATION_DIRECTOR = 68;
+    case PRINCIPLE_DRAWING = 69;
+    case LAYOUT = 70;
+    case SCREENPLAY = 71;
+    case SERIES_COMPOSITION = 72;
+}
