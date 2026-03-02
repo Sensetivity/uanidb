@@ -10,22 +10,10 @@ use Illuminate\Support\Facades\DB;
 
 class SeedSeasonsCommand extends Command
 {
+    protected $description = 'Seed the seasons table with all Winter/Spring/Summer/Fall seasons';
     protected $signature = 'seasons:seed
                             {--from=1960 : First year to generate}
                             {--to=      : Last year to generate (default: next year)}';
-
-    protected $description = 'Seed the seasons table with all Winter/Spring/Summer/Fall seasons';
-
-    /** @return array<int, array{enum: SeasonOfYearEnum, label: string, start: string, end: string}> */
-    private static function seasons(): array
-    {
-        return [
-            ['enum' => SeasonOfYearEnum::Winter, 'label' => 'Winter', 'start' => '01-01', 'end' => '03-31'],
-            ['enum' => SeasonOfYearEnum::Spring, 'label' => 'Spring', 'start' => '04-01', 'end' => '06-30'],
-            ['enum' => SeasonOfYearEnum::Summer, 'label' => 'Summer', 'start' => '07-01', 'end' => '09-30'],
-            ['enum' => SeasonOfYearEnum::Fall,   'label' => 'Fall',   'start' => '10-01', 'end' => '12-31'],
-        ];
-    }
 
     public function handle(): int
     {
@@ -89,5 +77,16 @@ class SeedSeasonsCommand extends Command
         };
 
         return [$now->year, $season];
+    }
+
+    /** @return array<int, array{enum: SeasonOfYearEnum, label: string, start: string, end: string}> */
+    private static function seasons(): array
+    {
+        return [
+            ['enum' => SeasonOfYearEnum::Winter, 'label' => 'Winter', 'start' => '01-01', 'end' => '03-31'],
+            ['enum' => SeasonOfYearEnum::Spring, 'label' => 'Spring', 'start' => '04-01', 'end' => '06-30'],
+            ['enum' => SeasonOfYearEnum::Summer, 'label' => 'Summer', 'start' => '07-01', 'end' => '09-30'],
+            ['enum' => SeasonOfYearEnum::Fall,   'label' => 'Fall',   'start' => '10-01', 'end' => '12-31'],
+        ];
     }
 }

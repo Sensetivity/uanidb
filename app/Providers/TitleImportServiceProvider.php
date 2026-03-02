@@ -9,6 +9,8 @@ use Illuminate\Support\ServiceProvider;
 
 class TitleImportServiceProvider extends ServiceProvider
 {
+    public function boot(): void {}
+
     public function register(): void
     {
         $this->app->bind(TitleImportProvider::class, function (): TitleImportProvider {
@@ -24,6 +26,4 @@ class TitleImportServiceProvider extends ServiceProvider
             );
         });
     }
-
-    public function boot(): void {}
 }

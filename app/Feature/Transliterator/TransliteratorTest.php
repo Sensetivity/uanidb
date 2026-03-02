@@ -6,11 +6,11 @@ require_once 'TransliterationService.php';
 
 class TransliteratorTest
 {
-    private $transliterator;
-    private $persons;
-    private $successCount = 0;
     private $failCount = 0;
     private $failures = [];
+    private $persons;
+    private $successCount = 0;
+    private $transliterator;
 
     public function __construct(string $jsonFilePath)
     {
@@ -36,6 +36,35 @@ class TransliteratorTest
         }
 
         $this->printResults();
+    }
+
+    private function printResults()
+    {
+        echo "\nРезультати тестування:\n";
+        echo "-------------------------------------------------------\n";
+        echo "Успішно: {$this->successCount}\n";
+        echo "Невдало: {$this->failCount}\n";
+        echo "Відсоток успіху: " . round(($this->successCount / ($this->successCount + $this->failCount)) * 100, 2) . "%\n";
+
+        if ($this->failCount > 0) {
+            echo "\nПриклади невдалих транслітерацій (перші 10):\n";
+            echo "-------------------------------------------------------\n";
+
+            $count = 0;
+            foreach ($this->failures as $failure) {
+                if ($count >= 10) {
+                    break;
+                }
+
+                echo "Тип: {$failure['type']}\n";
+                echo "Оригінал: {$failure['original']}\n";
+                echo "Очікувано: {$failure['expected']}\n";
+                echo "Отримано: {$failure['actual']}\n";
+                echo "-------------------------------------------------------\n";
+
+                $count++;
+            }
+        }
     }
 
     private function testPerson($person)
@@ -73,33 +102,6 @@ class TransliteratorTest
                     'expected' => $expected,
                     'actual' => $transliterated
                 ];
-            }
-        }
-    }
-
-    private function printResults()
-    {
-        echo "\nРезультати тестування:\n";
-        echo "-------------------------------------------------------\n";
-        echo "Успішно: {$this->successCount}\n";
-        echo "Невдало: {$this->failCount}\n";
-        echo "Відсоток успіху: " . round(($this->successCount / ($this->successCount + $this->failCount)) * 100, 2) . "%\n";
-
-        if ($this->failCount > 0) {
-            echo "\nПриклади невдалих транслітерацій (перші 10):\n";
-            echo "-------------------------------------------------------\n";
-
-            $count = 0;
-            foreach ($this->failures as $failure) {
-                if ($count >= 10) break;
-
-                echo "Тип: {$failure['type']}\n";
-                echo "Оригінал: {$failure['original']}\n";
-                echo "Очікувано: {$failure['expected']}\n";
-                echo "Отримано: {$failure['actual']}\n";
-                echo "-------------------------------------------------------\n";
-
-                $count++;
             }
         }
     }

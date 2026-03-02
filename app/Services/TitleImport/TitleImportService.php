@@ -36,7 +36,7 @@ class TitleImportService
         $imported = 0;
 
         foreach ($titles as $dto) {
-            if (! $force && in_array($dto->title, $existingTitles, true)) {
+            if (!$force && in_array($dto->title, $existingTitles, true)) {
                 continue;
             }
 
@@ -64,7 +64,7 @@ class TitleImportService
      */
     public function importEpisode(Episode $episode, bool $force = false): bool
     {
-        if (! $force && ! empty($episode->title_uk)) {
+        if (!$force && ! empty($episode->title_uk)) {
             return false;
         }
 

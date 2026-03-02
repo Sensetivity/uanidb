@@ -4,8 +4,15 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
+return new class () extends Migration
 {
+    public function down(): void
+    {
+        Schema::table('anime_character', function (Blueprint $table): void {
+            $table->string('role', 50)->nullable()->comment('Main, Supporting, Background')->change();
+        });
+    }
+
     /**
      * Run the migrations.
      */
@@ -13,13 +20,6 @@ return new class extends Migration
     {
         Schema::table('anime_character', function (Blueprint $table): void {
             $table->tinyInteger('role')->unsigned()->nullable()->comment('Main, Supporting, Background')->change();
-        });
-    }
-
-    public function down(): void
-    {
-        Schema::table('anime_character', function (Blueprint $table): void {
-            $table->string('role', 50)->nullable()->comment('Main, Supporting, Background')->change();
         });
     }
 };

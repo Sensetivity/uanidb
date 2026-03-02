@@ -9,13 +9,18 @@ use App\Models\Episode;
 
 class EpisodeProcessor implements RelationProcessor
 {
+    public function clear(Anime $anime): void
+    {
+        $anime->episodes()->forceDelete();
+    }
+
     public function sync(Anime $anime, AnimeFullDto $dto): void
     {
         foreach ($dto->episodes as $episodeDto) {
             $type = match (true) {
-                $episodeDto->filler => EpisodeTypeEnum::FILLER,
-                $episodeDto->recap => EpisodeTypeEnum::RECAP,
-                default => EpisodeTypeEnum::REGULAR,
+                $episodeDto->filler => EpisodeTypeEnum::Filler,
+                $episodeDto->recap => EpisodeTypeEnum::Recap,
+                default => EpisodeTypeEnum::Regular,
             };
 
             Episode::query()->updateOrCreate(
@@ -34,10 +39,5 @@ class EpisodeProcessor implements RelationProcessor
                 ],
             );
         }
-    }
-
-    public function clear(Anime $anime): void
-    {
-        $anime->episodes()->forceDelete();
     }
 }

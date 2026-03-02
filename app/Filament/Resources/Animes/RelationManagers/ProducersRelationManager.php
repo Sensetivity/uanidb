@@ -47,7 +47,7 @@ class ProducersRelationManager extends RelationManager
             ->headerActions([
                 AttachAction::make()
                     ->preloadRecordSelect()
-                    ->form(fn (AttachAction $action): array => [
+                    ->schema(fn (AttachAction $action): array => [
                         $action->getRecordSelect(),
                         TextInput::make('role')->maxLength(100),
                         Toggle::make('is_main'),

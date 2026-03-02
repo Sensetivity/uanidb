@@ -9,18 +9,23 @@ use App\Models\Season;
 
 class SeasonProcessor implements RelationProcessor
 {
+    public function clear(Anime $anime): void
+    {
+        $anime->seasons()->detach();
+    }
+
     public function sync(Anime $anime, AnimeFullDto $dto): void
     {
         $seasonString = $dto->anime->season;
         $year         = $dto->anime->year;
 
-        if (! $seasonString || ! $year) {
+        if (!$seasonString || !$year) {
             return;
         }
 
         $seasonEnum = SeasonOfYearEnum::fromString($seasonString);
 
-        if (! $seasonEnum) {
+        if (!$seasonEnum) {
             return;
         }
 
@@ -37,9 +42,14 @@ class SeasonProcessor implements RelationProcessor
         $anime->seasons()->syncWithoutDetaching([$season->id]);
     }
 
-    public function clear(Anime $anime): void
+    private function endDate(SeasonOfYearEnum $season, int $year): string
     {
-        $anime->seasons()->detach();
+        return match ($season) {
+            SeasonOfYearEnum::Winter => "{$year}-03-31",
+            SeasonOfYearEnum::Spring => "{$year}-06-30",
+            SeasonOfYearEnum::Summer => "{$year}-09-30",
+            SeasonOfYearEnum::Fall   => "{$year}-12-31",
+        };
     }
 
     private function startDate(SeasonOfYearEnum $season, int $year): string
@@ -49,16 +59,6 @@ class SeasonProcessor implements RelationProcessor
             SeasonOfYearEnum::Spring => "{$year}-04-01",
             SeasonOfYearEnum::Summer => "{$year}-07-01",
             SeasonOfYearEnum::Fall   => "{$year}-10-01",
-        };
-    }
-
-    private function endDate(SeasonOfYearEnum $season, int $year): string
-    {
-        return match ($season) {
-            SeasonOfYearEnum::Winter => "{$year}-03-31",
-            SeasonOfYearEnum::Spring => "{$year}-06-30",
-            SeasonOfYearEnum::Summer => "{$year}-09-30",
-            SeasonOfYearEnum::Fall   => "{$year}-12-31",
         };
     }
 }

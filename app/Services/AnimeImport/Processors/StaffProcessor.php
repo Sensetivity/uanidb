@@ -9,6 +9,11 @@ use Illuminate\Support\Facades\DB;
 
 class StaffProcessor implements RelationProcessor
 {
+    public function clear(Anime $anime): void
+    {
+        $anime->people()->detach();
+    }
+
     public function sync(Anime $anime, AnimeFullDto $dto): void
     {
         foreach ($dto->staff as $personDto) {
@@ -30,10 +35,5 @@ class StaffProcessor implements RelationProcessor
                 ]);
             }
         }
-    }
-
-    public function clear(Anime $anime): void
-    {
-        $anime->people()->detach();
     }
 }

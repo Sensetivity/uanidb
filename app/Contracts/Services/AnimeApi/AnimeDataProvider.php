@@ -18,13 +18,32 @@ interface AnimeDataProvider
     public function getAnime(int $id): ?AnimeDto;
 
     /**
-     * Search for anime.
+     * Get characters for an anime.
      *
-     * @param string $query Search query
-     * @param int $page Page number
-     * @return array<AnimeDto>
+     * @return array<CharacterDto>
      */
-    public function searchAnime(string $query, int $page = 1): array;
+    public function getAnimeCharacters(int $id): array;
+
+    /**
+     * Get episodes for an anime.
+     *
+     * @return array<EpisodeDto>
+     */
+    public function getAnimeEpisodes(int $id): array;
+
+    /**
+     * Get staff for an anime.
+     *
+     * @return array<PersonDto>
+     */
+    public function getAnimeStaff(int $id): array;
+
+    /**
+     * Get promotion videos for an anime.
+     *
+     * @return array<PromotionVideoDto>
+     */
+    public function getAnimeVideos(int $id): array;
 
     /**
      * Get seasonal anime.
@@ -46,30 +65,11 @@ interface AnimeDataProvider
     public function getTopAnime(string $type = 'all', int $page = 1): array;
 
     /**
-     * Get episodes for an anime.
+     * Search for anime.
      *
-     * @return array<EpisodeDto>
+     * @param string $query Search query
+     * @param int $page Page number
+     * @return array<AnimeDto>
      */
-    public function getAnimeEpisodes(int $id): array;
-
-    /**
-     * Get characters for an anime.
-     *
-     * @return array<CharacterDto>
-     */
-    public function getAnimeCharacters(int $id): array;
-
-    /**
-     * Get staff for an anime.
-     *
-     * @return array<PersonDto>
-     */
-    public function getAnimeStaff(int $id): array;
-
-    /**
-     * Get promotion videos for an anime.
-     *
-     * @return array<PromotionVideoDto>
-     */
-    public function getAnimeVideos(int $id): array;
+    public function searchAnime(string $query, int $page = 1): array;
 }

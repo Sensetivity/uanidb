@@ -2,10 +2,14 @@
 
 namespace App\Enums;
 
+use BackedEnum;
 use Filament\Support\Contracts\HasColor;
+use Filament\Support\Contracts\HasIcon;
 use Filament\Support\Contracts\HasLabel;
+use Filament\Support\Icons\Heroicon;
+use Illuminate\Contracts\Support\Htmlable;
 
-enum AnimeStatusEnum: int implements HasColor, HasLabel
+enum AnimeStatusEnum: int implements HasColor, HasIcon, HasLabel
 {
     case AIRING = 1;
     case FINISHED = 2;
@@ -26,21 +30,30 @@ enum AnimeStatusEnum: int implements HasColor, HasLabel
         return self::MAP[strtolower($status)] ?? self::NOT_YET_AIRED;
     }
 
-    public function getLabel(): string
-    {
-        return match ($this) {
-            self::AIRING => 'Airing',
-            self::FINISHED => 'Finished',
-            self::NOT_YET_AIRED => 'Not Yet Aired',
-        };
-    }
-
     public function getColor(): string|array|null
     {
         return match ($this) {
             self::AIRING => 'success',
             self::FINISHED => 'gray',
             self::NOT_YET_AIRED => 'warning',
+        };
+    }
+
+    public function getIcon(): string|BackedEnum|Htmlable|null
+    {
+        return match ($this) {
+            self::AIRING => Heroicon::OutlinedPlay,
+            self::FINISHED => Heroicon::OutlinedCheck,
+            self::NOT_YET_AIRED => Heroicon::OutlinedClock,
+        };
+    }
+
+    public function getLabel(): string
+    {
+        return match ($this) {
+            self::AIRING => 'Airing',
+            self::FINISHED => 'Finished',
+            self::NOT_YET_AIRED => 'Not Yet Aired',
         };
     }
 }

@@ -19,6 +19,19 @@ class DeepLTranslationProvider implements UsageAwareProvider
     }
 
     /**
+     * Get the DeepL API usage for the current billing period.
+     */
+    public function getUsage(): TranslationUsage
+    {
+        $usage = $this->translator->getUsage();
+
+        return new TranslationUsage(
+            characterCount: $usage->character->count ?? 0,
+            characterLimit: $usage->character->limit ?? 0,
+        );
+    }
+
+    /**
      * Translate a single text string via DeepL.
      */
     public function translate(string $text, string $targetLang): ?string
@@ -39,19 +52,6 @@ class DeepLTranslationProvider implements UsageAwareProvider
         $results = $this->withRetry(fn () => $this->translator->translateText($texts, null, $targetLang));
 
         return array_map(fn ($result) => $result->text, $results);
-    }
-
-    /**
-     * Get the DeepL API usage for the current billing period.
-     */
-    public function getUsage(): TranslationUsage
-    {
-        $usage = $this->translator->getUsage();
-
-        return new TranslationUsage(
-            characterCount: $usage->character->count ?? 0,
-            characterLimit: $usage->character->limit ?? 0,
-        );
     }
 
     /**

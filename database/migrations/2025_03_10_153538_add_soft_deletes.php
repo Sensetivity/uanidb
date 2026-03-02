@@ -4,30 +4,8 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
+return new class () extends Migration
 {
-    /**
-     * Run the migrations.
-     */
-    public function up(): void
-    {
-        Schema::table('anime', function (Blueprint $table) {
-            $table->softDeletes();
-        });
-
-        Schema::table('characters', function (Blueprint $table) {
-            $table->softDeletes();
-        });
-
-        Schema::table('episodes', function (Blueprint $table) {
-            $table->softDeletes();
-        });
-
-        Schema::table('people', function (Blueprint $table) {
-            $table->softDeletes();
-        });
-    }
-
     /**
      * Reverse the migrations.
      */
@@ -47,6 +25,28 @@ return new class extends Migration
 
         Schema::table('people', function (Blueprint $table) {
             $table->dropSoftDeletes();
+        });
+    }
+
+    /**
+     * Run the migrations.
+     */
+    public function up(): void
+    {
+        Schema::table('anime', function (Blueprint $table) {
+            $table->softDeletes();
+        });
+
+        Schema::table('characters', function (Blueprint $table) {
+            $table->softDeletes();
+        });
+
+        Schema::table('episodes', function (Blueprint $table) {
+            $table->softDeletes();
+        });
+
+        Schema::table('people', function (Blueprint $table) {
+            $table->softDeletes();
         });
     }
 };

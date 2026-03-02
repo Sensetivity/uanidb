@@ -9,6 +9,13 @@ use App\Models\Studio;
 
 class CompanyProcessor implements RelationProcessor
 {
+    public function clear(Anime $anime): void
+    {
+        $anime->studios()->detach();
+        $anime->producers()->detach();
+        $anime->licensors()->detach();
+    }
+
     public function sync(Anime $anime, AnimeFullDto $dto): void
     {
         $this->attachCompanies($anime, $dto->anime->studios, 'studios', [
@@ -23,13 +30,6 @@ class CompanyProcessor implements RelationProcessor
         $this->attachCompanies($anime, $dto->anime->licensors, 'licensors', [
             'region' => 'global',
         ]);
-    }
-
-    public function clear(Anime $anime): void
-    {
-        $anime->studios()->detach();
-        $anime->producers()->detach();
-        $anime->licensors()->detach();
     }
 
     /**

@@ -28,8 +28,7 @@ class DownloadAnimeImagesJob implements ShouldQueue
      */
     public function __construct(
         private readonly int $animeId,
-    ) {
-    }
+    ) {}
 
     /**
      * Calculate the number of seconds to wait before retrying the job.
@@ -74,7 +73,7 @@ class DownloadAnimeImagesJob implements ShouldQueue
                 usleep($delay * 1000);
                 $before = $character->hasMedia('main_image');
                 $this->downloadImage($character, $character->image_url, 'main_image');
-                if (! $before && $character->fresh()->hasMedia('main_image')) {
+                if (!$before && $character->fresh()->hasMedia('main_image')) {
                     $charactersDownloaded++;
                 }
             }
@@ -87,7 +86,7 @@ class DownloadAnimeImagesJob implements ShouldQueue
                 usleep($delay * 1000);
                 $before = $person->hasMedia('main_image');
                 $this->downloadImage($person, $person->image_url, 'main_image');
-                if (! $before && $person->fresh()->hasMedia('main_image')) {
+                if (!$before && $person->fresh()->hasMedia('main_image')) {
                     $peopleDownloaded++;
                 }
             }
@@ -102,7 +101,7 @@ class DownloadAnimeImagesJob implements ShouldQueue
      */
     private function downloadImage(HasMedia $model, ?string $imageUrl, string $collection): void
     {
-        if (! $imageUrl) {
+        if (!$imageUrl) {
             return;
         }
 

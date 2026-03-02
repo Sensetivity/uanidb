@@ -4,15 +4,15 @@ namespace App\Enums;
 
 enum AnimeTitleLanguageEnum: string
 {
-    case Japanese = 'Japanese';
-    case English = 'English';
-    case German = 'German';
-    case Spanish = 'Spanish';
-    case French = 'French';
-    case PortugueseBrazil = 'Portuguese (Brazil)';
-    case Italian = 'Italian';
     case Chinese = 'Chinese';
+    case English = 'English';
+    case French = 'French';
+    case German = 'German';
+    case Italian = 'Italian';
+    case Japanese = 'Japanese';
     case Korean = 'Korean';
+    case PortugueseBrazil = 'Portuguese (Brazil)';
+    case Spanish = 'Spanish';
     case Ukrainian = 'Ukrainian';
 
     private const MAP = [

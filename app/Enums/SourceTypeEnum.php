@@ -4,23 +4,23 @@ namespace App\Enums;
 
 enum SourceTypeEnum: int
 {
-    case ORIGINAL = 1;
-    case MANGA = 2;
-    case FOUR_KOMA_MANGA = 3;
-    case WEB_MANGA = 4;
-    case DIGITAL_MANGA = 5;
-    case NOVEL = 6;
-    case LIGHT_NOVEL = 7;
-    case VISUAL_NOVEL = 8;
-    case GAME = 9;
-    case CARD_GAME = 10;
     case BOOK = 11;
+    case CARD_GAME = 10;
+    case DIGITAL_MANGA = 5;
+    case FOUR_KOMA_MANGA = 3;
+    case GAME = 9;
+    case LIGHT_NOVEL = 7;
+    case MANGA = 2;
+    case MIXED_MEDIA = 16;
+    case MUSIC = 14;
+    case NOVEL = 6;
+    case ORIGINAL = 1;
+    case OTHER = 99;
     case PICTURE_BOOK = 12;
     case RADIO = 13;
-    case MUSIC = 14;
+    case VISUAL_NOVEL = 8;
+    case WEB_MANGA = 4;
     case WEB_NOVEL = 15;
-    case MIXED_MEDIA = 16;
-    case OTHER = 99;
 
     private const MAP = [
         'manga' => self::MANGA,

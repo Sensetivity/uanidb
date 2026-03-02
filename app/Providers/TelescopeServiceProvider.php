@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Str;
 use Laravel\Telescope\IncomingEntry;
 use Laravel\Telescope\Telescope;
 use Laravel\Telescope\TelescopeApplicationServiceProvider;
@@ -18,7 +19,15 @@ class TelescopeServiceProvider extends TelescopeApplicationServiceProvider
 
         $this->hideSensitiveRequestDetails();
 
-        Telescope::filter(function (IncomingEntry $entry) {
+        $ignoredPaths = [
+            '.well-known*',
+        ];
+
+        Telescope::filter(function (IncomingEntry $entry) use ($ignoredPaths) {
+            if ($entry->type === 'request' && Str::is($ignoredPaths, $entry->content['uri'] ?? '')) {
+                return false;
+            }
+
             if ($this->app->environment('local')) {
                 return true;
             }
@@ -28,6 +37,20 @@ class TelescopeServiceProvider extends TelescopeApplicationServiceProvider
                    $entry->isFailedJob() ||
                    $entry->isScheduledTask() ||
                    $entry->hasMonitoredTag();
+        });
+    }
+
+    /**
+     * Register the Telescope gate.
+     *
+     * This gate determines who can access Telescope in non-local environments.
+     */
+    protected function gate(): void
+    {
+        Gate::define('viewTelescope', function ($user) {
+            return in_array($user->email, [
+                //
+            ]);
         });
     }
 
@@ -47,19 +70,5 @@ class TelescopeServiceProvider extends TelescopeApplicationServiceProvider
             'x-csrf-token',
             'x-xsrf-token',
         ]);
-    }
-
-    /**
-     * Register the Telescope gate.
-     *
-     * This gate determines who can access Telescope in non-local environments.
-     */
-    protected function gate(): void
-    {
-        Gate::define('viewTelescope', function ($user) {
-            return in_array($user->email, [
-                //
-            ]);
-        });
     }
 }

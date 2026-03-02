@@ -8,12 +8,12 @@ use App\Models\Anime;
 interface RelationProcessor
 {
     /**
-     * Sync relation data from DTO to the anime model.
-     */
-    public function sync(Anime $anime, AnimeFullDto $dto): void;
-
-    /**
      * Clear all relation data for the anime model.
      */
     public function clear(Anime $anime): void;
+
+    /**
+     * Sync relation data from DTO to the anime model.
+     */
+    public function sync(Anime $anime, AnimeFullDto $dto): void;
 }

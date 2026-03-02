@@ -2,28 +2,14 @@
 
 namespace App\Models;
 
+use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Cviebrock\EloquentSluggable\Sluggable;
 
 class Studio extends BaseModel
 {
-    use HasFactory, Sluggable;
-
-    /**
-     * Return the sluggable configuration array for this model.
-     *
-     * @return array
-     */
-    public function sluggable(): array
-    {
-        return [
-            'slug' => [
-                'source' => 'name',
-                'onUpdate' => false,
-            ]
-        ];
-    }
+    use HasFactory;
+    use Sluggable;
 
     /**
      * Get animes where this studio is the primary studio.
@@ -33,6 +19,16 @@ class Studio extends BaseModel
         return $this->belongsToMany(Anime::class, 'anime_studio')
             ->withPivot('role', 'is_main', 'order', 'notes')
             ->wherePivot('is_main', true)
+            ->withTimestamps();
+    }
+
+    /**
+     * Get animes where this studio is a licensor.
+     */
+    public function licensedAnimes(): BelongsToMany
+    {
+        return $this->belongsToMany(Anime::class, 'anime_licensor')
+            ->withPivot('region')
             ->withTimestamps();
     }
 
@@ -47,12 +43,17 @@ class Studio extends BaseModel
     }
 
     /**
-     * Get animes where this studio is a licensor.
+     * Return the sluggable configuration array for this model.
+     *
+     * @return array
      */
-    public function licensedAnimes(): BelongsToMany
+    public function sluggable(): array
     {
-        return $this->belongsToMany(Anime::class, 'anime_licensor')
-            ->withPivot('region')
-            ->withTimestamps();
+        return [
+            'slug' => [
+                'source' => 'name',
+                'onUpdate' => false,
+            ]
+        ];
     }
 }

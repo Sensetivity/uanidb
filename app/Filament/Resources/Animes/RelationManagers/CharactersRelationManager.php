@@ -36,6 +36,7 @@ class CharactersRelationManager extends RelationManager
                     ->searchable(),
                 TextColumn::make('pivot.role')
                     ->label('Role')
+                    ->formatStateUsing(fn (int $state): CharacterRoleEnum => CharacterRoleEnum::from($state))
                     ->badge(),
             ])
             ->filters([
@@ -44,7 +45,7 @@ class CharactersRelationManager extends RelationManager
             ->headerActions([
                 AttachAction::make()
                     ->preloadRecordSelect()
-                    ->form(fn (AttachAction $action): array => [
+                    ->schema(fn (AttachAction $action): array => [
                         $action->getRecordSelect(),
                         Select::make('role')
                             ->options(CharacterRoleEnum::class)

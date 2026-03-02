@@ -4,8 +4,13 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
+return new class () extends Migration
 {
+    public function down(): void
+    {
+        Schema::dropIfExists('anime_character');
+    }
+
     public function up(): void
     {
         Schema::create('anime_character', function (Blueprint $table) {
@@ -18,10 +23,5 @@ return new class extends Migration
             $table->index('anime_id');
             $table->index('character_id');
         });
-    }
-
-    public function down(): void
-    {
-        Schema::dropIfExists('anime_character');
     }
 };

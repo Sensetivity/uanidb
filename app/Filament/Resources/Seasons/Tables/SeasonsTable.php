@@ -7,6 +7,7 @@ use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Actions\ForceDeleteBulkAction;
 use Filament\Actions\RestoreBulkAction;
+use Filament\Actions\ViewAction;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\TrashedFilter;
@@ -19,6 +20,7 @@ class SeasonsTable
         return $table
             ->columns([
                 TextColumn::make('name')
+                    ->searchable()
                     ->sortable(),
                 TextColumn::make('year')
                     ->sortable(),
@@ -32,6 +34,7 @@ class SeasonsTable
                 TrashedFilter::make(),
             ])
             ->recordActions([
+                ViewAction::make(),
                 EditAction::make(),
             ])
             ->toolbarActions([

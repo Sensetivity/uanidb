@@ -3,7 +3,6 @@
 namespace App\Filament\Resources\Episodes\Schemas;
 
 use App\Enums\EpisodeTypeEnum;
-use App\Models\Anime;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
@@ -17,9 +16,9 @@ class EpisodeForm
         return $schema
             ->components([
                 Select::make('anime_id')
-                    ->label('Anime')
-                    ->options(Anime::query()->pluck('title', 'id'))
+                    ->relationship('anime', 'title')
                     ->searchable()
+                    ->preload()
                     ->required(),
                 TextInput::make('number')
                     ->numeric()

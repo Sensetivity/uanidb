@@ -26,8 +26,7 @@ class ImportAnimeJob implements ShouldQueue
         private readonly bool $forceUpdate = false,
         private readonly bool $downloadImages = false,
         private readonly bool $translate = false,
-    ) {
-    }
+    ) {}
 
     /**
      * Execute the job.
@@ -38,7 +37,7 @@ class ImportAnimeJob implements ShouldQueue
 
         $anime = $importService->importBaseAnimeByMalId($this->malId, $this->forceUpdate);
 
-        if (! $anime) {
+        if (!$anime) {
             Log::warning("ImportAnimeJob: Anime MAL ID {$this->malId} not found on API.");
 
             return;
@@ -58,7 +57,7 @@ class ImportAnimeJob implements ShouldQueue
             $jobs[] = new TranslateAnimeJob($anime->id);
         }
 
-        $jobNames = array_map(fn($j) => class_basename($j), $jobs);
+        $jobNames = array_map(fn ($j) => class_basename($j), $jobs);
         Log::info("ImportAnimeJob: Dispatching chain [" . implode(' → ', $jobNames) . "] for '{$anime->title}'.");
 
         Bus::chain($jobs)->dispatch();

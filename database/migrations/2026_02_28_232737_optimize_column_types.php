@@ -5,8 +5,34 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
+return new class () extends Migration
 {
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
+    {
+        Schema::table('animes', function (Blueprint $table) {
+            $table->integer('mal_id')->nullable(false)->change();
+            $table->integer('source_type')->nullable()->change();
+            $table->string('rating', 50)->nullable()->comment('G, PG, PG-13, R, R+, Rx')->change();
+            $table->double('score')->nullable()->change();
+            $table->double('popularity')->nullable()->change();
+        });
+
+        Schema::table('user_anime_lists', function (Blueprint $table) {
+            $table->string('status', 20)->nullable(false)->comment('watching, completed, on_hold, dropped, plan_to_watch')->change();
+        });
+
+        Schema::table('seasons', function (Blueprint $table) {
+            $table->string('season_of_year', 20)->nullable(false)->comment('Winter, Spring, Summer, Fall')->change();
+        });
+
+        Schema::table('promotion_videos', function (Blueprint $table) {
+            $table->string('type', 50)->nullable()->comment('Trailer, PV, Character, Opening, Ending')->change();
+        });
+    }
+
     /**
      * Run the migrations.
      */
@@ -44,32 +70,6 @@ return new class extends Migration
 
         Schema::table('promotion_videos', function (Blueprint $table) {
             $table->unsignedTinyInteger('type')->nullable()->comment('PromotionVideoTypeEnum')->change();
-        });
-    }
-
-    /**
-     * Reverse the migrations.
-     */
-    public function down(): void
-    {
-        Schema::table('animes', function (Blueprint $table) {
-            $table->integer('mal_id')->nullable(false)->change();
-            $table->integer('source_type')->nullable()->change();
-            $table->string('rating', 50)->nullable()->comment('G, PG, PG-13, R, R+, Rx')->change();
-            $table->double('score')->nullable()->change();
-            $table->double('popularity')->nullable()->change();
-        });
-
-        Schema::table('user_anime_lists', function (Blueprint $table) {
-            $table->string('status', 20)->nullable(false)->comment('watching, completed, on_hold, dropped, plan_to_watch')->change();
-        });
-
-        Schema::table('seasons', function (Blueprint $table) {
-            $table->string('season_of_year', 20)->nullable(false)->comment('Winter, Spring, Summer, Fall')->change();
-        });
-
-        Schema::table('promotion_videos', function (Blueprint $table) {
-            $table->string('type', 50)->nullable()->comment('Trailer, PV, Character, Opening, Ending')->change();
         });
     }
 };

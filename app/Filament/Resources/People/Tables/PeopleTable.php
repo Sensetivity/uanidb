@@ -12,6 +12,7 @@ use Filament\Actions\ForceDeleteBulkAction;
 use Filament\Actions\RestoreBulkAction;
 use Filament\Actions\ViewAction;
 use Filament\Notifications\Notification;
+use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\TrashedFilter;
@@ -46,10 +47,10 @@ class PeopleTable
                 ActionGroup::make([
                     Action::make('download_image')
                         ->label('Download Image')
-                        ->icon('heroicon-o-photo')
+                        ->icon(Heroicon::OutlinedPhoto)
                         ->color('gray')
                         ->action(function (Person $record): void {
-                            if (! $record->image_url) {
+                            if (!$record->image_url) {
                                 Notification::make()
                                     ->title('URL зображення відсутній')
                                     ->warning()
@@ -68,7 +69,7 @@ class PeopleTable
                                 ->send();
                         }),
                 ])
-                    ->icon('heroicon-o-ellipsis-vertical')
+                    ->icon(Heroicon::OutlinedEllipsisVertical)
                     ->tooltip('More actions'),
             ])
             ->toolbarActions([

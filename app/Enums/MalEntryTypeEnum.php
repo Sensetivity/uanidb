@@ -5,11 +5,11 @@ namespace App\Enums;
 enum MalEntryTypeEnum: string
 {
     case Anime = 'anime';
-    case Manga = 'manga';
-    case LightNovel = 'light_novel';
-    case OneShot = 'one-shot';
     case Doujin = 'doujin';
-    case Manhwa = 'manhwa';
+    case LightNovel = 'light_novel';
+    case Manga = 'manga';
     case Manhua = 'manhua';
+    case Manhwa = 'manhwa';
     case Novel = 'novel';
+    case OneShot = 'one-shot';
 }

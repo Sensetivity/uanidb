@@ -10,6 +10,12 @@ use Illuminate\Support\Facades\DB;
 
 class CharacterProcessor implements RelationProcessor
 {
+    public function clear(Anime $anime): void
+    {
+        DB::table('character_voice')->where('anime_id', $anime->id)->delete();
+        $anime->characters()->detach();
+    }
+
     public function sync(Anime $anime, AnimeFullDto $dto): void
     {
         $characterPivot = [];
@@ -46,11 +52,5 @@ class CharacterProcessor implements RelationProcessor
         }
 
         $anime->characters()->sync($characterPivot);
-    }
-
-    public function clear(Anime $anime): void
-    {
-        DB::table('character_voice')->where('anime_id', $anime->id)->delete();
-        $anime->characters()->detach();
     }
 }

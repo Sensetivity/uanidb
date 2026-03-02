@@ -4,13 +4,12 @@ namespace App\Models;
 
 use App\Enums\EpisodeTypeEnum;
 use Carbon\Carbon;
-use Illuminate\Database\Eloquent\Builder;
+use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
-use Cviebrock\EloquentSluggable\Sluggable;
 
 /**
  * Class Episode
@@ -44,14 +43,8 @@ use Cviebrock\EloquentSluggable\Sluggable;
  */
 class Episode extends BaseModel
 {
-    use HasFactory, Sluggable;
-
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
-    protected $guarded = ['id'];
+    use HasFactory;
+    use Sluggable;
 
     /**
      * The attributes that should be cast.
@@ -74,19 +67,11 @@ class Episode extends BaseModel
     ];
 
     /**
-     * Return the sluggable configuration array for this model.
+     * The attributes that are mass assignable.
      *
-     * @return array
+     * @var array<int, string>
      */
-    public function sluggable(): array
-    {
-        return [
-            'slug' => [
-                'source' => ['number', 'title'],
-                'onUpdate' => false,
-            ]
-        ];
-    }
+    protected $guarded = ['id'];
 
     /**
      * Get the anime that owns the episode.
@@ -120,5 +105,20 @@ class Episode extends BaseModel
         }
 
         return $this->aired && $this->aired->isPast();
+    }
+
+    /**
+     * Return the sluggable configuration array for this model.
+     *
+     * @return array
+     */
+    public function sluggable(): array
+    {
+        return [
+            'slug' => [
+                'source' => ['number', 'title'],
+                'onUpdate' => false,
+            ]
+        ];
     }
 }

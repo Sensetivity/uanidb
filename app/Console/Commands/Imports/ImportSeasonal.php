@@ -9,6 +9,13 @@ use Illuminate\Console\Command;
 class ImportSeasonal extends Command
 {
     /**
+     * The console command description.
+     *
+     * @var string
+     */
+    protected $description = 'Import seasonal anime from MAL';
+
+    /**
      * The name and signature of the console command.
      *
      * @var string
@@ -19,13 +26,6 @@ class ImportSeasonal extends Command
         {--pages=1 : Number of pages to import}
         {--force : Force update even if anime exists}
         {--with-images : Download images after import}';
-
-    /**
-     * The console command description.
-     *
-     * @var string
-     */
-    protected $description = 'Import seasonal anime from MAL';
 
     /**
      * Execute the console command.

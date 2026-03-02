@@ -24,13 +24,13 @@ class ImportAniDbEpisodeTitlesJob implements ShouldQueue
     {
         $anime = Anime::query()->find($this->animeId);
 
-        if (! $anime) {
+        if (!$anime) {
             Log::warning("ImportAniDbEpisodeTitlesJob: Anime ID {$this->animeId} not found.");
 
             return;
         }
 
-        if (! $anime->anidb_id) {
+        if (!$anime->anidb_id) {
             Log::warning("ImportAniDbEpisodeTitlesJob: Anime \"{$anime->title}\" has no anidb_id, skipping.");
 
             return;

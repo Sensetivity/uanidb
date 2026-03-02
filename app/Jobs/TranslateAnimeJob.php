@@ -27,8 +27,7 @@ class TranslateAnimeJob implements ShouldQueue
     public function __construct(
         private readonly int $animeId,
         private readonly bool $withEpisodes = true,
-    ) {
-    }
+    ) {}
 
     /**
      * @return array<int>
@@ -47,7 +46,7 @@ class TranslateAnimeJob implements ShouldQueue
 
         $anime = Anime::find($this->animeId);
 
-        if (! $anime) {
+        if (!$anime) {
             Log::warning("TranslateAnimeJob: Anime ID {$this->animeId} not found.");
 
             return;

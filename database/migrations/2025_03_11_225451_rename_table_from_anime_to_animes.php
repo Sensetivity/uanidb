@@ -4,18 +4,8 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
+return new class () extends Migration
 {
-    /**
-     * Run the migrations.
-     */
-    public function up(): void
-    {
-        Schema::table('anime', function (Blueprint $table) {
-            $table->rename('animes');
-        });
-    }
-
     /**
      * Reverse the migrations.
      */
@@ -23,6 +13,16 @@ return new class extends Migration
     {
         Schema::table('animes', function (Blueprint $table) {
             $table->rename('anime');
+        });
+    }
+
+    /**
+     * Run the migrations.
+     */
+    public function up(): void
+    {
+        Schema::table('anime', function (Blueprint $table) {
+            $table->rename('animes');
         });
     }
 };

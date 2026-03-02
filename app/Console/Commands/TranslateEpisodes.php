@@ -10,6 +10,13 @@ use Illuminate\Console\Command;
 class TranslateEpisodes extends Command
 {
     /**
+     * The console command description.
+     *
+     * @var string
+     */
+    protected $description = 'Translate episode titles and synopses to Ukrainian via DeepL';
+
+    /**
      * The name and signature of the console command.
      *
      * @var string
@@ -17,13 +24,6 @@ class TranslateEpisodes extends Command
     protected $signature = 'translate:episodes
         {animeId? : Translate episodes for a specific anime ID}
         {--untranslated : Only translate episodes without Ukrainian title/synopsis}';
-
-    /**
-     * The console command description.
-     *
-     * @var string
-     */
-    protected $description = 'Translate episode titles and synopses to Ukrainian via DeepL';
 
     /**
      * Execute the console command.
@@ -37,7 +37,7 @@ class TranslateEpisodes extends Command
         if ($animeId) {
             $anime = Anime::find((int) $animeId);
 
-            if (! $anime) {
+            if (!$anime) {
                 $this->error("Anime with ID {$animeId} not found.");
 
                 return self::FAILURE;
@@ -47,7 +47,7 @@ class TranslateEpisodes extends Command
             $this->info("Translating episodes for: {$anime->title}");
         }
 
-        if ($this->option('untranslated') || ! $animeId) {
+        if ($this->option('untranslated') || !$animeId) {
             $query->where(function ($q) {
                 $q->where(function ($sub) {
                     $sub->whereNotNull('title_en')

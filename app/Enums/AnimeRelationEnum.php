@@ -4,17 +4,17 @@ namespace App\Enums;
 
 enum AnimeRelationEnum: int
 {
-    case SEQUEL = 1;
-    case PREQUEL = 2;
-    case ALTERNATIVE = 3;
-    case SPIN_OFF = 4;
     case ADAPTATION = 5;
-    case SIDE_STORY = 6;
-    case SUMMARY = 7;
-    case PARENT_STORY = 8;
+    case ALTERNATIVE = 3;
     case CHARACTER_STORY = 9;
     case FULL_STORY = 10;
     case OTHER = 99;
+    case PARENT_STORY = 8;
+    case PREQUEL = 2;
+    case SEQUEL = 1;
+    case SIDE_STORY = 6;
+    case SPIN_OFF = 4;
+    case SUMMARY = 7;
 
     private const MAP = [
         'sequel' => AnimeRelationEnum::SEQUEL,

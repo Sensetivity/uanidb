@@ -9,6 +9,11 @@ use App\Models\AnimeTitle;
 
 class TitleProcessor implements RelationProcessor
 {
+    public function clear(Anime $anime): void
+    {
+        $anime->titles()->delete();
+    }
+
     public function sync(Anime $anime, AnimeFullDto $dto): void
     {
         if (empty($dto->anime->titles)) {
@@ -33,10 +38,5 @@ class TitleProcessor implements RelationProcessor
         }
 
         AnimeTitle::query()->insert($titles);
-    }
-
-    public function clear(Anime $anime): void
-    {
-        $anime->titles()->delete();
     }
 }

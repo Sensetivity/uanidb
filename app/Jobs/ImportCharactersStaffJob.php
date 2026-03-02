@@ -27,8 +27,7 @@ class ImportCharactersStaffJob implements ShouldQueue
      */
     public function __construct(
         private readonly int $animeId,
-    ) {
-    }
+    ) {}
 
     /**
      * @return array<int>
@@ -47,7 +46,7 @@ class ImportCharactersStaffJob implements ShouldQueue
 
         $anime = Anime::find($this->animeId);
 
-        if (! $anime) {
+        if (!$anime) {
             Log::warning("ImportCharactersStaffJob: Anime ID {$this->animeId} not found.");
 
             return;

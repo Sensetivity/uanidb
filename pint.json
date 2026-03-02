@@ -29,6 +29,7 @@
                 "trait_import": "none"
             }
         },
+        "not_operator_with_successor_space": false,
         "concat_space": {
             "spacing": "one"
         },
@@ -41,10 +42,12 @@
             "anonymous_classes_opening_brace": "next_line_unless_newline_at_signature_end",
             "allow_single_line_empty_anonymous_classes": true
         },
+        "single_line_empty_body": true,
         "ordered_class_elements": {
             "sort_algorithm": "alpha",
             "order": [
                 "use_trait",
+                "case",
                 "constant_public",
                 "constant_protected",
                 "constant_private",

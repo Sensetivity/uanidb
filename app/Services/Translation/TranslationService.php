@@ -14,7 +14,19 @@ class TranslationService
     public function __construct(
         private TranslationProvider $provider,
         private string              $targetLanguage = 'UK',
-    ) {
+    ) {}
+
+    /**
+     * Get API usage for the current billing period.
+     * Returns zeros if the active provider does not support usage reporting.
+     */
+    public function getUsage(): TranslationUsage
+    {
+        if ($this->provider instanceof UsageAwareProvider) {
+            return $this->provider->getUsage();
+        }
+
+        return new TranslationUsage(characterCount: 0, characterLimit: 0);
     }
 
     /**
@@ -32,6 +44,32 @@ class TranslationService
         $cacheKey = $this->cacheKey($text, $targetLang);
 
         return Cache::remember($cacheKey, now()->addMonth(), fn () => $this->provider->translate($text, $targetLang));
+    }
+
+    /**
+     * Translate anime synopsis to Ukrainian.
+     */
+    public function translateAnimeSynopsis(Anime $anime): bool
+    {
+        if (empty($anime->synopsis)) {
+            return false;
+        }
+
+        if (! empty($anime->synopsis_uk)) {
+            return false;
+        }
+
+        $translated = $this->translate($anime->synopsis);
+
+        if ($translated === null) {
+            return false;
+        }
+
+        $anime->update(['synopsis_uk' => $translated]);
+
+        Log::info("Translated synopsis for anime: {$anime->title} (ID: {$anime->id})");
+
+        return true;
     }
 
     /**
@@ -81,45 +119,6 @@ class TranslationService
         }
 
         return $results;
-    }
-
-    /**
-     * Get API usage for the current billing period.
-     * Returns zeros if the active provider does not support usage reporting.
-     */
-    public function getUsage(): TranslationUsage
-    {
-        if ($this->provider instanceof UsageAwareProvider) {
-            return $this->provider->getUsage();
-        }
-
-        return new TranslationUsage(characterCount: 0, characterLimit: 0);
-    }
-
-    /**
-     * Translate anime synopsis to Ukrainian.
-     */
-    public function translateAnimeSynopsis(Anime $anime): bool
-    {
-        if (empty($anime->synopsis)) {
-            return false;
-        }
-
-        if (! empty($anime->synopsis_uk)) {
-            return false;
-        }
-
-        $translated = $this->translate($anime->synopsis);
-
-        if ($translated === null) {
-            return false;
-        }
-
-        $anime->update(['synopsis_uk' => $translated]);
-
-        Log::info("Translated synopsis for anime: {$anime->title} (ID: {$anime->id})");
-
-        return true;
     }
 
     /**

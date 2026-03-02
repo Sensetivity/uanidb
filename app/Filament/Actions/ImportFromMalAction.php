@@ -6,6 +6,7 @@ use App\Jobs\ImportAnimeJob;
 use Filament\Actions\Action;
 use Filament\Forms\Components\TextInput;
 use Filament\Notifications\Notification;
+use Filament\Support\Icons\Heroicon;
 
 class ImportFromMalAction extends Action
 {
@@ -20,7 +21,7 @@ class ImportFromMalAction extends Action
 
         $this
             ->label('Import from MAL')
-            ->icon('heroicon-o-arrow-down-tray')
+            ->icon(Heroicon::OutlinedArrowDownTray)
             ->schema([
                 TextInput::make('mal_id')
                     ->label('MAL ID')

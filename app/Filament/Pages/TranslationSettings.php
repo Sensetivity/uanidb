@@ -9,8 +9,8 @@ use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Notifications\Notification;
 use Filament\Pages\Page;
-use Filament\Schemas\Concerns\InteractsWithSchemas;
 use Filament\Schemas\Components\Section;
+use Filament\Schemas\Concerns\InteractsWithSchemas;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use UnitEnum;
@@ -19,28 +19,14 @@ class TranslationSettings extends Page
 {
     use InteractsWithSchemas;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedCog6Tooth;
-
-    protected static string|UnitEnum|null $navigationGroup = 'Налаштування';
-
-    protected static ?string $title = 'Translation Settings';
-
-    protected static ?string $navigationLabel = 'Translation Settings';
-
-    protected string $view = 'filament.pages.translation-settings';
-
     /** @var array<string, mixed> */
     public array $data = [];
 
-    public function mount(): void
-    {
-        $this->form->fill([
-            'translation_provider' => Setting::get('translation_provider', 'deepl'),
-            'target_language'      => Setting::get('target_language', 'UK'),
-            'anidb_client'         => Setting::get('anidb_client', ''),
-            'anidb_client_ver'     => Setting::get('anidb_client_ver', '1'),
-        ]);
-    }
+    protected static string|UnitEnum|null $navigationGroup = 'Налаштування';
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedCog6Tooth;
+    protected static ?string $navigationLabel = 'Translation Settings';
+    protected static ?string $title = 'Translation Settings';
+    protected string $view = 'filament.pages.translation-settings';
 
     public function form(Schema $schema): Schema
     {
@@ -68,6 +54,16 @@ class TranslationSettings extends Page
                     ]),
             ])
             ->statePath('data');
+    }
+
+    public function mount(): void
+    {
+        $this->form->fill([
+            'translation_provider' => Setting::get('translation_provider', 'deepl'),
+            'target_language'      => Setting::get('target_language', 'UK'),
+            'anidb_client'         => Setting::get('anidb_client', ''),
+            'anidb_client_ver'     => Setting::get('anidb_client_ver', '1'),
+        ]);
     }
 
     public function save(): void

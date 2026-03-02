@@ -10,8 +10,6 @@ class UserAnimeList extends BaseModel
 {
     use HasFactory;
 
-    protected $guarded = ['id', 'created_at', 'updated_at'];
-
     /**
      * The attributes that should be cast.
      *
@@ -26,13 +24,7 @@ class UserAnimeList extends BaseModel
         'status' => WatchlistStatusEnum::class,
     ];
 
-    /**
-     * Get the user that owns the list item.
-     */
-    public function user(): BelongsTo
-    {
-        return $this->belongsTo(User::class);
-    }
+    protected $guarded = ['id', 'created_at', 'updated_at'];
 
     /**
      * Get the anime associated with the list item.
@@ -40,5 +32,13 @@ class UserAnimeList extends BaseModel
     public function anime(): BelongsTo
     {
         return $this->belongsTo(Anime::class);
+    }
+
+    /**
+     * Get the user that owns the list item.
+     */
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
     }
 }

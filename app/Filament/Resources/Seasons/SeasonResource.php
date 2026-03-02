@@ -5,7 +5,9 @@ namespace App\Filament\Resources\Seasons;
 use App\Filament\Resources\Seasons\Pages\CreateSeason;
 use App\Filament\Resources\Seasons\Pages\EditSeason;
 use App\Filament\Resources\Seasons\Pages\ListSeasons;
+use App\Filament\Resources\Seasons\Pages\ViewSeason;
 use App\Filament\Resources\Seasons\Schemas\SeasonForm;
+use App\Filament\Resources\Seasons\Schemas\SeasonInfolist;
 use App\Filament\Resources\Seasons\Tables\SeasonsTable;
 use App\Models\Season;
 use BackedEnum;
@@ -31,6 +33,7 @@ class SeasonResource extends Resource
         return [
             'index' => ListSeasons::route('/'),
             'create' => CreateSeason::route('/create'),
+            'view' => ViewSeason::route('/{record}'),
             'edit' => EditSeason::route('/{record}/edit'),
         ];
     }
@@ -48,6 +51,11 @@ class SeasonResource extends Resource
         return [
             //
         ];
+    }
+
+    public static function infolist(Schema $schema): Schema
+    {
+        return SeasonInfolist::configure($schema);
     }
 
     public static function table(Table $table): Table

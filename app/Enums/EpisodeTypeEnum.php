@@ -2,15 +2,30 @@
 
 namespace App\Enums;
 
-enum EpisodeTypeEnum: int
-{
-    case REGULAR = 1;
-    case RECAP = 2;
-    case FILLER = 3;
+use Filament\Support\Contracts\HasColor;
+use Filament\Support\Contracts\HasLabel;
 
-    //     public static $_episode_types = [
-    //        self::EPISODE_TYPE_MAIN => 'Звичайний',
-    //        self::EPISODE_TYP_RECAP => 'Компіляція',
-    //        self::EPISODE_TYP_FILLER => 'Філер',
-    //    ];
+enum EpisodeTypeEnum: int implements HasColor, HasLabel
+{
+    case Filler = 3;
+    case Recap = 2;
+    case Regular = 1;
+
+    public function getColor(): string|array|null
+    {
+        return match ($this) {
+            self::Regular => 'gray',
+            self::Recap => 'warning',
+            self::Filler => 'danger',
+        };
+    }
+
+    public function getLabel(): string
+    {
+        return match ($this) {
+            self::Regular => 'Звичайний',
+            self::Recap => 'Компіляція',
+            self::Filler => 'Філер',
+        };
+    }
 }

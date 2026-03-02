@@ -4,17 +4,19 @@ namespace App\Filament\Resources\Episodes\Tables;
 
 use App\Models\Episode;
 use App\Services\TitleImport\TitleImportService;
+use Filament\Actions\Action;
 use Filament\Actions\ActionGroup;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Actions\ForceDeleteBulkAction;
 use Filament\Actions\RestoreBulkAction;
+use Filament\Actions\ViewAction;
 use Filament\Notifications\Notification;
+use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\TrashedFilter;
 use Filament\Tables\Table;
-use Filament\Actions\Action;
 
 class EpisodesTable
 {
@@ -22,8 +24,11 @@ class EpisodesTable
     {
         return $table
             ->columns([
-                TextColumn::make('number')
-                    ->sortable(),
+                TextColumn::make('anime.title')
+                    ->label('Anime')
+                    ->limit(30)
+                    ->sortable()
+                    ->searchable(),
                 TextColumn::make('title')
                     ->label('Title (Romaji)')
                     ->limit(40),
@@ -45,11 +50,12 @@ class EpisodesTable
                 TrashedFilter::make(),
             ])
             ->recordActions([
+                ViewAction::make()->iconButton(),
                 EditAction::make()->iconButton(),
                 ActionGroup::make([
                     Action::make('import_anidb_title')
                         ->label('Import AniDB Title')
-                        ->icon('heroicon-o-tag')
+                        ->icon(Heroicon::OutlinedTag)
                         ->color('info')
                         ->action(function (Episode $record): void {
                             $imported = app(TitleImportService::class)->importEpisode($record, force: true);
@@ -60,7 +66,7 @@ class EpisodesTable
                                 ->send();
                         }),
                 ])
-                    ->icon('heroicon-o-ellipsis-vertical')
+                    ->icon(Heroicon::OutlinedEllipsisVertical)
                     ->tooltip('More actions'),
             ])
             ->toolbarActions([

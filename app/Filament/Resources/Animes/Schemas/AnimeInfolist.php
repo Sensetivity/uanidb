@@ -32,7 +32,8 @@ class AnimeInfolist
                 TextEntry::make('synopsis_uk')->label('Synopsis (Ukrainian)')->columnSpanFull(),
                 TextEntry::make('ukrainian_titles')
                     ->label('Українські назви')
-                    ->state(fn (Anime $record): string => $record->titles()
+                    ->state(
+                        fn (Anime $record): string => $record->titles()
                         ->where('language', 'uk')
                         ->get()
                         ->map(fn (AnimeTitle $t): string => "[{$t->source->getLabel()}] {$t->title}")

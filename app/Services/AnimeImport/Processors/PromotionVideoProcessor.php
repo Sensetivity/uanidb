@@ -8,6 +8,11 @@ use App\Models\PromotionVideo;
 
 class PromotionVideoProcessor implements RelationProcessor
 {
+    public function clear(Anime $anime): void
+    {
+        $anime->promotionVideos()->delete();
+    }
+
     public function sync(Anime $anime, AnimeFullDto $dto): void
     {
         foreach ($dto->promotionVideos as $videoDto) {
@@ -21,10 +26,5 @@ class PromotionVideoProcessor implements RelationProcessor
                 ],
             );
         }
-    }
-
-    public function clear(Anime $anime): void
-    {
-        $anime->promotionVideos()->delete();
     }
 }

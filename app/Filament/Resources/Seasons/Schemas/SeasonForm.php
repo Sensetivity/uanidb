@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\Seasons\Schemas;
 
+use App\Enums\SeasonOfYearEnum;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
@@ -21,12 +22,7 @@ class SeasonForm
                     ->numeric()
                     ->required(),
                 Select::make('season_of_year')
-                    ->options([
-                        'Winter' => 'Winter',
-                        'Spring' => 'Spring',
-                        'Summer' => 'Summer',
-                        'Fall' => 'Fall',
-                    ])
+                    ->options(SeasonOfYearEnum::class)
                     ->required(),
                 DatePicker::make('start_date'),
                 DatePicker::make('end_date'),

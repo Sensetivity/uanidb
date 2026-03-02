@@ -28,9 +28,7 @@ class AnimeImportService
         private readonly int               $apiDelay = 1,
         private readonly array             $baseProcessors = [],
         private readonly array             $detailProcessors = [],
-    )
-    {
-    }
+    ) {}
 
     /**
      * Import anime by MAL ID.
@@ -78,8 +76,141 @@ class AnimeImportService
     {
         return $this->batchImport(
             $malIds,
-            fn(int $malId) => $this->importAnimeByMalId($malId, $forceUpdate),
+            fn (int $malId) => $this->importAnimeByMalId($malId, $forceUpdate),
         );
+    }
+
+    /**
+     * Import only base anime data (no episodes, characters, staff, or videos).
+     *
+     * @throws AnimeImportServiceException
+     */
+    public function importBaseAnimeByMalId(int $malId, bool $forceUpdate = false): ?Anime
+    {
+        try {
+            $existingAnime = Anime::query()->where('mal_id', $malId)->first();
+            if ($existingAnime && !$forceUpdate) {
+                return $existingAnime;
+            }
+
+            $dto = $this->apiClient->getAnime($malId);
+            if (!$dto) {
+                return null;
+            }
+
+            $fullDto = new AnimeFullDto(anime: $dto);
+
+            return DB::transaction(function () use ($fullDto, $existingAnime) {
+                if ($existingAnime) {
+                    $existingAnime->update($fullDto->anime->toModelAttributes());
+
+                    $this->clearBaseProcessors($existingAnime);
+                    $this->syncBaseProcessors($existingAnime, $fullDto);
+
+                    Log::info("Updated base anime: {$existingAnime->title} (ID: {$existingAnime->id})");
+
+                    return $existingAnime;
+                }
+
+                $anime = Anime::query()->create($fullDto->anime->toModelAttributes());
+
+                $this->syncBaseProcessors($anime, $fullDto);
+
+                Log::info("Created base anime: {$anime->title} (ID: {$anime->id})");
+
+                return $anime;
+            });
+        } catch (JikanAnimeApiClientException $e) {
+            $this->handleException('Failed to import base anime due to API error', $e);
+        } catch (Exception $e) {
+            $this->handleException('Failed to import base anime', $e);
+        }
+    }
+
+    /**
+     * Import characters and staff for an existing anime.
+     *
+     * @throws AnimeImportServiceException
+     */
+    public function importCharactersAndStaff(Anime $anime): void
+    {
+        try {
+            $characters = $this->apiClient->getAnimeCharacters($anime->mal_id);
+
+            sleep($this->apiDelay);
+
+            $staff = $this->apiClient->getAnimeStaff($anime->mal_id);
+
+            $fullDto = $this->buildPartialDto($anime, characters: $characters, staff: $staff);
+
+            DB::transaction(function () use ($anime, $fullDto) {
+                $characterProcessor = $this->findProcessor(Processors\CharacterProcessor::class);
+                $staffProcessor = $this->findProcessor(Processors\StaffProcessor::class);
+
+                $characterProcessor->clear($anime);
+                $staffProcessor->clear($anime);
+                $characterProcessor->sync($anime, $fullDto);
+                $staffProcessor->sync($anime, $fullDto);
+            });
+
+            Log::info("Imported characters and staff for anime: {$anime->title} (ID: {$anime->id})");
+        } catch (JikanAnimeApiClientException $e) {
+            $this->handleException("Failed to import characters/staff for anime {$anime->mal_id} due to API error", $e);
+        } catch (Exception $e) {
+            $this->handleException("Failed to import characters/staff for anime {$anime->mal_id}", $e);
+        }
+    }
+
+    /**
+     * Import episodes for an existing anime.
+     *
+     * @throws AnimeImportServiceException
+     */
+    public function importEpisodes(Anime $anime): void
+    {
+        try {
+            $episodes = $this->apiClient->getAnimeEpisodes($anime->mal_id);
+
+            $fullDto = $this->buildPartialDto($anime, episodes: $episodes);
+
+            DB::transaction(function () use ($anime, $fullDto) {
+                $processor = $this->findProcessor(Processors\EpisodeProcessor::class);
+                $processor->clear($anime);
+                $processor->sync($anime, $fullDto);
+            });
+
+            Log::info("Imported episodes for anime: {$anime->title} (ID: {$anime->id})");
+        } catch (JikanAnimeApiClientException $e) {
+            $this->handleException("Failed to import episodes for anime {$anime->mal_id} due to API error", $e);
+        } catch (Exception $e) {
+            $this->handleException("Failed to import episodes for anime {$anime->mal_id}", $e);
+        }
+    }
+
+    /**
+     * Import promotion videos for an existing anime.
+     *
+     * @throws AnimeImportServiceException
+     */
+    public function importPromotionVideos(Anime $anime): void
+    {
+        try {
+            $promotionVideos = $this->apiClient->getAnimeVideos($anime->mal_id);
+
+            $fullDto = $this->buildPartialDto($anime, promotionVideos: $promotionVideos);
+
+            DB::transaction(function () use ($anime, $fullDto) {
+                $processor = $this->findProcessor(Processors\PromotionVideoProcessor::class);
+                $processor->clear($anime);
+                $processor->sync($anime, $fullDto);
+            });
+
+            Log::info("Imported promotion videos for anime: {$anime->title} (ID: {$anime->id})");
+        } catch (JikanAnimeApiClientException $e) {
+            $this->handleException("Failed to import videos for anime {$anime->mal_id} due to API error", $e);
+        } catch (Exception $e) {
+            $this->handleException("Failed to import videos for anime {$anime->mal_id}", $e);
+        }
     }
 
     /**
@@ -149,151 +280,6 @@ class AnimeImportService
     }
 
     /**
-     * Import only base anime data (no episodes, characters, staff, or videos).
-     *
-     * @throws AnimeImportServiceException
-     */
-    public function importBaseAnimeByMalId(int $malId, bool $forceUpdate = false): ?Anime
-    {
-        try {
-            $existingAnime = Anime::query()->where('mal_id', $malId)->first();
-            if ($existingAnime && !$forceUpdate) {
-                return $existingAnime;
-            }
-
-            $dto = $this->apiClient->getAnime($malId);
-            if (!$dto) {
-                return null;
-            }
-
-            $fullDto = new AnimeFullDto(anime: $dto);
-
-            return DB::transaction(function () use ($fullDto, $existingAnime) {
-                if ($existingAnime) {
-                    $existingAnime->update($fullDto->anime->toModelAttributes());
-
-                    $this->clearBaseProcessors($existingAnime);
-                    $this->syncBaseProcessors($existingAnime, $fullDto);
-
-                    Log::info("Updated base anime: {$existingAnime->title} (ID: {$existingAnime->id})");
-
-                    return $existingAnime;
-                }
-
-                $anime = Anime::query()->create($fullDto->anime->toModelAttributes());
-
-                $this->syncBaseProcessors($anime, $fullDto);
-
-                Log::info("Created base anime: {$anime->title} (ID: {$anime->id})");
-
-                return $anime;
-            });
-        } catch (JikanAnimeApiClientException $e) {
-            $this->handleException('Failed to import base anime due to API error', $e);
-        } catch (Exception $e) {
-            $this->handleException('Failed to import base anime', $e);
-        }
-    }
-
-    /**
-     * Import episodes for an existing anime.
-     *
-     * @throws AnimeImportServiceException
-     */
-    public function importEpisodes(Anime $anime): void
-    {
-        try {
-            $episodes = $this->apiClient->getAnimeEpisodes($anime->mal_id);
-
-            $fullDto = $this->buildPartialDto($anime, episodes: $episodes);
-
-            DB::transaction(function () use ($anime, $fullDto) {
-                $processor = $this->findProcessor(Processors\EpisodeProcessor::class);
-                $processor->clear($anime);
-                $processor->sync($anime, $fullDto);
-            });
-
-            Log::info("Imported episodes for anime: {$anime->title} (ID: {$anime->id})");
-        } catch (JikanAnimeApiClientException $e) {
-            $this->handleException("Failed to import episodes for anime {$anime->mal_id} due to API error", $e);
-        } catch (Exception $e) {
-            $this->handleException("Failed to import episodes for anime {$anime->mal_id}", $e);
-        }
-    }
-
-    /**
-     * Import characters and staff for an existing anime.
-     *
-     * @throws AnimeImportServiceException
-     */
-    public function importCharactersAndStaff(Anime $anime): void
-    {
-        try {
-            $characters = $this->apiClient->getAnimeCharacters($anime->mal_id);
-
-            sleep($this->apiDelay);
-
-            $staff = $this->apiClient->getAnimeStaff($anime->mal_id);
-
-            $fullDto = $this->buildPartialDto($anime, characters: $characters, staff: $staff);
-
-            DB::transaction(function () use ($anime, $fullDto) {
-                $characterProcessor = $this->findProcessor(Processors\CharacterProcessor::class);
-                $staffProcessor = $this->findProcessor(Processors\StaffProcessor::class);
-
-                $characterProcessor->clear($anime);
-                $staffProcessor->clear($anime);
-                $characterProcessor->sync($anime, $fullDto);
-                $staffProcessor->sync($anime, $fullDto);
-            });
-
-            Log::info("Imported characters and staff for anime: {$anime->title} (ID: {$anime->id})");
-        } catch (JikanAnimeApiClientException $e) {
-            $this->handleException("Failed to import characters/staff for anime {$anime->mal_id} due to API error", $e);
-        } catch (Exception $e) {
-            $this->handleException("Failed to import characters/staff for anime {$anime->mal_id}", $e);
-        }
-    }
-
-    /**
-     * Import promotion videos for an existing anime.
-     *
-     * @throws AnimeImportServiceException
-     */
-    public function importPromotionVideos(Anime $anime): void
-    {
-        try {
-            $promotionVideos = $this->apiClient->getAnimeVideos($anime->mal_id);
-
-            $fullDto = $this->buildPartialDto($anime, promotionVideos: $promotionVideos);
-
-            DB::transaction(function () use ($anime, $fullDto) {
-                $processor = $this->findProcessor(Processors\PromotionVideoProcessor::class);
-                $processor->clear($anime);
-                $processor->sync($anime, $fullDto);
-            });
-
-            Log::info("Imported promotion videos for anime: {$anime->title} (ID: {$anime->id})");
-        } catch (JikanAnimeApiClientException $e) {
-            $this->handleException("Failed to import videos for anime {$anime->mal_id} due to API error", $e);
-        } catch (Exception $e) {
-            $this->handleException("Failed to import videos for anime {$anime->mal_id}", $e);
-        }
-    }
-
-    /**
-     * @param array<AnimeDto> $animeList
-     * @return array<Anime>
-     */
-    private function importAnimeList(array $animeList, bool $forceUpdate = false): array
-    {
-        return $this->batchImport(
-            $animeList,
-            fn(AnimeDto $dto) => $this->importAnimeByMalId($dto->malId, $forceUpdate),
-        );
-    }
-
-    /**
      * @return array<Anime>
      */
     private function batchImport(array $items, callable $importCallback): array
@@ -323,28 +309,28 @@ class AnimeImportService
     private function buildFullDto(AnimeDto $dto): AnimeFullDto
     {
         $episodes = $this->fetchDetailData(
-            fn() => $this->apiClient->getAnimeEpisodes($dto->malId),
+            fn () => $this->apiClient->getAnimeEpisodes($dto->malId),
             "episodes for anime {$dto->malId}",
         );
 
         sleep($this->apiDelay);
 
         $characters = $this->fetchDetailData(
-            fn() => $this->apiClient->getAnimeCharacters($dto->malId),
+            fn () => $this->apiClient->getAnimeCharacters($dto->malId),
             "characters for anime {$dto->malId}",
         );
 
         sleep($this->apiDelay);
 
         $staff = $this->fetchDetailData(
-            fn() => $this->apiClient->getAnimeStaff($dto->malId),
+            fn () => $this->apiClient->getAnimeStaff($dto->malId),
             "staff for anime {$dto->malId}",
         );
 
         sleep($this->apiDelay);
 
         $promotionVideos = $this->fetchDetailData(
-            fn() => $this->apiClient->getAnimeVideos($dto->malId),
+            fn () => $this->apiClient->getAnimeVideos($dto->malId),
             "videos for anime {$dto->malId}",
         );
 
@@ -355,6 +341,53 @@ class AnimeImportService
             staff: $staff,
             promotionVideos: $promotionVideos,
         );
+    }
+
+    private function buildPartialDto(
+        Anime $anime,
+        array $episodes = [],
+        array $characters = [],
+        array $staff = [],
+        array $promotionVideos = [],
+    ): AnimeFullDto {
+        $animeDto = new AnimeDto(
+            malId: $anime->mal_id,
+            title: $anime->title,
+            type: $anime->type,
+        );
+
+        return new AnimeFullDto(
+            anime: $animeDto,
+            episodes: $episodes,
+            characters: $characters,
+            staff: $staff,
+            promotionVideos: $promotionVideos,
+        );
+    }
+
+    private function clearBaseProcessors(Anime $anime): void
+    {
+        foreach ($this->baseProcessors as $processor) {
+            $processor->clear($anime);
+        }
+    }
+
+    private function clearProcessors(Anime $anime): void
+    {
+        foreach ($this->processors as $processor) {
+            $processor->clear($anime);
+        }
+    }
+
+    private function createAnime(AnimeFullDto $fullDto): Anime
+    {
+        $anime = Anime::query()->create($fullDto->anime->toModelAttributes());
+
+        $this->syncProcessors($anime, $fullDto);
+
+        Log::info("Created anime: {$anime->title} (ID: {$anime->id})");
+
+        return $anime;
     }
 
     /**
@@ -371,66 +404,6 @@ class AnimeImportService
         }
     }
 
-    private function createAnime(AnimeFullDto $fullDto): Anime
-    {
-        $anime = Anime::query()->create($fullDto->anime->toModelAttributes());
-
-        $this->syncProcessors($anime, $fullDto);
-
-        Log::info("Created anime: {$anime->title} (ID: {$anime->id})");
-
-        return $anime;
-    }
-
-    private function updateAnime(Anime $anime, AnimeFullDto $fullDto): Anime
-    {
-        $anime->update($fullDto->anime->toModelAttributes());
-
-        $this->clearProcessors($anime);
-        $this->syncProcessors($anime, $fullDto);
-
-        Log::info("Updated anime: {$anime->title} (ID: {$anime->id})");
-
-        return $anime;
-    }
-
-    private function syncProcessors(Anime $anime, AnimeFullDto $fullDto): void
-    {
-        foreach ($this->processors as $processor) {
-            $processor->sync($anime, $fullDto);
-        }
-    }
-
-    private function clearProcessors(Anime $anime): void
-    {
-        foreach ($this->processors as $processor) {
-            $processor->clear($anime);
-        }
-    }
-
-    private function buildPartialDto(
-        Anime $anime,
-        array $episodes = [],
-        array $characters = [],
-        array $staff = [],
-        array $promotionVideos = [],
-    ): AnimeFullDto
-    {
-        $animeDto = new AnimeDto(
-            malId: $anime->mal_id,
-            title: $anime->title,
-            type: $anime->type,
-        );
-
-        return new AnimeFullDto(
-            anime: $animeDto,
-            episodes: $episodes,
-            characters: $characters,
-            staff: $staff,
-            promotionVideos: $promotionVideos,
-        );
-    }
-
     private function findProcessor(string $class): RelationProcessor
     {
         foreach ($this->processors as $processor) {
@@ -440,20 +413,6 @@ class AnimeImportService
         }
 
         throw new \RuntimeException("Processor {$class} not found.");
-    }
-
-    private function syncBaseProcessors(Anime $anime, AnimeFullDto $fullDto): void
-    {
-        foreach ($this->baseProcessors as $processor) {
-            $processor->sync($anime, $fullDto);
-        }
-    }
-
-    private function clearBaseProcessors(Anime $anime): void
-    {
-        foreach ($this->baseProcessors as $processor) {
-            $processor->clear($anime);
-        }
     }
 
     /**
@@ -467,5 +426,43 @@ class AnimeImportService
         ]);
 
         throw new AnimeImportServiceException("{$message}: {$e->getMessage()}", 0, $e);
+    }
+
+    /**
+     * @param array<AnimeDto> $animeList
+     * @return array<Anime>
+     */
+    private function importAnimeList(array $animeList, bool $forceUpdate = false): array
+    {
+        return $this->batchImport(
+            $animeList,
+            fn (AnimeDto $dto) => $this->importAnimeByMalId($dto->malId, $forceUpdate),
+        );
+    }
+
+    private function syncBaseProcessors(Anime $anime, AnimeFullDto $fullDto): void
+    {
+        foreach ($this->baseProcessors as $processor) {
+            $processor->sync($anime, $fullDto);
+        }
+    }
+
+    private function syncProcessors(Anime $anime, AnimeFullDto $fullDto): void
+    {
+        foreach ($this->processors as $processor) {
+            $processor->sync($anime, $fullDto);
+        }
+    }
+
+    private function updateAnime(Anime $anime, AnimeFullDto $fullDto): Anime
+    {
+        $anime->update($fullDto->anime->toModelAttributes());
+
+        $this->clearProcessors($anime);
+        $this->syncProcessors($anime, $fullDto);
+
+        Log::info("Updated anime: {$anime->title} (ID: {$anime->id})");
+
+        return $anime;
     }
 }

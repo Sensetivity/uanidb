@@ -4,18 +4,8 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
+return new class () extends Migration
 {
-    /**
-     * Run the migrations.
-     */
-    public function up(): void
-    {
-        Schema::table('anime_licensor', function (Blueprint $table) {
-            $table->integer('order')->after('studio_id')->nullable()->default(0);
-        });
-    }
-
     /**
      * Reverse the migrations.
      */
@@ -23,6 +13,16 @@ return new class extends Migration
     {
         Schema::table('anime_licensor', function (Blueprint $table) {
             $table->dropColumn('order');
+        });
+    }
+
+    /**
+     * Run the migrations.
+     */
+    public function up(): void
+    {
+        Schema::table('anime_licensor', function (Blueprint $table) {
+            $table->integer('order')->after('studio_id')->nullable()->default(0);
         });
     }
 };

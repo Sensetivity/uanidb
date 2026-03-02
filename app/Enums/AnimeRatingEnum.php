@@ -2,7 +2,9 @@
 
 namespace App\Enums;
 
-enum AnimeRatingEnum: int
+use Filament\Support\Contracts\HasLabel;
+
+enum AnimeRatingEnum: int implements HasLabel
 {
     case G = 1;
     case Pg = 2;

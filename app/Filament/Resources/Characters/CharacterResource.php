@@ -6,6 +6,8 @@ use App\Filament\Resources\Characters\Pages\CreateCharacter;
 use App\Filament\Resources\Characters\Pages\EditCharacter;
 use App\Filament\Resources\Characters\Pages\ListCharacters;
 use App\Filament\Resources\Characters\Pages\ViewCharacter;
+use App\Filament\Resources\Characters\RelationManagers\AnimesRelationManager;
+use App\Filament\Resources\Characters\RelationManagers\VoiceActorsRelationManager;
 use App\Filament\Resources\Characters\Schemas\CharacterForm;
 use App\Filament\Resources\Characters\Schemas\CharacterInfolist;
 use App\Filament\Resources\Characters\Tables\CharactersTable;
@@ -49,7 +51,8 @@ class CharacterResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            AnimesRelationManager::class,
+            VoiceActorsRelationManager::class,
         ];
     }
 

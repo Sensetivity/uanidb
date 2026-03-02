@@ -16,7 +16,11 @@ class TaxonomyProcessor implements RelationProcessor
         private readonly string $relation,
         private readonly string $modelClass,
         private readonly string $dtoProperty,
-    ) {
+    ) {}
+
+    public function clear(Anime $anime): void
+    {
+        $anime->{$this->relation}()->detach();
     }
 
     public function sync(Anime $anime, AnimeFullDto $dto): void
@@ -41,10 +45,5 @@ class TaxonomyProcessor implements RelationProcessor
         if (! empty($ids)) {
             $anime->{$this->relation}()->sync($ids);
         }
-    }
-
-    public function clear(Anime $anime): void
-    {
-        $anime->{$this->relation}()->detach();
     }
 }

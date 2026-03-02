@@ -2,12 +2,15 @@
 
 namespace App\Enums;
 
-enum SeasonOfYearEnum: int
+use Filament\Support\Contracts\HasColor;
+use Filament\Support\Contracts\HasLabel;
+
+enum SeasonOfYearEnum: int implements HasColor, HasLabel
 {
-    case Winter = 1;
+    case Fall = 4;
     case Spring = 2;
     case Summer = 3;
-    case Fall = 4;
+    case Winter = 1;
 
     private const MAP = [
         'winter' => self::Winter,
@@ -19,5 +22,25 @@ enum SeasonOfYearEnum: int
     public static function fromString(string $season): ?self
     {
         return self::MAP[strtolower($season)] ?? null;
+    }
+
+    public function getColor(): string
+    {
+        return match ($this) {
+            self::Winter => 'info',
+            self::Spring => 'success',
+            self::Summer => 'danger',
+            self::Fall => 'warning',
+        };
+    }
+
+    public function getLabel(): string
+    {
+        return match ($this) {
+            self::Winter => 'Зима',
+            self::Spring => 'Весна',
+            self::Summer => 'Літо',
+            self::Fall => 'Осінь',
+        };
     }
 }

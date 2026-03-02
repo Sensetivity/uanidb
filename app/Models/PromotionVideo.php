@@ -49,19 +49,19 @@ class PromotionVideo extends BaseModel
     }
 
     /**
-     * Get the YouTube thumbnail URL.
-     */
-    public function getThumbnailUrlAttribute(): ?string
-    {
-        return $this->video_id ? "https://img.youtube.com/vi/{$this->video_id}/hqdefault.jpg" : null;
-    }
-
-    /**
      * Get the YouTube embed URL.
      */
     public function getEmbedUrlAttribute(): ?string
     {
         return $this->video_id ? "https://www.youtube.com/embed/{$this->video_id}" : null;
+    }
+
+    /**
+     * Get the YouTube thumbnail URL.
+     */
+    public function getThumbnailUrlAttribute(): ?string
+    {
+        return $this->video_id ? "https://img.youtube.com/vi/{$this->video_id}/hqdefault.jpg" : null;
     }
 
     /**

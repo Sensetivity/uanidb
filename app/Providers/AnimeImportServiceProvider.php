@@ -23,6 +23,14 @@ use Jikan\JikanPHP\Client;
 class AnimeImportServiceProvider extends ServiceProvider
 {
     /**
+     * Bootstrap services.
+     */
+    public function boot(): void
+    {
+        //
+    }
+
+    /**
      * Register services.
      */
     public function register(): void
@@ -42,20 +50,20 @@ class AnimeImportServiceProvider extends ServiceProvider
             $apiClient = $app->make(AnimeDataProvider::class);
 
             $baseProcessors = [
-                new TitleProcessor,
+                new TitleProcessor(),
                 new TaxonomyProcessor('genres', Genre::class, 'genres'),
                 new TaxonomyProcessor('themes', Theme::class, 'themes'),
-                new CompanyProcessor,
-                new SeasonProcessor,
-                new RelatedAnimeProcessor,
-                new ExternalLinkProcessor,
+                new CompanyProcessor(),
+                new SeasonProcessor(),
+                new RelatedAnimeProcessor(),
+                new ExternalLinkProcessor(),
             ];
 
             $detailProcessors = [
-                new EpisodeProcessor,
-                new CharacterProcessor,
-                new StaffProcessor,
-                new PromotionVideoProcessor,
+                new EpisodeProcessor(),
+                new CharacterProcessor(),
+                new StaffProcessor(),
+                new PromotionVideoProcessor(),
             ];
 
             return new AnimeImportService(
@@ -67,13 +75,5 @@ class AnimeImportServiceProvider extends ServiceProvider
                 detailProcessors: $detailProcessors,
             );
         });
-    }
-
-    /**
-     * Bootstrap services.
-     */
-    public function boot(): void
-    {
-        //
     }
 }

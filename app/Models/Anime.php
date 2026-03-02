@@ -9,12 +9,12 @@ use App\Enums\AnimeTypeEnum;
 use App\Enums\CharacterRoleEnum;
 use App\Enums\SourceTypeEnum;
 use Carbon\Carbon;
+use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
-use Cviebrock\EloquentSluggable\Sluggable;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection;
@@ -74,22 +74,9 @@ use Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection;
  */
 class Anime extends BaseModel implements HasMedia
 {
-    use HasFactory, Sluggable, InteractsWithMedia;
-
-    /**
-     * Return the sluggable configuration array for this model.
-     *
-     * @return array
-     */
-    public function sluggable(): array
-    {
-        return [
-            'slug' => [
-                'source' => 'title',
-                'onUpdate' => false,
-            ]
-        ];
-    }
+    use HasFactory;
+    use InteractsWithMedia;
+    use Sluggable;
 
     /**
      * The attributes that should be cast.
@@ -112,32 +99,21 @@ class Anime extends BaseModel implements HasMedia
     ];
 
     /**
-     * Register media collections.
+     * Get all characters associated with this anime.
      */
-    public function registerMediaCollections(): void
+    public function characters(): BelongsToMany
     {
-        $this->addMediaCollection('main_poster')
-            ->singleFile();
-
-        $this->addMediaCollection('posters');
-
-        $this->addMediaCollection('screenshots');
+        return $this->belongsToMany(Character::class, 'anime_character')
+            ->withPivot('role')
+            ->withTimestamps();
     }
 
     /**
-     * Get all titles for this anime.
+     * Get comments for this anime.
      */
-    public function titles(): HasMany
+    public function comments(): MorphMany
     {
-        return $this->hasMany(AnimeTitle::class);
-    }
-
-    /**
-     * Get all external links for this anime.
-     */
-    public function externalLinks(): HasMany
-    {
-        return $this->hasMany(AnimeExternalLink::class);
+        return $this->morphMany(Comment::class, 'commentable');
     }
 
     /**
@@ -149,13 +125,11 @@ class Anime extends BaseModel implements HasMedia
     }
 
     /**
-     * Get the seasons for this anime.
+     * Get all external links for this anime.
      */
-    public function seasons(): BelongsToMany
+    public function externalLinks(): HasMany
     {
-        return $this->belongsToMany(Season::class, 'anime_season')
-            ->withPivot('part')
-            ->withTimestamps();
+        return $this->hasMany(AnimeExternalLink::class);
     }
 
     /**
@@ -164,69 +138,6 @@ class Anime extends BaseModel implements HasMedia
     public function genres(): BelongsToMany
     {
         return $this->belongsToMany(Genre::class, 'anime_genre')
-            ->withTimestamps();
-    }
-
-    /**
-     * Get all themes associated with this anime.
-     */
-    public function themes(): BelongsToMany
-    {
-        return $this->belongsToMany(Theme::class, 'anime_theme')
-            ->withTimestamps();
-    }
-
-    /**
-     * Get all characters associated with this anime.
-     */
-    public function characters(): BelongsToMany
-    {
-        return $this->belongsToMany(Character::class, 'anime_character')
-            ->withPivot('role')
-            ->withTimestamps();
-    }
-
-    /**
-     * Get main characters for this anime.
-     */
-    public function mainCharacters(): BelongsToMany
-    {
-        return $this->characters()->wherePivot('role', CharacterRoleEnum::MAIN);
-    }
-
-    /**
-     * Get supporting characters for this anime.
-     */
-    public function supportingCharacters(): BelongsToMany
-    {
-        return $this->characters()->wherePivot('role', CharacterRoleEnum::SUPPORTING);
-    }
-
-    /**
-     * Get all studios for this anime.
-     */
-    public function studios(): BelongsToMany
-    {
-        return $this->belongsToMany(Studio::class, 'anime_studio')
-            ->withPivot('role', 'is_main', 'order', 'notes')
-            ->withTimestamps();
-    }
-
-    /**
-     * Get main studio for this anime.
-     */
-    public function mainStudio(): ?Studio
-    {
-        return $this->studios()->wherePivot('is_main', true)->first();
-    }
-
-    /**
-     * Get all producers for this anime.
-     */
-    public function producers(): BelongsToMany
-    {
-        return $this->belongsToMany(Studio::class, 'anime_producer')
-            ->withPivot('role', 'is_main', 'order', 'notes')
             ->withTimestamps();
     }
 
@@ -241,6 +152,22 @@ class Anime extends BaseModel implements HasMedia
     }
 
     /**
+     * Get main characters for this anime.
+     */
+    public function mainCharacters(): BelongsToMany
+    {
+        return $this->characters()->wherePivot('role', CharacterRoleEnum::Main);
+    }
+
+    /**
+     * Get main studio for this anime.
+     */
+    public function mainStudio(): ?Studio
+    {
+        return $this->studios()->wherePivot('is_main', true)->first();
+    }
+
+    /**
      * Get all people associated with this anime (directors, etc).
      */
     public function people(): BelongsToMany
@@ -248,6 +175,45 @@ class Anime extends BaseModel implements HasMedia
         return $this->belongsToMany(Person::class, 'anime_person')
             ->withPivot('role')
             ->withTimestamps();
+    }
+
+    /**
+     * Get prequels for this anime.
+     */
+    public function prequels(): BelongsToMany
+    {
+        return $this->relatedAnime()->wherePivot('relation_type', AnimeRelationEnum::PREQUEL);
+    }
+
+    /**
+     * Get all producers for this anime.
+     */
+    public function producers(): BelongsToMany
+    {
+        return $this->belongsToMany(Studio::class, 'anime_producer')
+            ->withPivot('role', 'is_main', 'order', 'notes')
+            ->withTimestamps();
+    }
+
+    /**
+     * Get all promotional videos for this anime.
+     */
+    public function promotionVideos(): HasMany
+    {
+        return $this->hasMany(PromotionVideo::class);
+    }
+
+    /**
+     * Register media collections.
+     */
+    public function registerMediaCollections(): void
+    {
+        $this->addMediaCollection('main_poster')
+            ->singleFile();
+
+        $this->addMediaCollection('posters');
+
+        $this->addMediaCollection('screenshots');
     }
 
     /**
@@ -261,38 +227,6 @@ class Anime extends BaseModel implements HasMedia
     }
 
     /**
-     * Get sequels for this anime.
-     */
-    public function sequels(): BelongsToMany
-    {
-        return $this->relatedAnime()->wherePivot('relation_type', AnimeRelationEnum::SEQUEL);
-    }
-
-    /**
-     * Get prequels for this anime.
-     */
-    public function prequels(): BelongsToMany
-    {
-        return $this->relatedAnime()->wherePivot('relation_type', AnimeRelationEnum::PREQUEL);
-    }
-
-    /**
-     * Get all promotional videos for this anime.
-     */
-    public function promotionVideos(): HasMany
-    {
-        return $this->hasMany(PromotionVideo::class);
-    }
-
-    /**
-     * Get all users who have this anime in their list.
-     */
-    public function userLists(): HasMany
-    {
-        return $this->hasMany(UserAnimeList::class);
-    }
-
-    /**
      * Get reviews for this anime.
      */
     public function reviews(): MorphMany
@@ -301,10 +235,78 @@ class Anime extends BaseModel implements HasMedia
     }
 
     /**
-     * Get comments for this anime.
+     * Get the seasons for this anime.
      */
-    public function comments(): MorphMany
+    public function seasons(): BelongsToMany
     {
-        return $this->morphMany(Comment::class, 'commentable');
+        return $this->belongsToMany(Season::class, 'anime_season')
+            ->withPivot('part')
+            ->withTimestamps();
+    }
+
+    /**
+     * Get sequels for this anime.
+     */
+    public function sequels(): BelongsToMany
+    {
+        return $this->relatedAnime()->wherePivot('relation_type', AnimeRelationEnum::SEQUEL);
+    }
+
+    /**
+     * Return the sluggable configuration array for this model.
+     *
+     * @return array
+     */
+    public function sluggable(): array
+    {
+        return [
+            'slug' => [
+                'source' => 'title',
+                'onUpdate' => false,
+            ]
+        ];
+    }
+
+    /**
+     * Get all studios for this anime.
+     */
+    public function studios(): BelongsToMany
+    {
+        return $this->belongsToMany(Studio::class, 'anime_studio')
+            ->withPivot('role', 'is_main', 'order', 'notes')
+            ->withTimestamps();
+    }
+
+    /**
+     * Get supporting characters for this anime.
+     */
+    public function supportingCharacters(): BelongsToMany
+    {
+        return $this->characters()->wherePivot('role', CharacterRoleEnum::Supporting);
+    }
+
+    /**
+     * Get all themes associated with this anime.
+     */
+    public function themes(): BelongsToMany
+    {
+        return $this->belongsToMany(Theme::class, 'anime_theme')
+            ->withTimestamps();
+    }
+
+    /**
+     * Get all titles for this anime.
+     */
+    public function titles(): HasMany
+    {
+        return $this->hasMany(AnimeTitle::class);
+    }
+
+    /**
+     * Get all users who have this anime in their list.
+     */
+    public function userLists(): HasMany
+    {
+        return $this->hasMany(UserAnimeList::class);
     }
 }

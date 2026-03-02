@@ -9,6 +9,13 @@ use Illuminate\Console\Command;
 class TranslateAnime extends Command
 {
     /**
+     * The console command description.
+     *
+     * @var string
+     */
+    protected $description = 'Translate anime synopses to Ukrainian via DeepL';
+
+    /**
      * The name and signature of the console command.
      *
      * @var string
@@ -17,13 +24,6 @@ class TranslateAnime extends Command
         {animeId? : Specific anime ID to translate}
         {--all : Translate all anime}
         {--untranslated : Only translate anime without Ukrainian synopsis}';
-
-    /**
-     * The console command description.
-     *
-     * @var string
-     */
-    protected $description = 'Translate anime synopses to Ukrainian via DeepL';
 
     /**
      * Execute the console command.
@@ -36,49 +36,13 @@ class TranslateAnime extends Command
             return $this->translateSingle($translationService, (int) $animeId);
         }
 
-        if (! $this->option('all') && ! $this->option('untranslated')) {
+        if (!$this->option('all') && !$this->option('untranslated')) {
             $this->error('Please provide an anime ID, or use --all or --untranslated.');
 
             return self::FAILURE;
         }
 
         return $this->translateBatch($translationService);
-    }
-
-    /**
-     * Translate a single anime synopsis.
-     */
-    private function translateSingle(TranslationService $translationService, int $animeId): int
-    {
-        $anime = Anime::query()->find($animeId);
-
-        if (! $anime) {
-            $this->error("Anime with ID {$animeId} not found.");
-
-            return self::FAILURE;
-        }
-
-        if (empty($anime->synopsis)) {
-            $this->warn("Anime \"{$anime->title}\" has no synopsis to translate.");
-
-            return self::SUCCESS;
-        }
-
-        try {
-            $translated = $translationService->translateAnimeSynopsis($anime);
-
-            if ($translated) {
-                $this->info("Translated synopsis for: {$anime->title}");
-            } else {
-                $this->info("Anime \"{$anime->title}\" already has a Ukrainian synopsis.");
-            }
-
-            return self::SUCCESS;
-        } catch (\Exception $e) {
-            $this->error("Translation failed: {$e->getMessage()}");
-
-            return self::FAILURE;
-        }
     }
 
     /**
@@ -133,5 +97,41 @@ class TranslateAnime extends Command
         $this->info("Translation completed: {$translated} translated, {$skipped} skipped, {$errors} errors.");
 
         return self::SUCCESS;
+    }
+
+    /**
+     * Translate a single anime synopsis.
+     */
+    private function translateSingle(TranslationService $translationService, int $animeId): int
+    {
+        $anime = Anime::query()->find($animeId);
+
+        if (!$anime) {
+            $this->error("Anime with ID {$animeId} not found.");
+
+            return self::FAILURE;
+        }
+
+        if (empty($anime->synopsis)) {
+            $this->warn("Anime \"{$anime->title}\" has no synopsis to translate.");
+
+            return self::SUCCESS;
+        }
+
+        try {
+            $translated = $translationService->translateAnimeSynopsis($anime);
+
+            if ($translated) {
+                $this->info("Translated synopsis for: {$anime->title}");
+            } else {
+                $this->info("Anime \"{$anime->title}\" already has a Ukrainian synopsis.");
+            }
+
+            return self::SUCCESS;
+        } catch (\Exception $e) {
+            $this->error("Translation failed: {$e->getMessage()}");
+
+            return self::FAILURE;
+        }
     }
 }

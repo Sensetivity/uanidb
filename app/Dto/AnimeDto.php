@@ -52,38 +52,7 @@ class AnimeDto
         public readonly array            $licensors = [],
         public readonly array            $relatedAnime = [],
         public readonly array            $externalLinks = [],
-    )
-    {
-    }
-
-    /**
-     * Convert DTO fields to model attributes array.
-     *
-     * @return array<string, mixed>
-     */
-    public function toModelAttributes(): array
-    {
-        return [
-            'mal_id' => $this->malId,
-            'title' => $this->title,
-            'synopsis' => $this->synopsis,
-            'type' => $this->type,
-            'episode_count' => $this->episodeCount,
-            'status' => $this->status,
-            'aired_from' => $this->airedFrom,
-            'aired_to' => $this->airedTo,
-            'aired_string' => $this->airedString,
-            'aired_unknown' => $this->airedUnknown ?? false,
-            'broadcast' => $this->broadcast,
-            'source_type' => $this->sourceType,
-            'duration' => $this->duration,
-            'rating' => $this->rating,
-            'score' => $this->score,
-            'rank' => $this->rank,
-            'popularity' => $this->popularity,
-            'image_url' => $this->imageUrl,
-        ];
-    }
+    ) {}
 
     /**
      * Create from an array.
@@ -124,6 +93,35 @@ class AnimeDto
         );
     }
 
+    /**
+     * Convert DTO fields to model attributes array.
+     *
+     * @return array<string, mixed>
+     */
+    public function toModelAttributes(): array
+    {
+        return [
+            'mal_id' => $this->malId,
+            'title' => $this->title,
+            'synopsis' => $this->synopsis,
+            'type' => $this->type,
+            'episode_count' => $this->episodeCount,
+            'status' => $this->status,
+            'aired_from' => $this->airedFrom,
+            'aired_to' => $this->airedTo,
+            'aired_string' => $this->airedString,
+            'aired_unknown' => $this->airedUnknown ?? false,
+            'broadcast' => $this->broadcast,
+            'source_type' => $this->sourceType,
+            'duration' => $this->duration,
+            'rating' => $this->rating,
+            'score' => $this->score,
+            'rank' => $this->rank,
+            'popularity' => $this->popularity,
+            'image_url' => $this->imageUrl,
+        ];
+    }
+
     private static function mapAnimeType(?string $type): AnimeTypeEnum
     {
         if ($type === null) {
@@ -134,51 +132,27 @@ class AnimeDto
     }
 
     /**
-     * Parse duration string to minutes.
+     * @param array<array{name?: string, url?: string}|ExternalLinkDto> $links
+     * @return array<ExternalLinkDto>
      */
-    private static function parseDuration(string $duration): ?int
-    {
-        preg_match('/(\d+)\s*hr/i', $duration, $hours);
-        preg_match('/(\d+)\s*min/i', $duration, $minutes);
-
-        $totalMinutes = 0;
-        if (!empty($hours[1])) {
-            $totalMinutes += (int)$hours[1] * 60;
-        }
-        if (!empty($minutes[1])) {
-            $totalMinutes += (int)$minutes[1];
-        }
-
-        return $totalMinutes ?: null;
-    }
-
-    /**
-     * @param array<array{type?: string, title?: string}|AnimeTitleDto> $titles
-     * @return array<AnimeTitleDto>
-     */
-    private static function mapTitles(array $titles): array
+    private static function mapExternalLinks(array $links): array
     {
         $result = [];
 
-        foreach ($titles as $title) {
-            if ($title instanceof AnimeTitleDto) {
-                $result[] = $title;
+        foreach ($links as $link) {
+            if ($link instanceof ExternalLinkDto) {
+                $result[] = $link;
 
                 continue;
             }
 
-            if ($title['type'] === 'Default') {
+            if (empty($link['url'])) {
                 continue;
             }
 
-            $language = AnimeTitleLanguageEnum::fromString($title['type']);
-            if ($language === null) {
-                continue;
-            }
-
-            $result[] = new AnimeTitleDto(
-                language: $language,
-                title: $title['title'],
+            $result[] = new ExternalLinkDto(
+                name: $link['name'] ?? '',
+                url: $link['url'],
             );
         }
 
@@ -253,30 +227,54 @@ class AnimeDto
     }
 
     /**
-     * @param array<array{name?: string, url?: string}|ExternalLinkDto> $links
-     * @return array<ExternalLinkDto>
+     * @param array<array{type?: string, title?: string}|AnimeTitleDto> $titles
+     * @return array<AnimeTitleDto>
      */
-    private static function mapExternalLinks(array $links): array
+    private static function mapTitles(array $titles): array
     {
         $result = [];
 
-        foreach ($links as $link) {
-            if ($link instanceof ExternalLinkDto) {
-                $result[] = $link;
+        foreach ($titles as $title) {
+            if ($title instanceof AnimeTitleDto) {
+                $result[] = $title;
 
                 continue;
             }
 
-            if (empty($link['url'])) {
+            if ($title['type'] === 'Default') {
                 continue;
             }
 
-            $result[] = new ExternalLinkDto(
-                name: $link['name'] ?? '',
-                url: $link['url'],
+            $language = AnimeTitleLanguageEnum::fromString($title['type']);
+            if ($language === null) {
+                continue;
+            }
+
+            $result[] = new AnimeTitleDto(
+                language: $language,
+                title: $title['title'],
             );
         }
 
         return $result;
+    }
+
+    /**
+     * Parse duration string to minutes.
+     */
+    private static function parseDuration(string $duration): ?int
+    {
+        preg_match('/(\d+)\s*hr/i', $duration, $hours);
+        preg_match('/(\d+)\s*min/i', $duration, $minutes);
+
+        $totalMinutes = 0;
+        if (!empty($hours[1])) {
+            $totalMinutes += (int)$hours[1] * 60;
+        }
+        if (!empty($minutes[1])) {
+            $totalMinutes += (int)$minutes[1];
+        }
+
+        return $totalMinutes ?: null;
     }
 }

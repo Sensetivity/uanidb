@@ -4,8 +4,8 @@ namespace App\Feature\Transliterator;
 
 class TransliterationService
 {
-    private array $maps;
     private array $currentMap;
+    private array $maps;
 
     public function __construct()
     {

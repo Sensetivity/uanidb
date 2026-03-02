@@ -5,8 +5,18 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
+return new class () extends Migration
 {
+    public function down(): void
+    {
+        Schema::table('anime_titles', function (Blueprint $table) {
+            $table->dropUnique('anime_titles_anime_id_title_unique');
+            $table->dropIndex('anime_titles_anime_id_language_index');
+            $table->index('anime_id', 'anime_titles_anime_id_index');
+            $table->index('language', 'anime_titles_language_index');
+        });
+    }
+
     /**
      * Run the migrations.
      */
@@ -37,16 +47,6 @@ return new class extends Migration
             // Now safe to drop: composite index above covers anime_id for the FK
             $table->dropIndex('anime_titles_anime_id_index');
             $table->dropIndex('anime_titles_language_index');
-        });
-    }
-
-    public function down(): void
-    {
-        Schema::table('anime_titles', function (Blueprint $table) {
-            $table->dropUnique('anime_titles_anime_id_title_unique');
-            $table->dropIndex('anime_titles_anime_id_language_index');
-            $table->index('anime_id', 'anime_titles_anime_id_index');
-            $table->index('language', 'anime_titles_language_index');
         });
     }
 };

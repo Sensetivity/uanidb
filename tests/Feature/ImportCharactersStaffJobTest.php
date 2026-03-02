@@ -31,7 +31,7 @@ class ImportCharactersStaffJobTest extends TestCase
                 new CharacterDto(
                     malId: 1,
                     name: 'Test Character',
-                    role: CharacterRoleEnum::MAIN,
+                    role: CharacterRoleEnum::Main,
                     voiceActors: [
                         new VoiceActorDto(malId: 11, name: 'VA Name'),
                     ],

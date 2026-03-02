@@ -13,7 +13,7 @@ readonly class CharacterDto
         public int $malId,
         public string $name,
         public ?string $imageUrl = null,
-        public CharacterRoleEnum $role = CharacterRoleEnum::SUPPORTING,
+        public CharacterRoleEnum $role = CharacterRoleEnum::Supporting,
         public array $voiceActors = [],
     ) {}
 }

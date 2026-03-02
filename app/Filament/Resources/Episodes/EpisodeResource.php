@@ -5,7 +5,9 @@ namespace App\Filament\Resources\Episodes;
 use App\Filament\Resources\Episodes\Pages\CreateEpisode;
 use App\Filament\Resources\Episodes\Pages\EditEpisode;
 use App\Filament\Resources\Episodes\Pages\ListEpisodes;
+use App\Filament\Resources\Episodes\Pages\ViewEpisode;
 use App\Filament\Resources\Episodes\Schemas\EpisodeForm;
+use App\Filament\Resources\Episodes\Schemas\EpisodeInfolist;
 use App\Filament\Resources\Episodes\Tables\EpisodesTable;
 use App\Models\Episode;
 use BackedEnum;
@@ -31,6 +33,7 @@ class EpisodeResource extends Resource
         return [
             'index' => ListEpisodes::route('/'),
             'create' => CreateEpisode::route('/create'),
+            'view' => ViewEpisode::route('/{record}'),
             'edit' => EditEpisode::route('/{record}/edit'),
         ];
     }
@@ -48,6 +51,11 @@ class EpisodeResource extends Resource
         return [
             //
         ];
+    }
+
+    public static function infolist(Schema $schema): Schema
+    {
+        return EpisodeInfolist::configure($schema);
     }
 
     public static function table(Table $table): Table

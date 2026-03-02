@@ -10,6 +10,14 @@ use Illuminate\Support\ServiceProvider;
 class TranslationServiceProvider extends ServiceProvider
 {
     /**
+     * Bootstrap services.
+     */
+    public function boot(): void
+    {
+        //
+    }
+
+    /**
      * Register services.
      */
     public function register(): void
@@ -40,13 +48,5 @@ class TranslationServiceProvider extends ServiceProvider
                 targetLanguage: (string) ($targetLanguage ?? config('services.deepl.target_language', 'UK')),
             );
         });
-    }
-
-    /**
-     * Bootstrap services.
-     */
-    public function boot(): void
-    {
-        //
     }
 }

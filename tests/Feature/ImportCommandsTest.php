@@ -18,29 +18,35 @@ class ImportCommandsTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_import_anime_with_queue_flag(): void
+    public function test_download_images_command_for_all(): void
     {
-        Queue::fake([ImportAnimeJob::class]);
+        Queue::fake([DownloadAnimeImagesJob::class]);
 
-        $this->artisan('import:anime', ['malId' => 1, '--queue' => true])
+        Anime::factory()->count(3)->create([
+            'image_url' => 'https://example.com/image.jpg',
+        ]);
+
+        $this->artisan('import:download-images', ['--all' => true])
             ->assertSuccessful();
 
-        Queue::assertPushed(ImportAnimeJob::class, function ($job) {
-            $reflection = new \ReflectionClass($job);
-            $malIdProp = $reflection->getProperty('malId');
-
-            return $malIdProp->getValue($job) === 1;
-        });
+        Queue::assertPushed(DownloadAnimeImagesJob::class, 3);
     }
 
-    public function test_import_batch_with_queue_flag(): void
+    public function test_download_images_command_for_specific_anime(): void
     {
-        Queue::fake([ImportAnimeJob::class]);
+        Queue::fake([DownloadAnimeImagesJob::class]);
 
-        $this->artisan('import:anime-batch', ['--from' => 1, '--to' => 3, '--queue' => true])
+        $anime = Anime::factory()->create(['mal_id' => 1]);
+
+        $this->artisan('import:download-images', ['malId' => 1])
             ->assertSuccessful();
 
-        Queue::assertPushed(ImportAnimeJob::class, 3);
+        Queue::assertPushed(DownloadAnimeImagesJob::class, function ($job) use ($anime) {
+            $reflection = new \ReflectionClass($job);
+            $animeIdProp = $reflection->getProperty('animeId');
+
+            return $animeIdProp->getValue($job) === $anime->id;
+        });
     }
 
     public function test_import_anime_with_images_flag(): void
@@ -69,34 +75,28 @@ class ImportCommandsTest extends TestCase
         Queue::assertPushed(DownloadAnimeImagesJob::class);
     }
 
-    public function test_download_images_command_for_specific_anime(): void
+    public function test_import_anime_with_queue_flag(): void
     {
-        Queue::fake([DownloadAnimeImagesJob::class]);
+        Queue::fake([ImportAnimeJob::class]);
 
-        $anime = Anime::factory()->create(['mal_id' => 1]);
-
-        $this->artisan('import:download-images', ['malId' => 1])
+        $this->artisan('import:anime', ['malId' => 1, '--queue' => true])
             ->assertSuccessful();
 
-        Queue::assertPushed(DownloadAnimeImagesJob::class, function ($job) use ($anime) {
+        Queue::assertPushed(ImportAnimeJob::class, function ($job) {
             $reflection = new \ReflectionClass($job);
-            $animeIdProp = $reflection->getProperty('animeId');
+            $malIdProp = $reflection->getProperty('malId');
 
-            return $animeIdProp->getValue($job) === $anime->id;
+            return $malIdProp->getValue($job) === 1;
         });
     }
 
-    public function test_download_images_command_for_all(): void
+    public function test_import_batch_with_queue_flag(): void
     {
-        Queue::fake([DownloadAnimeImagesJob::class]);
+        Queue::fake([ImportAnimeJob::class]);
 
-        Anime::factory()->count(3)->create([
-            'image_url' => 'https://example.com/image.jpg',
-        ]);
-
-        $this->artisan('import:download-images', ['--all' => true])
+        $this->artisan('import:anime-batch', ['--from' => 1, '--to' => 3, '--queue' => true])
             ->assertSuccessful();
 
-        Queue::assertPushed(DownloadAnimeImagesJob::class, 3);
+        Queue::assertPushed(ImportAnimeJob::class, 3);
     }
 }

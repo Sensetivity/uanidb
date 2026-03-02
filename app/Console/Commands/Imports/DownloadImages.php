@@ -9,6 +9,13 @@ use Illuminate\Console\Command;
 class DownloadImages extends Command
 {
     /**
+     * The console command description.
+     *
+     * @var string
+     */
+    protected $description = 'Download images for imported anime into media library';
+
+    /**
      * The name and signature of the console command.
      *
      * @var string
@@ -17,13 +24,6 @@ class DownloadImages extends Command
         {malId? : MAL ID of specific anime}
         {--all : Download images for all anime without media}
         {--chunk=50 : Chunk size for --all mode}';
-
-    /**
-     * The console command description.
-     *
-     * @var string
-     */
-    protected $description = 'Download images for imported anime into media library';
 
     /**
      * Execute the console command.
@@ -43,25 +43,6 @@ class DownloadImages extends Command
         $this->error('Please provide a MAL ID or use --all flag.');
 
         return self::FAILURE;
-    }
-
-    /**
-     * Download images for a specific anime.
-     */
-    private function downloadForAnime(int $malId): int
-    {
-        $anime = Anime::query()->where('mal_id', $malId)->first();
-
-        if (! $anime) {
-            $this->error("Anime with MAL ID {$malId} not found.");
-
-            return self::FAILURE;
-        }
-
-        DownloadAnimeImagesJob::dispatch($anime->id);
-        $this->info("Dispatched image download job for: {$anime->title}");
-
-        return self::SUCCESS;
     }
 
     /**
@@ -99,6 +80,25 @@ class DownloadImages extends Command
         $bar->finish();
         $this->newLine();
         $this->info("Dispatched {$total} image download jobs.");
+
+        return self::SUCCESS;
+    }
+
+    /**
+     * Download images for a specific anime.
+     */
+    private function downloadForAnime(int $malId): int
+    {
+        $anime = Anime::query()->where('mal_id', $malId)->first();
+
+        if (!$anime) {
+            $this->error("Anime with MAL ID {$malId} not found.");
+
+            return self::FAILURE;
+        }
+
+        DownloadAnimeImagesJob::dispatch($anime->id);
+        $this->info("Dispatched image download job for: {$anime->title}");
 
         return self::SUCCESS;
     }

@@ -14,6 +14,10 @@ class ThemeForm
     {
         return $schema
             ->components([
+                TextInput::make('mal_title')
+                    ->label('MAL Title')
+                    ->required()
+                    ->maxLength(100),
                 TextInput::make('name')
                     ->required()
                     ->maxLength(255),

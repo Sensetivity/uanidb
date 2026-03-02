@@ -1,12 +1,12 @@
 <?php
 
 use App\Enums\AnimeRelationEnum;
-use App\Enums\AnimeTypeEnum;
 use App\Enums\AnimeStatusEnum;
+use App\Enums\AnimeTypeEnum;
+use App\Enums\CharacterRoleEnum;
+use App\Enums\EpisodeTypeEnum;
 use App\Enums\PersonJobPosition;
 use App\Enums\SourceTypeEnum;
-use App\Enums\EpisodeTypeEnum;
-use App\Enums\CharacterRoleEnum;
 use App\Enums\WatchlistStatusEnum;
 
 return [

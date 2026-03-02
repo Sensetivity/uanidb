@@ -9,6 +9,11 @@ use Illuminate\Support\Facades\Log;
 
 class ExternalLinkProcessor implements RelationProcessor
 {
+    public function clear(Anime $anime): void
+    {
+        $anime->externalLinks()->delete();
+    }
+
     public function sync(Anime $anime, AnimeFullDto $dto): void
     {
         if (empty($dto->anime->externalLinks)) {
@@ -46,10 +51,5 @@ class ExternalLinkProcessor implements RelationProcessor
                 $anime->update(['anidb_id' => $anidbId]);
             }
         }
-    }
-
-    public function clear(Anime $anime): void
-    {
-        $anime->externalLinks()->delete();
     }
 }

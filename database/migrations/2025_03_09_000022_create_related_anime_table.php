@@ -4,8 +4,13 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
+return new class () extends Migration
 {
+    public function down(): void
+    {
+        Schema::dropIfExists('related_anime');
+    }
+
     public function up(): void
     {
         Schema::create('related_anime', function (Blueprint $table) {
@@ -18,10 +23,5 @@ return new class extends Migration
             $table->unique(['anime_id', 'related_anime_id']);
             $table->index('related_anime_id');
         });
-    }
-
-    public function down(): void
-    {
-        Schema::dropIfExists('related_anime');
     }
 };

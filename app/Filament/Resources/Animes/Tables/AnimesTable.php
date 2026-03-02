@@ -13,6 +13,7 @@ use App\Jobs\ImportEpisodesJob;
 use App\Jobs\ImportVideosJob;
 use App\Jobs\TranslateAnimeJob;
 use App\Models\Anime;
+use BackedEnum;
 use Filament\Actions\Action;
 use Filament\Actions\ActionGroup;
 use Filament\Actions\BulkAction;
@@ -23,12 +24,14 @@ use Filament\Actions\ForceDeleteBulkAction;
 use Filament\Actions\RestoreBulkAction;
 use Filament\Actions\ViewAction;
 use Filament\Notifications\Notification;
+use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Filters\TernaryFilter;
 use Filament\Tables\Filters\TrashedFilter;
 use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 
 class AnimesTable
@@ -36,6 +39,7 @@ class AnimesTable
     public static function configure(Table $table): Table
     {
         return $table
+            ->modifyQueryUsing(fn (Builder $query) => $query->with('seasons'))
             ->columns([
                 ImageColumn::make('poster')
                     ->state(fn (Anime $record): ?string => $record->getFirstMediaUrl('main_poster') ?: $record->image_url)
@@ -90,110 +94,78 @@ class AnimesTable
                 ViewAction::make()->iconButton(),
                 EditAction::make()->iconButton(),
                 ActionGroup::make([
-                    Action::make('translate')
-                        ->label('Translate')
-                        ->icon('heroicon-o-language')
-                        ->action(function ($record): void {
-                            TranslateAnimeJob::dispatch($record->id, withEpisodes: true);
-
-                            Notification::make()
-                                ->title('Переклад поставлено в чергу')
-                                ->success()
-                                ->send();
-                        }),
-                    Action::make('reimport')
-                        ->label('Re-import')
-                        ->icon('heroicon-o-arrow-path')
-                        ->color('warning')
-                        ->action(function ($record): void {
-                            ImportAnimeJob::dispatch($record->mal_id, true, true, false);
-
-                            Notification::make()
-                                ->title('Повторний імпорт поставлено в чергу')
-                                ->success()
-                                ->send();
-                        }),
-                    Action::make('reimport_images')
-                        ->label('Re-import Images')
-                        ->icon('heroicon-o-photo')
-                        ->color('warning')
-                        ->action(function ($record): void {
-                            DownloadAnimeImagesJob::dispatch($record->id);
-
-                            Notification::make()
-                                ->title('Завантаження зображень поставлено в чергу')
-                                ->success()
-                                ->send();
-                        }),
-                    Action::make('reimport_episodes')
-                        ->label('Re-import Episodes')
-                        ->icon('heroicon-o-film')
-                        ->color('gray')
-                        ->action(function ($record): void {
-                            ImportEpisodesJob::dispatch($record->id);
-
-                            Notification::make()
-                                ->title('Імпорт епізодів поставлено в чергу')
-                                ->success()
-                                ->send();
-                        }),
-                    Action::make('reimport_characters')
-                        ->label('Re-import Characters & Staff')
-                        ->icon('heroicon-o-users')
-                        ->color('gray')
-                        ->action(function ($record): void {
-                            ImportCharactersStaffJob::dispatch($record->id);
-
-                            Notification::make()
-                                ->title('Імпорт персонажів поставлено в чергу')
-                                ->success()
-                                ->send();
-                        }),
-                    Action::make('reimport_videos')
-                        ->label('Re-import Videos')
-                        ->icon('heroicon-o-video-camera')
-                        ->color('gray')
-                        ->action(function ($record): void {
-                            ImportVideosJob::dispatch($record->id);
-
-                            Notification::make()
-                                ->title('Імпорт відео поставлено в чергу')
-                                ->success()
-                                ->send();
-                        }),
-                    Action::make('import_anidb_titles')
-                        ->label('Import AniDB Titles')
-                        ->icon('heroicon-o-tag')
-                        ->color('info')
-                        ->action(function ($record): void {
-                            ImportAniDbTitlesJob::dispatch($record->id);
-
-                            Notification::make()
-                                ->title('Імпорт назв AniDB поставлено в чергу')
-                                ->success()
-                                ->send();
-                        }),
-                    Action::make('import_anidb_episode_titles')
-                        ->label('Import AniDB Episode Titles')
-                        ->icon('heroicon-o-queue-list')
-                        ->color('info')
-                        ->action(function ($record): void {
-                            ImportAniDbEpisodeTitlesJob::dispatch($record->id);
-
-                            Notification::make()
-                                ->title('Імпорт назв епізодів AniDB поставлено в чергу')
-                                ->success()
-                                ->send();
-                        }),
+                    self::dispatchAction(
+                        'translate',
+                        'Translate',
+                        Heroicon::OutlinedLanguage,
+                        'Переклад поставлено в чергу',
+                        fn (Anime $record) => TranslateAnimeJob::dispatch($record->id, withEpisodes: true)
+                    ),
+                    self::dispatchAction(
+                        'reimport',
+                        'Re-import',
+                        Heroicon::OutlinedArrowPath,
+                        'Повторний імпорт поставлено в чергу',
+                        fn (Anime $record) => ImportAnimeJob::dispatch($record->mal_id, true, true, false),
+                        'warning'
+                    ),
+                    self::dispatchAction(
+                        'reimport_images',
+                        'Re-import Images',
+                        Heroicon::OutlinedPhoto,
+                        'Завантаження зображень поставлено в чергу',
+                        fn (Anime $record) => DownloadAnimeImagesJob::dispatch($record->id),
+                        'warning'
+                    ),
+                    self::dispatchAction(
+                        'reimport_episodes',
+                        'Re-import Episodes',
+                        Heroicon::OutlinedFilm,
+                        'Імпорт епізодів поставлено в чергу',
+                        fn (Anime $record) => ImportEpisodesJob::dispatch($record->id),
+                        'gray'
+                    ),
+                    self::dispatchAction(
+                        'reimport_characters',
+                        'Re-import Characters & Staff',
+                        Heroicon::OutlinedUsers,
+                        'Імпорт персонажів поставлено в чергу',
+                        fn (Anime $record) => ImportCharactersStaffJob::dispatch($record->id),
+                        'gray'
+                    ),
+                    self::dispatchAction(
+                        'reimport_videos',
+                        'Re-import Videos',
+                        Heroicon::OutlinedVideoCamera,
+                        'Імпорт відео поставлено в чергу',
+                        fn (Anime $record) => ImportVideosJob::dispatch($record->id),
+                        'gray'
+                    ),
+                    self::dispatchAction(
+                        'import_anidb_titles',
+                        'Import AniDB Titles',
+                        Heroicon::OutlinedTag,
+                        'Імпорт назв AniDB поставлено в чергу',
+                        fn (Anime $record) => ImportAniDbTitlesJob::dispatch($record->id),
+                        'info'
+                    ),
+                    self::dispatchAction(
+                        'import_anidb_episode_titles',
+                        'Import AniDB Episode Titles',
+                        Heroicon::OutlinedQueueList,
+                        'Імпорт назв епізодів AniDB поставлено в чергу',
+                        fn (Anime $record) => ImportAniDbEpisodeTitlesJob::dispatch($record->id),
+                        'info'
+                    ),
                 ])
-                    ->icon('heroicon-o-ellipsis-vertical')
+                    ->icon(Heroicon::OutlinedEllipsisVertical)
                     ->tooltip('More actions'),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([
                     BulkAction::make('bulk_translate')
                         ->label('Translate selected')
-                        ->icon('heroicon-o-language')
+                        ->icon(Heroicon::OutlinedLanguage)
                         ->action(function (Collection $records): void {
                             foreach ($records as $record) {
                                 TranslateAnimeJob::dispatch($record->id, withEpisodes: true);
@@ -209,5 +181,32 @@ class AnimesTable
                     RestoreBulkAction::make(),
                 ]),
             ]);
+    }
+
+    private static function dispatchAction(
+        string $name,
+        string $label,
+        string|BackedEnum $icon,
+        string $notification,
+        \Closure $dispatch,
+        ?string $color = null,
+    ): Action {
+        $action = Action::make($name)
+            ->label($label)
+            ->icon($icon)
+            ->action(function (Anime $record) use ($dispatch, $notification): void {
+                $dispatch($record);
+
+                Notification::make()
+                    ->title($notification)
+                    ->success()
+                    ->send();
+            });
+
+        if ($color) {
+            $action->color($color);
+        }
+
+        return $action;
     }
 }

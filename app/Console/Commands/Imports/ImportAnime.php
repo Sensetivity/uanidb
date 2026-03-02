@@ -11,6 +11,13 @@ use Illuminate\Console\Command;
 class ImportAnime extends Command
 {
     /**
+     * The console command description.
+     *
+     * @var string
+     */
+    protected $description = 'Import a single anime by MAL ID';
+
+    /**
      * The name and signature of the console command.
      *
      * @var string
@@ -21,13 +28,6 @@ class ImportAnime extends Command
         {--queue : Dispatch import as a queued job}
         {--with-images : Download images after import}
         {--translate : Translate to Ukrainian after import}';
-
-    /**
-     * The console command description.
-     *
-     * @var string
-     */
-    protected $description = 'Import a single anime by MAL ID';
 
     /**
      * Execute the console command.

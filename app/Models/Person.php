@@ -2,38 +2,18 @@
 
 namespace App\Models;
 
+use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
-use Cviebrock\EloquentSluggable\Sluggable;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 
 class Person extends BaseModel implements HasMedia
 {
-    use HasFactory, Sluggable, InteractsWithMedia;
-
-    /**
-     * The table associated with the model.
-     *
-     * @var string
-     */
-    protected $table = 'people';
-
-    /**
-     * Return the sluggable configuration array for this model.
-     *
-     * @return array
-     */
-    public function sluggable(): array
-    {
-        return [
-            'slug' => [
-                'source' => 'name',
-                'onUpdate' => false,
-            ]
-        ];
-    }
+    use HasFactory;
+    use InteractsWithMedia;
+    use Sluggable;
 
     /**
      * The attributes that should be cast.
@@ -45,13 +25,11 @@ class Person extends BaseModel implements HasMedia
     ];
 
     /**
-     * Register media collections.
+     * The table associated with the model.
+     *
+     * @var string
      */
-    public function registerMediaCollections(): void
-    {
-        $this->addMediaCollection('main_image')
-            ->singleFile();
-    }
+    protected $table = 'people';
 
     /**
      * Get anime where this person has a role (director, animator, etc).
@@ -72,13 +50,12 @@ class Person extends BaseModel implements HasMedia
     }
 
     /**
-     * Get characters this person has voiced.
+     * Register media collections.
      */
-    public function voicedCharacters(): BelongsToMany
+    public function registerMediaCollections(): void
     {
-        return $this->belongsToMany(Character::class, 'character_voice', 'person_id', 'character_id')
-            ->withPivot('anime_id', 'language')
-            ->withTimestamps();
+        $this->addMediaCollection('main_image')
+            ->singleFile();
     }
 
     /**
@@ -87,5 +64,30 @@ class Person extends BaseModel implements HasMedia
     public function reviews(): MorphMany
     {
         return $this->morphMany(Review::class, 'reviewable');
+    }
+
+    /**
+     * Return the sluggable configuration array for this model.
+     *
+     * @return array
+     */
+    public function sluggable(): array
+    {
+        return [
+            'slug' => [
+                'source' => 'name',
+                'onUpdate' => false,
+            ]
+        ];
+    }
+
+    /**
+     * Get characters this person has voiced.
+     */
+    public function voicedCharacters(): BelongsToMany
+    {
+        return $this->belongsToMany(Character::class, 'character_voice', 'person_id', 'character_id')
+            ->withPivot('anime_id', 'language')
+            ->withTimestamps();
     }
 }

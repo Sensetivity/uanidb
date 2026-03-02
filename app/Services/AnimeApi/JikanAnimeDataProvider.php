@@ -10,7 +10,6 @@ use App\Dto\PersonDto;
 use App\Dto\PromotionVideoDto;
 use App\Dto\VoiceActorDto;
 use App\Enums\CharacterRoleEnum;
-use Carbon\Carbon;
 use Exception;
 use Jikan\JikanPHP\Client;
 use Jikan\JikanPHP\Model\AnimeFull;
@@ -20,9 +19,7 @@ class JikanAnimeDataProvider implements AnimeDataProvider
     public function __construct(
         private readonly Client $client,
         private readonly int    $apiDelay = 1,
-    )
-    {
-    }
+    ) {}
 
     /**
      * @throws JikanAnimeApiClientException
@@ -38,134 +35,6 @@ class JikanAnimeDataProvider implements AnimeDataProvider
             return AnimeDto::fromArray($this->extractAnimeData($response->getData()));
         } catch (Exception $e) {
             throw new JikanAnimeApiClientException("Failed to fetch anime with ID: {$id}", 0, $e);
-        }
-    }
-
-    /**
-     * @return array<AnimeDto>
-     *
-     * @throws JikanAnimeApiClientException
-     */
-    public function searchAnime(string $query, int $page = 1): array
-    {
-        try {
-            $response = $this->client->getAnimeSearch([
-                'q' => $query,
-                'page' => $page,
-            ]);
-            $results = [];
-
-            if (!$response || !$response->getData()) {
-                return $results;
-            }
-
-            foreach ($response->getData() as $animeItem) {
-                $data = $this->extractAnimeData($animeItem);
-                $results[] = AnimeDto::fromArray($data);
-            }
-
-            return $results;
-        } catch (Exception $e) {
-            throw new JikanAnimeApiClientException("Failed to search anime with query: {$query}", 0, $e);
-        }
-    }
-
-    /**
-     * @return array<AnimeDto>
-     *
-     * @throws JikanAnimeApiClientException
-     */
-    public function getSeasonalAnime(int $year, string $season, int $page = 1): array
-    {
-        try {
-            $response = $this->client->getSeason($year, $season, ['page' => $page]);
-            if (!$response) {
-                return [];
-            }
-
-            $results = [];
-            foreach ($response->getData() as $animeItem) {
-                $data = $this->extractAnimeData($animeItem);
-                $results[] = AnimeDto::fromArray($data);
-            }
-
-            return $results;
-        } catch (Exception $e) {
-            throw new JikanAnimeApiClientException("Failed to fetch seasonal anime: {$season} {$year}", 0, $e);
-        }
-    }
-
-    /**
-     * @return array<AnimeDto>
-     *
-     * @throws JikanAnimeApiClientException
-     */
-    public function getTopAnime(string $type = 'all', int $page = 1): array
-    {
-        try {
-            $response = $this->client->getTopAnime([
-                'type' => $type,
-                'page' => $page,
-            ]);
-            $results = [];
-
-            if (!$response || !$response->getData()) {
-                return $results;
-            }
-
-            foreach ($response->getData() as $animeItem) {
-                $data = $this->extractAnimeData($animeItem);
-                $results[] = AnimeDto::fromArray($data);
-            }
-
-            return $results;
-        } catch (Exception $e) {
-            throw new JikanAnimeApiClientException("Failed to fetch top anime of type: {$type}", 0, $e);
-        }
-    }
-
-    /**
-     * @return array<EpisodeDto>
-     *
-     * @throws JikanAnimeApiClientException
-     */
-    public function getAnimeEpisodes(int $id): array
-    {
-        try {
-            $episodes = [];
-            $page = 1;
-
-            do {
-                $response = $this->client->getAnimeEpisodes($id, ['page' => $page]);
-                if (!$response || !$response->getData()) {
-                    break;
-                }
-
-                foreach ($response->getData() as $index => $episodeItem) {
-                    $number = ($page - 1) * 100 + $index + 1;
-                    $episodes[] = EpisodeDto::fromJikanArray([
-                        'mal_id' => $episodeItem->getMalId(),
-                        'title' => $episodeItem->getTitle(),
-                        'title_japanese' => $episodeItem->getTitleJapanese(),
-                        'title_romanji' => $episodeItem->getTitleRomanji(),
-                        'aired' => $episodeItem->getAired(),
-                        'duration' => $episodeItem->getDuration(),
-                        'filler' => $episodeItem->getFiller(),
-                        'recap' => $episodeItem->getRecap(),
-                    ], $number);
-                }
-
-                $hasNextPage = $response->getPagination()?->getHasNextPage() ?? false;
-                $page++;
-
-                if ($hasNextPage) {
-                    sleep($this->apiDelay);
-                }
-            } while ($hasNextPage);
-
-            return $episodes;
-        } catch (Exception $e) {
-            throw new JikanAnimeApiClientException("Failed to fetch episodes for anime ID: {$id}", 0, $e);
         }
     }
 
@@ -212,6 +81,51 @@ class JikanAnimeDataProvider implements AnimeDataProvider
             return $characters;
         } catch (Exception $e) {
             throw new JikanAnimeApiClientException("Failed to fetch characters for anime ID: {$id}", 0, $e);
+        }
+    }
+
+    /**
+     * @return array<EpisodeDto>
+     *
+     * @throws JikanAnimeApiClientException
+     */
+    public function getAnimeEpisodes(int $id): array
+    {
+        try {
+            $episodes = [];
+            $page = 1;
+
+            do {
+                $response = $this->client->getAnimeEpisodes($id, ['page' => $page]);
+                if (!$response || !$response->getData()) {
+                    break;
+                }
+
+                foreach ($response->getData() as $index => $episodeItem) {
+                    $number = ($page - 1) * 100 + $index + 1;
+                    $episodes[] = EpisodeDto::fromJikanArray([
+                        'mal_id' => $episodeItem->getMalId(),
+                        'title' => $episodeItem->getTitle(),
+                        'title_japanese' => $episodeItem->getTitleJapanese(),
+                        'title_romanji' => $episodeItem->getTitleRomanji(),
+                        'aired' => $episodeItem->getAired(),
+                        'duration' => $episodeItem->getDuration(),
+                        'filler' => $episodeItem->getFiller(),
+                        'recap' => $episodeItem->getRecap(),
+                    ], $number);
+                }
+
+                $hasNextPage = $response->getPagination()?->getHasNextPage() ?? false;
+                $page++;
+
+                if ($hasNextPage) {
+                    sleep($this->apiDelay);
+                }
+            } while ($hasNextPage);
+
+            return $episodes;
+        } catch (Exception $e) {
+            throw new JikanAnimeApiClientException("Failed to fetch episodes for anime ID: {$id}", 0, $e);
         }
     }
 
@@ -286,58 +200,98 @@ class JikanAnimeDataProvider implements AnimeDataProvider
     }
 
     /**
-     * @return array<string, mixed>
+     * @return array<AnimeDto>
+     *
+     * @throws JikanAnimeApiClientException
      */
-    private function extractAnimeData(AnimeFull $animeData): array
+    public function getSeasonalAnime(int $year, string $season, int $page = 1): array
     {
-        $aired = $animeData->getAired();
-        $images = $animeData->getImages();
+        try {
+            $response = $this->client->getSeason($year, $season, ['page' => $page]);
+            if (!$response) {
+                return [];
+            }
 
-        return [
-            'mal_id' => $animeData->getMalId(),
-            'title' => $animeData->getTitle(),
-            'synopsis' => $animeData->getSynopsis(),
-            'type' => $animeData->getType(),
-            'episodes' => $animeData->getEpisodes(),
-            'status' => $animeData->getStatus(),
-            'aired' => [
-                'from' => $aired ? $aired->getFrom() : null,
-                'to' => $aired ? $aired->getTo() : null,
-            ],
-            'duration' => $animeData->getDuration(),
-            'rating' => $animeData->getRating(),
-            'score' => $animeData->getScore(),
-            'rank' => $animeData->getRank(),
-            'popularity' => $animeData->getPopularity(),
-            'images' => [
-                'jpg' => [
-                    'large_image_url' => $images->getJpg() ? $images->getJpg()->getLargeImageUrl() : null,
-                ],
-            ],
-            'titles' => $this->convertTitlesToArray($animeData->getTitles()),
-            'genres' => $this->convertMalUrlsToArray($animeData->getGenres()),
-            'themes' => $this->convertMalUrlsToArray($animeData->getThemes()),
-            'studios' => $this->convertMalUrlsToArray($animeData->getStudios()),
-            'producers' => $this->convertMalUrlsToArray($animeData->getProducers()),
-            'licensors' => $this->convertMalUrlsToArray($animeData->getLicensors()),
-            'source' => $animeData->getSource(),
-            'season' => $animeData->getSeason(),
-            'year' => $animeData->getYear(),
-            'relations' => $this->convertRelationsToArray($animeData->getRelations()),
-            'external' => $this->convertExternalLinksToArray($animeData->getExternal()),
-        ];
+            $results = [];
+            foreach ($response->getData() as $animeItem) {
+                $data = $this->extractAnimeData($animeItem);
+                $results[] = AnimeDto::fromArray($data);
+            }
+
+            return $results;
+        } catch (Exception $e) {
+            throw new JikanAnimeApiClientException("Failed to fetch seasonal anime: {$season} {$year}", 0, $e);
+        }
     }
 
     /**
-     * @return array<int, array{type: string, title: string}>
+     * @return array<AnimeDto>
+     *
+     * @throws JikanAnimeApiClientException
      */
-    private function convertTitlesToArray(array $titles): array
+    public function getTopAnime(string $type = 'all', int $page = 1): array
+    {
+        try {
+            $response = $this->client->getTopAnime([
+                'type' => $type,
+                'page' => $page,
+            ]);
+            $results = [];
+
+            if (!$response || !$response->getData()) {
+                return $results;
+            }
+
+            foreach ($response->getData() as $animeItem) {
+                $data = $this->extractAnimeData($animeItem);
+                $results[] = AnimeDto::fromArray($data);
+            }
+
+            return $results;
+        } catch (Exception $e) {
+            throw new JikanAnimeApiClientException("Failed to fetch top anime of type: {$type}", 0, $e);
+        }
+    }
+
+    /**
+     * @return array<AnimeDto>
+     *
+     * @throws JikanAnimeApiClientException
+     */
+    public function searchAnime(string $query, int $page = 1): array
+    {
+        try {
+            $response = $this->client->getAnimeSearch([
+                'q' => $query,
+                'page' => $page,
+            ]);
+            $results = [];
+
+            if (!$response || !$response->getData()) {
+                return $results;
+            }
+
+            foreach ($response->getData() as $animeItem) {
+                $data = $this->extractAnimeData($animeItem);
+                $results[] = AnimeDto::fromArray($data);
+            }
+
+            return $results;
+        } catch (Exception $e) {
+            throw new JikanAnimeApiClientException("Failed to search anime with query: {$query}", 0, $e);
+        }
+    }
+
+    /**
+     * @return array<int, array{name: string, url: string}>
+     */
+    private function convertExternalLinksToArray(array $links): array
     {
         $result = [];
-        foreach ($titles as $title) {
+        foreach ($links as $link) {
             $result[] = [
-                'type' => $title->getType() ?? 'Default',
-                'title' => $title->getTitle() ?? '',
+                'name' => $link->getName(),
+                'url'  => $link->getUrl(),
             ];
         }
 
@@ -386,18 +340,61 @@ class JikanAnimeDataProvider implements AnimeDataProvider
     }
 
     /**
-     * @return array<int, array{name: string, url: string}>
+     * @return array<int, array{type: string, title: string}>
      */
-    private function convertExternalLinksToArray(array $links): array
+    private function convertTitlesToArray(array $titles): array
     {
         $result = [];
-        foreach ($links as $link) {
+        foreach ($titles as $title) {
             $result[] = [
-                'name' => $link->getName(),
-                'url'  => $link->getUrl(),
+                'type' => $title->getType() ?? 'Default',
+                'title' => $title->getTitle() ?? '',
             ];
         }
 
         return $result;
+    }
+
+    /**
+     * @return array<string, mixed>
+     */
+    private function extractAnimeData(AnimeFull $animeData): array
+    {
+        $aired = $animeData->getAired();
+        $images = $animeData->getImages();
+
+        return [
+            'mal_id' => $animeData->getMalId(),
+            'title' => $animeData->getTitle(),
+            'synopsis' => $animeData->getSynopsis(),
+            'type' => $animeData->getType(),
+            'episodes' => $animeData->getEpisodes(),
+            'status' => $animeData->getStatus(),
+            'aired' => [
+                'from' => $aired ? $aired->getFrom() : null,
+                'to' => $aired ? $aired->getTo() : null,
+            ],
+            'duration' => $animeData->getDuration(),
+            'rating' => $animeData->getRating(),
+            'score' => $animeData->getScore(),
+            'rank' => $animeData->getRank(),
+            'popularity' => $animeData->getPopularity(),
+            'images' => [
+                'jpg' => [
+                    'large_image_url' => $images->getJpg() ? $images->getJpg()->getLargeImageUrl() : null,
+                ],
+            ],
+            'titles' => $this->convertTitlesToArray($animeData->getTitles()),
+            'genres' => $this->convertMalUrlsToArray($animeData->getGenres()),
+            'themes' => $this->convertMalUrlsToArray($animeData->getThemes()),
+            'studios' => $this->convertMalUrlsToArray($animeData->getStudios()),
+            'producers' => $this->convertMalUrlsToArray($animeData->getProducers()),
+            'licensors' => $this->convertMalUrlsToArray($animeData->getLicensors()),
+            'source' => $animeData->getSource(),
+            'season' => $animeData->getSeason(),
+            'year' => $animeData->getYear(),
+            'relations' => $this->convertRelationsToArray($animeData->getRelations()),
+            'external' => $this->convertExternalLinksToArray($animeData->getExternal()),
+        ];
     }
 }

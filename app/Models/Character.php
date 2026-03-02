@@ -3,13 +3,12 @@
 namespace App\Models;
 
 use Carbon\Carbon;
-use Illuminate\Database\Eloquent\Builder;
+use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
-use Cviebrock\EloquentSluggable\Sluggable;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection;
@@ -37,14 +36,9 @@ use Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection;
  */
 class Character extends BaseModel implements HasMedia
 {
-    use HasFactory, Sluggable, InteractsWithMedia;
-
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
-    protected $guarded = ['id'];
+    use HasFactory;
+    use InteractsWithMedia;
+    use Sluggable;
 
     /**
      * The attributes that should be cast.
@@ -57,6 +51,54 @@ class Character extends BaseModel implements HasMedia
         'updated_at' => 'datetime',
         'deleted_at' => 'datetime',
     ];
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
+    protected $guarded = ['id'];
+
+    /**
+     * Get all anime associated with this character.
+     *
+     * @return BelongsToMany
+     */
+    public function animes(): BelongsToMany
+    {
+        return $this->belongsToMany(Anime::class, 'anime_character')
+            ->withPivot('role')
+            ->withTimestamps();
+    }
+
+    /**
+     * Get comments for this character.
+     *
+     * @return MorphMany
+     */
+    public function comments(): MorphMany
+    {
+        return $this->morphMany(Comment::class, 'commentable');
+    }
+
+    /**
+     * Register media collections.
+     */
+    public function registerMediaCollections(): void
+    {
+        $this->addMediaCollection('main_image')
+            ->singleFile();
+    }
+
+    /**
+     * Get reviews for this character.
+     *
+     * @return MorphMany
+     */
+    public function reviews(): MorphMany
+    {
+        return $this->morphMany(Review::class, 'reviewable');
+    }
 
     /**
      * Return the sluggable configuration array for this model.
@@ -74,27 +116,6 @@ class Character extends BaseModel implements HasMedia
     }
 
     /**
-     * Register media collections.
-     */
-    public function registerMediaCollections(): void
-    {
-        $this->addMediaCollection('main_image')
-            ->singleFile();
-    }
-
-    /**
-     * Get all anime associated with this character.
-     *
-     * @return BelongsToMany
-     */
-    public function animes(): BelongsToMany
-    {
-        return $this->belongsToMany(Anime::class, 'anime_character')
-            ->withPivot('role')
-            ->withTimestamps();
-    }
-
-    /**
      * Get the voice actors for this character.
      *
      * @return BelongsToMany
@@ -104,25 +125,5 @@ class Character extends BaseModel implements HasMedia
         return $this->belongsToMany(Person::class, 'character_voice', 'character_id', 'person_id')
             ->withPivot('anime_id', 'language')
             ->withTimestamps();
-    }
-
-    /**
-     * Get reviews for this character.
-     *
-     * @return MorphMany
-     */
-    public function reviews(): MorphMany
-    {
-        return $this->morphMany(Review::class, 'reviewable');
-    }
-
-    /**
-     * Get comments for this character.
-     *
-     * @return MorphMany
-     */
-    public function comments(): MorphMany
-    {
-        return $this->morphMany(Comment::class, 'commentable');
     }
 }

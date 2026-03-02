@@ -9,12 +9,11 @@ use Illuminate\Console\Command;
 
 class ImportAniDbEpisodesCommand extends Command
 {
+    protected $description = 'Import Ukrainian episode titles from AniDB HTTP API';
     protected $signature = 'anidb:import-episodes
                             {malId? : MAL ID of a specific anime}
                             {--all : Import episode titles for all anime with an anidb_id}
                             {--force : Overwrite existing Ukrainian episode titles}';
-
-    protected $description = 'Import Ukrainian episode titles from AniDB HTTP API';
 
     public function handle(TitleImportService $service): int
     {
@@ -22,7 +21,7 @@ class ImportAniDbEpisodesCommand extends Command
         $all = $this->option('all');
         $force = $this->option('force');
 
-        if (! $malId && ! $all) {
+        if (!$malId && !$all) {
             $this->error('Provide a malId argument or use --all flag.');
 
             return self::FAILURE;
@@ -31,13 +30,13 @@ class ImportAniDbEpisodesCommand extends Command
         if ($malId) {
             $anime = Anime::query()->where('mal_id', (int) $malId)->first();
 
-            if (! $anime) {
+            if (!$anime) {
                 $this->error("Anime with MAL ID {$malId} not found.");
 
                 return self::FAILURE;
             }
 
-            if (! $anime->anidb_id) {
+            if (!$anime->anidb_id) {
                 $this->warn("Anime {$anime->title} has no anidb_id. Run anidb:sync-mapping first.");
 
                 return self::FAILURE;

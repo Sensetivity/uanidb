@@ -11,9 +11,13 @@ class GenreForm
     {
         return $schema
             ->components([
+                TextInput::make('mal_title')
+                    ->label('MAL Title')
+                    ->required()
+                    ->maxLength(100),
                 TextInput::make('name')
                     ->required()
-                    ->unique(ignoreRecord: true)
+                    ->unique()
                     ->maxLength(255),
             ]);
     }

@@ -18,8 +18,16 @@ class UserForm
                 TextInput::make('email')
                     ->email()
                     ->required()
-                    ->unique(ignoreRecord: true)
+                    ->unique()
                     ->maxLength(255),
+                TextInput::make('password')
+                    ->password()
+                    ->required()
+                    ->minLength(8)
+                    ->maxLength(255)
+                    ->dehydrateStateUsing(fn (string $state): string => bcrypt($state))
+                    ->dehydrated(fn (?string $state): bool => filled($state))
+                    ->required(fn (string $operation): bool => $operation === 'create'),
                 Toggle::make('is_admin'),
             ]);
     }

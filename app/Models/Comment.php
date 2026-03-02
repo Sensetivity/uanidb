@@ -21,19 +21,19 @@ class Comment extends BaseModel
     ];
 
     /**
-     * Get the user who wrote the comment.
-     */
-    public function user(): BelongsTo
-    {
-        return $this->belongsTo(User::class);
-    }
-
-    /**
      * Get the parent model that was commented on.
      */
     public function commentable(): MorphTo
     {
         return $this->morphTo();
+    }
+
+    /**
+     * Check if this comment is a reply.
+     */
+    public function isReply(): bool
+    {
+        return !is_null($this->parent_id);
     }
 
     /**
@@ -53,10 +53,10 @@ class Comment extends BaseModel
     }
 
     /**
-     * Check if this comment is a reply.
+     * Get the user who wrote the comment.
      */
-    public function isReply(): bool
+    public function user(): BelongsTo
     {
-        return !is_null($this->parent_id);
+        return $this->belongsTo(User::class);
     }
 }

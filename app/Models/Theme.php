@@ -11,22 +11,8 @@ class Theme extends Model
     use HasFactory;
 
     protected $attributes = [
-        'type' => ThemeType::NON_CLASSIFIED,
+        'type' => ThemeType::NonClassified,
     ];
-
-    /**
-     * The table associated with the model.
-     *
-     * @var string
-     */
-    protected $table = 'themes';
-
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
-    protected $guarded = ['id'];
 
     /**
      * The attributes that should be cast.
@@ -38,4 +24,18 @@ class Theme extends Model
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
     ];
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
+    protected $guarded = ['id'];
+
+    /**
+     * The table associated with the model.
+     *
+     * @var string
+     */
+    protected $table = 'themes';
 }

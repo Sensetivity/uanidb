@@ -10,6 +10,13 @@ use Illuminate\Console\Command;
 class ImportEpisodes extends Command
 {
     /**
+     * The console command description.
+     *
+     * @var string
+     */
+    protected $description = 'Import or reimport episodes for an existing anime';
+
+    /**
      * The name and signature of the console command.
      *
      * @var string
@@ -17,13 +24,6 @@ class ImportEpisodes extends Command
     protected $signature = 'import:episodes
         {malId : MAL ID of the anime}
         {--queue : Dispatch as queued job}';
-
-    /**
-     * The console command description.
-     *
-     * @var string
-     */
-    protected $description = 'Import or reimport episodes for an existing anime';
 
     /**
      * Execute the console command.
@@ -34,7 +34,7 @@ class ImportEpisodes extends Command
 
         $anime = Anime::query()->where('mal_id', $malId)->first();
 
-        if (! $anime) {
+        if (!$anime) {
             $this->error("Anime with MAL ID {$malId} not found in database.");
 
             return self::FAILURE;

@@ -9,18 +9,18 @@ use Illuminate\Support\Facades\DB;
 class ImportStudios extends Command
 {
     /**
-     * The name and signature of the console command.
-     *
-     * @var string
-     */
-    protected $signature = 'import:studios {file? : Path to JSON file}';
-
-    /**
      * The console command description.
      *
      * @var string
      */
     protected $description = 'Import studios data from JSON file';
+
+    /**
+     * The name and signature of the console command.
+     *
+     * @var string
+     */
+    protected $signature = 'import:studios {file? : Path to JSON file}';
 
     /**
      * Execute the console command.
@@ -33,6 +33,7 @@ class ImportStudios extends Command
         // Check if file exists
         if (!file_exists($filePath)) {
             $this->error("File not found: {$filePath}");
+
             return 1;
         }
 
@@ -42,6 +43,7 @@ class ImportStudios extends Command
 
         if (json_last_error() !== JSON_ERROR_NONE) {
             $this->error('Invalid JSON file: ' . json_last_error_msg());
+
             return 1;
         }
 
@@ -90,6 +92,7 @@ class ImportStudios extends Command
         } catch (\Exception $e) {
             DB::rollBack();
             $this->error('Import failed: ' . $e->getMessage());
+
             return 1;
         }
 

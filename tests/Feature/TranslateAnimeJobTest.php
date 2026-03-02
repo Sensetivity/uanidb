@@ -14,20 +14,12 @@ class TranslateAnimeJobTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_job_translates_anime_synopsis(): void
+    public function test_job_skips_when_anime_not_found(): void
     {
-        $anime = Anime::factory()->create([
-            'synopsis' => 'An exciting adventure anime.',
-            'synopsis_uk' => null,
-        ]);
-
         $mockService = Mockery::mock(TranslationService::class);
-        $mockService->shouldReceive('translateAnimeSynopsis')
-            ->once()
-            ->with(Mockery::on(fn ($a) => $a->id === $anime->id))
-            ->andReturnTrue();
+        $mockService->shouldNotReceive('translateAnimeSynopsis');
 
-        $job = new TranslateAnimeJob($anime->id, withEpisodes: false);
+        $job = new TranslateAnimeJob(999);
         $job->handle($mockService);
     }
 
@@ -66,12 +58,20 @@ class TranslateAnimeJobTest extends TestCase
         $job->handle($mockService);
     }
 
-    public function test_job_skips_when_anime_not_found(): void
+    public function test_job_translates_anime_synopsis(): void
     {
-        $mockService = Mockery::mock(TranslationService::class);
-        $mockService->shouldNotReceive('translateAnimeSynopsis');
+        $anime = Anime::factory()->create([
+            'synopsis' => 'An exciting adventure anime.',
+            'synopsis_uk' => null,
+        ]);
 
-        $job = new TranslateAnimeJob(999);
+        $mockService = Mockery::mock(TranslationService::class);
+        $mockService->shouldReceive('translateAnimeSynopsis')
+            ->once()
+            ->with(Mockery::on(fn ($a) => $a->id === $anime->id))
+            ->andReturnTrue();
+
+        $job = new TranslateAnimeJob($anime->id, withEpisodes: false);
         $job->handle($mockService);
     }
 }

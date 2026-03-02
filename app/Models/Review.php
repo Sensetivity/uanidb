@@ -4,8 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 
 class Review extends BaseModel
 {
@@ -23,11 +23,11 @@ class Review extends BaseModel
     ];
 
     /**
-     * Get the user who wrote the review.
+     * Get all comments for this review.
      */
-    public function user(): BelongsTo
+    public function comments(): MorphMany
     {
-        return $this->belongsTo(User::class);
+        return $this->morphMany(Comment::class, 'commentable');
     }
 
     /**
@@ -39,10 +39,10 @@ class Review extends BaseModel
     }
 
     /**
-     * Get all comments for this review.
+     * Get the user who wrote the review.
      */
-    public function comments(): MorphMany
+    public function user(): BelongsTo
     {
-        return $this->morphMany(Comment::class, 'commentable');
+        return $this->belongsTo(User::class);
     }
 }

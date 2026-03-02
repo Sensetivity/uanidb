@@ -10,6 +10,13 @@ use Illuminate\Console\Command;
 class ImportAnimeBatch extends Command
 {
     /**
+     * The console command description.
+     *
+     * @var string
+     */
+    protected $description = 'Import a batch of anime by MAL ID range';
+
+    /**
      * The name and signature of the console command.
      *
      * @var string
@@ -20,13 +27,6 @@ class ImportAnimeBatch extends Command
         {--force : Force update even if anime exists}
         {--queue : Dispatch imports as queued jobs}
         {--with-images : Download images after import}';
-
-    /**
-     * The console command description.
-     *
-     * @var string
-     */
-    protected $description = 'Import a batch of anime by MAL ID range';
 
     /**
      * Execute the console command.

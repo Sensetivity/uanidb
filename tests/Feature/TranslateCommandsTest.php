@@ -13,12 +13,19 @@ class TranslateCommandsTest extends TestCase
 {
     use RefreshDatabase;
 
-    private function mockTranslationService(): TranslationService
+    public function test_translate_anime_not_found(): void
     {
-        $mock = Mockery::mock(TranslationService::class);
-        $this->app->instance(TranslationService::class, $mock);
+        $mock = $this->mockTranslationService();
+        $mock->shouldNotReceive('translateAnimeSynopsis');
 
-        return $mock;
+        $this->artisan('translate:anime', ['animeId' => 999])
+            ->assertFailed();
+    }
+
+    public function test_translate_anime_requires_flag_or_id(): void
+    {
+        $this->artisan('translate:anime')
+            ->assertFailed();
     }
 
     public function test_translate_anime_single(): void
@@ -35,21 +42,6 @@ class TranslateCommandsTest extends TestCase
 
         $this->artisan('translate:anime', ['animeId' => $anime->id])
             ->assertSuccessful();
-    }
-
-    public function test_translate_anime_not_found(): void
-    {
-        $mock = $this->mockTranslationService();
-        $mock->shouldNotReceive('translateAnimeSynopsis');
-
-        $this->artisan('translate:anime', ['animeId' => 999])
-            ->assertFailed();
-    }
-
-    public function test_translate_anime_requires_flag_or_id(): void
-    {
-        $this->artisan('translate:anime')
-            ->assertFailed();
     }
 
     public function test_translate_anime_untranslated(): void
@@ -73,6 +65,12 @@ class TranslateCommandsTest extends TestCase
             ->assertSuccessful();
     }
 
+    public function test_translate_episodes_anime_not_found(): void
+    {
+        $this->artisan('translate:episodes', ['animeId' => 999])
+            ->assertFailed();
+    }
+
     public function test_translate_episodes_for_specific_anime(): void
     {
         $anime = Anime::factory()->create();
@@ -92,12 +90,6 @@ class TranslateCommandsTest extends TestCase
 
         $this->artisan('translate:episodes', ['animeId' => $anime->id])
             ->assertSuccessful();
-    }
-
-    public function test_translate_episodes_anime_not_found(): void
-    {
-        $this->artisan('translate:episodes', ['animeId' => 999])
-            ->assertFailed();
     }
 
     public function test_translate_episodes_untranslated(): void
@@ -128,5 +120,13 @@ class TranslateCommandsTest extends TestCase
 
         $this->artisan('translate:episodes', ['--untranslated' => true])
             ->assertSuccessful();
+    }
+
+    private function mockTranslationService(): TranslationService
+    {
+        $mock = Mockery::mock(TranslationService::class);
+        $this->app->instance(TranslationService::class, $mock);
+
+        return $mock;
     }
 }

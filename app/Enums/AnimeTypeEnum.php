@@ -2,17 +2,21 @@
 
 namespace App\Enums;
 
+use BackedEnum;
 use Filament\Support\Contracts\HasColor;
+use Filament\Support\Contracts\HasIcon;
 use Filament\Support\Contracts\HasLabel;
+use Filament\Support\Icons\Heroicon;
+use Illuminate\Contracts\Support\Htmlable;
 
-enum AnimeTypeEnum: int implements HasColor, HasLabel
+enum AnimeTypeEnum: int implements HasColor, HasIcon, HasLabel
 {
-    case TV = 1;
-    case OVA = 2;
     case MOVIE = 3;
-    case SPECIAL = 4;
-    case ONA = 5;
     case MUSIC = 6;
+    case ONA = 5;
+    case OVA = 2;
+    case SPECIAL = 4;
+    case TV = 1;
     case UNKNOWN = 99;
 
     private const MAP = [
@@ -29,19 +33,6 @@ enum AnimeTypeEnum: int implements HasColor, HasLabel
         return self::MAP[$relation] ?? self::UNKNOWN;
     }
 
-    public function getLabel(): string
-    {
-        return match ($this) {
-            self::TV => 'TV',
-            self::OVA => 'OVA',
-            self::MOVIE => 'Movie',
-            self::SPECIAL => 'Special',
-            self::ONA => 'ONA',
-            self::MUSIC => 'Music',
-            self::UNKNOWN => 'Unknown',
-        };
-    }
-
     public function getColor(): string
     {
         return match ($this) {
@@ -52,6 +43,31 @@ enum AnimeTypeEnum: int implements HasColor, HasLabel
             self::MUSIC => 'pink',
             self::SPECIAL => 'amber',
             self::UNKNOWN => 'gray',
+        };
+    }
+
+    public function getIcon(): string|BackedEnum|Htmlable|null
+    {
+        return match ($this) {
+            self::TV => Heroicon::OutlinedTv,
+            self::MOVIE => Heroicon::OutlinedFilm,
+            self::OVA, self::ONA => Heroicon::OutlinedPlayCircle,
+            self::MUSIC => Heroicon::OutlinedMusicalNote,
+            self::SPECIAL => Heroicon::OutlinedSparkles,
+            self::UNKNOWN => null,
+        };
+    }
+
+    public function getLabel(): string
+    {
+        return match ($this) {
+            self::TV => 'ТБ',
+            self::OVA => 'OVA',
+            self::MOVIE => 'Повнометражний',
+            self::SPECIAL => 'Спешл',
+            self::ONA => 'ONA',
+            self::MUSIC => 'Кліп',
+            self::UNKNOWN => 'Невідомо',
         };
     }
 }

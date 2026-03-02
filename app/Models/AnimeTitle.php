@@ -24,16 +24,16 @@ class AnimeTitle extends Model
 
     protected $guarded = ['id'];
 
+    public function anime(): BelongsTo
+    {
+        return $this->belongsTo(Anime::class);
+    }
+
     protected function casts(): array
     {
         return [
             'anime_id' => 'integer',
             'source'   => AnimeTitleTypeEnum::class,
         ];
-    }
-
-    public function anime(): BelongsTo
-    {
-        return $this->belongsTo(Anime::class);
     }
 }

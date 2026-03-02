@@ -15,15 +15,11 @@ use SimpleXMLElement;
 
 class AniDbTitleImportProvider implements TitleImportProvider
 {
-    private const TITLES_DUMP_URL = 'https://anidb.net/api/anime-titles.xml.gz';
-
-    private const TITLES_CACHE_FILE = 'anidb/titles.xml';
-
-    private const TITLES_CACHE_TTL = 86400; // 24 hours in seconds
-
-    private const EPISODE_CACHE_TTL = 604800; // 7 days in seconds
-
     private const EPISODE_API_DELAY = 2; // seconds between API requests
+    private const EPISODE_CACHE_TTL = 604800; // 7 days in seconds
+    private const TITLES_CACHE_FILE = 'anidb/titles.xml';
+    private const TITLES_CACHE_TTL = 86400; // 24 hours in seconds
+    private const TITLES_DUMP_URL = 'https://anidb.net/api/anime-titles.xml.gz';
 
     public function __construct(
         private readonly string $client,
@@ -35,7 +31,7 @@ class AniDbTitleImportProvider implements TitleImportProvider
      */
     public function getAnimeUkTitles(Anime $anime): array
     {
-        if (! $anime->anidb_id) {
+        if (!$anime->anidb_id) {
             return [];
         }
 
@@ -52,7 +48,7 @@ class AniDbTitleImportProvider implements TitleImportProvider
     {
         $anime = $episode->anime;
 
-        if (! $anime->anidb_id) {
+        if (!$anime->anidb_id) {
             return null;
         }
 
@@ -66,46 +62,6 @@ class AniDbTitleImportProvider implements TitleImportProvider
     }
 
     /**
-     * Download and cache the AniDB title dump XML.
-     * Decompresses the .gz file and stores plain XML in cache.
-     */
-    private function getTitlesDump(): ?SimpleXMLElement
-    {
-        $cacheFile = self::TITLES_CACHE_FILE;
-        $disk = Storage::disk('local');
-
-        if ($disk->exists($cacheFile) && $disk->lastModified($cacheFile) > (time() - self::TITLES_CACHE_TTL)) {
-            $content = $disk->get($cacheFile);
-        } else {
-            try {
-                $response = Http::timeout(60)->get(self::TITLES_DUMP_URL);
-
-                if (! $response->successful()) {
-                    Log::warning('AniDB title dump download failed', ['status' => $response->status()]);
-
-                    return null;
-                }
-
-                $content = gzdecode($response->body());
-
-                if ($content === false) {
-                    Log::warning('AniDB title dump decompression failed');
-
-                    return null;
-                }
-
-                $disk->put($cacheFile, $content);
-            } catch (\Throwable $e) {
-                Log::warning('AniDB title dump fetch error', ['error' => $e->getMessage()]);
-
-                return null;
-            }
-        }
-
-        return $this->parseXml($content);
-    }
-
-    /**
      * Fetch and cache the AniDB HTTP API response for a specific anime.
      */
     private function getAnimeXml(int $anidbId): ?SimpleXMLElement
@@ -116,7 +72,7 @@ class AniDbTitleImportProvider implements TitleImportProvider
         if ($disk->exists($cacheFile) && $disk->lastModified($cacheFile) > (time() - self::EPISODE_CACHE_TTL)) {
             $content = $disk->get($cacheFile);
         } else {
-            if (! $this->client) {
+            if (!$this->client) {
                 Log::warning('AniDB client not configured, cannot fetch episode titles');
 
                 return null;
@@ -134,7 +90,7 @@ class AniDbTitleImportProvider implements TitleImportProvider
                     'protover'  => '1',
                 ]);
 
-                if (! $response->successful()) {
+                if (!$response->successful()) {
                     Log::warning('AniDB HTTP API request failed', ['aid' => $anidbId, 'status' => $response->status()]);
 
                     return null;
@@ -144,6 +100,46 @@ class AniDbTitleImportProvider implements TitleImportProvider
                 $disk->put($cacheFile, $content);
             } catch (\Throwable $e) {
                 Log::warning('AniDB HTTP API error', ['aid' => $anidbId, 'error' => $e->getMessage()]);
+
+                return null;
+            }
+        }
+
+        return $this->parseXml($content);
+    }
+
+    /**
+     * Download and cache the AniDB title dump XML.
+     * Decompresses the .gz file and stores plain XML in cache.
+     */
+    private function getTitlesDump(): ?SimpleXMLElement
+    {
+        $cacheFile = self::TITLES_CACHE_FILE;
+        $disk = Storage::disk('local');
+
+        if ($disk->exists($cacheFile) && $disk->lastModified($cacheFile) > (time() - self::TITLES_CACHE_TTL)) {
+            $content = $disk->get($cacheFile);
+        } else {
+            try {
+                $response = Http::timeout(60)->get(self::TITLES_DUMP_URL);
+
+                if (!$response->successful()) {
+                    Log::warning('AniDB title dump download failed', ['status' => $response->status()]);
+
+                    return null;
+                }
+
+                $content = gzdecode($response->body());
+
+                if ($content === false) {
+                    Log::warning('AniDB title dump decompression failed');
+
+                    return null;
+                }
+
+                $disk->put($cacheFile, $content);
+            } catch (\Throwable $e) {
+                Log::warning('AniDB title dump fetch error', ['error' => $e->getMessage()]);
 
                 return null;
             }
@@ -196,7 +192,7 @@ class AniDbTitleImportProvider implements TitleImportProvider
         foreach ($xml->episodes->episode as $episodeNode) {
             $epnoNode = $episodeNode->epno;
 
-            if (! $epnoNode) {
+            if (!$epnoNode) {
                 continue;
             }
 

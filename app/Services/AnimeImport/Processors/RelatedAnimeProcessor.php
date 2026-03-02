@@ -10,6 +10,11 @@ use App\Models\Anime;
 
 class RelatedAnimeProcessor implements RelationProcessor
 {
+    public function clear(Anime $anime): void
+    {
+        $anime->relatedAnime()->detach();
+    }
+
     public function sync(Anime $anime, AnimeFullDto $dto): void
     {
         if (empty($dto->anime->relatedAnime)) {
@@ -43,10 +48,5 @@ class RelatedAnimeProcessor implements RelationProcessor
         if (! empty($pivotData)) {
             $anime->relatedAnime()->sync($pivotData);
         }
-    }
-
-    public function clear(Anime $anime): void
-    {
-        $anime->relatedAnime()->detach();
     }
 }

@@ -9,25 +9,48 @@ use ReflectionMethod;
 
 class AniDbTitleImportProviderTest extends TestCase
 {
-    private function makeProvider(): AniDbTitleImportProvider
+    public function test_anime_title_type_from_anidb(): void
     {
-        return new AniDbTitleImportProvider(client: 'testclient', clientVer: '1');
+        $this->assertEquals(AnimeTitleTypeEnum::Main, AnimeTitleTypeEnum::fromAniDbType('main'));
+        $this->assertEquals(AnimeTitleTypeEnum::Official, AnimeTitleTypeEnum::fromAniDbType('official'));
+        $this->assertEquals(AnimeTitleTypeEnum::Syn, AnimeTitleTypeEnum::fromAniDbType('syn'));
+        $this->assertEquals(AnimeTitleTypeEnum::Short, AnimeTitleTypeEnum::fromAniDbType('short'));
+        $this->assertEquals(AnimeTitleTypeEnum::Syn, AnimeTitleTypeEnum::fromAniDbType('unknown'));
     }
 
-    private function callParseAnimeTitles(AniDbTitleImportProvider $provider, string $xml, int $anidbId): array
+    public function test_parse_anime_titles_returns_empty_for_unknown_anidb_id(): void
     {
-        $parsedXml = simplexml_load_string($xml);
-        $method = new ReflectionMethod($provider, 'parseAnimeTitles');
+        $xml = <<<XML
+<?xml version="1.0" encoding="UTF-8"?>
+<animetitles>
+    <anime aid="1">
+        <title xml:lang="uk" type="official">Ковбой Бібоп</title>
+    </anime>
+</animetitles>
+XML;
 
-        return $method->invoke($provider, $parsedXml, $anidbId);
+        $provider = $this->makeProvider();
+        $results = $this->callParseAnimeTitles($provider, $xml, 99999);
+
+        $this->assertCount(0, $results);
     }
 
-    private function callParseEpisodeTitle(AniDbTitleImportProvider $provider, string $xml, int $episodeNumber): mixed
+    public function test_parse_anime_titles_returns_empty_when_no_uk_titles(): void
     {
-        $parsedXml = simplexml_load_string($xml);
-        $method = new ReflectionMethod($provider, 'parseEpisodeTitle');
+        $xml = <<<XML
+<?xml version="1.0" encoding="UTF-8"?>
+<animetitles>
+    <anime aid="16498">
+        <title xml:lang="en" type="official">Attack on Titan</title>
+        <title xml:lang="ja" type="official">進撃の巨人</title>
+    </anime>
+</animetitles>
+XML;
 
-        return $method->invoke($provider, $parsedXml, $episodeNumber);
+        $provider = $this->makeProvider();
+        $results = $this->callParseAnimeTitles($provider, $xml, 16498);
+
+        $this->assertCount(0, $results);
     }
 
     public function test_parse_anime_titles_returns_uk_titles(): void
@@ -59,39 +82,45 @@ XML;
         $this->assertEquals(AnimeTitleTypeEnum::Syn, $results[1]->source);
     }
 
-    public function test_parse_anime_titles_returns_empty_when_no_uk_titles(): void
+    public function test_parse_episode_title_returns_null_for_unknown_episode(): void
     {
         $xml = <<<XML
 <?xml version="1.0" encoding="UTF-8"?>
-<animetitles>
-    <anime aid="16498">
-        <title xml:lang="en" type="official">Attack on Titan</title>
-        <title xml:lang="ja" type="official">進撃の巨人</title>
-    </anime>
-</animetitles>
+<anime id="1">
+    <episodes>
+        <episode id="100">
+            <epno type="1">1</epno>
+            <title xml:lang="uk">Перший епізод</title>
+        </episode>
+    </episodes>
+</anime>
 XML;
 
         $provider = $this->makeProvider();
-        $results = $this->callParseAnimeTitles($provider, $xml, 16498);
+        $result = $this->callParseEpisodeTitle($provider, $xml, 99);
 
-        $this->assertCount(0, $results);
+        $this->assertNull($result);
     }
 
-    public function test_parse_anime_titles_returns_empty_for_unknown_anidb_id(): void
+    public function test_parse_episode_title_returns_null_when_no_uk_title(): void
     {
         $xml = <<<XML
 <?xml version="1.0" encoding="UTF-8"?>
-<animetitles>
-    <anime aid="1">
-        <title xml:lang="uk" type="official">Ковбой Бібоп</title>
-    </anime>
-</animetitles>
+<anime id="16498">
+    <episodes>
+        <episode id="101">
+            <epno type="1">2</epno>
+            <title xml:lang="en">That Day</title>
+            <title xml:lang="ja">その日</title>
+        </episode>
+    </episodes>
+</anime>
 XML;
 
         $provider = $this->makeProvider();
-        $results = $this->callParseAnimeTitles($provider, $xml, 99999);
+        $result = $this->callParseEpisodeTitle($provider, $xml, 2);
 
-        $this->assertCount(0, $results);
+        $this->assertNull($result);
     }
 
     public function test_parse_episode_title_returns_uk_title(): void
@@ -120,27 +149,6 @@ XML;
         $this->assertEquals('До тебе, через 2000 років', $result->titleUk);
     }
 
-    public function test_parse_episode_title_returns_null_when_no_uk_title(): void
-    {
-        $xml = <<<XML
-<?xml version="1.0" encoding="UTF-8"?>
-<anime id="16498">
-    <episodes>
-        <episode id="101">
-            <epno type="1">2</epno>
-            <title xml:lang="en">That Day</title>
-            <title xml:lang="ja">その日</title>
-        </episode>
-    </episodes>
-</anime>
-XML;
-
-        $provider = $this->makeProvider();
-        $result = $this->callParseEpisodeTitle($provider, $xml, 2);
-
-        $this->assertNull($result);
-    }
-
     public function test_parse_episode_title_skips_non_regular_episodes(): void
     {
         $xml = <<<XML
@@ -161,32 +169,24 @@ XML;
         $this->assertNull($result);
     }
 
-    public function test_parse_episode_title_returns_null_for_unknown_episode(): void
+    private function callParseAnimeTitles(AniDbTitleImportProvider $provider, string $xml, int $anidbId): array
     {
-        $xml = <<<XML
-<?xml version="1.0" encoding="UTF-8"?>
-<anime id="1">
-    <episodes>
-        <episode id="100">
-            <epno type="1">1</epno>
-            <title xml:lang="uk">Перший епізод</title>
-        </episode>
-    </episodes>
-</anime>
-XML;
+        $parsedXml = simplexml_load_string($xml);
+        $method = new ReflectionMethod($provider, 'parseAnimeTitles');
 
-        $provider = $this->makeProvider();
-        $result = $this->callParseEpisodeTitle($provider, $xml, 99);
-
-        $this->assertNull($result);
+        return $method->invoke($provider, $parsedXml, $anidbId);
     }
 
-    public function test_anime_title_type_from_anidb(): void
+    private function callParseEpisodeTitle(AniDbTitleImportProvider $provider, string $xml, int $episodeNumber): mixed
     {
-        $this->assertEquals(AnimeTitleTypeEnum::Main, AnimeTitleTypeEnum::fromAniDbType('main'));
-        $this->assertEquals(AnimeTitleTypeEnum::Official, AnimeTitleTypeEnum::fromAniDbType('official'));
-        $this->assertEquals(AnimeTitleTypeEnum::Syn, AnimeTitleTypeEnum::fromAniDbType('syn'));
-        $this->assertEquals(AnimeTitleTypeEnum::Short, AnimeTitleTypeEnum::fromAniDbType('short'));
-        $this->assertEquals(AnimeTitleTypeEnum::Syn, AnimeTitleTypeEnum::fromAniDbType('unknown'));
+        $parsedXml = simplexml_load_string($xml);
+        $method = new ReflectionMethod($provider, 'parseEpisodeTitle');
+
+        return $method->invoke($provider, $parsedXml, $episodeNumber);
+    }
+
+    private function makeProvider(): AniDbTitleImportProvider
+    {
+        return new AniDbTitleImportProvider(client: 'testclient', clientVer: '1');
     }
 }

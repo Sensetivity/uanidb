@@ -9,18 +9,18 @@ use Illuminate\Support\Facades\DB;
 class ImportThemes extends Command
 {
     /**
-     * The name and signature of the console command.
-     *
-     * @var string
-     */
-    protected $signature = 'import:themes {file? : Path to JSON file}';
-
-    /**
      * The console command description.
      *
      * @var string
      */
     protected $description = 'Import themes data from JSON file';
+
+    /**
+     * The name and signature of the console command.
+     *
+     * @var string
+     */
+    protected $signature = 'import:themes {file? : Path to JSON file}';
 
     /**
      * Execute the console command.
@@ -33,6 +33,7 @@ class ImportThemes extends Command
         // Check if file exists
         if (!file_exists($filePath)) {
             $this->error("File not found: {$filePath}");
+
             return 1;
         }
 
@@ -42,6 +43,7 @@ class ImportThemes extends Command
 
         if (json_last_error() !== JSON_ERROR_NONE) {
             $this->error('Invalid JSON file: ' . json_last_error_msg());
+
             return 1;
         }
 
@@ -92,6 +94,7 @@ class ImportThemes extends Command
         } catch (\Exception $e) {
             DB::rollBack();
             $this->error('Import failed: ' . $e->getMessage());
+
             return 1;
         }
 
