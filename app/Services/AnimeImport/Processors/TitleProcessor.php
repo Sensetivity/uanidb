@@ -33,10 +33,6 @@ class TitleProcessor implements RelationProcessor
             ];
         }
 
-        if (empty($titles)) {
-            return;
-        }
-
         AnimeTitle::query()->insert($titles);
     }
 }

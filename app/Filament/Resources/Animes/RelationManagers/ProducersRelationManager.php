@@ -10,6 +10,7 @@ use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
 use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Schemas\Schema;
+use Filament\Support\Enums\FontWeight;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
@@ -39,7 +40,7 @@ class ProducersRelationManager extends RelationManager
                 TextColumn::make('name')
                     ->label('Назва')
                     ->searchable()
-                    ->weight('bold'),
+                    ->weight(FontWeight::Bold),
                 TextColumn::make('pivot.role')
                     ->label('Роль'),
                 IconColumn::make('pivot.is_main')

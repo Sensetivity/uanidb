@@ -57,6 +57,7 @@ class EpisodesTable
                         ->label('Import AniDB Title')
                         ->icon(Heroicon::OutlinedTag)
                         ->color('info')
+                        ->visible()
                         ->action(function (Episode $record): void {
                             $imported = app(TitleImportService::class)->importEpisode($record, force: true);
 

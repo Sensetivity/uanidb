@@ -84,6 +84,7 @@ class TranslateAnimeJob implements ShouldQueue
             Log::info("TranslateAnimeJob: Translating {$episodeCount} episode(s) for \"{$anime->title}\".");
 
             $translated = 0;
+            /** @var \App\Models\Episode $episode */
             foreach ($episodes as $episode) {
                 try {
                     $translationService->translateEpisode($episode);

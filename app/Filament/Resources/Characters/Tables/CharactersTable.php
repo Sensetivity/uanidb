@@ -23,9 +23,10 @@ class CharactersTable
     public static function configure(Table $table): Table
     {
         return $table
+            ->modifyQueryUsing(fn ($query) => $query->with('media'))
             ->columns([
                 ImageColumn::make('image')
-                    ->state(fn (Character $record): ?string => $record->getFirstMediaUrl('main_image') ?: $record->image_url)
+                    ->state(fn (Character $record): ?string => $record->image_display_url)
                     ->width(40)
                     ->height(56)
                     ->defaultImageUrl(null),
@@ -46,6 +47,7 @@ class CharactersTable
                         ->label('Download Image')
                         ->icon(Heroicon::OutlinedPhoto)
                         ->color('gray')
+                        ->visible()
                         ->action(function (Character $record): void {
                             if (!$record->image_url) {
                                 Notification::make()

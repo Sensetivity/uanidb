@@ -112,7 +112,7 @@ class DownloadAnimeImagesJob implements ShouldQueue
         try {
             Log::info("DownloadAnimeImagesJob: Downloading image for {$model->getMorphClass()} ID {$model->getKey()}.");
 
-            $model->addMediaFromUrl($imageUrl)
+            $model->addMediaFromUrl($imageUrl) // @phpstan-ignore method.notFound
                 ->toMediaCollection($collection);
         } catch (\Exception $e) {
             Log::warning("DownloadAnimeImagesJob: Failed to download image for {$model->getMorphClass()} ID {$model->getKey()}: {$e->getMessage()}");

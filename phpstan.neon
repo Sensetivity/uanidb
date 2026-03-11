@@ -6,20 +6,6 @@ parameters:
     # Level from 0 to 9
     level: 2
 
-    ignoreErrors:
-        - '#PHPDoc tag @var#'
-        - '#^Call to an undefined method Illuminate\\Database\\Eloquent\\Builder\:\:active\(\)\.$#'
-        - '#^Call to an undefined method Illuminate\\Database\\Eloquent\\Builder\:\:unresolved\(\)\.$#'
-        - '#^Call to an undefined method Illuminate\\Database\\Eloquent\\Relations\\HasMany\<Illuminate\\Database\\Eloquent\\Model\>\:\:active\(\)\.$#'
-        - '#^Call to an undefined method Traversable\<\(int\|string\), mixed\>\:\:valid\(\)\.$#'
-        - '#^Call to an undefined method Traversable\<\(int\|string\), mixed\>\:\:current\(\)\.$#'
-        - '#^Call to an undefined method Traversable\<\(int\|string\), mixed\>\:\:next\(\)\.$#'
-        - '#^Cannot call method parameter\(\) on object\|string\.$#'
-        - '#^Call to an undefined method Aws\\S3\\S3ClientInterface\:\:copyObject\(\)\.$#'
-        - '#^Call to an undefined method League\\Flysystem\\FilesystemInterface\:\:getAdapter\(\)\.$#'
-        - '#^Call to method whereInRange\(\) on an unknown class App\\Models\\WhereInRangeScopeTrait\.$#'
-        - '#^Unsafe usage of new static\(\)\.$#'
-
 #
 #    excludePaths:
 #        - ./*/*/FileToBeExcluded.php

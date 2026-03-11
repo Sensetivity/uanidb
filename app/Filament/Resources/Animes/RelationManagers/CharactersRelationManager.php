@@ -11,6 +11,7 @@ use Filament\Actions\DetachBulkAction;
 use Filament\Forms\Components\Select;
 use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Schemas\Schema;
+use Filament\Support\Enums\FontWeight;
 use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
@@ -33,17 +34,18 @@ class CharactersRelationManager extends RelationManager
     public function table(Table $table): Table
     {
         return $table
+            ->modifyQueryUsing(fn ($query) => $query->with('media'))
             ->recordTitleAttribute('name')
             ->columns([
                 ImageColumn::make('photo')
                     ->label('')
-                    ->state(fn (Character $record): ?string => $record->getFirstMediaUrl('main_image') ?: $record->image_url)
+                    ->state(fn (Character $record): ?string => $record->image_display_url)
                     ->height(60)
                     ->width(42),
                 TextColumn::make('name')
                     ->label("Ім'я")
                     ->searchable()
-                    ->weight('bold')
+                    ->weight(FontWeight::Bold)
                     ->description(fn (Character $record): ?string => $record->japanese_name),
                 TextColumn::make('pivot.role')
                     ->label('Роль')

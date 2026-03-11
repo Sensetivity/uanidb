@@ -6,12 +6,12 @@ use App\Models\Anime;
 use App\Models\AnimeTitle;
 use Filament\Infolists\Components\ImageEntry;
 use Filament\Infolists\Components\TextEntry;
-use Filament\Schemas\Components\Flex;
 use Filament\Schemas\Components\Grid;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
 use Filament\Support\Enums\FontWeight;
 use Filament\Support\Enums\TextSize;
+use Filament\Support\Icons\Heroicon;
 
 class AnimeInfolist
 {
@@ -19,10 +19,12 @@ class AnimeInfolist
     {
         return $schema
             ->components([
-                Flex::make([
-                    self::sidebarSection(),
-                    self::mainContentSection(),
-                ])->from('md'),
+                Grid::make(['default' => 1, 'md' => 12])
+                    ->schema([
+                        self::sidebarSection(),
+                        self::mainContentSection(),
+                    ])
+                    ->columnSpanFull(),
             ]);
     }
 
@@ -31,20 +33,19 @@ class AnimeInfolist
         return Section::make()
             ->schema([
                 TextEntry::make('title')
-                    ->label('')
+                    ->hiddenLabel()
                     ->size(TextSize::Large)
                     ->weight(FontWeight::Bold),
                 TextEntry::make('alternative_titles')
-                    ->label('')
-                    ->state(fn (Anime $record): string => $record->titles()
-                        ->get()
-                        ->map(fn (AnimeTitle $t): string => $t->title)
+                    ->hiddenLabel()
+                    ->state(fn (Anime $record): string => $record->titles
+                        ->pluck('title')
                         ->unique()
                         ->implode(' | ') ?: '—')
                     ->color('gray'),
 
                 Section::make('Інформація')
-                    ->icon('heroicon-o-information-circle')
+                    ->icon(Heroicon::OutlinedInformationCircle)
                     ->schema([
                         Grid::make(['default' => 1, 'sm' => 3, 'lg' => 3])
                             ->schema([
@@ -81,31 +82,31 @@ class AnimeInfolist
                             ]),
                         TextEntry::make('genres_list')
                             ->label('Жанри')
-                            ->state(fn (Anime $record): string => $record->genres()
+                            ->state(fn (Anime $record): string => $record->genres
                                 ->pluck('name')
                                 ->implode(', ') ?: '—')
                             ->badge()
-                            ->separator(',')
+                            ->separator(', ')
                             ->color('primary'),
                         TextEntry::make('themes_list')
                             ->label('Теми')
-                            ->state(fn (Anime $record): string => $record->themes()
+                            ->state(fn (Anime $record): string => $record->themes
                                 ->pluck('name')
                                 ->implode(', ') ?: '—')
                             ->badge()
-                            ->separator(',')
+                            ->separator(', ')
                             ->color('gray'),
                         TextEntry::make('studios_list')
                             ->label('Студії')
-                            ->state(fn (Anime $record): string => $record->studios()
+                            ->state(fn (Anime $record): string => $record->studios
                                 ->pluck('name')
                                 ->implode(', ') ?: '—')
-                            ->icon('heroicon-o-building-office'),
+                            ->icon(Heroicon::OutlinedBuildingOffice),
                     ])
                     ->collapsible(),
 
                 Section::make('Опис')
-                    ->icon('heroicon-o-document-text')
+                    ->icon(Heroicon::OutlinedDocumentText)
                     ->schema([
                         TextEntry::make('synopsis')
                             ->label('Англійською')
@@ -121,14 +122,13 @@ class AnimeInfolist
                     ->collapsible(),
 
                 Section::make('Українські назви')
-                    ->icon('heroicon-o-language')
+                    ->icon(Heroicon::OutlinedLanguage)
                     ->schema([
                         TextEntry::make('ukrainian_titles')
-                            ->label('')
+                            ->hiddenLabel()
                             ->state(
-                                fn (Anime $record): string => $record->titles()
+                                fn (Anime $record): string => $record->titles
                                     ->where('language', 'uk')
-                                    ->get()
                                     ->map(fn (AnimeTitle $t): string => "[{$t->source->getLabel()}] {$t->title}")
                                     ->implode("\n") ?: '—'
                             ),
@@ -136,7 +136,7 @@ class AnimeInfolist
                     ->collapsible()
                     ->collapsed(),
             ])
-            ->grow();
+            ->columnSpan(['default' => 1, 'md' => 8]);
     }
 
     private static function sidebarSection(): Section
@@ -144,8 +144,8 @@ class AnimeInfolist
         return Section::make()
             ->schema([
                 ImageEntry::make('poster')
-                    ->label('')
-                    ->state(fn (Anime $record): ?string => $record->getFirstMediaUrl('main_poster') ?: $record->image_url)
+                    ->hiddenLabel()
+                    ->state(fn (Anime $record): ?string => $record->poster_url)
                     ->imageHeight(350)
                     ->imageWidth('100%')
                     ->extraImgAttributes([
@@ -156,10 +156,10 @@ class AnimeInfolist
                 Section::make('Оцінка')
                     ->schema([
                         TextEntry::make('score')
-                            ->label('')
+                            ->hiddenLabel()
                             ->size(TextSize::Large)
                             ->weight(FontWeight::Bold)
-                            ->icon('heroicon-s-star')
+                            ->icon(Heroicon::Star)
                             ->color('warning')
                             ->placeholder('N/A'),
                         Grid::make(2)
@@ -167,18 +167,18 @@ class AnimeInfolist
                                 TextEntry::make('rank')
                                     ->label('Рейтинг')
                                     ->formatStateUsing(fn (?int $state): string => $state ? "#{$state}" : '—')
-                                    ->icon('heroicon-o-trophy')
+                                    ->icon(Heroicon::OutlinedTrophy)
                                     ->placeholder('—'),
                                 TextEntry::make('popularity')
                                     ->label('Популярність')
-                                    ->icon('heroicon-o-heart')
+                                    ->icon(Heroicon::OutlinedHeart)
                                     ->placeholder('—'),
                             ]),
                     ]),
 
                 TextEntry::make('mal_id')
                     ->label('MAL')
-                    ->icon('heroicon-o-link')
+                    ->icon(Heroicon::OutlinedLink)
                     ->url(fn (Anime $record): ?string => $record->mal_id
                         ? "https://myanimelist.net/anime/{$record->mal_id}"
                         : null)
@@ -187,7 +187,7 @@ class AnimeInfolist
                     ->placeholder('—'),
                 TextEntry::make('anidb_id')
                     ->label('AniDB')
-                    ->icon('heroicon-o-link')
+                    ->icon(Heroicon::OutlinedLink)
                     ->url(fn (Anime $record): ?string => $record->anidb_id
                         ? "https://anidb.net/anime/{$record->anidb_id}"
                         : null)
@@ -195,7 +195,6 @@ class AnimeInfolist
                     ->color('primary')
                     ->placeholder('—'),
             ])
-            ->grow(false)
-            ->extraAttributes(['style' => 'min-width: 280px; max-width: 320px;']);
+            ->columnSpan(['default' => 1, 'md' => 4]);
     }
 }

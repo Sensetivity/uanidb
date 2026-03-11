@@ -2,29 +2,22 @@
 
 namespace App\Filament\Resources\Characters\Pages;
 
+use App\Filament\Concerns\FullWidthPage;
 use App\Filament\Resources\Characters\CharacterResource;
 use Filament\Actions\EditAction;
 use Filament\Resources\Pages\ViewRecord;
-use Filament\Schemas\Schema;
-use Filament\Support\Enums\Width;
+use Illuminate\Database\Eloquent\Model;
 
 class ViewCharacter extends ViewRecord
 {
+    use FullWidthPage;
+
     protected static string $resource = CharacterResource::class;
-    protected string $view = 'filament.resources.characters.pages.view-character';
+    protected string $view = 'filament.pages.view-record-with-content';
 
-    public function content(Schema $schema): Schema
+    public function resolveRecord(int|string $key): Model
     {
-        return $schema
-            ->components([
-                $this->getInfolistContentComponent(),
-                $this->getRelationManagersContentComponent(),
-            ]);
-    }
-
-    public function getMaxContentWidth(): Width
-    {
-        return Width::Full;
+        return parent::resolveRecord($key)->loadMissing(['media']);
     }
 
     protected function getHeaderActions(): array

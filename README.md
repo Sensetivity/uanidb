@@ -146,6 +146,26 @@ Or use the production profile with a dedicated queue worker and scheduler:
 docker compose --profile production up -d
 ```
 
+## Code Quality
+
+### PHP Static Analysis Tool (PHPStan/Larastan)
+
+This project uses Larastan (a PHPStan extension for Laravel) for static code analysis. Run the analyzer to detect potential errors:
+```bash
+./vendor/bin/phpstan analyse --memory-limit=2G > report.txt
+```
+
+You can also run with different rule levels (0-9, higher is more strict):
+```bash
+./vendor/bin/phpstan analyse --memory-limit=2G --level=5
+```
+
+### PHP Instant Upgrades and Automated Refactoring (Rector/Laravel rules)
+
+This project uses Rector for automated code refactoring and upgrades. Rector helps modernize your codebase by automatically applying coding standards and upgrading to newer PHP versions.
+
+
+
 ---
 
 ## Testing

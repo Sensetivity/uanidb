@@ -6,6 +6,21 @@ use App\Enums\PromotionVideoTypeEnum;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
+/**
+ * @property int $id
+ * @property int $anime_id
+ * @property string|null $video_id YouTube video ID
+ * @property string|null $video_url YouTube video URL
+ * @property string|null $title
+ * @property \App\Enums\PromotionVideoTypeEnum|null $type
+ * @property \Carbon\Carbon|null $published_at
+ * @property int|null $duration
+ * @property bool $is_main
+ * @property int|null $order
+ * @property \Carbon\Carbon|null $created_at
+ * @property \Carbon\Carbon|null $updated_at
+ * @property \Carbon\Carbon|null $deleted_at
+ */
 class PromotionVideo extends BaseModel
 {
     use HasFactory;

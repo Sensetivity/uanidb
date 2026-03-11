@@ -39,10 +39,10 @@ class AnimesTable
     public static function configure(Table $table): Table
     {
         return $table
-            ->modifyQueryUsing(fn (Builder $query) => $query->with('seasons'))
+            ->modifyQueryUsing(fn (Builder $query) => $query->with(['seasons', 'media']))
             ->columns([
                 ImageColumn::make('poster')
-                    ->state(fn (Anime $record): ?string => $record->getFirstMediaUrl('main_poster') ?: $record->image_url)
+                    ->state(fn (Anime $record): ?string => $record->poster_url)
                     ->width(40)
                     ->height(56)
                     ->defaultImageUrl(null),
@@ -166,7 +166,9 @@ class AnimesTable
                     BulkAction::make('bulk_translate')
                         ->label('Translate selected')
                         ->icon(Heroicon::OutlinedLanguage)
+                        ->visible()
                         ->action(function (Collection $records): void {
+                            /** @var Anime $record */
                             foreach ($records as $record) {
                                 TranslateAnimeJob::dispatch($record->id, withEpisodes: true);
                             }
@@ -175,7 +177,8 @@ class AnimesTable
                                 ->title('Переклад поставлено в чергу')
                                 ->success()
                                 ->send();
-                        }),
+                        })
+                        ->deselectRecordsAfterCompletion(),
                     DeleteBulkAction::make(),
                     ForceDeleteBulkAction::make(),
                     RestoreBulkAction::make(),
@@ -194,6 +197,7 @@ class AnimesTable
         $action = Action::make($name)
             ->label($label)
             ->icon($icon)
+            ->visible()
             ->action(function (Anime $record) use ($dispatch, $notification): void {
                 $dispatch($record);
 

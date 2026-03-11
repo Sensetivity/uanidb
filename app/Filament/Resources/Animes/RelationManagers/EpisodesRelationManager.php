@@ -72,6 +72,7 @@ class EpisodesRelationManager extends RelationManager
                 TextColumn::make('title')
                     ->label('Назва')
                     ->limit(40)
+                    ->searchable()
                     ->description(fn ($record): ?string => $record->title_uk),
                 TextColumn::make('aired')
                     ->label('Дата виходу')

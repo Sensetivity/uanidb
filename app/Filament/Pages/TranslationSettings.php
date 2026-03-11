@@ -58,7 +58,7 @@ class TranslationSettings extends Page
 
     public function mount(): void
     {
-        $this->form->fill([
+        $this->getSchema('form')->fill([
             'translation_provider' => Setting::get('translation_provider', 'deepl'),
             'target_language'      => Setting::get('target_language', 'UK'),
             'anidb_client'         => Setting::get('anidb_client', ''),
@@ -68,7 +68,7 @@ class TranslationSettings extends Page
 
     public function save(): void
     {
-        $data = $this->form->getState();
+        $data = $this->getSchema('form')->getState();
 
         Setting::set('translation_provider', $data['translation_provider']);
         Setting::set('target_language', $data['target_language']);
@@ -86,6 +86,7 @@ class TranslationSettings extends Page
         return [
             Action::make('save')
                 ->label('Save')
+                ->visible()
                 ->action('save'),
         ];
     }

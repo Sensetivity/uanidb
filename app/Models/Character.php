@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Carbon\Carbon;
 use Cviebrock\EloquentSluggable\Sluggable;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -32,6 +33,7 @@ use Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection;
  * @property-read Collection|Anime[] $animes Anime series featuring this character
  * @property-read Collection|Person[] $voiceActors Voice actors for this character
  * @property-read Collection|Review[] $reviews Reviews of this character
+ * @property-read string|null $image_display_url Display image URL
  * @property-read MediaCollection $media All media
  */
 class Character extends BaseModel implements HasMedia
@@ -125,5 +127,13 @@ class Character extends BaseModel implements HasMedia
         return $this->belongsToMany(Person::class, 'character_voice', 'character_id', 'person_id')
             ->withPivot('anime_id', 'language')
             ->withTimestamps();
+    }
+
+    /**
+     * Get the display image URL, preferring media library over image_url.
+     */
+    protected function imageDisplayUrl(): Attribute
+    {
+        return Attribute::get(fn (): ?string => $this->getFirstMediaUrl('main_image') ?: $this->image_url);
     }
 }

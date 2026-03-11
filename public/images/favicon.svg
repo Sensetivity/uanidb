@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!-- Background -->
+  <rect width="100" height="100" rx="20" fill="#111827"/>
+
+  <!-- U shape: gold (Ukrainian yellow) -->
+  <path d="M18 13 L18 55 Q18 89 50 89 Q82 89 82 55 L82 13 L66 13 L66 55 Q66 74 50 74 Q34 74 34 55 L34 13 Z" fill="#FBBF24"/>
+
+  <!-- Two blue dots inside the curve — anime eyes -->
+  <circle cx="38" cy="63" r="4.5" fill="#3B82F6"/>
+  <circle cx="62" cy="63" r="4.5" fill="#3B82F6"/>
+</svg>
