@@ -14,6 +14,7 @@ use Filament\Tables\Table;
 class GenresRelationManager extends RelationManager
 {
     protected static string $relationship = 'genres';
+    protected static ?string $title = 'Жанри';
 
     public function form(Schema $schema): Schema
     {
@@ -26,7 +27,10 @@ class GenresRelationManager extends RelationManager
             ->recordTitleAttribute('name')
             ->columns([
                 TextColumn::make('name')
-                    ->searchable(),
+                    ->label('Назва')
+                    ->searchable()
+                    ->badge()
+                    ->color('primary'),
             ])
             ->filters([
                 //

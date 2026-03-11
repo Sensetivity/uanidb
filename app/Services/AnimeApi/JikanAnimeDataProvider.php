@@ -12,6 +12,7 @@ use App\Dto\VoiceActorDto;
 use App\Enums\CharacterRoleEnum;
 use Exception;
 use Jikan\JikanPHP\Client;
+use Jikan\JikanPHP\Model\Anime as JikanAnime;
 use Jikan\JikanPHP\Model\AnimeFull;
 
 class JikanAnimeDataProvider implements AnimeDataProvider
@@ -64,7 +65,7 @@ class JikanAnimeDataProvider implements AnimeDataProvider
                     $voiceActors[] = new VoiceActorDto(
                         malId: $person->getMalId(),
                         name: $person->getName(),
-                        imageUrl: $personImages?->getJpg()?->getImageUrl(),
+                        imageUrl: $personImages->getJpg()->getImageUrl(),
                         language: $va->getLanguage(),
                     );
                 }
@@ -72,7 +73,7 @@ class JikanAnimeDataProvider implements AnimeDataProvider
                 $characters[] = new CharacterDto(
                     malId: $charData->getMalId(),
                     name: $charData->getName(),
-                    imageUrl: $charImages?->getJpg()?->getImageUrl(),
+                    imageUrl: $charImages->getJpg()->getImageUrl(),
                     role: CharacterRoleEnum::fromString($item->getRole()),
                     voiceActors: $voiceActors,
                 );
@@ -115,7 +116,7 @@ class JikanAnimeDataProvider implements AnimeDataProvider
                     ], $number);
                 }
 
-                $hasNextPage = $response->getPagination()?->getHasNextPage() ?? false;
+                $hasNextPage = $response->getPagination()->getHasNextPage();
                 $page++;
 
                 if ($hasNextPage) {
@@ -150,7 +151,7 @@ class JikanAnimeDataProvider implements AnimeDataProvider
                 $staff[] = new PersonDto(
                     malId: $person->getMalId(),
                     name: $person->getName(),
-                    imageUrl: $personImages?->getJpg()?->getImageUrl(),
+                    imageUrl: $personImages->getJpg()->getImageUrl(),
                     positions: $item->getPositions(),
                 );
             }
@@ -170,18 +171,19 @@ class JikanAnimeDataProvider implements AnimeDataProvider
     {
         try {
             $response = $this->client->getAnimeVideos($id);
-            if (!$response || !$response->getData()) {
+            if (!$response->getData()) {
                 return [];
             }
 
             $videos = [];
             foreach ($response->getData()->getPromo() as $promo) {
                 $trailer = $promo->getTrailer();
-                $url = null;
 
-                if ($trailer && method_exists($trailer, 'getUrl')) {
-                    $url = $trailer->getUrl();
+                if (!$trailer) {
+                    continue;
                 }
+
+                $url = is_array($trailer) ? ($trailer['url'] ?? null) : $trailer->getUrl();
 
                 if (!$url) {
                     continue;
@@ -358,7 +360,7 @@ class JikanAnimeDataProvider implements AnimeDataProvider
     /**
      * @return array<string, mixed>
      */
-    private function extractAnimeData(AnimeFull $animeData): array
+    private function extractAnimeData(AnimeFull|JikanAnime $animeData): array
     {
         $aired = $animeData->getAired();
         $images = $animeData->getImages();
@@ -371,8 +373,8 @@ class JikanAnimeDataProvider implements AnimeDataProvider
             'episodes' => $animeData->getEpisodes(),
             'status' => $animeData->getStatus(),
             'aired' => [
-                'from' => $aired ? $aired->getFrom() : null,
-                'to' => $aired ? $aired->getTo() : null,
+                'from' => $aired->getFrom(),
+                'to' => $aired->getTo(),
             ],
             'duration' => $animeData->getDuration(),
             'rating' => $animeData->getRating(),
@@ -381,7 +383,7 @@ class JikanAnimeDataProvider implements AnimeDataProvider
             'popularity' => $animeData->getPopularity(),
             'images' => [
                 'jpg' => [
-                    'large_image_url' => $images->getJpg() ? $images->getJpg()->getLargeImageUrl() : null,
+                    'large_image_url' => $images->getJpg()->getLargeImageUrl(),
                 ],
             ],
             'titles' => $this->convertTitlesToArray($animeData->getTitles()),

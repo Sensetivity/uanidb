@@ -20,35 +20,41 @@ use Filament\Tables\Table;
 class EpisodesRelationManager extends RelationManager
 {
     protected static string $relationship = 'episodes';
+    protected static ?string $title = 'Епізоди';
 
     public function form(Schema $schema): Schema
     {
         return $schema
             ->components([
                 TextInput::make('number')
+                    ->label('Номер')
                     ->numeric()
                     ->required(),
                 Select::make('type')
+                    ->label('Тип')
                     ->options(EpisodeTypeEnum::class)
                     ->required(),
                 TextInput::make('title')
-                    ->label('Title (Romaji)')
+                    ->label('Назва (Romaji)')
                     ->maxLength(255),
                 TextInput::make('title_en')
-                    ->label('Title (EN)')
+                    ->label('Назва (EN)')
                     ->maxLength(255),
                 TextInput::make('title_uk')
-                    ->label('Title (UK)')
+                    ->label('Назва (UK)')
                     ->maxLength(255),
-                DatePicker::make('aired'),
+                DatePicker::make('aired')
+                    ->label('Дата виходу'),
                 TextInput::make('duration')
+                    ->label('Тривалість')
                     ->numeric()
-                    ->suffix('min'),
+                    ->suffix('хв.'),
                 Textarea::make('synopsis')
+                    ->label('Опис')
                     ->rows(3)
                     ->columnSpanFull(),
                 Textarea::make('synopsis_uk')
-                    ->label('Synopsis (Ukrainian)')
+                    ->label('Опис (UK)')
                     ->rows(3)
                     ->columnSpanFull(),
             ]);
@@ -61,18 +67,18 @@ class EpisodesRelationManager extends RelationManager
             ->defaultSort('number')
             ->columns([
                 TextColumn::make('number')
+                    ->label('#')
                     ->sortable(),
                 TextColumn::make('title')
-                    ->label('Title (Romaji)')
-                    ->limit(40),
-                TextColumn::make('title_uk')
-                    ->label('Title (UK)')
+                    ->label('Назва')
                     ->limit(40)
-                    ->toggleable(),
+                    ->description(fn ($record): ?string => $record->title_uk),
                 TextColumn::make('aired')
-                    ->date()
+                    ->label('Дата виходу')
+                    ->date('d.m.Y')
                     ->sortable(),
                 TextColumn::make('type')
+                    ->label('Тип')
                     ->badge(),
             ])
             ->filters([

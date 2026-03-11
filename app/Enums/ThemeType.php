@@ -32,7 +32,7 @@ enum ThemeType: int implements HasColor, HasLabel
      */
     case Theme = 4;
 
-    public function getColor(): string|array|null
+    public function getColor(): string
     {
         return match ($this) {
             self::Setting => 'info',

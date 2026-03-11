@@ -19,7 +19,6 @@ class AnimeImportService
      * @param int $rateLimitDelay Delay in seconds between batch imports
      * @param int $apiDelay Delay in seconds between API detail requests
      * @param array<RelationProcessor> $baseProcessors
-     * @param array<RelationProcessor> $detailProcessors
      */
     public function __construct(
         private readonly AnimeDataProvider $apiClient,
@@ -27,7 +26,6 @@ class AnimeImportService
         private readonly int               $rateLimitDelay = 2,
         private readonly int               $apiDelay = 1,
         private readonly array             $baseProcessors = [],
-        private readonly array             $detailProcessors = [],
     ) {}
 
     /**

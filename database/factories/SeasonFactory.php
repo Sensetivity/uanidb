@@ -19,7 +19,7 @@ class SeasonFactory extends Factory
     public function definition(): array
     {
         $seasonOfYear = fake()->randomElement(SeasonOfYearEnum::cases());
-        $year = fake()->numberBetween(2000, 2026);
+        $year = fake()->unique()->numberBetween(1950, 2100);
 
         return [
             'name' => $seasonOfYear->getLabel() . ' ' . $year,

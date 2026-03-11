@@ -17,14 +17,17 @@ use Filament\Tables\Table;
 class StudiosRelationManager extends RelationManager
 {
     protected static string $relationship = 'studios';
+    protected static ?string $title = 'Студії';
 
     public function form(Schema $schema): Schema
     {
         return $schema
             ->components([
                 TextInput::make('role')
+                    ->label('Роль')
                     ->maxLength(100),
-                Toggle::make('is_main'),
+                Toggle::make('is_main')
+                    ->label('Головна'),
             ]);
     }
 
@@ -34,11 +37,13 @@ class StudiosRelationManager extends RelationManager
             ->recordTitleAttribute('name')
             ->columns([
                 TextColumn::make('name')
-                    ->searchable(),
+                    ->label('Назва')
+                    ->searchable()
+                    ->weight('bold'),
                 TextColumn::make('pivot.role')
-                    ->label('Role'),
+                    ->label('Роль'),
                 IconColumn::make('pivot.is_main')
-                    ->label('Main')
+                    ->label('Головна')
                     ->boolean(),
             ])
             ->filters([
@@ -49,8 +54,8 @@ class StudiosRelationManager extends RelationManager
                     ->preloadRecordSelect()
                     ->schema(fn (AttachAction $action): array => [
                         $action->getRecordSelect(),
-                        TextInput::make('role')->maxLength(100),
-                        Toggle::make('is_main'),
+                        TextInput::make('role')->label('Роль')->maxLength(100),
+                        Toggle::make('is_main')->label('Головна'),
                     ]),
             ])
             ->recordActions([

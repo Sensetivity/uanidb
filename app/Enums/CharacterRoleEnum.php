@@ -22,7 +22,7 @@ enum CharacterRoleEnum: int implements HasColor, HasLabel
         return self::MAP[strtolower($role)] ?? self::Supporting;
     }
 
-    public function getColor(): string|array|null
+    public function getColor(): string
     {
         return match ($this) {
             self::Main => 'success',

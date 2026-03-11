@@ -11,6 +11,7 @@ use Filament\Actions\DetachBulkAction;
 use Filament\Forms\Components\Select;
 use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Schemas\Schema;
+use Filament\Support\Enums\FontWeight;
 use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
@@ -18,6 +19,7 @@ use Filament\Tables\Table;
 class AnimesRelationManager extends RelationManager
 {
     protected static string $relationship = 'animes';
+    protected static ?string $title = 'Аніме';
 
     public function form(Schema $schema): Schema
     {
@@ -32,17 +34,30 @@ class AnimesRelationManager extends RelationManager
     public function table(Table $table): Table
     {
         return $table
+            ->modifyQueryUsing(fn ($query) => $query->with('media'))
             ->recordTitleAttribute('title')
             ->columns([
                 ImageColumn::make('poster')
-                    ->state(fn (Anime $record): ?string => $record->getFirstMediaUrl('main_poster') ?: $record->image_url)
-                    ->height(60),
+                    ->label('')
+                    ->state(fn (Anime $record): ?string => $record->poster_url)
+                    ->height(80)
+                    ->width(56),
                 TextColumn::make('title')
-                    ->searchable(),
+                    ->label('Назва')
+                    ->searchable()
+                    ->weight(FontWeight::Bold)
+                    ->description(fn (Anime $record): string => implode(' | ', array_filter([
+                        $record->type->getLabel(),
+                        $record->episode_count ? "{$record->episode_count} еп." : null,
+                        $record->aired_from?->format('Y'),
+                    ]))),
                 TextColumn::make('pivot.role')
-                    ->label('Role')
+                    ->label('Роль')
                     ->formatStateUsing(fn (int $state): CharacterRoleEnum => CharacterRoleEnum::from($state))
                     ->badge(),
+                TextColumn::make('score')
+                    ->label('Оцінка')
+                    ->placeholder('—'),
             ])
             ->filters([
                 //

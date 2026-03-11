@@ -10,6 +10,7 @@ use App\Enums\CharacterRoleEnum;
 use App\Enums\SourceTypeEnum;
 use Carbon\Carbon;
 use Cviebrock\EloquentSluggable\Sluggable;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -70,6 +71,7 @@ use Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection;
  * @property-read Collection|UserAnimeList[] $userLists Users who have this anime in their lists
  * @property-read Collection|Review[] $reviews Reviews of this anime
  * @property-read Collection|Comment[] $comments Comments on this anime
+ * @property-read string|null $poster_url Display poster URL
  * @property-read MediaCollection $media All media
  */
 class Anime extends BaseModel implements HasMedia
@@ -161,9 +163,12 @@ class Anime extends BaseModel implements HasMedia
 
     /**
      * Get main studio for this anime.
+     *
+     * @return Studio|null
      */
     public function mainStudio(): ?Studio
     {
+        /** @var Studio|null */
         return $this->studios()->wherePivot('is_main', true)->first();
     }
 
@@ -308,5 +313,13 @@ class Anime extends BaseModel implements HasMedia
     public function userLists(): HasMany
     {
         return $this->hasMany(UserAnimeList::class);
+    }
+
+    /**
+     * Get the poster URL, preferring media library over image_url.
+     */
+    protected function posterUrl(): Attribute
+    {
+        return Attribute::get(fn (): ?string => $this->getFirstMediaUrl('main_poster') ?: $this->image_url);
     }
 }

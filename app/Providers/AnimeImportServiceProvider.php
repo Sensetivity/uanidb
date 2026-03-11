@@ -72,7 +72,6 @@ class AnimeImportServiceProvider extends ServiceProvider
                 rateLimitDelay: (int) config('services.anime_import.rate_limit_delay', 2),
                 apiDelay: (int) config('services.anime_import.api_delay', 1),
                 baseProcessors: $baseProcessors,
-                detailProcessors: $detailProcessors,
             );
         });
     }

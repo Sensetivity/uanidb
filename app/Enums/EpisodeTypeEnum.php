@@ -11,7 +11,7 @@ enum EpisodeTypeEnum: int implements HasColor, HasLabel
     case Recap = 2;
     case Regular = 1;
 
-    public function getColor(): string|array|null
+    public function getColor(): string
     {
         return match ($this) {
             self::Regular => 'gray',

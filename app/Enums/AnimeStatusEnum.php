@@ -2,12 +2,10 @@
 
 namespace App\Enums;
 
-use BackedEnum;
 use Filament\Support\Contracts\HasColor;
 use Filament\Support\Contracts\HasIcon;
 use Filament\Support\Contracts\HasLabel;
 use Filament\Support\Icons\Heroicon;
-use Illuminate\Contracts\Support\Htmlable;
 
 enum AnimeStatusEnum: int implements HasColor, HasIcon, HasLabel
 {
@@ -30,7 +28,7 @@ enum AnimeStatusEnum: int implements HasColor, HasIcon, HasLabel
         return self::MAP[strtolower($status)] ?? self::NOT_YET_AIRED;
     }
 
-    public function getColor(): string|array|null
+    public function getColor(): string
     {
         return match ($this) {
             self::AIRING => 'success',
@@ -39,7 +37,7 @@ enum AnimeStatusEnum: int implements HasColor, HasIcon, HasLabel
         };
     }
 
-    public function getIcon(): string|BackedEnum|Htmlable|null
+    public function getIcon(): Heroicon
     {
         return match ($this) {
             self::AIRING => Heroicon::OutlinedPlay,

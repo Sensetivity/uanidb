@@ -23,8 +23,11 @@ class EditAnime extends EditRecord
             Action::make('importFromAniDb')
                 ->label('Імпортувати з AniDB')
                 ->icon(Heroicon::ArrowDownTray)
+                ->visible()
                 ->action(function (TitleImportService $service): void {
-                    $count = $service->importAnime($this->record);
+                    /** @var \App\Models\Anime $anime */
+                    $anime = $this->getRecord();
+                    $count = $service->importAnime($anime);
 
                     Notification::make()
                         ->title("Імпортовано {$count} назв(и)")

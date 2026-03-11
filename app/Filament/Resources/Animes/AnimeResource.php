@@ -8,8 +8,10 @@ use App\Filament\Resources\Animes\Pages\ListAnimes;
 use App\Filament\Resources\Animes\Pages\ViewAnime;
 use App\Filament\Resources\Animes\RelationManagers\CharactersRelationManager;
 use App\Filament\Resources\Animes\RelationManagers\EpisodesRelationManager;
+use App\Filament\Resources\Animes\RelationManagers\GenresRelationManager;
 use App\Filament\Resources\Animes\RelationManagers\ProducersRelationManager;
 use App\Filament\Resources\Animes\RelationManagers\StudiosRelationManager;
+use App\Filament\Resources\Animes\RelationManagers\ThemesRelationManager;
 use App\Filament\Resources\Animes\Schemas\AnimeForm;
 use App\Filament\Resources\Animes\Schemas\AnimeInfolist;
 use App\Filament\Resources\Animes\Tables\AnimesTable;
@@ -45,6 +47,8 @@ class AnimeResource extends Resource
         return [
             StudiosRelationManager::class,
             ProducersRelationManager::class,
+            GenresRelationManager::class,
+            ThemesRelationManager::class,
             EpisodesRelationManager::class,
             CharactersRelationManager::class,
         ];
