@@ -1,0 +1,686 @@
+@php $activeNav = 'anime'; @endphp
+
+@extends('main.layouts.app')
+
+@section('title', 'Каталог аніме - УкрАніме')
+
+@push('styles')
+<style>
+    .scrollbar-hide::-webkit-scrollbar { display: none; }
+    .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+</style>
+@endpush
+
+@section('content')
+
+  <!-- Page Header -->
+  <div class="bg-gradient-to-r from-cyan-500/10 to-purple-500/10 border-b border-slate-800">
+    <div class="container mx-auto px-4 py-8">
+      <h1 class="text-4xl font-bold mb-2">Каталог аніме</h1>
+      <p class="text-gray-400">Знайдіть та досліджуйте понад 21,000 аніме</p>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="container mx-auto px-4 py-8">
+    <div class="flex flex-col lg:flex-row gap-8">
+      <!-- Filters Sidebar -->
+      <div class="w-full lg:w-72 flex-shrink-0">
+        <div class="bg-slate-900/50 rounded-2xl p-5 sticky top-24">
+          <div class="flex items-center justify-between mb-6">
+            <h3 class="text-lg font-semibold">Фільтри</h3>
+            <button class="text-sm text-cyan-400 hover:text-cyan-300 transition-colors">Скинути</button>
+          </div>
+
+          <!-- Search -->
+          <div class="mb-6">
+            <label class="block text-sm text-gray-400 mb-2">Пошук</label>
+            <input type="text" placeholder="Назва аніме..." class="w-full py-2.5 px-4 rounded-xl bg-slate-800 border border-slate-700 text-gray-100 placeholder-gray-500 focus:outline-none focus:border-cyan-500 transition-all">
+          </div>
+
+          <!-- Type -->
+          <div class="mb-6">
+            <label class="block text-sm text-gray-400 mb-3">Тип</label>
+            <div class="flex flex-wrap gap-2">
+              <button class="px-3 py-1.5 bg-cyan-500/20 text-cyan-400 border border-cyan-500/30 rounded-lg text-sm font-medium">ТБ</button>
+              <button class="px-3 py-1.5 bg-slate-800 border border-slate-700 rounded-lg text-sm text-gray-400 hover:text-gray-200 transition-colors">Фільм</button>
+              <button class="px-3 py-1.5 bg-slate-800 border border-slate-700 rounded-lg text-sm text-gray-400 hover:text-gray-200 transition-colors">OVA</button>
+              <button class="px-3 py-1.5 bg-slate-800 border border-slate-700 rounded-lg text-sm text-gray-400 hover:text-gray-200 transition-colors">ONA</button>
+              <button class="px-3 py-1.5 bg-slate-800 border border-slate-700 rounded-lg text-sm text-gray-400 hover:text-gray-200 transition-colors">Спешл</button>
+            </div>
+          </div>
+
+          <!-- Status -->
+          <div class="mb-6">
+            <label class="block text-sm text-gray-400 mb-3">Статус</label>
+            <div class="space-y-2">
+              <label class="flex items-center gap-3 cursor-pointer group">
+                <input type="checkbox" class="w-4 h-4 rounded border-slate-600 bg-slate-800 text-cyan-500 focus:ring-cyan-500 focus:ring-offset-0">
+                <span class="text-gray-300 group-hover:text-gray-100 transition-colors">Виходить</span>
+              </label>
+              <label class="flex items-center gap-3 cursor-pointer group">
+                <input type="checkbox" class="w-4 h-4 rounded border-slate-600 bg-slate-800 text-cyan-500 focus:ring-cyan-500 focus:ring-offset-0">
+                <span class="text-gray-300 group-hover:text-gray-100 transition-colors">Завершено</span>
+              </label>
+              <label class="flex items-center gap-3 cursor-pointer group">
+                <input type="checkbox" class="w-4 h-4 rounded border-slate-600 bg-slate-800 text-cyan-500 focus:ring-cyan-500 focus:ring-offset-0">
+                <span class="text-gray-300 group-hover:text-gray-100 transition-colors">Анонсовано</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Genres -->
+          <div class="mb-6">
+            <label class="block text-sm text-gray-400 mb-3">Жанри</label>
+            <div class="flex flex-wrap gap-2">
+              <button class="px-3 py-1.5 bg-slate-800 border border-slate-700 rounded-lg text-sm text-gray-400 hover:text-gray-200 hover:border-slate-600 transition-colors">Екшн</button>
+              <button class="px-3 py-1.5 bg-slate-800 border border-slate-700 rounded-lg text-sm text-gray-400 hover:text-gray-200 hover:border-slate-600 transition-colors">Пригоди</button>
+              <button class="px-3 py-1.5 bg-cyan-500/20 text-cyan-400 border border-cyan-500/30 rounded-lg text-sm font-medium">Комедія</button>
+              <button class="px-3 py-1.5 bg-slate-800 border border-slate-700 rounded-lg text-sm text-gray-400 hover:text-gray-200 hover:border-slate-600 transition-colors">Драма</button>
+              <button class="px-3 py-1.5 bg-slate-800 border border-slate-700 rounded-lg text-sm text-gray-400 hover:text-gray-200 hover:border-slate-600 transition-colors">Фентезі</button>
+              <button class="px-3 py-1.5 bg-slate-800 border border-slate-700 rounded-lg text-sm text-gray-400 hover:text-gray-200 hover:border-slate-600 transition-colors">Романтика</button>
+              <button class="px-3 py-1.5 bg-slate-800 border border-slate-700 rounded-lg text-sm text-gray-400 hover:text-gray-200 hover:border-slate-600 transition-colors">Психологія</button>
+              <button class="px-3 py-1.5 bg-slate-800 border border-slate-700 rounded-lg text-sm text-gray-400 hover:text-gray-200 hover:border-slate-600 transition-colors">Жахи</button>
+            </div>
+            <button class="text-sm text-cyan-400 hover:text-cyan-300 mt-3 transition-colors">Усі жанри...</button>
+          </div>
+
+          <!-- Year -->
+          <div class="mb-6">
+            <label class="block text-sm text-gray-400 mb-3">Рік</label>
+            <div class="flex gap-3">
+              <select class="flex-1 py-2.5 px-3 rounded-xl bg-slate-800 border border-slate-700 text-gray-300 focus:outline-none focus:border-cyan-500 transition-all">
+                <option>Від</option>
+                <option>2025</option>
+                <option>2024</option>
+                <option>2023</option>
+                <option>2022</option>
+                <option>2020</option>
+                <option>2015</option>
+                <option>2010</option>
+                <option>2000</option>
+              </select>
+              <select class="flex-1 py-2.5 px-3 rounded-xl bg-slate-800 border border-slate-700 text-gray-300 focus:outline-none focus:border-cyan-500 transition-all">
+                <option>До</option>
+                <option>2025</option>
+                <option>2024</option>
+                <option>2023</option>
+                <option>2022</option>
+                <option>2020</option>
+                <option>2015</option>
+                <option>2010</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Season -->
+          <div class="mb-6">
+            <label class="block text-sm text-gray-400 mb-3">Сезон</label>
+            <select class="w-full py-2.5 px-3 rounded-xl bg-slate-800 border border-slate-700 text-gray-300 focus:outline-none focus:border-cyan-500 transition-all">
+              <option>Будь-який</option>
+              <option>Зима 2025</option>
+              <option>Осінь 2024</option>
+              <option>Літо 2024</option>
+              <option>Весна 2024</option>
+            </select>
+          </div>
+
+          <!-- Apply Button -->
+          <button class="w-full py-3 bg-gradient-to-r from-cyan-500 to-purple-600 rounded-xl font-semibold hover:opacity-90 transition-opacity">
+            Застосувати фільтри
+          </button>
+        </div>
+      </div>
+
+      <!-- Anime List -->
+      <div class="flex-grow">
+        <!-- Sort & View Options -->
+        <div class="flex flex-wrap items-center justify-between gap-4 mb-6">
+          <div class="flex items-center gap-4">
+            <span class="text-gray-500">Знайдено: <span class="text-gray-200">8,432</span> аніме</span>
+          </div>
+          <div class="flex items-center gap-4">
+            <div class="flex items-center gap-2">
+              <span class="text-sm text-gray-500">Сортувати:</span>
+              <select class="py-2 px-3 rounded-lg bg-slate-800 border border-slate-700 text-gray-300 text-sm focus:outline-none focus:border-cyan-500 transition-all">
+                <option>Популярність</option>
+                <option>Рейтинг</option>
+                <option>Новизна</option>
+                <option>Назва (А-Я)</option>
+                <option>Назва (Я-А)</option>
+              </select>
+            </div>
+            <div class="flex items-center gap-1">
+              <a href="{{ route('anime.index') }}" class="p-2 rounded-lg bg-cyan-500/20 text-cyan-400">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
+                </svg>
+              </a>
+              <a href="{{ route('anime.list-view') }}" class="p-2 rounded-lg bg-slate-800 text-gray-400 hover:text-gray-200 transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16" />
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Grid View -->
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 gap-5">
+          <!-- Card 1 -->
+          <a href="{{ route('anime.show', 'example-slug') }}" class="group">
+            <div class="relative mb-3">
+              <div class="absolute left-full top-0 ml-2 w-64 z-50 opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-all delay-300 duration-200">
+                <div class="bg-slate-800 border border-slate-700 rounded-xl shadow-2xl p-4">
+                  <h4 class="font-semibold text-gray-200 mb-1">Frieren: Похоронний обряд</h4>
+                  <p class="text-xs text-gray-500 mb-3">Madhouse • Осінь 2023</p>
+                  <div class="flex items-center gap-3 mb-3 text-sm flex-wrap">
+                    <span class="text-cyan-400 font-bold">★ 9.4</span><span class="text-gray-400">ТБ</span><span class="text-gray-400">28 еп.</span>
+                    <span class="px-2 py-0.5 bg-green-500/20 text-green-400 rounded text-xs">Виходить</span>
+                  </div>
+                  <div class="flex flex-wrap gap-1 mb-3">
+                    <span class="px-2 py-0.5 bg-cyan-500/20 text-cyan-400 rounded text-xs">Пригоди</span>
+                    <span class="px-2 py-0.5 bg-purple-500/20 text-purple-400 rounded text-xs">Драма</span>
+                    <span class="px-2 py-0.5 bg-pink-500/20 text-pink-400 rounded text-xs">Фентезі</span>
+                  </div>
+                  <p class="text-xs text-gray-400 line-clamp-3">Ельфійська маг Фрірен подорожує світом після перемоги над Демонічним Королем, шукаючи сенс безсмертного існування.</p>
+                </div>
+              </div>
+              <div class="relative overflow-hidden rounded-xl">
+                <img src="https://placehold.co/240x340/1e293b/94a3b8?text=Frieren" alt="Frieren" class="w-full aspect-[3/4] object-cover group-hover:scale-105 transition-transform duration-300">
+                <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
+                <div class="absolute top-2 left-2 px-2 py-0.5 bg-cyan-500 text-white text-xs font-bold rounded">9.4</div>
+                <div class="absolute bottom-2 left-2 right-2 flex justify-between items-center">
+                  <span class="px-2 py-0.5 bg-slate-800/80 backdrop-blur-sm text-xs rounded">ТБ</span>
+                  <span class="px-2 py-0.5 bg-green-500/80 backdrop-blur-sm text-xs rounded">Виходить</span>
+                </div>
+              </div>
+              <div class="absolute bottom-2 right-2 z-10 opacity-0 group-hover:opacity-100 transition-opacity list-menu-container">
+                <div class="relative">
+                  <button type="button" onclick="toggleListMenu(event, this)" class="w-8 h-8 bg-slate-900/90 backdrop-blur-sm rounded-lg flex items-center justify-center hover:bg-cyan-500 transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" /></svg>
+                  </button>
+                  <div class="list-dropdown hidden absolute bottom-full right-0 mb-2 w-44 bg-slate-800 border border-slate-700 rounded-xl shadow-2xl overflow-hidden" onclick="event.stopPropagation()">
+                    <button type="button" class="w-full px-4 py-2.5 text-left text-sm text-gray-300 hover:bg-slate-700 hover:text-cyan-400 transition-colors flex items-center gap-3"><span class="text-cyan-400">▶</span> Дивлюсь</button>
+                    <button type="button" class="w-full px-4 py-2.5 text-left text-sm text-gray-300 hover:bg-slate-700 hover:text-cyan-400 transition-colors flex items-center gap-3"><span class="text-amber-400">📋</span> Заплановано</button>
+                    <button type="button" class="w-full px-4 py-2.5 text-left text-sm text-gray-300 hover:bg-slate-700 hover:text-cyan-400 transition-colors flex items-center gap-3"><span class="text-green-400">✓</span> Переглянуто</button>
+                    <button type="button" class="w-full px-4 py-2.5 text-left text-sm text-gray-300 hover:bg-slate-700 hover:text-cyan-400 transition-colors flex items-center gap-3"><span class="text-red-400">✗</span> Кинув</button>
+                    <div class="border-t border-slate-700"></div>
+                    <button type="button" class="w-full px-4 py-2.5 text-left text-sm text-gray-300 hover:bg-slate-700 hover:text-red-400 transition-colors flex items-center gap-3"><span class="text-red-400">♥</span> Улюблене</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <h3 class="font-semibold text-gray-200 group-hover:text-cyan-400 transition-colors line-clamp-2 mb-1">Frieren: Похоронний обряд</h3>
+            <p class="text-sm text-gray-500">28 еп. | Осінь 2023</p>
+          </a>
+          <!-- Card 2 -->
+          <a href="{{ route('anime.show', 'example-slug') }}" class="group">
+            <div class="relative mb-3">
+              <div class="absolute left-full top-0 ml-2 w-64 z-50 opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-all delay-300 duration-200">
+                <div class="bg-slate-800 border border-slate-700 rounded-xl shadow-2xl p-4">
+                  <h4 class="font-semibold text-gray-200 mb-1">Solo Leveling</h4>
+                  <p class="text-xs text-gray-500 mb-3">A-1 Pictures • Зима 2024</p>
+                  <div class="flex items-center gap-3 mb-3 text-sm flex-wrap">
+                    <span class="text-cyan-400 font-bold">★ 9.2</span><span class="text-gray-400">ТБ</span><span class="text-gray-400">12 еп.</span>
+                    <span class="px-2 py-0.5 bg-green-500/20 text-green-400 rounded text-xs">Виходить</span>
+                  </div>
+                  <div class="flex flex-wrap gap-1 mb-3">
+                    <span class="px-2 py-0.5 bg-cyan-500/20 text-cyan-400 rounded text-xs">Екшн</span>
+                    <span class="px-2 py-0.5 bg-purple-500/20 text-purple-400 rounded text-xs">Пригоди</span>
+                    <span class="px-2 py-0.5 bg-pink-500/20 text-pink-400 rounded text-xs">Фентезі</span>
+                  </div>
+                  <p class="text-xs text-gray-400 line-clamp-3">Сон Джін-У, найслабший мисливець E-рангу, отримує здатність підвищувати рівень після таємничої події в підземеллі.</p>
+                </div>
+              </div>
+              <div class="relative overflow-hidden rounded-xl">
+                <img src="https://placehold.co/240x340/1e293b/94a3b8?text=Solo+Leveling" alt="Solo Leveling" class="w-full aspect-[3/4] object-cover group-hover:scale-105 transition-transform duration-300">
+                <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
+                <div class="absolute top-2 left-2 px-2 py-0.5 bg-cyan-500 text-white text-xs font-bold rounded">9.2</div>
+                <div class="absolute bottom-2 left-2 right-2 flex justify-between items-center">
+                  <span class="px-2 py-0.5 bg-slate-800/80 backdrop-blur-sm text-xs rounded">ТБ</span>
+                  <span class="px-2 py-0.5 bg-green-500/80 backdrop-blur-sm text-xs rounded">Виходить</span>
+                </div>
+              </div>
+              <div class="absolute bottom-2 right-2 z-10 opacity-0 group-hover:opacity-100 transition-opacity list-menu-container">
+                <div class="relative">
+                  <button type="button" onclick="toggleListMenu(event, this)" class="w-8 h-8 bg-slate-900/90 backdrop-blur-sm rounded-lg flex items-center justify-center hover:bg-cyan-500 transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" /></svg>
+                  </button>
+                  <div class="list-dropdown hidden absolute bottom-full right-0 mb-2 w-44 bg-slate-800 border border-slate-700 rounded-xl shadow-2xl overflow-hidden" onclick="event.stopPropagation()">
+                    <button type="button" class="w-full px-4 py-2.5 text-left text-sm text-gray-300 hover:bg-slate-700 hover:text-cyan-400 transition-colors flex items-center gap-3"><span class="text-cyan-400">▶</span> Дивлюсь</button>
+                    <button type="button" class="w-full px-4 py-2.5 text-left text-sm text-gray-300 hover:bg-slate-700 hover:text-cyan-400 transition-colors flex items-center gap-3"><span class="text-amber-400">📋</span> Заплановано</button>
+                    <button type="button" class="w-full px-4 py-2.5 text-left text-sm text-gray-300 hover:bg-slate-700 hover:text-cyan-400 transition-colors flex items-center gap-3"><span class="text-green-400">✓</span> Переглянуто</button>
+                    <button type="button" class="w-full px-4 py-2.5 text-left text-sm text-gray-300 hover:bg-slate-700 hover:text-cyan-400 transition-colors flex items-center gap-3"><span class="text-red-400">✗</span> Кинув</button>
+                    <div class="border-t border-slate-700"></div>
+                    <button type="button" class="w-full px-4 py-2.5 text-left text-sm text-gray-300 hover:bg-slate-700 hover:text-red-400 transition-colors flex items-center gap-3"><span class="text-red-400">♥</span> Улюблене</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <h3 class="font-semibold text-gray-200 group-hover:text-cyan-400 transition-colors line-clamp-2 mb-1">Solo Leveling</h3>
+            <p class="text-sm text-gray-500">12 еп. | Зима 2024</p>
+          </a>
+          <!-- Card 3 -->
+          <a href="{{ route('anime.show', 'example-slug') }}" class="group">
+            <div class="relative mb-3">
+              <div class="absolute left-full top-0 ml-2 w-64 z-50 opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-all delay-300 duration-200">
+                <div class="bg-slate-800 border border-slate-700 rounded-xl shadow-2xl p-4">
+                  <h4 class="font-semibold text-gray-200 mb-1">Дзюцу Кайсен S2</h4>
+                  <p class="text-xs text-gray-500 mb-3">MAPPA • Літо 2023</p>
+                  <div class="flex items-center gap-3 mb-3 text-sm flex-wrap">
+                    <span class="text-cyan-400 font-bold">★ 8.9</span><span class="text-gray-400">ТБ</span><span class="text-gray-400">23 еп.</span>
+                    <span class="px-2 py-0.5 bg-blue-500/20 text-blue-400 rounded text-xs">Завершено</span>
+                  </div>
+                  <div class="flex flex-wrap gap-1 mb-3">
+                    <span class="px-2 py-0.5 bg-cyan-500/20 text-cyan-400 rounded text-xs">Екшн</span>
+                    <span class="px-2 py-0.5 bg-purple-500/20 text-purple-400 rounded text-xs">Фентезі</span>
+                    <span class="px-2 py-0.5 bg-pink-500/20 text-pink-400 rounded text-xs">Надприродне</span>
+                  </div>
+                  <p class="text-xs text-gray-400 line-clamp-3">Другий сезон розповідає про минуле Годзьо Сатору та трагічний інцидент у Сібуї, що змінює все.</p>
+                </div>
+              </div>
+              <div class="relative overflow-hidden rounded-xl">
+                <img src="https://placehold.co/240x340/1e293b/94a3b8?text=Jujutsu" alt="Jujutsu Kaisen" class="w-full aspect-[3/4] object-cover group-hover:scale-105 transition-transform duration-300">
+                <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
+                <div class="absolute top-2 left-2 px-2 py-0.5 bg-cyan-500 text-white text-xs font-bold rounded">8.9</div>
+                <div class="absolute bottom-2 left-2 right-2 flex justify-between items-center">
+                  <span class="px-2 py-0.5 bg-slate-800/80 backdrop-blur-sm text-xs rounded">ТБ</span>
+                  <span class="px-2 py-0.5 bg-blue-500/80 backdrop-blur-sm text-xs rounded">Завершено</span>
+                </div>
+              </div>
+              <div class="absolute bottom-2 right-2 z-10 opacity-0 group-hover:opacity-100 transition-opacity list-menu-container">
+                <div class="relative">
+                  <button type="button" onclick="toggleListMenu(event, this)" class="w-8 h-8 bg-slate-900/90 backdrop-blur-sm rounded-lg flex items-center justify-center hover:bg-cyan-500 transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" /></svg>
+                  </button>
+                  <div class="list-dropdown hidden absolute bottom-full right-0 mb-2 w-44 bg-slate-800 border border-slate-700 rounded-xl shadow-2xl overflow-hidden" onclick="event.stopPropagation()">
+                    <button type="button" class="w-full px-4 py-2.5 text-left text-sm text-gray-300 hover:bg-slate-700 hover:text-cyan-400 transition-colors flex items-center gap-3"><span class="text-cyan-400">▶</span> Дивлюсь</button>
+                    <button type="button" class="w-full px-4 py-2.5 text-left text-sm text-gray-300 hover:bg-slate-700 hover:text-cyan-400 transition-colors flex items-center gap-3"><span class="text-amber-400">📋</span> Заплановано</button>
+                    <button type="button" class="w-full px-4 py-2.5 text-left text-sm text-gray-300 hover:bg-slate-700 hover:text-cyan-400 transition-colors flex items-center gap-3"><span class="text-green-400">✓</span> Переглянуто</button>
+                    <button type="button" class="w-full px-4 py-2.5 text-left text-sm text-gray-300 hover:bg-slate-700 hover:text-cyan-400 transition-colors flex items-center gap-3"><span class="text-red-400">✗</span> Кинув</button>
+                    <div class="border-t border-slate-700"></div>
+                    <button type="button" class="w-full px-4 py-2.5 text-left text-sm text-gray-300 hover:bg-slate-700 hover:text-red-400 transition-colors flex items-center gap-3"><span class="text-red-400">♥</span> Улюблене</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <h3 class="font-semibold text-gray-200 group-hover:text-cyan-400 transition-colors line-clamp-2 mb-1">Дзюцу Кайсен S2</h3>
+            <p class="text-sm text-gray-500">23 еп. | Літо 2023</p>
+          </a>
+          <!-- Card 4 -->
+          <a href="{{ route('anime.show', 'example-slug') }}" class="group">
+            <div class="relative mb-3">
+              <div class="absolute left-full top-0 ml-2 w-64 z-50 opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-all delay-300 duration-200">
+                <div class="bg-slate-800 border border-slate-700 rounded-xl shadow-2xl p-4">
+                  <h4 class="font-semibold text-gray-200 mb-1">Клинок, що знищує демонів S4</h4>
+                  <p class="text-xs text-gray-500 mb-3">ufotable • Весна 2024</p>
+                  <div class="flex items-center gap-3 mb-3 text-sm flex-wrap">
+                    <span class="text-cyan-400 font-bold">★ 9.1</span><span class="text-gray-400">ТБ</span><span class="text-gray-400">8 еп.</span>
+                    <span class="px-2 py-0.5 bg-blue-500/20 text-blue-400 rounded text-xs">Завершено</span>
+                  </div>
+                  <div class="flex flex-wrap gap-1 mb-3">
+                    <span class="px-2 py-0.5 bg-cyan-500/20 text-cyan-400 rounded text-xs">Екшн</span>
+                    <span class="px-2 py-0.5 bg-purple-500/20 text-purple-400 rounded text-xs">Демони</span>
+                    <span class="px-2 py-0.5 bg-pink-500/20 text-pink-400 rounded text-xs">Історичний</span>
+                  </div>
+                  <p class="text-xs text-gray-400 line-clamp-3">Танджіро та Стовпи Корпусу мисливців готуються до вирішальної битви. Арка тренування Хашира.</p>
+                </div>
+              </div>
+              <div class="relative overflow-hidden rounded-xl">
+                <img src="https://placehold.co/240x340/1e293b/94a3b8?text=Demon+Slayer" alt="Demon Slayer" class="w-full aspect-[3/4] object-cover group-hover:scale-105 transition-transform duration-300">
+                <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
+                <div class="absolute top-2 left-2 px-2 py-0.5 bg-cyan-500 text-white text-xs font-bold rounded">9.1</div>
+                <div class="absolute bottom-2 left-2 right-2 flex justify-between items-center">
+                  <span class="px-2 py-0.5 bg-slate-800/80 backdrop-blur-sm text-xs rounded">ТБ</span>
+                  <span class="px-2 py-0.5 bg-blue-500/80 backdrop-blur-sm text-xs rounded">Завершено</span>
+                </div>
+              </div>
+              <div class="absolute bottom-2 right-2 z-10 opacity-0 group-hover:opacity-100 transition-opacity list-menu-container">
+                <div class="relative">
+                  <button type="button" onclick="toggleListMenu(event, this)" class="w-8 h-8 bg-slate-900/90 backdrop-blur-sm rounded-lg flex items-center justify-center hover:bg-cyan-500 transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" /></svg>
+                  </button>
+                  <div class="list-dropdown hidden absolute bottom-full right-0 mb-2 w-44 bg-slate-800 border border-slate-700 rounded-xl shadow-2xl overflow-hidden" onclick="event.stopPropagation()">
+                    <button type="button" class="w-full px-4 py-2.5 text-left text-sm text-gray-300 hover:bg-slate-700 hover:text-cyan-400 transition-colors flex items-center gap-3"><span class="text-cyan-400">▶</span> Дивлюсь</button>
+                    <button type="button" class="w-full px-4 py-2.5 text-left text-sm text-gray-300 hover:bg-slate-700 hover:text-cyan-400 transition-colors flex items-center gap-3"><span class="text-amber-400">📋</span> Заплановано</button>
+                    <button type="button" class="w-full px-4 py-2.5 text-left text-sm text-gray-300 hover:bg-slate-700 hover:text-cyan-400 transition-colors flex items-center gap-3"><span class="text-green-400">✓</span> Переглянуто</button>
+                    <button type="button" class="w-full px-4 py-2.5 text-left text-sm text-gray-300 hover:bg-slate-700 hover:text-cyan-400 transition-colors flex items-center gap-3"><span class="text-red-400">✗</span> Кинув</button>
+                    <div class="border-t border-slate-700"></div>
+                    <button type="button" class="w-full px-4 py-2.5 text-left text-sm text-gray-300 hover:bg-slate-700 hover:text-red-400 transition-colors flex items-center gap-3"><span class="text-red-400">♥</span> Улюблене</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <h3 class="font-semibold text-gray-200 group-hover:text-cyan-400 transition-colors line-clamp-2 mb-1">Клинок, що знищує демонів S4</h3>
+            <p class="text-sm text-gray-500">8 еп. | Весна 2024</p>
+          </a>
+          <!-- Card 5 -->
+          <a href="{{ route('anime.show', 'example-slug') }}" class="group">
+            <div class="relative mb-3">
+              <div class="absolute left-full top-0 ml-2 w-64 z-50 opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-all delay-300 duration-200">
+                <div class="bg-slate-800 border border-slate-700 rounded-xl shadow-2xl p-4">
+                  <h4 class="font-semibold text-gray-200 mb-1">Ван Піс</h4>
+                  <p class="text-xs text-gray-500 mb-3">Toei Animation • 1999</p>
+                  <div class="flex items-center gap-3 mb-3 text-sm flex-wrap">
+                    <span class="text-cyan-400 font-bold">★ 8.8</span><span class="text-gray-400">ТБ</span><span class="text-gray-400">1095+ еп.</span>
+                    <span class="px-2 py-0.5 bg-green-500/20 text-green-400 rounded text-xs">Виходить</span>
+                  </div>
+                  <div class="flex flex-wrap gap-1 mb-3">
+                    <span class="px-2 py-0.5 bg-cyan-500/20 text-cyan-400 rounded text-xs">Екшн</span>
+                    <span class="px-2 py-0.5 bg-purple-500/20 text-purple-400 rounded text-xs">Пригоди</span>
+                    <span class="px-2 py-0.5 bg-pink-500/20 text-pink-400 rounded text-xs">Комедія</span>
+                  </div>
+                  <p class="text-xs text-gray-400 line-clamp-3">Монкі Д. Луффі та команда Мугівар вирушають у пошуках легендарного скарбу One Piece на шляху до Короля Піратів.</p>
+                </div>
+              </div>
+              <div class="relative overflow-hidden rounded-xl">
+                <img src="https://placehold.co/240x340/1e293b/94a3b8?text=One+Piece" alt="One Piece" class="w-full aspect-[3/4] object-cover group-hover:scale-105 transition-transform duration-300">
+                <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
+                <div class="absolute top-2 left-2 px-2 py-0.5 bg-cyan-500 text-white text-xs font-bold rounded">8.8</div>
+                <div class="absolute bottom-2 left-2 right-2 flex justify-between items-center">
+                  <span class="px-2 py-0.5 bg-slate-800/80 backdrop-blur-sm text-xs rounded">ТБ</span>
+                  <span class="px-2 py-0.5 bg-green-500/80 backdrop-blur-sm text-xs rounded">Виходить</span>
+                </div>
+              </div>
+              <div class="absolute bottom-2 right-2 z-10 opacity-0 group-hover:opacity-100 transition-opacity list-menu-container">
+                <div class="relative">
+                  <button type="button" onclick="toggleListMenu(event, this)" class="w-8 h-8 bg-slate-900/90 backdrop-blur-sm rounded-lg flex items-center justify-center hover:bg-cyan-500 transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" /></svg>
+                  </button>
+                  <div class="list-dropdown hidden absolute bottom-full right-0 mb-2 w-44 bg-slate-800 border border-slate-700 rounded-xl shadow-2xl overflow-hidden" onclick="event.stopPropagation()">
+                    <button type="button" class="w-full px-4 py-2.5 text-left text-sm text-gray-300 hover:bg-slate-700 hover:text-cyan-400 transition-colors flex items-center gap-3"><span class="text-cyan-400">▶</span> Дивлюсь</button>
+                    <button type="button" class="w-full px-4 py-2.5 text-left text-sm text-gray-300 hover:bg-slate-700 hover:text-cyan-400 transition-colors flex items-center gap-3"><span class="text-amber-400">📋</span> Заплановано</button>
+                    <button type="button" class="w-full px-4 py-2.5 text-left text-sm text-gray-300 hover:bg-slate-700 hover:text-cyan-400 transition-colors flex items-center gap-3"><span class="text-green-400">✓</span> Переглянуто</button>
+                    <button type="button" class="w-full px-4 py-2.5 text-left text-sm text-gray-300 hover:bg-slate-700 hover:text-cyan-400 transition-colors flex items-center gap-3"><span class="text-red-400">✗</span> Кинув</button>
+                    <div class="border-t border-slate-700"></div>
+                    <button type="button" class="w-full px-4 py-2.5 text-left text-sm text-gray-300 hover:bg-slate-700 hover:text-red-400 transition-colors flex items-center gap-3"><span class="text-red-400">♥</span> Улюблене</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <h3 class="font-semibold text-gray-200 group-hover:text-cyan-400 transition-colors line-clamp-2 mb-1">Ван Піс</h3>
+            <p class="text-sm text-gray-500">1095+ еп. | 1999</p>
+          </a>
+          <!-- Card 6 -->
+          <a href="{{ route('anime.show', 'example-slug') }}" class="group">
+            <div class="relative mb-3">
+              <div class="absolute left-full top-0 ml-2 w-64 z-50 opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-all delay-300 duration-200">
+                <div class="bg-slate-800 border border-slate-700 rounded-xl shadow-2xl p-4">
+                  <h4 class="font-semibold text-gray-200 mb-1">Атака Титанів: Фінал</h4>
+                  <p class="text-xs text-gray-500 mb-3">MAPPA • Осінь 2023</p>
+                  <div class="flex items-center gap-3 mb-3 text-sm flex-wrap">
+                    <span class="text-cyan-400 font-bold">★ 9.0</span><span class="text-gray-400">ТБ</span><span class="text-gray-400">16 еп.</span>
+                    <span class="px-2 py-0.5 bg-blue-500/20 text-blue-400 rounded text-xs">Завершено</span>
+                  </div>
+                  <div class="flex flex-wrap gap-1 mb-3">
+                    <span class="px-2 py-0.5 bg-cyan-500/20 text-cyan-400 rounded text-xs">Екшн</span>
+                    <span class="px-2 py-0.5 bg-purple-500/20 text-purple-400 rounded text-xs">Драма</span>
+                    <span class="px-2 py-0.5 bg-pink-500/20 text-pink-400 rounded text-xs">Фентезі</span>
+                  </div>
+                  <p class="text-xs text-gray-400 line-clamp-3">Ерен Єгер приймає фінальне рішення, що визначить долю всього людства у завершальній частині епічної саги.</p>
+                </div>
+              </div>
+              <div class="relative overflow-hidden rounded-xl">
+                <img src="https://placehold.co/240x340/1e293b/94a3b8?text=Attack+on+Titan" alt="Attack on Titan" class="w-full aspect-[3/4] object-cover group-hover:scale-105 transition-transform duration-300">
+                <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
+                <div class="absolute top-2 left-2 px-2 py-0.5 bg-cyan-500 text-white text-xs font-bold rounded">9.0</div>
+                <div class="absolute bottom-2 left-2 right-2 flex justify-between items-center">
+                  <span class="px-2 py-0.5 bg-slate-800/80 backdrop-blur-sm text-xs rounded">ТБ</span>
+                  <span class="px-2 py-0.5 bg-blue-500/80 backdrop-blur-sm text-xs rounded">Завершено</span>
+                </div>
+              </div>
+              <div class="absolute bottom-2 right-2 z-10 opacity-0 group-hover:opacity-100 transition-opacity list-menu-container">
+                <div class="relative">
+                  <button type="button" onclick="toggleListMenu(event, this)" class="w-8 h-8 bg-slate-900/90 backdrop-blur-sm rounded-lg flex items-center justify-center hover:bg-cyan-500 transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" /></svg>
+                  </button>
+                  <div class="list-dropdown hidden absolute bottom-full right-0 mb-2 w-44 bg-slate-800 border border-slate-700 rounded-xl shadow-2xl overflow-hidden" onclick="event.stopPropagation()">
+                    <button type="button" class="w-full px-4 py-2.5 text-left text-sm text-gray-300 hover:bg-slate-700 hover:text-cyan-400 transition-colors flex items-center gap-3"><span class="text-cyan-400">▶</span> Дивлюсь</button>
+                    <button type="button" class="w-full px-4 py-2.5 text-left text-sm text-gray-300 hover:bg-slate-700 hover:text-cyan-400 transition-colors flex items-center gap-3"><span class="text-amber-400">📋</span> Заплановано</button>
+                    <button type="button" class="w-full px-4 py-2.5 text-left text-sm text-gray-300 hover:bg-slate-700 hover:text-cyan-400 transition-colors flex items-center gap-3"><span class="text-green-400">✓</span> Переглянуто</button>
+                    <button type="button" class="w-full px-4 py-2.5 text-left text-sm text-gray-300 hover:bg-slate-700 hover:text-cyan-400 transition-colors flex items-center gap-3"><span class="text-red-400">✗</span> Кинув</button>
+                    <div class="border-t border-slate-700"></div>
+                    <button type="button" class="w-full px-4 py-2.5 text-left text-sm text-gray-300 hover:bg-slate-700 hover:text-red-400 transition-colors flex items-center gap-3"><span class="text-red-400">♥</span> Улюблене</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <h3 class="font-semibold text-gray-200 group-hover:text-cyan-400 transition-colors line-clamp-2 mb-1">Атака Титанів: Фінал</h3>
+            <p class="text-sm text-gray-500">16 еп. | Осінь 2023</p>
+          </a>
+          <!-- Card 7 -->
+          <a href="{{ route('anime.show', 'example-slug') }}" class="group">
+            <div class="relative mb-3">
+              <div class="absolute left-full top-0 ml-2 w-64 z-50 opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-all delay-300 duration-200">
+                <div class="bg-slate-800 border border-slate-700 rounded-xl shadow-2xl p-4">
+                  <h4 class="font-semibold text-gray-200 mb-1">Spy x Family S2</h4>
+                  <p class="text-xs text-gray-500 mb-3">WIT/CloverWorks • Осінь 2023</p>
+                  <div class="flex items-center gap-3 mb-3 text-sm flex-wrap">
+                    <span class="text-cyan-400 font-bold">★ 8.7</span><span class="text-gray-400">ТБ</span><span class="text-gray-400">12 еп.</span>
+                    <span class="px-2 py-0.5 bg-blue-500/20 text-blue-400 rounded text-xs">Завершено</span>
+                  </div>
+                  <div class="flex flex-wrap gap-1 mb-3">
+                    <span class="px-2 py-0.5 bg-cyan-500/20 text-cyan-400 rounded text-xs">Екшн</span>
+                    <span class="px-2 py-0.5 bg-purple-500/20 text-purple-400 rounded text-xs">Комедія</span>
+                    <span class="px-2 py-0.5 bg-pink-500/20 text-pink-400 rounded text-xs">Сім'я</span>
+                  </div>
+                  <p class="text-xs text-gray-400 line-clamp-3">Шпигун, вбивця та телепат продовжують жити як фальшива сім'я. Новий сезон, нові кумедні пригоди родини Форджерів.</p>
+                </div>
+              </div>
+              <div class="relative overflow-hidden rounded-xl">
+                <img src="https://placehold.co/240x340/1e293b/94a3b8?text=Spy+x+Family" alt="Spy x Family" class="w-full aspect-[3/4] object-cover group-hover:scale-105 transition-transform duration-300">
+                <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
+                <div class="absolute top-2 left-2 px-2 py-0.5 bg-cyan-500 text-white text-xs font-bold rounded">8.7</div>
+                <div class="absolute bottom-2 left-2 right-2 flex justify-between items-center">
+                  <span class="px-2 py-0.5 bg-slate-800/80 backdrop-blur-sm text-xs rounded">ТБ</span>
+                  <span class="px-2 py-0.5 bg-blue-500/80 backdrop-blur-sm text-xs rounded">Завершено</span>
+                </div>
+              </div>
+              <div class="absolute bottom-2 right-2 z-10 opacity-0 group-hover:opacity-100 transition-opacity list-menu-container">
+                <div class="relative">
+                  <button type="button" onclick="toggleListMenu(event, this)" class="w-8 h-8 bg-slate-900/90 backdrop-blur-sm rounded-lg flex items-center justify-center hover:bg-cyan-500 transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" /></svg>
+                  </button>
+                  <div class="list-dropdown hidden absolute bottom-full right-0 mb-2 w-44 bg-slate-800 border border-slate-700 rounded-xl shadow-2xl overflow-hidden" onclick="event.stopPropagation()">
+                    <button type="button" class="w-full px-4 py-2.5 text-left text-sm text-gray-300 hover:bg-slate-700 hover:text-cyan-400 transition-colors flex items-center gap-3"><span class="text-cyan-400">▶</span> Дивлюсь</button>
+                    <button type="button" class="w-full px-4 py-2.5 text-left text-sm text-gray-300 hover:bg-slate-700 hover:text-cyan-400 transition-colors flex items-center gap-3"><span class="text-amber-400">📋</span> Заплановано</button>
+                    <button type="button" class="w-full px-4 py-2.5 text-left text-sm text-gray-300 hover:bg-slate-700 hover:text-cyan-400 transition-colors flex items-center gap-3"><span class="text-green-400">✓</span> Переглянуто</button>
+                    <button type="button" class="w-full px-4 py-2.5 text-left text-sm text-gray-300 hover:bg-slate-700 hover:text-cyan-400 transition-colors flex items-center gap-3"><span class="text-red-400">✗</span> Кинув</button>
+                    <div class="border-t border-slate-700"></div>
+                    <button type="button" class="w-full px-4 py-2.5 text-left text-sm text-gray-300 hover:bg-slate-700 hover:text-red-400 transition-colors flex items-center gap-3"><span class="text-red-400">♥</span> Улюблене</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <h3 class="font-semibold text-gray-200 group-hover:text-cyan-400 transition-colors line-clamp-2 mb-1">Spy x Family S2</h3>
+            <p class="text-sm text-gray-500">12 еп. | Осінь 2023</p>
+          </a>
+          <!-- Card 8 -->
+          <a href="{{ route('anime.show', 'example-slug') }}" class="group">
+            <div class="relative mb-3">
+              <div class="absolute left-full top-0 ml-2 w-64 z-50 opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-all delay-300 duration-200">
+                <div class="bg-slate-800 border border-slate-700 rounded-xl shadow-2xl p-4">
+                  <h4 class="font-semibold text-gray-200 mb-1">Людина-бензопила</h4>
+                  <p class="text-xs text-gray-500 mb-3">MAPPA • Осінь 2022</p>
+                  <div class="flex items-center gap-3 mb-3 text-sm flex-wrap">
+                    <span class="text-cyan-400 font-bold">★ 8.6</span><span class="text-gray-400">ТБ</span><span class="text-gray-400">12 еп.</span>
+                    <span class="px-2 py-0.5 bg-blue-500/20 text-blue-400 rounded text-xs">Завершено</span>
+                  </div>
+                  <div class="flex flex-wrap gap-1 mb-3">
+                    <span class="px-2 py-0.5 bg-cyan-500/20 text-cyan-400 rounded text-xs">Екшн</span>
+                    <span class="px-2 py-0.5 bg-purple-500/20 text-purple-400 rounded text-xs">Жахи</span>
+                    <span class="px-2 py-0.5 bg-pink-500/20 text-pink-400 rounded text-xs">Надприродне</span>
+                  </div>
+                  <p class="text-xs text-gray-400 line-clamp-3">Денджі стає Людиною-бензопилою і приєднується до урядової організації мисливців на демонів. Кров, хаос та нестандартний герой.</p>
+                </div>
+              </div>
+              <div class="relative overflow-hidden rounded-xl">
+                <img src="https://placehold.co/240x340/1e293b/94a3b8?text=Chainsaw+Man" alt="Chainsaw Man" class="w-full aspect-[3/4] object-cover group-hover:scale-105 transition-transform duration-300">
+                <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
+                <div class="absolute top-2 left-2 px-2 py-0.5 bg-cyan-500 text-white text-xs font-bold rounded">8.6</div>
+                <div class="absolute bottom-2 left-2 right-2 flex justify-between items-center">
+                  <span class="px-2 py-0.5 bg-slate-800/80 backdrop-blur-sm text-xs rounded">ТБ</span>
+                  <span class="px-2 py-0.5 bg-blue-500/80 backdrop-blur-sm text-xs rounded">Завершено</span>
+                </div>
+              </div>
+              <div class="absolute bottom-2 right-2 z-10 opacity-0 group-hover:opacity-100 transition-opacity list-menu-container">
+                <div class="relative">
+                  <button type="button" onclick="toggleListMenu(event, this)" class="w-8 h-8 bg-slate-900/90 backdrop-blur-sm rounded-lg flex items-center justify-center hover:bg-cyan-500 transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" /></svg>
+                  </button>
+                  <div class="list-dropdown hidden absolute bottom-full right-0 mb-2 w-44 bg-slate-800 border border-slate-700 rounded-xl shadow-2xl overflow-hidden" onclick="event.stopPropagation()">
+                    <button type="button" class="w-full px-4 py-2.5 text-left text-sm text-gray-300 hover:bg-slate-700 hover:text-cyan-400 transition-colors flex items-center gap-3"><span class="text-cyan-400">▶</span> Дивлюсь</button>
+                    <button type="button" class="w-full px-4 py-2.5 text-left text-sm text-gray-300 hover:bg-slate-700 hover:text-cyan-400 transition-colors flex items-center gap-3"><span class="text-amber-400">📋</span> Заплановано</button>
+                    <button type="button" class="w-full px-4 py-2.5 text-left text-sm text-gray-300 hover:bg-slate-700 hover:text-cyan-400 transition-colors flex items-center gap-3"><span class="text-green-400">✓</span> Переглянуто</button>
+                    <button type="button" class="w-full px-4 py-2.5 text-left text-sm text-gray-300 hover:bg-slate-700 hover:text-cyan-400 transition-colors flex items-center gap-3"><span class="text-red-400">✗</span> Кинув</button>
+                    <div class="border-t border-slate-700"></div>
+                    <button type="button" class="w-full px-4 py-2.5 text-left text-sm text-gray-300 hover:bg-slate-700 hover:text-red-400 transition-colors flex items-center gap-3"><span class="text-red-400">♥</span> Улюблене</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <h3 class="font-semibold text-gray-200 group-hover:text-cyan-400 transition-colors line-clamp-2 mb-1">Людина-бензопила</h3>
+            <p class="text-sm text-gray-500">12 еп. | Осінь 2022</p>
+          </a>
+          <!-- Card 9 -->
+          <a href="{{ route('anime.show', 'example-slug') }}" class="group">
+            <div class="relative mb-3">
+              <div class="absolute left-full top-0 ml-2 w-64 z-50 opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-all delay-300 duration-200">
+                <div class="bg-slate-800 border border-slate-700 rounded-xl shadow-2xl p-4">
+                  <h4 class="font-semibold text-gray-200 mb-1">Віолетта Евергарден</h4>
+                  <p class="text-xs text-gray-500 mb-3">Kyoto Animation • Зима 2018</p>
+                  <div class="flex items-center gap-3 mb-3 text-sm flex-wrap">
+                    <span class="text-cyan-400 font-bold">★ 9.0</span><span class="text-gray-400">ТБ</span><span class="text-gray-400">13 еп.</span>
+                    <span class="px-2 py-0.5 bg-blue-500/20 text-blue-400 rounded text-xs">Завершено</span>
+                  </div>
+                  <div class="flex flex-wrap gap-1 mb-3">
+                    <span class="px-2 py-0.5 bg-cyan-500/20 text-cyan-400 rounded text-xs">Драма</span>
+                    <span class="px-2 py-0.5 bg-purple-500/20 text-purple-400 rounded text-xs">Фентезі</span>
+                    <span class="px-2 py-0.5 bg-pink-500/20 text-pink-400 rounded text-xs">Повсякденність</span>
+                  </div>
+                  <p class="text-xs text-gray-400 line-clamp-3">Колишня дитина-солдат Віолетта шукає сенс слів «Я кохаю тебе», працюючи автоспогадовою лялькою.</p>
+                </div>
+              </div>
+              <div class="relative overflow-hidden rounded-xl">
+                <img src="https://placehold.co/240x340/1e293b/94a3b8?text=Violet" alt="Violet Evergarden" class="w-full aspect-[3/4] object-cover group-hover:scale-105 transition-transform duration-300">
+                <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
+                <div class="absolute top-2 left-2 px-2 py-0.5 bg-cyan-500 text-white text-xs font-bold rounded">9.0</div>
+                <div class="absolute bottom-2 left-2 right-2 flex justify-between items-center">
+                  <span class="px-2 py-0.5 bg-slate-800/80 backdrop-blur-sm text-xs rounded">ТБ</span>
+                  <span class="px-2 py-0.5 bg-blue-500/80 backdrop-blur-sm text-xs rounded">Завершено</span>
+                </div>
+              </div>
+              <div class="absolute bottom-2 right-2 z-10 opacity-0 group-hover:opacity-100 transition-opacity list-menu-container">
+                <div class="relative">
+                  <button type="button" onclick="toggleListMenu(event, this)" class="w-8 h-8 bg-slate-900/90 backdrop-blur-sm rounded-lg flex items-center justify-center hover:bg-cyan-500 transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" /></svg>
+                  </button>
+                  <div class="list-dropdown hidden absolute bottom-full right-0 mb-2 w-44 bg-slate-800 border border-slate-700 rounded-xl shadow-2xl overflow-hidden" onclick="event.stopPropagation()">
+                    <button type="button" class="w-full px-4 py-2.5 text-left text-sm text-gray-300 hover:bg-slate-700 hover:text-cyan-400 transition-colors flex items-center gap-3"><span class="text-cyan-400">▶</span> Дивлюсь</button>
+                    <button type="button" class="w-full px-4 py-2.5 text-left text-sm text-gray-300 hover:bg-slate-700 hover:text-cyan-400 transition-colors flex items-center gap-3"><span class="text-amber-400">📋</span> Заплановано</button>
+                    <button type="button" class="w-full px-4 py-2.5 text-left text-sm text-gray-300 hover:bg-slate-700 hover:text-cyan-400 transition-colors flex items-center gap-3"><span class="text-green-400">✓</span> Переглянуто</button>
+                    <button type="button" class="w-full px-4 py-2.5 text-left text-sm text-gray-300 hover:bg-slate-700 hover:text-cyan-400 transition-colors flex items-center gap-3"><span class="text-red-400">✗</span> Кинув</button>
+                    <div class="border-t border-slate-700"></div>
+                    <button type="button" class="w-full px-4 py-2.5 text-left text-sm text-gray-300 hover:bg-slate-700 hover:text-red-400 transition-colors flex items-center gap-3"><span class="text-red-400">♥</span> Улюблене</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <h3 class="font-semibold text-gray-200 group-hover:text-cyan-400 transition-colors line-clamp-2 mb-1">Віолетта Евергарден</h3>
+            <p class="text-sm text-gray-500">13 еп. | Зима 2018</p>
+          </a>
+          <!-- Card 10 -->
+          <a href="{{ route('anime.show', 'example-slug') }}" class="group">
+            <div class="relative mb-3">
+              <div class="absolute left-full top-0 ml-2 w-64 z-50 opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-all delay-300 duration-200">
+                <div class="bg-slate-800 border border-slate-700 rounded-xl shadow-2xl p-4">
+                  <h4 class="font-semibold text-gray-200 mb-1">Oshi no Ko S2</h4>
+                  <p class="text-xs text-gray-500 mb-3">Doga Kobo • Літо 2024</p>
+                  <div class="flex items-center gap-3 mb-3 text-sm flex-wrap">
+                    <span class="text-cyan-400 font-bold">★ 8.7</span><span class="text-gray-400">ТБ</span><span class="text-gray-400">13 еп.</span>
+                    <span class="px-2 py-0.5 bg-blue-500/20 text-blue-400 rounded text-xs">Завершено</span>
+                  </div>
+                  <div class="flex flex-wrap gap-1 mb-3">
+                    <span class="px-2 py-0.5 bg-cyan-500/20 text-cyan-400 rounded text-xs">Драма</span>
+                    <span class="px-2 py-0.5 bg-purple-500/20 text-purple-400 rounded text-xs">Надприродне</span>
+                    <span class="px-2 py-0.5 bg-pink-500/20 text-pink-400 rounded text-xs">Реінкарнація</span>
+                  </div>
+                  <p class="text-xs text-gray-400 line-clamp-3">Аква поринає глибше в темну сторону індустрії розваг Японії, розслідуючи смерть своєї матері-ідолки.</p>
+                </div>
+              </div>
+              <div class="relative overflow-hidden rounded-xl">
+                <img src="https://placehold.co/240x340/1e293b/94a3b8?text=Oshi+no+Ko" alt="Oshi no Ko" class="w-full aspect-[3/4] object-cover group-hover:scale-105 transition-transform duration-300">
+                <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
+                <div class="absolute top-2 left-2 px-2 py-0.5 bg-cyan-500 text-white text-xs font-bold rounded">8.7</div>
+                <div class="absolute bottom-2 left-2 right-2 flex justify-between items-center">
+                  <span class="px-2 py-0.5 bg-slate-800/80 backdrop-blur-sm text-xs rounded">ТБ</span>
+                  <span class="px-2 py-0.5 bg-blue-500/80 backdrop-blur-sm text-xs rounded">Завершено</span>
+                </div>
+              </div>
+              <div class="absolute bottom-2 right-2 z-10 opacity-0 group-hover:opacity-100 transition-opacity list-menu-container">
+                <div class="relative">
+                  <button type="button" onclick="toggleListMenu(event, this)" class="w-8 h-8 bg-slate-900/90 backdrop-blur-sm rounded-lg flex items-center justify-center hover:bg-cyan-500 transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" /></svg>
+                  </button>
+                  <div class="list-dropdown hidden absolute bottom-full right-0 mb-2 w-44 bg-slate-800 border border-slate-700 rounded-xl shadow-2xl overflow-hidden" onclick="event.stopPropagation()">
+                    <button type="button" class="w-full px-4 py-2.5 text-left text-sm text-gray-300 hover:bg-slate-700 hover:text-cyan-400 transition-colors flex items-center gap-3"><span class="text-cyan-400">▶</span> Дивлюсь</button>
+                    <button type="button" class="w-full px-4 py-2.5 text-left text-sm text-gray-300 hover:bg-slate-700 hover:text-cyan-400 transition-colors flex items-center gap-3"><span class="text-amber-400">📋</span> Заплановано</button>
+                    <button type="button" class="w-full px-4 py-2.5 text-left text-sm text-gray-300 hover:bg-slate-700 hover:text-cyan-400 transition-colors flex items-center gap-3"><span class="text-green-400">✓</span> Переглянуто</button>
+                    <button type="button" class="w-full px-4 py-2.5 text-left text-sm text-gray-300 hover:bg-slate-700 hover:text-cyan-400 transition-colors flex items-center gap-3"><span class="text-red-400">✗</span> Кинув</button>
+                    <div class="border-t border-slate-700"></div>
+                    <button type="button" class="w-full px-4 py-2.5 text-left text-sm text-gray-300 hover:bg-slate-700 hover:text-red-400 transition-colors flex items-center gap-3"><span class="text-red-400">♥</span> Улюблене</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <h3 class="font-semibold text-gray-200 group-hover:text-cyan-400 transition-colors line-clamp-2 mb-1">Oshi no Ko S2</h3>
+            <p class="text-sm text-gray-500">13 еп. | Літо 2024</p>
+          </a>
+        </div>
+
+        <!-- Pagination -->
+        <div class="flex justify-center mt-10">
+          <nav class="flex items-center gap-2">
+            <button class="w-10 h-10 flex items-center justify-center rounded-lg bg-slate-800 text-gray-400 hover:bg-slate-700 hover:text-white transition-colors">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+              </svg>
+            </button>
+            <button class="w-10 h-10 flex items-center justify-center rounded-lg bg-cyan-500 text-white font-medium">1</button>
+            <button class="w-10 h-10 flex items-center justify-center rounded-lg bg-slate-800 text-gray-300 hover:bg-slate-700 transition-colors">2</button>
+            <button class="w-10 h-10 flex items-center justify-center rounded-lg bg-slate-800 text-gray-300 hover:bg-slate-700 transition-colors">3</button>
+            <button class="w-10 h-10 flex items-center justify-center rounded-lg bg-slate-800 text-gray-300 hover:bg-slate-700 transition-colors">4</button>
+            <span class="text-gray-500 px-2">...</span>
+            <button class="w-10 h-10 flex items-center justify-center rounded-lg bg-slate-800 text-gray-300 hover:bg-slate-700 transition-colors">422</button>
+            <button class="w-10 h-10 flex items-center justify-center rounded-lg bg-slate-800 text-gray-400 hover:bg-slate-700 hover:text-white transition-colors">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+              </svg>
+            </button>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+@endsection
+
+@push('scripts')
+<script>
+    function toggleListMenu(e, btn) {
+      e.preventDefault();
+      e.stopPropagation();
+      const menu = btn.nextElementSibling;
+      const isHidden = menu.classList.contains('hidden');
+      document.querySelectorAll('.list-dropdown').forEach(m => m.classList.add('hidden'));
+      if (isHidden) { menu.classList.remove('hidden'); }
+    }
+    document.addEventListener('click', function(e) {
+      if (!e.target.closest('.list-menu-container')) {
+        document.querySelectorAll('.list-dropdown').forEach(m => m.classList.add('hidden'));
+      }
+    });
+</script>
+@endpush

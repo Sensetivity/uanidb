@@ -1,8 +1,5 @@
 <?php
 
-//use App\Feature\Transliterator\JapaneseToUkrainianTransliterator;
-use App\Feature\Transliterator\TransliterationService;
-use App\Services\AnimeImport\AnimeImportService;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,31 +13,36 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Home
+Route::get('/', fn () => view('main.pages.home'))->name('home');
 
-Route::get('/t', function () {
-    $text = 'watashi wa nihongo o benkyou shiteimasu';
+// Anime
+Route::get('/anime', fn () => view('main.pages.anime.index'))->name('anime.index');
+Route::get('/anime/search', fn () => view('main.pages.anime.search'))->name('anime.search');
+Route::get('/anime/calendar', fn () => view('main.pages.anime.calendar'))->name('anime.calendar');
+Route::get('/anime/list-view', fn () => view('main.pages.anime.list-view'))->name('anime.list-view');
+Route::get('/anime/{slug}', fn () => view('main.pages.anime.show'))->name('anime.show');
 
-    /**
-     * @var TransliterationService $service
-     */
-    $service = app(TransliterationService::class);
-    //    $service2 = app(JapaneseToUkrainianTransliterator::class);
+// Characters
+Route::get('/characters', fn () => view('main.pages.characters.index'))->name('characters.index');
+Route::get('/characters/{slug}', fn () => view('main.pages.characters.show'))->name('characters.show');
 
+// People (voice actors)
+Route::get('/people', fn () => view('main.pages.people.index'))->name('people.index');
+Route::get('/people/{slug}', fn () => view('main.pages.people.show'))->name('people.show');
 
-    echo 'Service 1:' . PHP_EOL . '<br/>';
-    echo 'Оригінальний текст: ' . $text . PHP_EOL . '<br/>';
-    echo 'Результат: ' . $service->transliterate($text);
+// Studios
+Route::get('/studios', fn () => view('main.pages.studios.index'))->name('studios.index');
+Route::get('/studios/{slug}', fn () => view('main.pages.studios.show'))->name('studios.show');
 
-    //    echo 'Service 2:' . PHP_EOL;
-    //// Результат: "ваташі ва ніхонґо о бенкйоу шітеймасу"
-    //    echo $service2->setMap('r2ua')->transliterate('watashi wa nihongo o benkyou shiteimasu');
-});
+// Rankings & Seasons
+Route::get('/rankings', fn () => view('main.pages.rankings'))->name('rankings');
+Route::get('/seasons', fn () => view('main.pages.seasons'))->name('seasons');
 
-Route::get('/i', function () {
-    $service = app(AnimeImportService::class);
-    $anime = $service->importSeasonalAnime(2024, 'winter', true);
-    //    $anime = $service->importAnimeByMalId(51711, true);
-});
+// Profile
+Route::get('/profile', fn () => view('main.pages.profile'))->name('profile');
+
+// Auth
+Route::get('/login', fn () => view('main.auth.login'))->name('login');
+Route::get('/register', fn () => view('main.auth.register'))->name('register');
+Route::get('/password/reset', fn () => view('main.auth.reset-password'))->name('password.reset');
