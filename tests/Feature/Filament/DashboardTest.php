@@ -59,7 +59,7 @@ class DashboardTest extends TestCase
     {
         parent::setUp();
 
-        $this->admin = User::factory()->create(['is_admin' => true]);
+        $this->admin = User::factory()->admin()->create();
         $this->actingAs($this->admin);
     }
 }

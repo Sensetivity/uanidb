@@ -1,0 +1,3 @@
+CREATE DATABASE IF NOT EXISTS uanidb_dusk;
+GRANT ALL PRIVILEGES ON uanidb_dusk.* TO 'uanidb'@'%';
+FLUSH PRIVILEGES;

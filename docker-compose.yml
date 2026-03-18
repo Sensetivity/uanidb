@@ -93,6 +93,17 @@ services:
         profiles:
             - dev
 
+    # Selenium Chrome for Dusk E2E Tests
+    selenium:
+        image: selenium/standalone-chromium:latest
+        container_name: uanidb-selenium
+        volumes:
+            - /dev/shm:/dev/shm
+        networks:
+            - uanidb-network
+        profiles:
+            - test
+
     # Mailpit for Email Testing
     mailpit:
         image: axllent/mailpit

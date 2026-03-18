@@ -24,5 +24,9 @@ yarn-error.log
 /.ai/
 /.claude/
 /tests/screenshots/
+/tests/Browser/screenshots
+/tests/Browser/console
+/tests/Browser/source
+.env.dusk.local
 /.playwright-cli/
 /.playwright/
