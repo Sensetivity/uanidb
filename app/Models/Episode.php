@@ -10,6 +10,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
+use Spatie\Activitylog\LogOptions;
+use Spatie\Activitylog\Traits\LogsActivity;
 
 /**
  * Class Episode
@@ -44,6 +46,7 @@ use Illuminate\Database\Eloquent\Relations\MorphMany;
 class Episode extends BaseModel
 {
     use HasFactory;
+    use LogsActivity;
     use Sluggable;
 
     /**
@@ -91,6 +94,13 @@ class Episode extends BaseModel
     public function comments(): MorphMany
     {
         return $this->morphMany(Comment::class, 'commentable');
+    }
+
+    public function getActivitylogOptions(): LogOptions
+    {
+        return LogOptions::defaults()
+            ->logOnly(['*'])
+            ->logOnlyDirty();
     }
 
     /**

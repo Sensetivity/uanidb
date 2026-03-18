@@ -5,10 +5,13 @@ namespace App\Models;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Spatie\Activitylog\LogOptions;
+use Spatie\Activitylog\Traits\LogsActivity;
 
 class Studio extends BaseModel
 {
     use HasFactory;
+    use LogsActivity;
     use Sluggable;
 
     /**
@@ -20,6 +23,13 @@ class Studio extends BaseModel
             ->withPivot('role', 'is_main', 'order', 'notes')
             ->wherePivot('is_main', true)
             ->withTimestamps();
+    }
+
+    public function getActivitylogOptions(): LogOptions
+    {
+        return LogOptions::defaults()
+            ->logOnly(['*'])
+            ->logOnlyDirty();
     }
 
     /**

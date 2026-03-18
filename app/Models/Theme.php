@@ -5,10 +5,14 @@ namespace App\Models;
 use App\Enums\ThemeType;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Spatie\Activitylog\LogOptions;
+use Spatie\Activitylog\Traits\LogsActivity;
 
 class Theme extends Model
 {
     use HasFactory;
+    use LogsActivity;
 
     protected $attributes = [
         'type' => ThemeType::NonClassified,
@@ -38,4 +42,20 @@ class Theme extends Model
      * @var string
      */
     protected $table = 'themes';
+
+    /**
+     * Get all animes that belong to this theme.
+     */
+    public function animes(): BelongsToMany
+    {
+        return $this->belongsToMany(Anime::class, 'anime_theme')
+            ->withTimestamps();
+    }
+
+    public function getActivitylogOptions(): LogOptions
+    {
+        return LogOptions::defaults()
+            ->logOnly(['*'])
+            ->logOnlyDirty();
+    }
 }
