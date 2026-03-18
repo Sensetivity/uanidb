@@ -2,8 +2,11 @@
 
 namespace App\Jobs;
 
+use App\Enums\ImportJobTypeEnum;
+use App\Enums\ImportStatusEnum;
 use App\Jobs\Middleware\JikanRateLimitMiddleware;
 use App\Models\Anime;
+use App\Models\ImportLog;
 use App\Services\AnimeImport\AnimeImportService;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -42,19 +45,38 @@ class ImportEpisodesJob implements ShouldQueue
      */
     public function handle(AnimeImportService $importService): void
     {
-        Log::info("ImportEpisodesJob: Starting for anime ID {$this->animeId}.");
+        $anime = Anime::query()->find($this->animeId);
 
-        $anime = Anime::find($this->animeId);
+        $importLog = ImportLog::query()->create([
+            'job_type' => ImportJobTypeEnum::ImportEpisodes,
+            'anime_id' => $anime?->id,
+            'mal_id' => $anime?->mal_id,
+            'status' => ImportStatusEnum::Pending,
+        ]);
 
-        if (!$anime) {
-            Log::warning("ImportEpisodesJob: Anime ID {$this->animeId} not found.");
+        $importLog->markAsRunning();
 
-            return;
+        try {
+            Log::info("ImportEpisodesJob: Starting for anime ID {$this->animeId}.");
+
+            if (! $anime) {
+                Log::warning("ImportEpisodesJob: Anime ID {$this->animeId} not found.");
+                $importLog->markAsCompleted();
+
+                return;
+            }
+
+            $importService->importEpisodes($anime);
+
+            Log::info("ImportEpisodesJob: Completed for '{$anime->title}' (ID: {$anime->id}).");
+
+            $importLog->markAsCompleted();
+        } catch (\Throwable $e) {
+            Log::error("ImportEpisodesJob: Failed for anime ID {$this->animeId}: {$e->getMessage()}");
+            $importLog->markAsFailed($e->getMessage());
+
+            throw $e;
         }
-
-        $importService->importEpisodes($anime);
-
-        Log::info("ImportEpisodesJob: Completed for '{$anime->title}' (ID: {$anime->id}).");
     }
 
     /**
