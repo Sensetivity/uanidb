@@ -82,7 +82,7 @@ return [
     |
     */
 
-    'locale' => 'en',
+    'locale' => 'uk',
 
     /*
     |--------------------------------------------------------------------------
@@ -199,6 +199,7 @@ return [
         App\Providers\TelescopeServiceProvider::class,
         App\Providers\AnimeImportServiceProvider::class,
         App\Providers\TranslationServiceProvider::class,
+        App\Providers\TransliterationServiceProvider::class,
         App\Providers\TitleImportServiceProvider::class,
 
     ],
