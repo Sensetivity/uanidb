@@ -13,17 +13,17 @@
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z" />
             </svg>
           </div>
-          <h1 class="text-2xl font-bold mb-2">Забули пароль?</h1>
+          <h1 class="text-2xl font-bold font-display mb-2">Забули пароль?</h1>
           <p class="text-gray-400">Введіть email, пов'язаний з вашим акаунтом, і ми надішлемо інструкції для відновлення</p>
         </div>
 
         <!-- Request Form -->
         <form class="space-y-5">
           <div>
-            <label class="block text-sm text-gray-400 mb-2">Email</label>
-            <input type="email" placeholder="your@email.com" class="w-full py-3 px-4 rounded-xl bg-slate-800 border border-slate-700 text-gray-100 placeholder-gray-500 focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 transition-all">
+            <label for="reset-email" class="block text-sm text-gray-400 mb-2">Email</label>
+            <input id="reset-email" type="email" name="email" autocomplete="email" placeholder="your@email.com" class="w-full py-3 px-4 rounded-xl bg-slate-800 border border-slate-700 text-gray-100 placeholder-gray-400 focus:outline-none focus:border-cyan-500 focus:ring-2 focus:ring-cyan-500 transition-all">
           </div>
-          <button type="submit" class="w-full py-3 bg-gradient-to-r from-cyan-500 to-purple-600 rounded-xl font-semibold hover:opacity-90 transition-opacity">
+          <button type="submit" class="w-full py-3 bg-gradient-to-r from-cyan-500 to-purple-600 rounded-xl font-semibold hover:opacity-90 transition-opacity focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:ring-offset-2 focus:ring-offset-slate-900">
             Надіслати інструкції
           </button>
         </form>
@@ -48,7 +48,7 @@
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
             </svg>
           </div>
-          <h1 class="text-2xl font-bold mb-2">Перевірте пошту</h1>
+          <h1 class="text-2xl font-bold font-display mb-2">Перевірте пошту</h1>
           <p class="text-gray-400">Ми надіслали інструкції для відновлення паролю на <span class="text-gray-200">your@email.com</span></p>
         </div>
 
@@ -77,18 +77,18 @@
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
             </svg>
           </div>
-          <h1 class="text-2xl font-bold mb-2">Новий пароль</h1>
+          <h1 class="text-2xl font-bold font-display mb-2">Новий пароль</h1>
           <p class="text-gray-400">Створіть новий надійний пароль для вашого акаунту</p>
         </div>
 
         <!-- New Password Form -->
         <form class="space-y-5">
           <div>
-            <label class="block text-sm text-gray-400 mb-2">Новий пароль</label>
+            <label for="new-password" class="block text-sm text-gray-400 mb-2">Новий пароль</label>
             <div class="relative">
-              <input type="password" placeholder="Мінімум 8 символів" class="w-full py-3 px-4 pr-12 rounded-xl bg-slate-800 border border-slate-700 text-gray-100 placeholder-gray-500 focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 transition-all">
-              <button type="button" class="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-300 transition-colors">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <input id="new-password" type="password" name="password" autocomplete="new-password" placeholder="Мінімум 8 символів" class="w-full py-3 px-4 pr-12 rounded-xl bg-slate-800 border border-slate-700 text-gray-100 placeholder-gray-400 focus:outline-none focus:border-cyan-500 focus:ring-2 focus:ring-cyan-500 transition-all">
+              <button type="button" class="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-300 transition-colors focus:outline-none focus:text-gray-300" aria-label="Показати пароль">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
                 </svg>
@@ -123,10 +123,10 @@
             </div>
           </div>
           <div>
-            <label class="block text-sm text-gray-400 mb-2">Підтвердіть пароль</label>
-            <input type="password" placeholder="Повторіть новий пароль" class="w-full py-3 px-4 rounded-xl bg-slate-800 border border-slate-700 text-gray-100 placeholder-gray-500 focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 transition-all">
+            <label for="new-password-confirm" class="block text-sm text-gray-400 mb-2">Підтвердіть пароль</label>
+            <input id="new-password-confirm" type="password" name="password_confirmation" autocomplete="new-password" placeholder="Повторіть новий пароль" class="w-full py-3 px-4 rounded-xl bg-slate-800 border border-slate-700 text-gray-100 placeholder-gray-400 focus:outline-none focus:border-cyan-500 focus:ring-2 focus:ring-cyan-500 transition-all">
           </div>
-          <button type="submit" class="w-full py-3 bg-gradient-to-r from-cyan-500 to-purple-600 rounded-xl font-semibold hover:opacity-90 transition-opacity">
+          <button type="submit" class="w-full py-3 bg-gradient-to-r from-cyan-500 to-purple-600 rounded-xl font-semibold hover:opacity-90 transition-opacity focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:ring-offset-2 focus:ring-offset-slate-900">
             Зберегти пароль
           </button>
         </form>
@@ -141,7 +141,7 @@
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
           </div>
-          <h1 class="text-2xl font-bold mb-2">Пароль змінено!</h1>
+          <h1 class="text-2xl font-bold font-display mb-2">Пароль змінено!</h1>
           <p class="text-gray-400">Ваш пароль успішно оновлено. Тепер ви можете увійти з новим паролем.</p>
         </div>
 

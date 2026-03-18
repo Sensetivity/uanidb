@@ -35,7 +35,7 @@
           <!-- Search -->
           <div class="mb-6">
             <label class="block text-sm text-gray-400 mb-2">Пошук</label>
-            <input type="text" placeholder="Назва аніме..." class="w-full py-2.5 px-4 rounded-xl bg-slate-800 border border-slate-700 text-gray-100 placeholder-gray-500 focus:outline-none focus:border-cyan-500 transition-all">
+            <input type="text" placeholder="Назва аніме..." class="w-full py-2.5 px-4 rounded-xl bg-slate-800 border border-slate-700 text-gray-100 placeholder-gray-400 focus:outline-none focus:border-cyan-500 transition-all">
           </div>
 
           <!-- Type -->
@@ -250,7 +250,7 @@
             </div>
             <a href="{{ route('anime.show', 'example-slug') }}" class="flex gap-4 bg-slate-900/50 rounded-xl p-4 pr-14 hover:bg-slate-800/50 transition-colors">
               <div class="relative flex-shrink-0 w-24 sm:w-32">
-                <img src="https://placehold.co/240x340/1e293b/94a3b8?text=Solo+Leveling" alt="Solo Leveling" class="w-full aspect-[3/4] object-cover rounded-lg">
+                <img src="https://placehold.co/240x340/1e293b/94a3b8?text=Solo+Leveling" alt="Solo Leveling" loading="lazy" class="w-full aspect-[3/4] object-cover rounded-lg">
                 <div class="absolute top-1 left-1 px-1.5 py-0.5 bg-cyan-500 text-white text-xs font-bold rounded">9.2</div>
               </div>
               <div class="flex-grow min-w-0">
@@ -312,7 +312,7 @@
             </div>
             <a href="{{ route('anime.show', 'example-slug') }}" class="flex gap-4 bg-slate-900/50 rounded-xl p-4 pr-14 hover:bg-slate-800/50 transition-colors">
               <div class="relative flex-shrink-0 w-24 sm:w-32">
-                <img src="https://placehold.co/240x340/1e293b/94a3b8?text=Jujutsu" alt="Jujutsu Kaisen" class="w-full aspect-[3/4] object-cover rounded-lg">
+                <img src="https://placehold.co/240x340/1e293b/94a3b8?text=Jujutsu" alt="Jujutsu Kaisen" loading="lazy" class="w-full aspect-[3/4] object-cover rounded-lg">
                 <div class="absolute top-1 left-1 px-1.5 py-0.5 bg-cyan-500 text-white text-xs font-bold rounded">8.9</div>
               </div>
               <div class="flex-grow min-w-0">
@@ -373,7 +373,7 @@
             </div>
             <a href="{{ route('anime.show', 'example-slug') }}" class="flex gap-4 bg-slate-900/50 rounded-xl p-4 pr-14 hover:bg-slate-800/50 transition-colors">
               <div class="relative flex-shrink-0 w-24 sm:w-32">
-                <img src="https://placehold.co/240x340/1e293b/94a3b8?text=Demon+Slayer" alt="Demon Slayer" class="w-full aspect-[3/4] object-cover rounded-lg">
+                <img src="https://placehold.co/240x340/1e293b/94a3b8?text=Demon+Slayer" alt="Demon Slayer" loading="lazy" class="w-full aspect-[3/4] object-cover rounded-lg">
                 <div class="absolute top-1 left-1 px-1.5 py-0.5 bg-cyan-500 text-white text-xs font-bold rounded">9.1</div>
               </div>
               <div class="flex-grow min-w-0">
@@ -434,7 +434,7 @@
             </div>
             <a href="{{ route('anime.show', 'example-slug') }}" class="flex gap-4 bg-slate-900/50 rounded-xl p-4 pr-14 hover:bg-slate-800/50 transition-colors">
               <div class="relative flex-shrink-0 w-24 sm:w-32">
-                <img src="https://placehold.co/240x340/1e293b/94a3b8?text=One+Piece" alt="One Piece" class="w-full aspect-[3/4] object-cover rounded-lg">
+                <img src="https://placehold.co/240x340/1e293b/94a3b8?text=One+Piece" alt="One Piece" loading="lazy" class="w-full aspect-[3/4] object-cover rounded-lg">
                 <div class="absolute top-1 left-1 px-1.5 py-0.5 bg-cyan-500 text-white text-xs font-bold rounded">8.8</div>
               </div>
               <div class="flex-grow min-w-0">
@@ -495,7 +495,7 @@
             </div>
             <a href="{{ route('anime.show', 'example-slug') }}" class="flex gap-4 bg-slate-900/50 rounded-xl p-4 pr-14 hover:bg-slate-800/50 transition-colors">
               <div class="relative flex-shrink-0 w-24 sm:w-32">
-                <img src="https://placehold.co/240x340/1e293b/94a3b8?text=Attack+on+Titan" alt="Attack on Titan" class="w-full aspect-[3/4] object-cover rounded-lg">
+                <img src="https://placehold.co/240x340/1e293b/94a3b8?text=Attack+on+Titan" alt="Attack on Titan" loading="lazy" class="w-full aspect-[3/4] object-cover rounded-lg">
                 <div class="absolute top-1 left-1 px-1.5 py-0.5 bg-cyan-500 text-white text-xs font-bold rounded">9.0</div>
               </div>
               <div class="flex-grow min-w-0">
@@ -556,7 +556,7 @@
             </div>
             <a href="{{ route('anime.show', 'example-slug') }}" class="flex gap-4 bg-slate-900/50 rounded-xl p-4 pr-14 hover:bg-slate-800/50 transition-colors">
               <div class="relative flex-shrink-0 w-24 sm:w-32">
-                <img src="https://placehold.co/240x340/1e293b/94a3b8?text=Spy+x+Family" alt="Spy x Family" class="w-full aspect-[3/4] object-cover rounded-lg">
+                <img src="https://placehold.co/240x340/1e293b/94a3b8?text=Spy+x+Family" alt="Spy x Family" loading="lazy" class="w-full aspect-[3/4] object-cover rounded-lg">
                 <div class="absolute top-1 left-1 px-1.5 py-0.5 bg-cyan-500 text-white text-xs font-bold rounded">8.7</div>
               </div>
               <div class="flex-grow min-w-0">
@@ -617,7 +617,7 @@
             </div>
             <a href="{{ route('anime.show', 'example-slug') }}" class="flex gap-4 bg-slate-900/50 rounded-xl p-4 pr-14 hover:bg-slate-800/50 transition-colors">
               <div class="relative flex-shrink-0 w-24 sm:w-32">
-                <img src="https://placehold.co/240x340/1e293b/94a3b8?text=Chainsaw+Man" alt="Chainsaw Man" class="w-full aspect-[3/4] object-cover rounded-lg">
+                <img src="https://placehold.co/240x340/1e293b/94a3b8?text=Chainsaw+Man" alt="Chainsaw Man" loading="lazy" class="w-full aspect-[3/4] object-cover rounded-lg">
                 <div class="absolute top-1 left-1 px-1.5 py-0.5 bg-cyan-500 text-white text-xs font-bold rounded">8.6</div>
               </div>
               <div class="flex-grow min-w-0">
@@ -678,7 +678,7 @@
             </div>
             <a href="{{ route('anime.show', 'example-slug') }}" class="flex gap-4 bg-slate-900/50 rounded-xl p-4 pr-14 hover:bg-slate-800/50 transition-colors">
               <div class="relative flex-shrink-0 w-24 sm:w-32">
-                <img src="https://placehold.co/240x340/1e293b/94a3b8?text=Violet" alt="Violet Evergarden" class="w-full aspect-[3/4] object-cover rounded-lg">
+                <img src="https://placehold.co/240x340/1e293b/94a3b8?text=Violet" alt="Violet Evergarden" loading="lazy" class="w-full aspect-[3/4] object-cover rounded-lg">
                 <div class="absolute top-1 left-1 px-1.5 py-0.5 bg-cyan-500 text-white text-xs font-bold rounded">9.0</div>
               </div>
               <div class="flex-grow min-w-0">
@@ -739,7 +739,7 @@
             </div>
             <a href="{{ route('anime.show', 'example-slug') }}" class="flex gap-4 bg-slate-900/50 rounded-xl p-4 pr-14 hover:bg-slate-800/50 transition-colors">
               <div class="relative flex-shrink-0 w-24 sm:w-32">
-                <img src="https://placehold.co/240x340/1e293b/94a3b8?text=Oshi+no+Ko" alt="Oshi no Ko" class="w-full aspect-[3/4] object-cover rounded-lg">
+                <img src="https://placehold.co/240x340/1e293b/94a3b8?text=Oshi+no+Ko" alt="Oshi no Ko" loading="lazy" class="w-full aspect-[3/4] object-cover rounded-lg">
                 <div class="absolute top-1 left-1 px-1.5 py-0.5 bg-cyan-500 text-white text-xs font-bold rounded">8.7</div>
               </div>
               <div class="flex-grow min-w-0">
@@ -810,19 +810,5 @@
 @endsection
 
 @push('scripts')
-<script>
-    function toggleListMenu(event, btn) {
-      event.stopPropagation();
-      const menu = btn.nextElementSibling;
-      const isOpen = !menu.classList.contains('hidden');
-      document.querySelectorAll('.list-dropdown').forEach(m => m.classList.add('hidden'));
-      if (!isOpen) menu.classList.remove('hidden');
-      menu.classList.add('list-dropdown');
-    }
-    document.addEventListener('click', function(e) {
-      if (!e.target.closest('.list-menu-container')) {
-        document.querySelectorAll('.list-dropdown').forEach(m => m.classList.add('hidden'));
-      }
-    });
-</script>
+@include('main.components.list-menu-script')
 @endpush

@@ -98,7 +98,7 @@
             </div>
             <a href="{{ route('anime.show', 'example-slug') }}" class="flex items-center gap-4 p-4 pr-14 bg-slate-800/50 rounded-2xl hover:bg-slate-800 transition-colors">
               <div class="w-12 h-12 flex items-center justify-center text-2xl font-bold text-gray-400">2</div>
-              <img src="https://placehold.co/80x110/1e293b/94a3b8?text=Steins" alt="Anime" class="w-16 h-22 object-cover rounded-lg">
+              <img src="https://placehold.co/80x110/1e293b/94a3b8?text=Steins" alt="Anime" class="w-16 h-22 object-cover rounded-lg" loading="lazy">
               <div class="flex-grow">
                 <h3 class="font-semibold text-lg text-gray-200 group-hover:text-cyan-400 transition-colors">Steins;Gate</h3>
                 <p class="text-sm text-gray-500">ТБ | 24 еп. | White Fox</p>
@@ -147,7 +147,7 @@
             </div>
             <a href="{{ route('anime.show', 'example-slug') }}" class="flex items-center gap-4 p-4 pr-14 bg-slate-800/50 rounded-2xl hover:bg-slate-800 transition-colors">
               <div class="w-12 h-12 flex items-center justify-center text-2xl font-bold text-gray-400">3</div>
-              <img src="https://placehold.co/80x110/1e293b/94a3b8?text=Gintama" alt="Anime" class="w-16 h-22 object-cover rounded-lg">
+              <img src="https://placehold.co/80x110/1e293b/94a3b8?text=Gintama" alt="Anime" class="w-16 h-22 object-cover rounded-lg" loading="lazy">
               <div class="flex-grow">
                 <h3 class="font-semibold text-lg text-gray-200 group-hover:text-cyan-400 transition-colors">Gintama: Фінал</h3>
                 <p class="text-sm text-gray-500">ТБ | 12 еп. | Bandai Namco</p>
@@ -197,7 +197,7 @@
             </div>
             <a href="{{ route('anime.show', 'example-slug') }}" class="flex items-center gap-4 p-4 pr-14 bg-slate-800/50 rounded-2xl hover:bg-slate-800 transition-colors">
               <div class="w-12 h-12 flex items-center justify-center text-2xl font-bold text-gray-400">4</div>
-              <img src="https://placehold.co/80x110/1e293b/94a3b8?text=Frieren" alt="Anime" class="w-16 h-22 object-cover rounded-lg">
+              <img src="https://placehold.co/80x110/1e293b/94a3b8?text=Frieren" alt="Anime" class="w-16 h-22 object-cover rounded-lg" loading="lazy">
               <div class="flex-grow">
                 <h3 class="font-semibold text-lg text-gray-200 group-hover:text-cyan-400 transition-colors">Frieren: Похоронний обряд</h3>
                 <p class="text-sm text-gray-500">ТБ | 28 еп. | Madhouse</p>
@@ -246,7 +246,7 @@
             </div>
             <a href="{{ route('anime.show', 'example-slug') }}" class="flex items-center gap-4 p-4 pr-14 bg-slate-800/50 rounded-2xl hover:bg-slate-800 transition-colors">
               <div class="w-12 h-12 flex items-center justify-center text-2xl font-bold text-gray-400">5</div>
-              <img src="https://placehold.co/80x110/1e293b/94a3b8?text=AoT" alt="Anime" class="w-16 h-22 object-cover rounded-lg">
+              <img src="https://placehold.co/80x110/1e293b/94a3b8?text=AoT" alt="Anime" class="w-16 h-22 object-cover rounded-lg" loading="lazy">
               <div class="flex-grow">
                 <h3 class="font-semibold text-lg text-gray-200 group-hover:text-cyan-400 transition-colors">Атака Титанів: Фінальний сезон</h3>
                 <p class="text-sm text-gray-500">ТБ | 16 еп. | MAPPA</p>
@@ -295,7 +295,7 @@
             </div>
             <a href="{{ route('anime.show', 'example-slug') }}" class="flex items-center gap-4 p-4 pr-14 bg-slate-800/50 rounded-2xl hover:bg-slate-800 transition-colors">
               <div class="w-12 h-12 flex items-center justify-center text-2xl font-bold text-gray-400">6</div>
-              <img src="https://placehold.co/80x110/1e293b/94a3b8?text=HxH" alt="Anime" class="w-16 h-22 object-cover rounded-lg">
+              <img src="https://placehold.co/80x110/1e293b/94a3b8?text=HxH" alt="Anime" class="w-16 h-22 object-cover rounded-lg" loading="lazy">
               <div class="flex-grow">
                 <h3 class="font-semibold text-lg text-gray-200 group-hover:text-cyan-400 transition-colors">Hunter x Hunter (2011)</h3>
                 <p class="text-sm text-gray-500">ТБ | 148 еп. | Madhouse</p>
@@ -339,7 +339,7 @@
             </div>
             <a href="{{ route('anime.show', 'example-slug') }}" class="flex items-center gap-4 p-4 pr-14 bg-slate-800/50 rounded-2xl hover:bg-slate-800 transition-colors">
               <div class="w-12 h-12 flex items-center justify-center text-2xl font-bold text-gray-400">7</div>
-              <img src="https://placehold.co/80x110/1e293b/94a3b8?text=Kaguya" alt="Anime" class="w-16 h-22 object-cover rounded-lg">
+              <img src="https://placehold.co/80x110/1e293b/94a3b8?text=Kaguya" alt="Anime" class="w-16 h-22 object-cover rounded-lg" loading="lazy">
               <div class="flex-grow">
                 <h3 class="font-semibold text-lg text-gray-200 group-hover:text-cyan-400 transition-colors">Kaguya-sama: Love is War S3</h3>
                 <p class="text-sm text-gray-500">ТБ | 13 еп. | A-1 Pictures</p>
@@ -383,7 +383,7 @@
             </div>
             <a href="{{ route('anime.show', 'example-slug') }}" class="flex items-center gap-4 p-4 pr-14 bg-slate-800/50 rounded-2xl hover:bg-slate-800 transition-colors">
               <div class="w-12 h-12 flex items-center justify-center text-2xl font-bold text-gray-400">8</div>
-              <img src="https://placehold.co/80x110/1e293b/94a3b8?text=Clannad" alt="Anime" class="w-16 h-22 object-cover rounded-lg">
+              <img src="https://placehold.co/80x110/1e293b/94a3b8?text=Clannad" alt="Anime" class="w-16 h-22 object-cover rounded-lg" loading="lazy">
               <div class="flex-grow">
                 <h3 class="font-semibold text-lg text-gray-200 group-hover:text-cyan-400 transition-colors">Clannad: After Story</h3>
                 <p class="text-sm text-gray-500">ТБ | 24 еп. | Kyoto Animation</p>
@@ -449,25 +449,25 @@
           <div class="space-y-2">
             <a href="#" class="flex justify-between items-center p-2 rounded-lg hover:bg-slate-700 transition-colors">
               <span>2024</span>
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
               </svg>
             </a>
             <a href="#" class="flex justify-between items-center p-2 rounded-lg hover:bg-slate-700 transition-colors">
               <span>2023</span>
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
               </svg>
             </a>
             <a href="#" class="flex justify-between items-center p-2 rounded-lg hover:bg-slate-700 transition-colors">
               <span>2022</span>
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
               </svg>
             </a>
             <a href="#" class="flex justify-between items-center p-2 rounded-lg hover:bg-slate-700 transition-colors">
               <span>2021</span>
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
               </svg>
             </a>
@@ -496,19 +496,5 @@
 @endsection
 
 @push('scripts')
-<script>
-  function toggleListMenu(event, btn) {
-    event.stopPropagation();
-    const menu = btn.nextElementSibling;
-    const isOpen = !menu.classList.contains('hidden');
-    document.querySelectorAll('.list-dropdown').forEach(m => m.classList.add('hidden'));
-    if (!isOpen) menu.classList.remove('hidden');
-    menu.classList.add('list-dropdown');
-  }
-  document.addEventListener('click', function(e) {
-    if (!e.target.closest('.list-menu-container')) {
-      document.querySelectorAll('.list-dropdown').forEach(m => m.classList.add('hidden'));
-    }
-  });
-</script>
+@include('main.components.list-menu-script')
 @endpush

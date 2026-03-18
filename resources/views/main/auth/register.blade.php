@@ -8,7 +8,7 @@
       <div class="bg-slate-900/50 backdrop-blur-sm rounded-2xl border border-slate-800 p-8">
         <!-- Header -->
         <div class="text-center mb-8">
-          <h1 class="text-3xl font-bold mb-2">Створити акаунт</h1>
+          <h1 class="text-3xl font-bold font-display mb-2">Створити акаунт</h1>
           <p class="text-gray-400">Приєднуйтесь до спільноти аніме-фанатів</p>
         </div>
 
@@ -41,20 +41,20 @@
         <!-- Register Form -->
         <form class="space-y-5">
           <div>
-            <label class="block text-sm text-gray-400 mb-2">Ім'я користувача</label>
-            <input type="text" placeholder="anime_fan_2025" class="w-full py-3 px-4 rounded-xl bg-slate-800 border border-slate-700 text-gray-100 placeholder-gray-500 focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 transition-all">
+            <label for="reg-username" class="block text-sm text-gray-400 mb-2">Ім'я користувача</label>
+            <input id="reg-username" type="text" name="username" autocomplete="username" placeholder="anime_fan_2025" class="w-full py-3 px-4 rounded-xl bg-slate-800 border border-slate-700 text-gray-100 placeholder-gray-400 focus:outline-none focus:border-cyan-500 focus:ring-2 focus:ring-cyan-500 transition-all">
             <p class="text-xs text-gray-500 mt-1">Латинські літери, цифри та підкреслення. 3-20 символів.</p>
           </div>
           <div>
-            <label class="block text-sm text-gray-400 mb-2">Email</label>
-            <input type="email" placeholder="your@email.com" class="w-full py-3 px-4 rounded-xl bg-slate-800 border border-slate-700 text-gray-100 placeholder-gray-500 focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 transition-all">
+            <label for="reg-email" class="block text-sm text-gray-400 mb-2">Email</label>
+            <input id="reg-email" type="email" name="email" autocomplete="email" placeholder="your@email.com" class="w-full py-3 px-4 rounded-xl bg-slate-800 border border-slate-700 text-gray-100 placeholder-gray-400 focus:outline-none focus:border-cyan-500 focus:ring-2 focus:ring-cyan-500 transition-all">
           </div>
           <div>
-            <label class="block text-sm text-gray-400 mb-2">Пароль</label>
+            <label for="reg-password" class="block text-sm text-gray-400 mb-2">Пароль</label>
             <div class="relative">
-              <input type="password" placeholder="Мінімум 8 символів" class="w-full py-3 px-4 pr-12 rounded-xl bg-slate-800 border border-slate-700 text-gray-100 placeholder-gray-500 focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 transition-all">
-              <button type="button" class="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-300 transition-colors">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <input id="reg-password" type="password" name="password" autocomplete="new-password" placeholder="Мінімум 8 символів" class="w-full py-3 px-4 pr-12 rounded-xl bg-slate-800 border border-slate-700 text-gray-100 placeholder-gray-400 focus:outline-none focus:border-cyan-500 focus:ring-2 focus:ring-cyan-500 transition-all">
+              <button type="button" class="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-300 transition-colors focus:outline-none focus:text-gray-300" aria-label="Показати пароль">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
                 </svg>
@@ -72,8 +72,8 @@
             </div>
           </div>
           <div>
-            <label class="block text-sm text-gray-400 mb-2">Підтвердіть пароль</label>
-            <input type="password" placeholder="Повторіть пароль" class="w-full py-3 px-4 rounded-xl bg-slate-800 border border-slate-700 text-gray-100 placeholder-gray-500 focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 transition-all">
+            <label for="reg-password-confirm" class="block text-sm text-gray-400 mb-2">Підтвердіть пароль</label>
+            <input id="reg-password-confirm" type="password" name="password_confirmation" autocomplete="new-password" placeholder="Повторіть пароль" class="w-full py-3 px-4 rounded-xl bg-slate-800 border border-slate-700 text-gray-100 placeholder-gray-400 focus:outline-none focus:border-cyan-500 focus:ring-2 focus:ring-cyan-500 transition-all">
           </div>
           <div class="space-y-3">
             <label class="flex items-start gap-3 cursor-pointer">
@@ -85,7 +85,7 @@
               <span class="text-sm text-gray-400">Отримувати новини про нові аніме та оновлення</span>
             </label>
           </div>
-          <button type="submit" class="w-full py-3 bg-gradient-to-r from-cyan-500 to-purple-600 rounded-xl font-semibold hover:opacity-90 transition-opacity">
+          <button type="submit" class="w-full py-3 bg-gradient-to-r from-cyan-500 to-purple-600 rounded-xl font-semibold hover:opacity-90 transition-opacity focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:ring-offset-2 focus:ring-offset-slate-900">
             Створити акаунт
           </button>
         </form>

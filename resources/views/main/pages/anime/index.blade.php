@@ -35,7 +35,7 @@
           <!-- Search -->
           <div class="mb-6">
             <label class="block text-sm text-gray-400 mb-2">Пошук</label>
-            <input type="text" placeholder="Назва аніме..." class="w-full py-2.5 px-4 rounded-xl bg-slate-800 border border-slate-700 text-gray-100 placeholder-gray-500 focus:outline-none focus:border-cyan-500 transition-all">
+            <input type="text" placeholder="Назва аніме..." class="w-full py-2.5 px-4 rounded-xl bg-slate-800 border border-slate-700 text-gray-100 placeholder-gray-400 focus:outline-none focus:border-cyan-500 transition-all">
           </div>
 
           <!-- Type -->
@@ -234,7 +234,7 @@
                 </div>
               </div>
               <div class="relative overflow-hidden rounded-xl">
-                <img src="https://placehold.co/240x340/1e293b/94a3b8?text=Solo+Leveling" alt="Solo Leveling" class="w-full aspect-[3/4] object-cover group-hover:scale-105 transition-transform duration-300">
+                <img src="https://placehold.co/240x340/1e293b/94a3b8?text=Solo+Leveling" alt="Solo Leveling" loading="lazy" class="w-full aspect-[3/4] object-cover group-hover:scale-105 transition-transform duration-300">
                 <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
                 <div class="absolute top-2 left-2 px-2 py-0.5 bg-cyan-500 text-white text-xs font-bold rounded">9.2</div>
                 <div class="absolute bottom-2 left-2 right-2 flex justify-between items-center">
@@ -281,7 +281,7 @@
                 </div>
               </div>
               <div class="relative overflow-hidden rounded-xl">
-                <img src="https://placehold.co/240x340/1e293b/94a3b8?text=Jujutsu" alt="Jujutsu Kaisen" class="w-full aspect-[3/4] object-cover group-hover:scale-105 transition-transform duration-300">
+                <img src="https://placehold.co/240x340/1e293b/94a3b8?text=Jujutsu" alt="Jujutsu Kaisen" loading="lazy" class="w-full aspect-[3/4] object-cover group-hover:scale-105 transition-transform duration-300">
                 <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
                 <div class="absolute top-2 left-2 px-2 py-0.5 bg-cyan-500 text-white text-xs font-bold rounded">8.9</div>
                 <div class="absolute bottom-2 left-2 right-2 flex justify-between items-center">
@@ -328,7 +328,7 @@
                 </div>
               </div>
               <div class="relative overflow-hidden rounded-xl">
-                <img src="https://placehold.co/240x340/1e293b/94a3b8?text=Demon+Slayer" alt="Demon Slayer" class="w-full aspect-[3/4] object-cover group-hover:scale-105 transition-transform duration-300">
+                <img src="https://placehold.co/240x340/1e293b/94a3b8?text=Demon+Slayer" alt="Demon Slayer" loading="lazy" class="w-full aspect-[3/4] object-cover group-hover:scale-105 transition-transform duration-300">
                 <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
                 <div class="absolute top-2 left-2 px-2 py-0.5 bg-cyan-500 text-white text-xs font-bold rounded">9.1</div>
                 <div class="absolute bottom-2 left-2 right-2 flex justify-between items-center">
@@ -375,7 +375,7 @@
                 </div>
               </div>
               <div class="relative overflow-hidden rounded-xl">
-                <img src="https://placehold.co/240x340/1e293b/94a3b8?text=One+Piece" alt="One Piece" class="w-full aspect-[3/4] object-cover group-hover:scale-105 transition-transform duration-300">
+                <img src="https://placehold.co/240x340/1e293b/94a3b8?text=One+Piece" alt="One Piece" loading="lazy" class="w-full aspect-[3/4] object-cover group-hover:scale-105 transition-transform duration-300">
                 <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
                 <div class="absolute top-2 left-2 px-2 py-0.5 bg-cyan-500 text-white text-xs font-bold rounded">8.8</div>
                 <div class="absolute bottom-2 left-2 right-2 flex justify-between items-center">
@@ -422,7 +422,7 @@
                 </div>
               </div>
               <div class="relative overflow-hidden rounded-xl">
-                <img src="https://placehold.co/240x340/1e293b/94a3b8?text=Attack+on+Titan" alt="Attack on Titan" class="w-full aspect-[3/4] object-cover group-hover:scale-105 transition-transform duration-300">
+                <img src="https://placehold.co/240x340/1e293b/94a3b8?text=Attack+on+Titan" alt="Attack on Titan" loading="lazy" class="w-full aspect-[3/4] object-cover group-hover:scale-105 transition-transform duration-300">
                 <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
                 <div class="absolute top-2 left-2 px-2 py-0.5 bg-cyan-500 text-white text-xs font-bold rounded">9.0</div>
                 <div class="absolute bottom-2 left-2 right-2 flex justify-between items-center">
@@ -469,7 +469,7 @@
                 </div>
               </div>
               <div class="relative overflow-hidden rounded-xl">
-                <img src="https://placehold.co/240x340/1e293b/94a3b8?text=Spy+x+Family" alt="Spy x Family" class="w-full aspect-[3/4] object-cover group-hover:scale-105 transition-transform duration-300">
+                <img src="https://placehold.co/240x340/1e293b/94a3b8?text=Spy+x+Family" alt="Spy x Family" loading="lazy" class="w-full aspect-[3/4] object-cover group-hover:scale-105 transition-transform duration-300">
                 <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
                 <div class="absolute top-2 left-2 px-2 py-0.5 bg-cyan-500 text-white text-xs font-bold rounded">8.7</div>
                 <div class="absolute bottom-2 left-2 right-2 flex justify-between items-center">
@@ -516,7 +516,7 @@
                 </div>
               </div>
               <div class="relative overflow-hidden rounded-xl">
-                <img src="https://placehold.co/240x340/1e293b/94a3b8?text=Chainsaw+Man" alt="Chainsaw Man" class="w-full aspect-[3/4] object-cover group-hover:scale-105 transition-transform duration-300">
+                <img src="https://placehold.co/240x340/1e293b/94a3b8?text=Chainsaw+Man" alt="Chainsaw Man" loading="lazy" class="w-full aspect-[3/4] object-cover group-hover:scale-105 transition-transform duration-300">
                 <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
                 <div class="absolute top-2 left-2 px-2 py-0.5 bg-cyan-500 text-white text-xs font-bold rounded">8.6</div>
                 <div class="absolute bottom-2 left-2 right-2 flex justify-between items-center">
@@ -563,7 +563,7 @@
                 </div>
               </div>
               <div class="relative overflow-hidden rounded-xl">
-                <img src="https://placehold.co/240x340/1e293b/94a3b8?text=Violet" alt="Violet Evergarden" class="w-full aspect-[3/4] object-cover group-hover:scale-105 transition-transform duration-300">
+                <img src="https://placehold.co/240x340/1e293b/94a3b8?text=Violet" alt="Violet Evergarden" loading="lazy" class="w-full aspect-[3/4] object-cover group-hover:scale-105 transition-transform duration-300">
                 <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
                 <div class="absolute top-2 left-2 px-2 py-0.5 bg-cyan-500 text-white text-xs font-bold rounded">9.0</div>
                 <div class="absolute bottom-2 left-2 right-2 flex justify-between items-center">
@@ -610,7 +610,7 @@
                 </div>
               </div>
               <div class="relative overflow-hidden rounded-xl">
-                <img src="https://placehold.co/240x340/1e293b/94a3b8?text=Oshi+no+Ko" alt="Oshi no Ko" class="w-full aspect-[3/4] object-cover group-hover:scale-105 transition-transform duration-300">
+                <img src="https://placehold.co/240x340/1e293b/94a3b8?text=Oshi+no+Ko" alt="Oshi no Ko" loading="lazy" class="w-full aspect-[3/4] object-cover group-hover:scale-105 transition-transform duration-300">
                 <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
                 <div class="absolute top-2 left-2 px-2 py-0.5 bg-cyan-500 text-white text-xs font-bold rounded">8.7</div>
                 <div class="absolute bottom-2 left-2 right-2 flex justify-between items-center">
@@ -668,19 +668,5 @@
 @endsection
 
 @push('scripts')
-<script>
-    function toggleListMenu(e, btn) {
-      e.preventDefault();
-      e.stopPropagation();
-      const menu = btn.nextElementSibling;
-      const isHidden = menu.classList.contains('hidden');
-      document.querySelectorAll('.list-dropdown').forEach(m => m.classList.add('hidden'));
-      if (isHidden) { menu.classList.remove('hidden'); }
-    }
-    document.addEventListener('click', function(e) {
-      if (!e.target.closest('.list-menu-container')) {
-        document.querySelectorAll('.list-dropdown').forEach(m => m.classList.add('hidden'));
-      }
-    });
-</script>
+@include('main.components.list-menu-script')
 @endpush

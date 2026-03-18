@@ -25,13 +25,13 @@
             <div class="flex items-center gap-2 text-sm">
                 <a href="{{ route('home') }}" class="text-gray-500 hover:text-cyan-400 transition-colors">Головна</a>
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-600" fill="none" viewBox="0 0 24 24"
-                     stroke="currentColor">
+                     stroke="currentColor" aria-hidden="true">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
                 </svg>
                 <a href="{{ route('anime.index') }}"
                    class="text-gray-500 hover:text-cyan-400 transition-colors">Аніме</a>
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-600" fill="none" viewBox="0 0 24 24"
-                     stroke="currentColor">
+                     stroke="currentColor" aria-hidden="true">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
                 </svg>
                 <span class="text-gray-300">Frieren: Похоронний обряд</span>
@@ -60,7 +60,7 @@
                         9.4
                     </div>
                     <div class="absolute top-4 right-4 px-3 py-1 bg-amber-500 text-white font-bold rounded-lg flex items-center gap-1">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                             <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
                         </svg>
                         #1
@@ -71,7 +71,7 @@
                 <div class="space-y-3 mb-6">
                     <button class="w-full py-3 bg-gradient-to-r from-cyan-500 to-purple-600 rounded-xl font-semibold flex items-center justify-center gap-2 hover:opacity-90 transition-opacity">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
-                             stroke="currentColor">
+                             stroke="currentColor" aria-hidden="true">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                   d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
                         </svg>
@@ -80,7 +80,7 @@
                     <div class="grid grid-cols-2 gap-3">
                         <button class="py-3 bg-slate-800 border border-slate-700 rounded-xl font-medium flex items-center justify-center gap-2 hover:bg-slate-700 transition-colors">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-red-400" fill="none"
-                                 viewBox="0 0 24 24" stroke="currentColor">
+                                 viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                       d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
                             </svg>
@@ -88,7 +88,7 @@
                         </button>
                         <button class="py-3 bg-slate-800 border border-slate-700 rounded-xl font-medium flex items-center justify-center gap-2 hover:bg-slate-700 transition-colors">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
-                                 stroke="currentColor">
+                                 stroke="currentColor" aria-hidden="true">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                       d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"/>
                             </svg>
@@ -253,7 +253,7 @@
                     <h2 class="text-2xl font-bold mb-4">Трейлер</h2>
                     <div class="relative aspect-video bg-slate-800 rounded-2xl overflow-hidden">
                         <img src="https://placehold.co/800x450/1e293b/94a3b8?text=Video+Trailer" alt="Trailer"
-                             class="w-full h-full object-cover">
+                             loading="lazy" class="w-full h-full object-cover">
                         <div class="absolute inset-0 flex items-center justify-center">
                             <button class="w-20 h-20 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white/30 transition-colors">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-white ml-1"
@@ -276,7 +276,7 @@
                         <div class="bg-slate-800/50 rounded-xl overflow-hidden flex">
                             <a href="{{ route('characters.show', 'example-slug') }}" class="w-24 flex-shrink-0">
                                 <img src="https://placehold.co/100x140/1e293b/94a3b8?text=Frieren" alt="Frieren"
-                                     class="w-full h-full object-cover">
+                                     loading="lazy" class="w-full h-full object-cover">
                             </a>
                             <div class="flex-grow p-4 flex justify-between">
                                 <div>
@@ -285,7 +285,7 @@
                                     <div class="text-sm text-gray-500">Головна роль</div>
                                     <div class="mt-2 flex items-center gap-1 text-amber-400 text-sm">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="currentColor"
-                                             viewBox="0 0 24 24">
+                                             viewBox="0 0 24 24" aria-hidden="true">
                                             <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
                                         </svg>
                                         <span>42,150</span>
@@ -300,14 +300,14 @@
                             </div>
                             <a href="{{ route('people.show', 'example-slug') }}" class="w-20 flex-shrink-0">
                                 <img src="https://placehold.co/80x140/1e293b/94a3b8?text=VA" alt="VA"
-                                     class="w-full h-full object-cover">
+                                     loading="lazy" class="w-full h-full object-cover">
                             </a>
                         </div>
                         <!-- Character Card -->
                         <div class="bg-slate-800/50 rounded-xl overflow-hidden flex">
                             <a href="{{ route('characters.show', 'example-slug') }}" class="w-24 flex-shrink-0">
                                 <img src="https://placehold.co/100x140/1e293b/94a3b8?text=Fern" alt="Fern"
-                                     class="w-full h-full object-cover">
+                                     loading="lazy" class="w-full h-full object-cover">
                             </a>
                             <div class="flex-grow p-4 flex justify-between">
                                 <div>
@@ -316,7 +316,7 @@
                                     <div class="text-sm text-gray-500">Головна роль</div>
                                     <div class="mt-2 flex items-center gap-1 text-amber-400 text-sm">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="currentColor"
-                                             viewBox="0 0 24 24">
+                                             viewBox="0 0 24 24" aria-hidden="true">
                                             <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
                                         </svg>
                                         <span>38,420</span>
@@ -331,14 +331,14 @@
                             </div>
                             <a href="{{ route('people.show', 'example-slug') }}" class="w-20 flex-shrink-0">
                                 <img src="https://placehold.co/80x140/1e293b/94a3b8?text=VA" alt="VA"
-                                     class="w-full h-full object-cover">
+                                     loading="lazy" class="w-full h-full object-cover">
                             </a>
                         </div>
                         <!-- Character Card -->
                         <div class="bg-slate-800/50 rounded-xl overflow-hidden flex">
                             <a href="{{ route('characters.show', 'example-slug') }}" class="w-24 flex-shrink-0">
                                 <img src="https://placehold.co/100x140/1e293b/94a3b8?text=Stark" alt="Stark"
-                                     class="w-full h-full object-cover">
+                                     loading="lazy" class="w-full h-full object-cover">
                             </a>
                             <div class="flex-grow p-4 flex justify-between">
                                 <div>
@@ -347,7 +347,7 @@
                                     <div class="text-sm text-gray-500">Головна роль</div>
                                     <div class="mt-2 flex items-center gap-1 text-amber-400 text-sm">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="currentColor"
-                                             viewBox="0 0 24 24">
+                                             viewBox="0 0 24 24" aria-hidden="true">
                                             <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
                                         </svg>
                                         <span>32,180</span>
@@ -362,14 +362,14 @@
                             </div>
                             <a href="{{ route('people.show', 'example-slug') }}" class="w-20 flex-shrink-0">
                                 <img src="https://placehold.co/80x140/1e293b/94a3b8?text=VA" alt="VA"
-                                     class="w-full h-full object-cover">
+                                     loading="lazy" class="w-full h-full object-cover">
                             </a>
                         </div>
                         <!-- Character Card -->
                         <div class="bg-slate-800/50 rounded-xl overflow-hidden flex">
                             <a href="{{ route('characters.show', 'example-slug') }}" class="w-24 flex-shrink-0">
                                 <img src="https://placehold.co/100x140/1e293b/94a3b8?text=Himmel" alt="Himmel"
-                                     class="w-full h-full object-cover">
+                                     loading="lazy" class="w-full h-full object-cover">
                             </a>
                             <div class="flex-grow p-4 flex justify-between">
                                 <div>
@@ -378,7 +378,7 @@
                                     <div class="text-sm text-gray-500">Другорядна роль</div>
                                     <div class="mt-2 flex items-center gap-1 text-amber-400 text-sm">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="currentColor"
-                                             viewBox="0 0 24 24">
+                                             viewBox="0 0 24 24" aria-hidden="true">
                                             <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
                                         </svg>
                                         <span>28,750</span>
@@ -393,7 +393,7 @@
                             </div>
                             <a href="{{ route('people.show', 'example-slug') }}" class="w-20 flex-shrink-0">
                                 <img src="https://placehold.co/80x140/1e293b/94a3b8?text=VA" alt="VA"
-                                     class="w-full h-full object-cover">
+                                     loading="lazy" class="w-full h-full object-cover">
                             </a>
                         </div>
                     </div>
@@ -406,7 +406,7 @@
                         <a href="#"
                            class="flex items-center gap-4 p-4 bg-slate-800/50 rounded-xl hover:bg-slate-800 transition-colors group">
                             <img src="https://placehold.co/80x110/1e293b/94a3b8?text=Manga" alt="Manga"
-                                 class="w-16 h-22 object-cover rounded-lg">
+                                 loading="lazy" class="w-16 h-22 object-cover rounded-lg">
                             <div class="flex-grow">
                                 <div class="text-xs text-purple-400 font-medium mb-1">Адаптація</div>
                                 <div class="font-semibold text-gray-200 group-hover:text-cyan-400 transition-colors">
@@ -415,7 +415,7 @@
                                 <div class="text-sm text-gray-500">Манґа, 2020</div>
                             </div>
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-600" fill="none"
-                                 viewBox="0 0 24 24" stroke="currentColor">
+                                 viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
                             </svg>
                         </a>
@@ -433,14 +433,14 @@
                         <div class="bg-slate-800/50 rounded-xl p-5">
                             <div class="flex items-start gap-4 mb-4">
                                 <img src="https://placehold.co/48x48/1e293b/94a3b8?text=U" alt="User"
-                                     class="w-12 h-12 rounded-full">
+                                     loading="lazy" class="w-12 h-12 rounded-full">
                                 <div class="flex-grow">
                                     <div class="flex items-center gap-3 mb-1">
                                         <a href="{{ route('profile') }}"
                                            class="font-semibold text-gray-200 hover:text-cyan-400 transition-colors">AnimeFan_UA</a>
                                         <div class="flex items-center gap-1 text-cyan-400">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="currentColor"
-                                                 viewBox="0 0 24 24">
+                                                 viewBox="0 0 24 24" aria-hidden="true">
                                                 <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
                                             </svg>
                                             <span class="font-medium">10</span>
@@ -457,7 +457,7 @@
                             <div class="flex items-center gap-4 text-sm">
                                 <button class="flex items-center gap-2 text-gray-500 hover:text-cyan-400 transition-colors">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none"
-                                         viewBox="0 0 24 24" stroke="currentColor">
+                                         viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                               d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5"/>
                                     </svg>
@@ -470,14 +470,14 @@
                         <div class="bg-slate-800/50 rounded-xl p-5">
                             <div class="flex items-start gap-4 mb-4">
                                 <img src="https://placehold.co/48x48/1e293b/94a3b8?text=U" alt="User"
-                                     class="w-12 h-12 rounded-full">
+                                     loading="lazy" class="w-12 h-12 rounded-full">
                                 <div class="flex-grow">
                                     <div class="flex items-center gap-3 mb-1">
                                         <a href="{{ route('profile') }}"
                                            class="font-semibold text-gray-200 hover:text-cyan-400 transition-colors">OtakuMaster</a>
                                         <div class="flex items-center gap-1 text-cyan-400">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="currentColor"
-                                                 viewBox="0 0 24 24">
+                                                 viewBox="0 0 24 24" aria-hidden="true">
                                                 <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
                                             </svg>
                                             <span class="font-medium">9</span>
@@ -494,7 +494,7 @@
                             <div class="flex items-center gap-4 text-sm">
                                 <button class="flex items-center gap-2 text-gray-500 hover:text-cyan-400 transition-colors">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none"
-                                         viewBox="0 0 24 24" stroke="currentColor">
+                                         viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                               d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5"/>
                                     </svg>
@@ -527,7 +527,7 @@
                                 </div>
                                 <div class="relative overflow-hidden rounded-xl">
                                     <img src="https://placehold.co/180x250/1e293b/94a3b8?text=Violet"
-                                         alt="Violet Evergarden"
+                                         alt="Violet Evergarden" loading="lazy"
                                          class="w-full aspect-[3/4] object-cover group-hover:scale-105 transition-transform duration-300">
                                     <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
                                     <div class="absolute top-2 left-2 px-2 py-0.5 bg-cyan-500 text-white text-xs font-bold rounded">
@@ -587,7 +587,7 @@
                                     </div>
                                 </div>
                                 <div class="relative overflow-hidden rounded-xl">
-                                    <img src="https://placehold.co/180x250/1e293b/94a3b8?text=Made+in+Abyss"
+                                    <img src="https://placehold.co/180x250/1e293b/94a3b8?text=Made+in+Abyss" loading="lazy"
                                          alt="Made in Abyss"
                                          class="w-full aspect-[3/4] object-cover group-hover:scale-105 transition-transform duration-300">
                                     <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
@@ -648,7 +648,7 @@
                                     </div>
                                 </div>
                                 <div class="relative overflow-hidden rounded-xl">
-                                    <img src="https://placehold.co/180x250/1e293b/94a3b8?text=Mushoku"
+                                    <img src="https://placehold.co/180x250/1e293b/94a3b8?text=Mushoku" loading="lazy"
                                          alt="Mushoku Tensei"
                                          class="w-full aspect-[3/4] object-cover group-hover:scale-105 transition-transform duration-300">
                                     <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
@@ -709,7 +709,7 @@
                                     </div>
                                 </div>
                                 <div class="relative overflow-hidden rounded-xl">
-                                    <img src="https://placehold.co/180x250/1e293b/94a3b8?text=Spice"
+                                    <img src="https://placehold.co/180x250/1e293b/94a3b8?text=Spice" loading="lazy"
                                          alt="Spice and Wolf"
                                          class="w-full aspect-[3/4] object-cover group-hover:scale-105 transition-transform duration-300">
                                     <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
@@ -771,7 +771,7 @@
                                     </div>
                                 </div>
                                 <div class="relative overflow-hidden rounded-xl">
-                                    <img src="https://placehold.co/180x250/1e293b/94a3b8?text=March"
+                                    <img src="https://placehold.co/180x250/1e293b/94a3b8?text=March" loading="lazy"
                                          alt="March Comes in Like a Lion"
                                          class="w-full aspect-[3/4] object-cover group-hover:scale-105 transition-transform duration-300">
                                     <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
@@ -829,20 +829,5 @@
 @endsection
 
 @push('scripts')
-    <script>
-        function toggleListMenu(event, btn) {
-            event.stopPropagation();
-            const menu = btn.nextElementSibling;
-            const isOpen = !menu.classList.contains('hidden');
-            document.querySelectorAll('.list-dropdown').forEach(m => m.classList.add('hidden'));
-            if (!isOpen) menu.classList.remove('hidden');
-            menu.classList.add('list-dropdown');
-        }
-
-        document.addEventListener('click', function (e) {
-            if (!e.target.closest('.list-menu-container')) {
-                document.querySelectorAll('.list-dropdown').forEach(m => m.classList.add('hidden'));
-            }
-        });
-    </script>
+@include('main.components.list-menu-script')
 @endpush

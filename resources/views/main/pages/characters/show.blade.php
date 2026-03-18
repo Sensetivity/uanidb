@@ -10,11 +10,11 @@
     <div class="container mx-auto px-4 py-3">
       <div class="flex items-center gap-2 text-sm">
         <a href="{{ route('home') }}" class="text-gray-500 hover:text-cyan-400 transition-colors">Головна</a>
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
         </svg>
         <a href="{{ route('characters.index') }}" class="text-gray-500 hover:text-cyan-400 transition-colors">Персонажі</a>
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
         </svg>
         <span class="text-gray-300">Фрірен</span>
@@ -31,7 +31,7 @@
         <div class="relative mb-6">
           <img src="https://placehold.co/320x400/1e293b/94a3b8?text=Frieren" alt="Фрірен" class="w-full rounded-2xl shadow-2xl">
           <div class="absolute top-4 right-4 px-3 py-1 bg-amber-500 text-white font-bold rounded-lg flex items-center gap-1">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
               <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
             </svg>
             #12
@@ -40,7 +40,7 @@
 
         <!-- Action Button -->
         <button class="w-full py-3 bg-gradient-to-r from-pink-500 to-red-500 rounded-xl font-semibold flex items-center justify-center gap-2 hover:opacity-90 transition-opacity mb-6">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
             <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
           </svg>
           Додати до улюблених
@@ -57,7 +57,7 @@
             <div class="flex justify-between items-center">
               <span class="text-gray-400">Кількість уподобань</span>
               <div class="flex items-center gap-1 text-pink-400">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                   <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
                 </svg>
                 <span class="font-medium">42,150</span>
@@ -140,7 +140,7 @@
           <h2 class="text-2xl font-bold mb-6">Озвучення</h2>
           <div class="grid sm:grid-cols-2 gap-4">
             <a href="{{ route('people.show', 'example-slug') }}" class="flex items-center gap-4 p-4 bg-slate-800/50 rounded-xl hover:bg-slate-800 transition-colors group">
-              <img src="https://placehold.co/80x80/1e293b/94a3b8?text=VA" alt="VA" class="w-16 h-16 object-cover rounded-full">
+              <img src="https://placehold.co/80x80/1e293b/94a3b8?text=VA" alt="VA" class="w-16 h-16 object-cover rounded-full" loading="lazy">
               <div>
                 <div class="font-semibold text-gray-200 group-hover:text-cyan-400 transition-colors">Танезакі Ацумі</div>
                 <div class="text-sm text-gray-500">Японська</div>
@@ -148,7 +148,7 @@
               </div>
             </a>
             <a href="{{ route('people.show', 'example-slug') }}" class="flex items-center gap-4 p-4 bg-slate-800/50 rounded-xl hover:bg-slate-800 transition-colors group">
-              <img src="https://placehold.co/80x80/1e293b/94a3b8?text=VA" alt="VA" class="w-16 h-16 object-cover rounded-full">
+              <img src="https://placehold.co/80x80/1e293b/94a3b8?text=VA" alt="VA" class="w-16 h-16 object-cover rounded-full" loading="lazy">
               <div>
                 <div class="font-semibold text-gray-200 group-hover:text-cyan-400 transition-colors">Mallorie Rodak</div>
                 <div class="text-sm text-gray-500">Англійська</div>
@@ -163,7 +163,7 @@
           <h2 class="text-2xl font-bold mb-6">З'являється в</h2>
           <div class="space-y-4">
             <a href="{{ route('anime.show', 'example-slug') }}" class="flex gap-4 p-4 bg-slate-800/50 rounded-xl hover:bg-slate-800 transition-colors group">
-              <img src="https://placehold.co/100x140/1e293b/94a3b8?text=Frieren" alt="Frieren" class="w-24 h-32 object-cover rounded-lg">
+              <img src="https://placehold.co/100x140/1e293b/94a3b8?text=Frieren" alt="Frieren" class="w-24 h-32 object-cover rounded-lg" loading="lazy">
               <div class="flex-grow">
                 <div class="flex items-center gap-2 mb-1">
                   <span class="px-2 py-0.5 bg-pink-500/20 text-pink-400 rounded text-xs font-medium">Головна роль</span>
@@ -176,7 +176,7 @@
               </div>
             </a>
             <a href="{{ route('anime.show', 'example-slug') }}" class="flex gap-4 p-4 bg-slate-800/50 rounded-xl hover:bg-slate-800 transition-colors group">
-              <img src="https://placehold.co/100x140/1e293b/94a3b8?text=OVA" alt="OVA" class="w-24 h-32 object-cover rounded-lg">
+              <img src="https://placehold.co/100x140/1e293b/94a3b8?text=OVA" alt="OVA" class="w-24 h-32 object-cover rounded-lg" loading="lazy">
               <div class="flex-grow">
                 <div class="flex items-center gap-2 mb-1">
                   <span class="px-2 py-0.5 bg-pink-500/20 text-pink-400 rounded text-xs font-medium">Головна роль</span>
@@ -197,28 +197,28 @@
           <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
             <a href="{{ route('characters.show', 'example-slug') }}" class="group text-center">
               <div class="relative overflow-hidden rounded-xl mb-2">
-                <img src="https://placehold.co/150x150/1e293b/94a3b8?text=Char" alt="Character" class="w-full aspect-square object-cover group-hover:scale-105 transition-transform duration-300">
+                <img src="https://placehold.co/150x150/1e293b/94a3b8?text=Char" alt="Character" class="w-full aspect-square object-cover group-hover:scale-105 transition-transform duration-300" loading="lazy">
               </div>
               <h3 class="font-medium text-sm text-gray-300 group-hover:text-cyan-400 transition-colors">Емілія</h3>
               <p class="text-xs text-gray-500">Re:Zero</p>
             </a>
             <a href="{{ route('characters.show', 'example-slug') }}" class="group text-center">
               <div class="relative overflow-hidden rounded-xl mb-2">
-                <img src="https://placehold.co/150x150/1e293b/94a3b8?text=Char" alt="Character" class="w-full aspect-square object-cover group-hover:scale-105 transition-transform duration-300">
+                <img src="https://placehold.co/150x150/1e293b/94a3b8?text=Char" alt="Character" class="w-full aspect-square object-cover group-hover:scale-105 transition-transform duration-300" loading="lazy">
               </div>
               <h3 class="font-medium text-sm text-gray-300 group-hover:text-cyan-400 transition-colors">Марселла</h3>
               <p class="text-xs text-gray-500">Mushoku Tensei</p>
             </a>
             <a href="{{ route('characters.show', 'example-slug') }}" class="group text-center">
               <div class="relative overflow-hidden rounded-xl mb-2">
-                <img src="https://placehold.co/150x150/1e293b/94a3b8?text=Char" alt="Character" class="w-full aspect-square object-cover group-hover:scale-105 transition-transform duration-300">
+                <img src="https://placehold.co/150x150/1e293b/94a3b8?text=Char" alt="Character" class="w-full aspect-square object-cover group-hover:scale-105 transition-transform duration-300" loading="lazy">
               </div>
               <h3 class="font-medium text-sm text-gray-300 group-hover:text-cyan-400 transition-colors">Елейна</h3>
               <p class="text-xs text-gray-500">Подорож відьми</p>
             </a>
             <a href="{{ route('characters.show', 'example-slug') }}" class="group text-center">
               <div class="relative overflow-hidden rounded-xl mb-2">
-                <img src="https://placehold.co/150x150/1e293b/94a3b8?text=Char" alt="Character" class="w-full aspect-square object-cover group-hover:scale-105 transition-transform duration-300">
+                <img src="https://placehold.co/150x150/1e293b/94a3b8?text=Char" alt="Character" class="w-full aspect-square object-cover group-hover:scale-105 transition-transform duration-300" loading="lazy">
               </div>
               <h3 class="font-medium text-sm text-gray-300 group-hover:text-cyan-400 transition-colors">Іріс</h3>
               <p class="text-xs text-gray-500">Violet Evergarden</p>

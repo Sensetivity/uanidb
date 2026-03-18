@@ -33,20 +33,20 @@
           <p class="text-gray-400 mb-4 max-w-2xl">Люблю аніме з глибоким сюжетом та цікавими персонажами. Улюблені жанри: фентезі, психологія, драма. Завжди радий обговорити нові тайтли!</p>
           <div class="flex flex-wrap items-center gap-4 text-sm text-gray-500">
             <span class="flex items-center gap-1">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
               </svg>
               Приєднався: Березень 2023
             </span>
             <span class="flex items-center gap-1">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
               </svg>
               Україна, Київ
             </span>
             <span class="flex items-center gap-1">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
               Останній візит: Сьогодні
@@ -56,14 +56,14 @@
         <!-- Action Buttons -->
         <div class="flex gap-3">
           <a href="#" class="px-4 py-2 bg-slate-800 hover:bg-slate-700 border border-slate-700 rounded-xl font-medium transition-colors flex items-center gap-2">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
             </svg>
             Налаштування
           </a>
           <button class="px-4 py-2 bg-gradient-to-r from-cyan-500 to-purple-600 rounded-xl font-medium hover:opacity-90 transition-opacity flex items-center gap-2">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
             </svg>
             Редагувати
@@ -238,21 +238,21 @@
           </div>
           <div class="space-y-3">
             <a href="{{ route('characters.show', 'example-slug') }}" class="flex items-center gap-3 p-2 rounded-xl hover:bg-slate-800/50 transition-colors">
-              <img src="https://placehold.co/50x50/1e293b/94a3b8?text=F" alt="Frieren" class="w-12 h-12 rounded-lg object-cover">
+              <img src="https://placehold.co/50x50/1e293b/94a3b8?text=F" alt="Frieren" class="w-12 h-12 rounded-lg object-cover" loading="lazy">
               <div>
                 <p class="font-medium">Фрірен</p>
                 <p class="text-sm text-gray-500">Frieren</p>
               </div>
             </a>
             <a href="{{ route('characters.show', 'example-slug') }}" class="flex items-center gap-3 p-2 rounded-xl hover:bg-slate-800/50 transition-colors">
-              <img src="https://placehold.co/50x50/1e293b/94a3b8?text=L" alt="Levi" class="w-12 h-12 rounded-lg object-cover">
+              <img src="https://placehold.co/50x50/1e293b/94a3b8?text=L" alt="Levi" class="w-12 h-12 rounded-lg object-cover" loading="lazy">
               <div>
                 <p class="font-medium">Леві Аккерман</p>
                 <p class="text-sm text-gray-500">Attack on Titan</p>
               </div>
             </a>
             <a href="{{ route('characters.show', 'example-slug') }}" class="flex items-center gap-3 p-2 rounded-xl hover:bg-slate-800/50 transition-colors">
-              <img src="https://placehold.co/50x50/1e293b/94a3b8?text=V" alt="Violet" class="w-12 h-12 rounded-lg object-cover">
+              <img src="https://placehold.co/50x50/1e293b/94a3b8?text=V" alt="Violet" class="w-12 h-12 rounded-lg object-cover" loading="lazy">
               <div>
                 <p class="font-medium">Віолетта Евергарден</p>
                 <p class="text-sm text-gray-500">Violet Evergarden</p>
@@ -266,11 +266,11 @@
           <h3 class="font-semibold mb-4">Соціальні мережі</h3>
           <div class="space-y-2">
             <a href="#" class="flex items-center gap-3 p-2 rounded-xl hover:bg-slate-800/50 transition-colors text-gray-400 hover:text-gray-200">
-              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
               <span>@animefan2025</span>
             </a>
             <a href="#" class="flex items-center gap-3 p-2 rounded-xl hover:bg-slate-800/50 transition-colors text-gray-400 hover:text-gray-200">
-              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
               <span>AnimeFan#2025</span>
             </a>
           </div>
@@ -300,7 +300,7 @@
           <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
             <a href="{{ route('anime.show', 'example-slug') }}" class="group">
               <div class="relative overflow-hidden rounded-xl mb-2">
-                <img src="https://placehold.co/160x220/1e293b/94a3b8?text=Solo" alt="Solo Leveling" class="w-full aspect-[3/4] object-cover group-hover:scale-105 transition-transform duration-300">
+                <img src="https://placehold.co/160x220/1e293b/94a3b8?text=Solo" alt="Solo Leveling" class="w-full aspect-[3/4] object-cover group-hover:scale-105 transition-transform duration-300" loading="lazy">
                 <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
                 <div class="absolute bottom-2 left-2 right-2">
                   <div class="flex items-center justify-between text-xs">
@@ -315,7 +315,7 @@
             </a>
             <a href="{{ route('anime.show', 'example-slug') }}" class="group">
               <div class="relative overflow-hidden rounded-xl mb-2">
-                <img src="https://placehold.co/160x220/1e293b/94a3b8?text=Frieren" alt="Frieren" class="w-full aspect-[3/4] object-cover group-hover:scale-105 transition-transform duration-300">
+                <img src="https://placehold.co/160x220/1e293b/94a3b8?text=Frieren" alt="Frieren" class="w-full aspect-[3/4] object-cover group-hover:scale-105 transition-transform duration-300" loading="lazy">
                 <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
                 <div class="absolute bottom-2 left-2 right-2">
                   <div class="flex items-center justify-between text-xs">
@@ -330,7 +330,7 @@
             </a>
             <a href="{{ route('anime.show', 'example-slug') }}" class="group">
               <div class="relative overflow-hidden rounded-xl mb-2">
-                <img src="https://placehold.co/160x220/1e293b/94a3b8?text=Apothecary" alt="Apothecary Diaries" class="w-full aspect-[3/4] object-cover group-hover:scale-105 transition-transform duration-300">
+                <img src="https://placehold.co/160x220/1e293b/94a3b8?text=Apothecary" alt="Apothecary Diaries" class="w-full aspect-[3/4] object-cover group-hover:scale-105 transition-transform duration-300" loading="lazy">
                 <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
                 <div class="absolute bottom-2 left-2 right-2">
                   <div class="flex items-center justify-between text-xs">
@@ -345,7 +345,7 @@
             </a>
             <a href="{{ route('anime.show', 'example-slug') }}" class="group">
               <div class="relative overflow-hidden rounded-xl mb-2">
-                <img src="https://placehold.co/160x220/1e293b/94a3b8?text=Mashle" alt="Mashle" class="w-full aspect-[3/4] object-cover group-hover:scale-105 transition-transform duration-300">
+                <img src="https://placehold.co/160x220/1e293b/94a3b8?text=Mashle" alt="Mashle" class="w-full aspect-[3/4] object-cover group-hover:scale-105 transition-transform duration-300" loading="lazy">
                 <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
                 <div class="absolute bottom-2 left-2 right-2">
                   <div class="flex items-center justify-between text-xs">
@@ -360,7 +360,7 @@
             </a>
             <a href="{{ route('anime.show', 'example-slug') }}" class="group">
               <div class="relative overflow-hidden rounded-xl mb-2">
-                <img src="https://placehold.co/160x220/1e293b/94a3b8?text=Dungeon" alt="Dungeon Meshi" class="w-full aspect-[3/4] object-cover group-hover:scale-105 transition-transform duration-300">
+                <img src="https://placehold.co/160x220/1e293b/94a3b8?text=Dungeon" alt="Dungeon Meshi" class="w-full aspect-[3/4] object-cover group-hover:scale-105 transition-transform duration-300" loading="lazy">
                 <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
                 <div class="absolute bottom-2 left-2 right-2">
                   <div class="flex items-center justify-between text-xs">
@@ -380,7 +380,7 @@
         <div class="bg-slate-900/50 rounded-2xl p-5">
           <div class="flex items-center justify-between mb-4">
             <h3 class="font-semibold flex items-center gap-2">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-pink-500" fill="currentColor" viewBox="0 0 24 24">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-pink-500" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
               </svg>
               Улюблене аніме
@@ -390,42 +390,42 @@
           <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
             <a href="{{ route('anime.show', 'example-slug') }}" class="group">
               <div class="relative overflow-hidden rounded-xl mb-2">
-                <img src="https://placehold.co/160x220/1e293b/94a3b8?text=Steins" alt="Steins;Gate" class="w-full aspect-[3/4] object-cover group-hover:scale-105 transition-transform duration-300">
+                <img src="https://placehold.co/160x220/1e293b/94a3b8?text=Steins" alt="Steins;Gate" class="w-full aspect-[3/4] object-cover group-hover:scale-105 transition-transform duration-300" loading="lazy">
                 <div class="absolute top-2 left-2 px-2 py-0.5 bg-cyan-500 text-white text-xs font-bold rounded">10</div>
               </div>
               <h4 class="font-medium text-sm group-hover:text-cyan-400 transition-colors line-clamp-1">Steins;Gate</h4>
             </a>
             <a href="{{ route('anime.show', 'example-slug') }}" class="group">
               <div class="relative overflow-hidden rounded-xl mb-2">
-                <img src="https://placehold.co/160x220/1e293b/94a3b8?text=FMAB" alt="FMA Brotherhood" class="w-full aspect-[3/4] object-cover group-hover:scale-105 transition-transform duration-300">
+                <img src="https://placehold.co/160x220/1e293b/94a3b8?text=FMAB" alt="FMA Brotherhood" class="w-full aspect-[3/4] object-cover group-hover:scale-105 transition-transform duration-300" loading="lazy">
                 <div class="absolute top-2 left-2 px-2 py-0.5 bg-cyan-500 text-white text-xs font-bold rounded">10</div>
               </div>
               <h4 class="font-medium text-sm group-hover:text-cyan-400 transition-colors line-clamp-1">FMA: Brotherhood</h4>
             </a>
             <a href="{{ route('anime.show', 'example-slug') }}" class="group">
               <div class="relative overflow-hidden rounded-xl mb-2">
-                <img src="https://placehold.co/160x220/1e293b/94a3b8?text=AoT" alt="Attack on Titan" class="w-full aspect-[3/4] object-cover group-hover:scale-105 transition-transform duration-300">
+                <img src="https://placehold.co/160x220/1e293b/94a3b8?text=AoT" alt="Attack on Titan" class="w-full aspect-[3/4] object-cover group-hover:scale-105 transition-transform duration-300" loading="lazy">
                 <div class="absolute top-2 left-2 px-2 py-0.5 bg-cyan-500 text-white text-xs font-bold rounded">10</div>
               </div>
               <h4 class="font-medium text-sm group-hover:text-cyan-400 transition-colors line-clamp-1">Атака Титанів</h4>
             </a>
             <a href="{{ route('anime.show', 'example-slug') }}" class="group">
               <div class="relative overflow-hidden rounded-xl mb-2">
-                <img src="https://placehold.co/160x220/1e293b/94a3b8?text=Violet" alt="Violet Evergarden" class="w-full aspect-[3/4] object-cover group-hover:scale-105 transition-transform duration-300">
+                <img src="https://placehold.co/160x220/1e293b/94a3b8?text=Violet" alt="Violet Evergarden" class="w-full aspect-[3/4] object-cover group-hover:scale-105 transition-transform duration-300" loading="lazy">
                 <div class="absolute top-2 left-2 px-2 py-0.5 bg-cyan-500 text-white text-xs font-bold rounded">10</div>
               </div>
               <h4 class="font-medium text-sm group-hover:text-cyan-400 transition-colors line-clamp-1">Violet Evergarden</h4>
             </a>
             <a href="{{ route('anime.show', 'example-slug') }}" class="group">
               <div class="relative overflow-hidden rounded-xl mb-2">
-                <img src="https://placehold.co/160x220/1e293b/94a3b8?text=Monster" alt="Monster" class="w-full aspect-[3/4] object-cover group-hover:scale-105 transition-transform duration-300">
+                <img src="https://placehold.co/160x220/1e293b/94a3b8?text=Monster" alt="Monster" class="w-full aspect-[3/4] object-cover group-hover:scale-105 transition-transform duration-300" loading="lazy">
                 <div class="absolute top-2 left-2 px-2 py-0.5 bg-cyan-500 text-white text-xs font-bold rounded">9</div>
               </div>
               <h4 class="font-medium text-sm group-hover:text-cyan-400 transition-colors line-clamp-1">Monster</h4>
             </a>
             <a href="{{ route('anime.show', 'example-slug') }}" class="group">
               <div class="relative overflow-hidden rounded-xl mb-2">
-                <img src="https://placehold.co/160x220/1e293b/94a3b8?text=Mob" alt="Mob Psycho" class="w-full aspect-[3/4] object-cover group-hover:scale-105 transition-transform duration-300">
+                <img src="https://placehold.co/160x220/1e293b/94a3b8?text=Mob" alt="Mob Psycho" class="w-full aspect-[3/4] object-cover group-hover:scale-105 transition-transform duration-300" loading="lazy">
                 <div class="absolute top-2 left-2 px-2 py-0.5 bg-cyan-500 text-white text-xs font-bold rounded">9</div>
               </div>
               <h4 class="font-medium text-sm group-hover:text-cyan-400 transition-colors line-clamp-1">Mob Psycho 100</h4>
@@ -523,16 +523,16 @@
             <!-- Review Card -->
             <div class="p-4 bg-slate-800/30 rounded-xl">
               <div class="flex gap-4 mb-3">
-                <img src="https://placehold.co/80x110/1e293b/94a3b8?text=AoT" alt="Attack on Titan" class="w-16 h-22 rounded-lg object-cover flex-shrink-0">
+                <img src="https://placehold.co/80x110/1e293b/94a3b8?text=AoT" alt="Attack on Titan" class="w-16 h-22 rounded-lg object-cover flex-shrink-0" loading="lazy">
                 <div>
                   <a href="{{ route('anime.show', 'example-slug') }}" class="font-semibold hover:text-cyan-400 transition-colors">Атака Титанів: Фінал</a>
                   <div class="flex items-center gap-2 mt-1">
                     <div class="flex">
-                      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-amber-400" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-amber-400" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-amber-400" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-amber-400" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-amber-400" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-amber-400" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-amber-400" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-amber-400" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-amber-400" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-amber-400" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
                     </div>
                     <span class="text-sm text-gray-500">10/10</span>
                   </div>
@@ -542,13 +542,13 @@
               <p class="text-sm text-gray-300 line-clamp-3">Епічне завершення однієї з найкращих аніме-серій десятиліття. Ісаяма створив справжній шедевр, який змушує задуматися про природу війни, свободи та людяності. Фінальний сезон підняв ставки на неймовірну висоту...</p>
               <div class="flex items-center gap-4 mt-3 text-sm text-gray-500">
                 <span class="flex items-center gap-1">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5" />
                   </svg>
                   128
                 </span>
                 <span class="flex items-center gap-1">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
                   </svg>
                   24

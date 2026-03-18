@@ -54,23 +54,23 @@
                 </div>
               </a>
               <a href="{{ route('anime.show', 'example-slug') }}" class="block card-hover">
-                <img src="https://placehold.co/200x280/1e293b/94a3b8?text=Jujutsu" alt="Дзюцу Кайсен" class="rounded-2xl w-full">
+                <img src="https://placehold.co/200x280/1e293b/94a3b8?text=Jujutsu" alt="Дзюцу Кайсен" class="rounded-2xl w-full" loading="lazy">
               </a>
             </div>
             <div class="space-y-4 pt-8">
               <a href="{{ route('anime.show', 'example-slug') }}" class="block card-hover">
-                <img src="https://placehold.co/200x280/1e293b/94a3b8?text=Demon+Slayer" alt="Клинок" class="rounded-2xl w-full">
+                <img src="https://placehold.co/200x280/1e293b/94a3b8?text=Demon+Slayer" alt="Клинок" class="rounded-2xl w-full" loading="lazy">
               </a>
               <a href="{{ route('anime.show', 'example-slug') }}" class="block card-hover">
-                <img src="https://placehold.co/200x280/1e293b/94a3b8?text=SPY+x+FAMILY" alt="Spy x Family" class="rounded-2xl w-full">
+                <img src="https://placehold.co/200x280/1e293b/94a3b8?text=SPY+x+FAMILY" alt="Spy x Family" class="rounded-2xl w-full" loading="lazy">
               </a>
             </div>
             <div class="space-y-4 pt-16">
               <a href="{{ route('anime.show', 'example-slug') }}" class="block card-hover">
-                <img src="https://placehold.co/200x280/1e293b/94a3b8?text=One+Piece" alt="Ван Піс" class="rounded-2xl w-full">
+                <img src="https://placehold.co/200x280/1e293b/94a3b8?text=One+Piece" alt="Ван Піс" class="rounded-2xl w-full" loading="lazy">
               </a>
               <a href="{{ route('anime.show', 'example-slug') }}" class="block card-hover">
-                <img src="https://placehold.co/200x280/1e293b/94a3b8?text=Chainsaw" alt="Людина-бензопила" class="rounded-2xl w-full">
+                <img src="https://placehold.co/200x280/1e293b/94a3b8?text=Chainsaw" alt="Людина-бензопила" class="rounded-2xl w-full" loading="lazy">
               </a>
             </div>
           </div>
@@ -113,7 +113,7 @@
         </div>
         <a href="{{ route('anime.index') }}" class="text-cyan-400 hover:text-cyan-300 font-medium flex items-center gap-2">
           Дивитись усі
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
           </svg>
         </a>
@@ -139,11 +139,11 @@
               </div>
             </div>
             <div class="relative overflow-hidden rounded-2xl">
-              <img src="https://placehold.co/240x340/1e293b/94a3b8?text=Frieren" alt="Frieren" class="w-full aspect-[3/4] object-cover group-hover:scale-105 transition-transform duration-300">
+              <img src="https://placehold.co/240x340/1e293b/94a3b8?text=Frieren" alt="Frieren" class="w-full aspect-[3/4] object-cover group-hover:scale-105 transition-transform duration-300" loading="lazy">
               <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
               <div class="absolute top-3 left-3 px-2 py-1 bg-cyan-500 text-white text-xs font-bold rounded-lg">9.4</div>
               <div class="absolute top-3 right-3 px-2 py-1 bg-amber-500/90 text-white text-xs font-bold rounded-lg flex items-center gap-1">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
                 #1
               </div>
               <div class="absolute bottom-3 left-3 right-3">
@@ -189,7 +189,7 @@
               </div>
             </div>
             <div class="relative overflow-hidden rounded-2xl">
-              <img src="https://placehold.co/240x340/1e293b/94a3b8?text=Solo+Leveling" alt="Solo Leveling" class="w-full aspect-[3/4] object-cover group-hover:scale-105 transition-transform duration-300">
+              <img src="https://placehold.co/240x340/1e293b/94a3b8?text=Solo+Leveling" alt="Solo Leveling" class="w-full aspect-[3/4] object-cover group-hover:scale-105 transition-transform duration-300" loading="lazy">
               <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
               <div class="absolute top-3 left-3 px-2 py-1 bg-cyan-500 text-white text-xs font-bold rounded-lg">9.2</div>
               <div class="absolute top-3 right-3 px-2 py-1 bg-slate-700/90 text-white text-xs font-bold rounded-lg">#2</div>
@@ -236,7 +236,7 @@
               </div>
             </div>
             <div class="relative overflow-hidden rounded-2xl">
-              <img src="https://placehold.co/240x340/1e293b/94a3b8?text=Demon+Slayer+S4" alt="Клинок" class="w-full aspect-[3/4] object-cover group-hover:scale-105 transition-transform duration-300">
+              <img src="https://placehold.co/240x340/1e293b/94a3b8?text=Demon+Slayer+S4" alt="Клинок" class="w-full aspect-[3/4] object-cover group-hover:scale-105 transition-transform duration-300" loading="lazy">
               <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
               <div class="absolute top-3 left-3 px-2 py-1 bg-cyan-500 text-white text-xs font-bold rounded-lg">9.1</div>
               <div class="absolute top-3 right-3 px-2 py-1 bg-slate-700/90 text-white text-xs font-bold rounded-lg">#3</div>
@@ -280,7 +280,7 @@
               </div>
             </div>
             <div class="relative overflow-hidden rounded-2xl">
-              <img src="https://placehold.co/240x340/1e293b/94a3b8?text=Jujutsu+Kaisen" alt="Дзюцу Кайсен" class="w-full aspect-[3/4] object-cover group-hover:scale-105 transition-transform duration-300">
+              <img src="https://placehold.co/240x340/1e293b/94a3b8?text=Jujutsu+Kaisen" alt="Дзюцу Кайсен" class="w-full aspect-[3/4] object-cover group-hover:scale-105 transition-transform duration-300" loading="lazy">
               <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
               <div class="absolute top-3 left-3 px-2 py-1 bg-cyan-500 text-white text-xs font-bold rounded-lg">8.9</div>
               <div class="absolute top-3 right-3 px-2 py-1 bg-slate-700/90 text-white text-xs font-bold rounded-lg">#4</div>
@@ -324,7 +324,7 @@
               </div>
             </div>
             <div class="relative overflow-hidden rounded-2xl">
-              <img src="https://placehold.co/240x340/1e293b/94a3b8?text=One+Piece" alt="Ван Піс" class="w-full aspect-[3/4] object-cover group-hover:scale-105 transition-transform duration-300">
+              <img src="https://placehold.co/240x340/1e293b/94a3b8?text=One+Piece" alt="Ван Піс" class="w-full aspect-[3/4] object-cover group-hover:scale-105 transition-transform duration-300" loading="lazy">
               <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
               <div class="absolute top-3 left-3 px-2 py-1 bg-cyan-500 text-white text-xs font-bold rounded-lg">8.8</div>
               <div class="absolute top-3 right-3 px-2 py-1 bg-slate-700/90 text-white text-xs font-bold rounded-lg">#5</div>
@@ -371,7 +371,7 @@
               </div>
             </div>
             <div class="relative overflow-hidden rounded-2xl">
-              <img src="https://placehold.co/240x340/1e293b/94a3b8?text=Oshi+no+Ko" alt="Oshi no Ko" class="w-full aspect-[3/4] object-cover group-hover:scale-105 transition-transform duration-300">
+              <img src="https://placehold.co/240x340/1e293b/94a3b8?text=Oshi+no+Ko" alt="Oshi no Ko" class="w-full aspect-[3/4] object-cover group-hover:scale-105 transition-transform duration-300" loading="lazy">
               <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
               <div class="absolute top-3 left-3 px-2 py-1 bg-cyan-500 text-white text-xs font-bold rounded-lg">8.7</div>
               <div class="absolute top-3 right-3 px-2 py-1 bg-slate-700/90 text-white text-xs font-bold rounded-lg">#6</div>
@@ -411,7 +411,7 @@
           </div>
           <div class="space-y-4">
             <a href="{{ route('anime.show', 'example-slug') }}" class="flex items-center gap-4 p-4 bg-slate-800/50 rounded-2xl hover:bg-slate-800 transition-colors group">
-              <img src="https://placehold.co/100x140/1e293b/94a3b8?text=EP" alt="Anime" class="w-20 h-28 object-cover rounded-xl">
+              <img src="https://placehold.co/100x140/1e293b/94a3b8?text=EP" alt="Anime" class="w-20 h-28 object-cover rounded-xl" loading="lazy">
               <div class="flex-grow">
                 <div class="text-xs text-cyan-400 font-medium mb-1">Щойно вийшов</div>
                 <h3 class="font-semibold text-gray-200 group-hover:text-cyan-400 transition-colors">Frieren: Похоронний обряд</h3>
@@ -426,7 +426,7 @@
               </div>
             </a>
             <a href="{{ route('anime.show', 'example-slug') }}" class="flex items-center gap-4 p-4 bg-slate-800/50 rounded-2xl hover:bg-slate-800 transition-colors group">
-              <img src="https://placehold.co/100x140/1e293b/94a3b8?text=EP" alt="Anime" class="w-20 h-28 object-cover rounded-xl">
+              <img src="https://placehold.co/100x140/1e293b/94a3b8?text=EP" alt="Anime" class="w-20 h-28 object-cover rounded-xl" loading="lazy">
               <div class="flex-grow">
                 <h3 class="font-semibold text-gray-200 group-hover:text-cyan-400 transition-colors">Solo Leveling</h3>
                 <p class="text-sm text-gray-500 mt-1">Епізод 12 - Фінал сезону</p>
@@ -440,7 +440,7 @@
               </div>
             </a>
             <a href="{{ route('anime.show', 'example-slug') }}" class="flex items-center gap-4 p-4 bg-slate-800/50 rounded-2xl hover:bg-slate-800 transition-colors group">
-              <img src="https://placehold.co/100x140/1e293b/94a3b8?text=EP" alt="Anime" class="w-20 h-28 object-cover rounded-xl">
+              <img src="https://placehold.co/100x140/1e293b/94a3b8?text=EP" alt="Anime" class="w-20 h-28 object-cover rounded-xl" loading="lazy">
               <div class="flex-grow">
                 <h3 class="font-semibold text-gray-200 group-hover:text-cyan-400 transition-colors">Дзюцу Кайсен</h3>
                 <p class="text-sm text-gray-500 mt-1">Епізод 47 - Назва епізоду</p>
@@ -556,7 +556,7 @@
         </div>
         <a href="{{ route('characters.index') }}" class="text-cyan-400 hover:text-cyan-300 font-medium flex items-center gap-2">
           Усі персонажі
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
           </svg>
         </a>
@@ -564,7 +564,7 @@
       <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6">
         <a href="{{ route('characters.show', 'example-slug') }}" class="group card-hover text-center">
           <div class="relative overflow-hidden rounded-2xl mb-3">
-            <img src="https://placehold.co/200x200/1e293b/94a3b8?text=Levi" alt="Леві" class="w-full aspect-square object-cover group-hover:scale-105 transition-transform duration-300">
+            <img src="https://placehold.co/200x200/1e293b/94a3b8?text=Levi" alt="Леві" class="w-full aspect-square object-cover group-hover:scale-105 transition-transform duration-300" loading="lazy">
             <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
             <div class="absolute bottom-3 left-3 right-3 text-left">
               <div class="font-semibold text-sm">Леві Аккерман</div>
@@ -572,7 +572,7 @@
             </div>
           </div>
           <div class="flex justify-center gap-1 text-amber-400">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
               <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
             </svg>
             <span class="text-xs text-gray-400">125,430</span>
@@ -580,7 +580,7 @@
         </a>
         <a href="{{ route('characters.show', 'example-slug') }}" class="group card-hover text-center">
           <div class="relative overflow-hidden rounded-2xl mb-3">
-            <img src="https://placehold.co/200x200/1e293b/94a3b8?text=Gojo" alt="Годзьо" class="w-full aspect-square object-cover group-hover:scale-105 transition-transform duration-300">
+            <img src="https://placehold.co/200x200/1e293b/94a3b8?text=Gojo" alt="Годзьо" class="w-full aspect-square object-cover group-hover:scale-105 transition-transform duration-300" loading="lazy">
             <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
             <div class="absolute bottom-3 left-3 right-3 text-left">
               <div class="font-semibold text-sm">Сатору Годзьо</div>
@@ -588,7 +588,7 @@
             </div>
           </div>
           <div class="flex justify-center gap-1 text-amber-400">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
               <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
             </svg>
             <span class="text-xs text-gray-400">118,250</span>
@@ -596,7 +596,7 @@
         </a>
         <a href="{{ route('characters.show', 'example-slug') }}" class="group card-hover text-center">
           <div class="relative overflow-hidden rounded-2xl mb-3">
-            <img src="https://placehold.co/200x200/1e293b/94a3b8?text=Mikasa" alt="Мікаса" class="w-full aspect-square object-cover group-hover:scale-105 transition-transform duration-300">
+            <img src="https://placehold.co/200x200/1e293b/94a3b8?text=Mikasa" alt="Мікаса" class="w-full aspect-square object-cover group-hover:scale-105 transition-transform duration-300" loading="lazy">
             <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
             <div class="absolute bottom-3 left-3 right-3 text-left">
               <div class="font-semibold text-sm">Мікаса Аккерман</div>
@@ -604,7 +604,7 @@
             </div>
           </div>
           <div class="flex justify-center gap-1 text-amber-400">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
               <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
             </svg>
             <span class="text-xs text-gray-400">98,120</span>
@@ -612,7 +612,7 @@
         </a>
         <a href="{{ route('characters.show', 'example-slug') }}" class="group card-hover text-center">
           <div class="relative overflow-hidden rounded-2xl mb-3">
-            <img src="https://placehold.co/200x200/1e293b/94a3b8?text=Tanjiro" alt="Танджіро" class="w-full aspect-square object-cover group-hover:scale-105 transition-transform duration-300">
+            <img src="https://placehold.co/200x200/1e293b/94a3b8?text=Tanjiro" alt="Танджіро" class="w-full aspect-square object-cover group-hover:scale-105 transition-transform duration-300" loading="lazy">
             <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
             <div class="absolute bottom-3 left-3 right-3 text-left">
               <div class="font-semibold text-sm">Танджіро Камадо</div>
@@ -620,7 +620,7 @@
             </div>
           </div>
           <div class="flex justify-center gap-1 text-amber-400">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
               <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
             </svg>
             <span class="text-xs text-gray-400">89,540</span>
@@ -628,7 +628,7 @@
         </a>
         <a href="{{ route('characters.show', 'example-slug') }}" class="group card-hover text-center">
           <div class="relative overflow-hidden rounded-2xl mb-3">
-            <img src="https://placehold.co/200x200/1e293b/94a3b8?text=Anya" alt="Аня" class="w-full aspect-square object-cover group-hover:scale-105 transition-transform duration-300">
+            <img src="https://placehold.co/200x200/1e293b/94a3b8?text=Anya" alt="Аня" class="w-full aspect-square object-cover group-hover:scale-105 transition-transform duration-300" loading="lazy">
             <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
             <div class="absolute bottom-3 left-3 right-3 text-left">
               <div class="font-semibold text-sm">Аня Форджер</div>
@@ -636,7 +636,7 @@
             </div>
           </div>
           <div class="flex justify-center gap-1 text-amber-400">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
               <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
             </svg>
             <span class="text-xs text-gray-400">85,870</span>
@@ -644,7 +644,7 @@
         </a>
         <a href="{{ route('characters.show', 'example-slug') }}" class="group card-hover text-center">
           <div class="relative overflow-hidden rounded-2xl mb-3">
-            <img src="https://placehold.co/200x200/1e293b/94a3b8?text=Zero+Two" alt="Zero Two" class="w-full aspect-square object-cover group-hover:scale-105 transition-transform duration-300">
+            <img src="https://placehold.co/200x200/1e293b/94a3b8?text=Zero+Two" alt="Zero Two" class="w-full aspect-square object-cover group-hover:scale-105 transition-transform duration-300" loading="lazy">
             <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
             <div class="absolute bottom-3 left-3 right-3 text-left">
               <div class="font-semibold text-sm">Zero Two</div>
@@ -652,7 +652,7 @@
             </div>
           </div>
           <div class="flex justify-center gap-1 text-amber-400">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
               <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
             </svg>
             <span class="text-xs text-gray-400">82,340</span>
@@ -671,22 +671,22 @@
       </div>
       <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
         <a href="{{ route('studios.show', 'example-slug') }}" class="group p-6 bg-slate-800/50 rounded-2xl hover:bg-slate-800 transition-colors">
-          <img src="https://placehold.co/120x60/1e293b/94a3b8?text=MAPPA" alt="MAPPA" class="h-12 object-contain mb-4 opacity-70 group-hover:opacity-100 transition-opacity">
+          <img src="https://placehold.co/120x60/1e293b/94a3b8?text=MAPPA" alt="MAPPA" class="h-12 object-contain mb-4 opacity-70 group-hover:opacity-100 transition-opacity" loading="lazy">
           <h3 class="font-semibold text-gray-200 group-hover:text-cyan-400 transition-colors">MAPPA</h3>
           <p class="text-sm text-gray-500">Jujutsu Kaisen, Attack on Titan Final</p>
         </a>
         <a href="{{ route('studios.show', 'example-slug') }}" class="group p-6 bg-slate-800/50 rounded-2xl hover:bg-slate-800 transition-colors">
-          <img src="https://placehold.co/120x60/1e293b/94a3b8?text=ufotable" alt="ufotable" class="h-12 object-contain mb-4 opacity-70 group-hover:opacity-100 transition-opacity">
+          <img src="https://placehold.co/120x60/1e293b/94a3b8?text=ufotable" alt="ufotable" class="h-12 object-contain mb-4 opacity-70 group-hover:opacity-100 transition-opacity" loading="lazy">
           <h3 class="font-semibold text-gray-200 group-hover:text-cyan-400 transition-colors">ufotable</h3>
           <p class="text-sm text-gray-500">Demon Slayer, Fate series</p>
         </a>
         <a href="{{ route('studios.show', 'example-slug') }}" class="group p-6 bg-slate-800/50 rounded-2xl hover:bg-slate-800 transition-colors">
-          <img src="https://placehold.co/120x60/1e293b/94a3b8?text=WIT" alt="WIT Studio" class="h-12 object-contain mb-4 opacity-70 group-hover:opacity-100 transition-opacity">
+          <img src="https://placehold.co/120x60/1e293b/94a3b8?text=WIT" alt="WIT Studio" class="h-12 object-contain mb-4 opacity-70 group-hover:opacity-100 transition-opacity" loading="lazy">
           <h3 class="font-semibold text-gray-200 group-hover:text-cyan-400 transition-colors">WIT Studio</h3>
           <p class="text-sm text-gray-500">Spy x Family, Vinland Saga</p>
         </a>
         <a href="{{ route('studios.show', 'example-slug') }}" class="group p-6 bg-slate-800/50 rounded-2xl hover:bg-slate-800 transition-colors">
-          <img src="https://placehold.co/120x60/1e293b/94a3b8?text=Kyoto" alt="Kyoto Animation" class="h-12 object-contain mb-4 opacity-70 group-hover:opacity-100 transition-opacity">
+          <img src="https://placehold.co/120x60/1e293b/94a3b8?text=Kyoto" alt="Kyoto Animation" class="h-12 object-contain mb-4 opacity-70 group-hover:opacity-100 transition-opacity" loading="lazy">
           <h3 class="font-semibold text-gray-200 group-hover:text-cyan-400 transition-colors">Kyoto Animation</h3>
           <p class="text-sm text-gray-500">Violet Evergarden, K-On!</p>
         </a>
@@ -696,19 +696,5 @@
 @endsection
 
 @push('scripts')
-<script>
-    function toggleListMenu(e, btn) {
-      e.preventDefault();
-      e.stopPropagation();
-      const menu = btn.nextElementSibling;
-      const isHidden = menu.classList.contains('hidden');
-      document.querySelectorAll('.list-dropdown').forEach(m => m.classList.add('hidden'));
-      if (isHidden) { menu.classList.remove('hidden'); }
-    }
-    document.addEventListener('click', function(e) {
-      if (!e.target.closest('.list-menu-container')) {
-        document.querySelectorAll('.list-dropdown').forEach(m => m.classList.add('hidden'));
-      }
-    });
-</script>
+@include('main.components.list-menu-script')
 @endpush

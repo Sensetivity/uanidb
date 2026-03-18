@@ -52,7 +52,7 @@
       <a href="{{ route('studios.show', 'example-slug') }}" class="group p-6 bg-slate-800/50 rounded-2xl hover:bg-slate-800 transition-colors">
         <div class="flex items-center gap-4 mb-4">
           <div class="w-16 h-16 bg-slate-700 rounded-xl flex items-center justify-center">
-            <img src="https://placehold.co/64x32/1e293b/94a3b8?text=ufotable" alt="ufotable" class="w-12 object-contain opacity-70 group-hover:opacity-100 transition-opacity">
+            <img src="https://placehold.co/64x32/1e293b/94a3b8?text=ufotable" alt="ufotable" class="w-12 object-contain opacity-70 group-hover:opacity-100 transition-opacity" loading="lazy">
           </div>
           <div>
             <h3 class="font-semibold text-gray-200 group-hover:text-cyan-400 transition-colors">ufotable</h3>
@@ -68,7 +68,7 @@
       <a href="{{ route('studios.show', 'example-slug') }}" class="group p-6 bg-slate-800/50 rounded-2xl hover:bg-slate-800 transition-colors">
         <div class="flex items-center gap-4 mb-4">
           <div class="w-16 h-16 bg-slate-700 rounded-xl flex items-center justify-center">
-            <img src="https://placehold.co/64x32/1e293b/94a3b8?text=WIT" alt="WIT" class="w-12 object-contain opacity-70 group-hover:opacity-100 transition-opacity">
+            <img src="https://placehold.co/64x32/1e293b/94a3b8?text=WIT" alt="WIT" class="w-12 object-contain opacity-70 group-hover:opacity-100 transition-opacity" loading="lazy">
           </div>
           <div>
             <h3 class="font-semibold text-gray-200 group-hover:text-cyan-400 transition-colors">WIT Studio</h3>
@@ -84,7 +84,7 @@
       <a href="{{ route('studios.show', 'example-slug') }}" class="group p-6 bg-slate-800/50 rounded-2xl hover:bg-slate-800 transition-colors">
         <div class="flex items-center gap-4 mb-4">
           <div class="w-16 h-16 bg-slate-700 rounded-xl flex items-center justify-center">
-            <img src="https://placehold.co/64x32/1e293b/94a3b8?text=Kyoto" alt="Kyoto Animation" class="w-12 object-contain opacity-70 group-hover:opacity-100 transition-opacity">
+            <img src="https://placehold.co/64x32/1e293b/94a3b8?text=Kyoto" alt="Kyoto Animation" class="w-12 object-contain opacity-70 group-hover:opacity-100 transition-opacity" loading="lazy">
           </div>
           <div>
             <h3 class="font-semibold text-gray-200 group-hover:text-cyan-400 transition-colors">Kyoto Animation</h3>
@@ -100,7 +100,7 @@
       <a href="{{ route('studios.show', 'example-slug') }}" class="group p-6 bg-slate-800/50 rounded-2xl hover:bg-slate-800 transition-colors">
         <div class="flex items-center gap-4 mb-4">
           <div class="w-16 h-16 bg-slate-700 rounded-xl flex items-center justify-center">
-            <img src="https://placehold.co/64x32/1e293b/94a3b8?text=Bones" alt="Bones" class="w-12 object-contain opacity-70 group-hover:opacity-100 transition-opacity">
+            <img src="https://placehold.co/64x32/1e293b/94a3b8?text=Bones" alt="Bones" class="w-12 object-contain opacity-70 group-hover:opacity-100 transition-opacity" loading="lazy">
           </div>
           <div>
             <h3 class="font-semibold text-gray-200 group-hover:text-cyan-400 transition-colors">Bones</h3>
@@ -116,7 +116,7 @@
       <a href="{{ route('studios.show', 'example-slug') }}" class="group p-6 bg-slate-800/50 rounded-2xl hover:bg-slate-800 transition-colors">
         <div class="flex items-center gap-4 mb-4">
           <div class="w-16 h-16 bg-slate-700 rounded-xl flex items-center justify-center">
-            <img src="https://placehold.co/64x32/1e293b/94a3b8?text=Madhouse" alt="Madhouse" class="w-12 object-contain opacity-70 group-hover:opacity-100 transition-opacity">
+            <img src="https://placehold.co/64x32/1e293b/94a3b8?text=Madhouse" alt="Madhouse" class="w-12 object-contain opacity-70 group-hover:opacity-100 transition-opacity" loading="lazy">
           </div>
           <div>
             <h3 class="font-semibold text-gray-200 group-hover:text-cyan-400 transition-colors">Madhouse</h3>
@@ -132,7 +132,7 @@
       <a href="{{ route('studios.show', 'example-slug') }}" class="group p-6 bg-slate-800/50 rounded-2xl hover:bg-slate-800 transition-colors">
         <div class="flex items-center gap-4 mb-4">
           <div class="w-16 h-16 bg-slate-700 rounded-xl flex items-center justify-center">
-            <img src="https://placehold.co/64x32/1e293b/94a3b8?text=A-1" alt="A-1 Pictures" class="w-12 object-contain opacity-70 group-hover:opacity-100 transition-opacity">
+            <img src="https://placehold.co/64x32/1e293b/94a3b8?text=A-1" alt="A-1 Pictures" class="w-12 object-contain opacity-70 group-hover:opacity-100 transition-opacity" loading="lazy">
           </div>
           <div>
             <h3 class="font-semibold text-gray-200 group-hover:text-cyan-400 transition-colors">A-1 Pictures</h3>
@@ -148,7 +148,7 @@
       <a href="{{ route('studios.show', 'example-slug') }}" class="group p-6 bg-slate-800/50 rounded-2xl hover:bg-slate-800 transition-colors">
         <div class="flex items-center gap-4 mb-4">
           <div class="w-16 h-16 bg-slate-700 rounded-xl flex items-center justify-center">
-            <img src="https://placehold.co/64x32/1e293b/94a3b8?text=Toei" alt="Toei Animation" class="w-12 object-contain opacity-70 group-hover:opacity-100 transition-opacity">
+            <img src="https://placehold.co/64x32/1e293b/94a3b8?text=Toei" alt="Toei Animation" class="w-12 object-contain opacity-70 group-hover:opacity-100 transition-opacity" loading="lazy">
           </div>
           <div>
             <h3 class="font-semibold text-gray-200 group-hover:text-cyan-400 transition-colors">Toei Animation</h3>
@@ -166,7 +166,7 @@
     <div class="flex justify-center mt-10">
       <nav class="flex items-center gap-2">
         <button class="w-10 h-10 flex items-center justify-center rounded-lg bg-slate-800 text-gray-400">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
           </svg>
         </button>
@@ -176,7 +176,7 @@
         <span class="text-gray-500 px-2">...</span>
         <button class="w-10 h-10 flex items-center justify-center rounded-lg bg-slate-800 text-gray-300 hover:bg-slate-700">43</button>
         <button class="w-10 h-10 flex items-center justify-center rounded-lg bg-slate-800 text-gray-400">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
           </svg>
         </button>

@@ -12,8 +12,8 @@
       <h1 class="text-4xl font-bold text-center mb-8">Пошук аніме</h1>
       <div class="max-w-3xl mx-auto">
         <div class="relative">
-          <input type="text" placeholder="Введіть назву аніме, персонажа або студію..." value="Frieren" class="w-full py-4 px-6 pl-14 rounded-2xl bg-slate-800 border border-slate-700 text-lg text-gray-100 placeholder-gray-500 focus:outline-none focus:border-cyan-500 focus:ring-2 focus:ring-cyan-500/20 transition-all">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-500 absolute left-5 top-1/2 -translate-y-1/2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <input type="text" placeholder="Введіть назву аніме, персонажа або студію..." value="Frieren" class="w-full py-4 px-6 pl-14 rounded-2xl bg-slate-800 border border-slate-700 text-lg text-gray-100 placeholder-gray-400 focus:outline-none focus:border-cyan-500 focus:ring-2 focus:ring-cyan-500/20 transition-all">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-500 absolute left-5 top-1/2 -translate-y-1/2" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
           </svg>
           <button class="absolute right-3 top-1/2 -translate-y-1/2 px-6 py-2 bg-gradient-to-r from-cyan-500 to-purple-600 rounded-xl font-medium hover:opacity-90 transition-opacity">
@@ -69,7 +69,7 @@
             </div>
           </a>
           <a href="{{ route('anime.show', 'example-slug') }}" class="flex gap-4 p-4 bg-slate-800/50 rounded-xl hover:bg-slate-800 transition-colors group">
-            <img src="https://placehold.co/100x140/1e293b/94a3b8?text=Frieren+OVA" alt="Frieren OVA" class="w-24 h-32 object-cover rounded-lg">
+            <img src="https://placehold.co/100x140/1e293b/94a3b8?text=Frieren+OVA" alt="Frieren OVA" loading="lazy" class="w-24 h-32 object-cover rounded-lg">
             <div class="flex-grow">
               <h3 class="font-semibold text-gray-200 group-hover:text-cyan-400 transition-colors">Frieren: Спеціальний випуск</h3>
               <p class="text-sm text-gray-500 mt-1">OVA | 2024 | 1 еп.</p>
@@ -91,7 +91,7 @@
         </div>
         <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
           <a href="{{ route('characters.show', 'example-slug') }}" class="flex gap-3 p-3 bg-slate-800/50 rounded-xl hover:bg-slate-800 transition-colors group">
-            <img src="https://placehold.co/80x80/1e293b/94a3b8?text=F" alt="Frieren" class="w-16 h-16 object-cover rounded-full">
+            <img src="https://placehold.co/80x80/1e293b/94a3b8?text=F" alt="Frieren" loading="lazy" class="w-16 h-16 object-cover rounded-full">
             <div>
               <h3 class="font-semibold text-gray-200 group-hover:text-cyan-400 transition-colors">Фрірен</h3>
               <p class="text-sm text-gray-500">Frieren</p>
@@ -99,7 +99,7 @@
             </div>
           </a>
           <a href="{{ route('characters.show', 'example-slug') }}" class="flex gap-3 p-3 bg-slate-800/50 rounded-xl hover:bg-slate-800 transition-colors group">
-            <img src="https://placehold.co/80x80/1e293b/94a3b8?text=Fe" alt="Fern" class="w-16 h-16 object-cover rounded-full">
+            <img src="https://placehold.co/80x80/1e293b/94a3b8?text=Fe" alt="Fern" loading="lazy" class="w-16 h-16 object-cover rounded-full">
             <div>
               <h3 class="font-semibold text-gray-200 group-hover:text-cyan-400 transition-colors">Ферн</h3>
               <p class="text-sm text-gray-500">Fern</p>
@@ -107,7 +107,7 @@
             </div>
           </a>
           <a href="{{ route('characters.show', 'example-slug') }}" class="flex gap-3 p-3 bg-slate-800/50 rounded-xl hover:bg-slate-800 transition-colors group">
-            <img src="https://placehold.co/80x80/1e293b/94a3b8?text=S" alt="Stark" class="w-16 h-16 object-cover rounded-full">
+            <img src="https://placehold.co/80x80/1e293b/94a3b8?text=S" alt="Stark" loading="lazy" class="w-16 h-16 object-cover rounded-full">
             <div>
               <h3 class="font-semibold text-gray-200 group-hover:text-cyan-400 transition-colors">Штарк</h3>
               <p class="text-sm text-gray-500">Stark</p>
@@ -115,7 +115,7 @@
             </div>
           </a>
           <a href="{{ route('characters.show', 'example-slug') }}" class="flex gap-3 p-3 bg-slate-800/50 rounded-xl hover:bg-slate-800 transition-colors group">
-            <img src="https://placehold.co/80x80/1e293b/94a3b8?text=H" alt="Himmel" class="w-16 h-16 object-cover rounded-full">
+            <img src="https://placehold.co/80x80/1e293b/94a3b8?text=H" alt="Himmel" loading="lazy" class="w-16 h-16 object-cover rounded-full">
             <div>
               <h3 class="font-semibold text-gray-200 group-hover:text-cyan-400 transition-colors">Гіммель</h3>
               <p class="text-sm text-gray-500">Himmel</p>
@@ -133,7 +133,7 @@
         </div>
         <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
           <a href="{{ route('people.show', 'example-slug') }}" class="flex gap-3 p-3 bg-slate-800/50 rounded-xl hover:bg-slate-800 transition-colors group">
-            <img src="https://placehold.co/80x80/1e293b/94a3b8?text=VA" alt="VA" class="w-16 h-16 object-cover rounded-full">
+            <img src="https://placehold.co/80x80/1e293b/94a3b8?text=VA" alt="VA" loading="lazy" class="w-16 h-16 object-cover rounded-full">
             <div>
               <h3 class="font-semibold text-gray-200 group-hover:text-cyan-400 transition-colors">Танезакі Ацумі</h3>
               <p class="text-sm text-gray-500">Голос Фрірен</p>
@@ -141,7 +141,7 @@
             </div>
           </a>
           <a href="{{ route('people.show', 'example-slug') }}" class="flex gap-3 p-3 bg-slate-800/50 rounded-xl hover:bg-slate-800 transition-colors group">
-            <img src="https://placehold.co/80x80/1e293b/94a3b8?text=VA" alt="VA" class="w-16 h-16 object-cover rounded-full">
+            <img src="https://placehold.co/80x80/1e293b/94a3b8?text=VA" alt="VA" loading="lazy" class="w-16 h-16 object-cover rounded-full">
             <div>
               <h3 class="font-semibold text-gray-200 group-hover:text-cyan-400 transition-colors">Ітікава Маріа</h3>
               <p class="text-sm text-gray-500">Голос Ферн</p>
@@ -159,7 +159,7 @@
         </div>
         <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
           <a href="#" class="flex gap-4 p-4 bg-slate-800/50 rounded-xl hover:bg-slate-800 transition-colors group">
-            <img src="https://placehold.co/100x140/1e293b/94a3b8?text=Manga" alt="Manga" class="w-24 h-32 object-cover rounded-lg">
+            <img src="https://placehold.co/100x140/1e293b/94a3b8?text=Manga" alt="Manga" loading="lazy" class="w-24 h-32 object-cover rounded-lg">
             <div class="flex-grow">
               <h3 class="font-semibold text-gray-200 group-hover:text-cyan-400 transition-colors">Frieren: Beyond Journey's End</h3>
               <p class="text-sm text-gray-500 mt-1">Манґа | 2020 | 13+ томів</p>

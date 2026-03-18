@@ -64,11 +64,11 @@
               <p class="text-sm text-gray-500 mb-3">A-1 Pictures | ТБ | 12 еп.</p>
               <div class="flex items-center gap-4 text-sm text-gray-400">
                 <div class="flex items-center gap-1">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
                   4 січня
                 </div>
                 <div class="flex items-center gap-1">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-pink-400" fill="currentColor" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-pink-400" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
                   125,430
                 </div>
               </div>
@@ -77,7 +77,7 @@
           <div class="absolute top-3 right-3 z-10 opacity-0 group-hover:opacity-100 transition-opacity list-menu-container">
             <div class="relative">
               <button type="button" onclick="toggleListMenu(event, this)" class="w-8 h-8 bg-slate-900/90 backdrop-blur-sm rounded-lg flex items-center justify-center hover:bg-cyan-500 transition-colors">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" /></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" /></svg>
               </button>
               <div class="list-dropdown hidden absolute top-full right-0 mt-2 w-44 bg-slate-800 border border-slate-700 rounded-xl shadow-2xl overflow-hidden" onclick="event.stopPropagation()">
                 <button type="button" class="w-full px-4 py-2.5 text-left text-sm text-gray-300 hover:bg-slate-700 hover:text-cyan-400 transition-colors flex items-center gap-3"><span class="text-cyan-400">▶</span> Дивлюсь</button>
@@ -94,7 +94,7 @@
         <div class="relative group">
           <a href="{{ route('anime.show', 'example-slug') }}" class="block bg-slate-800/50 rounded-2xl overflow-hidden hover:bg-slate-800 transition-colors">
             <div class="relative">
-              <img src="https://placehold.co/400x200/1e293b/94a3b8?text=Demon+Slayer+S5" alt="Demon Slayer" class="w-full h-48 object-cover">
+              <img src="https://placehold.co/400x200/1e293b/94a3b8?text=Demon+Slayer+S5" alt="Demon Slayer" class="w-full h-48 object-cover" loading="lazy">
               <div class="absolute inset-0 bg-gradient-to-t from-slate-900 to-transparent"></div>
               <div class="absolute top-3 left-3 px-3 py-1 bg-slate-700 text-white text-xs font-bold rounded-lg">#2</div>
               <div class="absolute bottom-3 left-3 right-3">
@@ -106,11 +106,11 @@
               <p class="text-sm text-gray-500 mb-3">ufotable | Фільм</p>
               <div class="flex items-center gap-4 text-sm text-gray-400">
                 <div class="flex items-center gap-1">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
                   Лютий
                 </div>
                 <div class="flex items-center gap-1">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-pink-400" fill="currentColor" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-pink-400" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
                   98,750
                 </div>
               </div>
@@ -119,7 +119,7 @@
           <div class="absolute top-3 right-3 z-10 opacity-0 group-hover:opacity-100 transition-opacity list-menu-container">
             <div class="relative">
               <button type="button" onclick="toggleListMenu(event, this)" class="w-8 h-8 bg-slate-900/90 backdrop-blur-sm rounded-lg flex items-center justify-center hover:bg-cyan-500 transition-colors">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" /></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" /></svg>
               </button>
               <div class="list-dropdown hidden absolute top-full right-0 mt-2 w-44 bg-slate-800 border border-slate-700 rounded-xl shadow-2xl overflow-hidden" onclick="event.stopPropagation()">
                 <button type="button" class="w-full px-4 py-2.5 text-left text-sm text-gray-300 hover:bg-slate-700 hover:text-cyan-400 transition-colors flex items-center gap-3"><span class="text-cyan-400">▶</span> Дивлюсь</button>
@@ -136,7 +136,7 @@
         <div class="relative group">
           <a href="{{ route('anime.show', 'example-slug') }}" class="block bg-slate-800/50 rounded-2xl overflow-hidden hover:bg-slate-800 transition-colors">
             <div class="relative">
-              <img src="https://placehold.co/400x200/1e293b/94a3b8?text=Sakamoto+Days" alt="Sakamoto Days" class="w-full h-48 object-cover">
+              <img src="https://placehold.co/400x200/1e293b/94a3b8?text=Sakamoto+Days" alt="Sakamoto Days" class="w-full h-48 object-cover" loading="lazy">
               <div class="absolute inset-0 bg-gradient-to-t from-slate-900 to-transparent"></div>
               <div class="absolute top-3 left-3 px-3 py-1 bg-slate-700 text-white text-xs font-bold rounded-lg">#3</div>
               <div class="absolute bottom-3 left-3 right-3">
@@ -148,11 +148,11 @@
               <p class="text-sm text-gray-500 mb-3">TMS Entertainment | ТБ | 24 еп.</p>
               <div class="flex items-center gap-4 text-sm text-gray-400">
                 <div class="flex items-center gap-1">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
                   11 січня
                 </div>
                 <div class="flex items-center gap-1">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-pink-400" fill="currentColor" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-pink-400" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
                   76,320
                 </div>
               </div>
@@ -161,7 +161,7 @@
           <div class="absolute top-3 right-3 z-10 opacity-0 group-hover:opacity-100 transition-opacity list-menu-container">
             <div class="relative">
               <button type="button" onclick="toggleListMenu(event, this)" class="w-8 h-8 bg-slate-900/90 backdrop-blur-sm rounded-lg flex items-center justify-center hover:bg-cyan-500 transition-colors">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" /></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" /></svg>
               </button>
               <div class="list-dropdown hidden absolute top-full right-0 mt-2 w-44 bg-slate-800 border border-slate-700 rounded-xl shadow-2xl overflow-hidden" onclick="event.stopPropagation()">
                 <button type="button" class="w-full px-4 py-2.5 text-left text-sm text-gray-300 hover:bg-slate-700 hover:text-cyan-400 transition-colors flex items-center gap-3"><span class="text-cyan-400">▶</span> Дивлюсь</button>
@@ -191,14 +191,14 @@
               </div>
             </div>
             <div class="relative overflow-hidden rounded-xl">
-              <img src="https://placehold.co/180x250/1e293b/94a3b8?text=Anime+1" alt="Anime" class="w-full aspect-[3/4] object-cover group-hover:scale-105 transition-transform duration-300">
+              <img src="https://placehold.co/180x250/1e293b/94a3b8?text=Anime+1" alt="Anime" class="w-full aspect-[3/4] object-cover group-hover:scale-105 transition-transform duration-300" loading="lazy">
               <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
               <div class="absolute bottom-2 left-2 px-2 py-0.5 bg-cyan-500/80 text-xs rounded">Новинка</div>
             </div>
             <div class="absolute bottom-2 right-2 z-10 opacity-0 group-hover:opacity-100 transition-opacity list-menu-container">
               <div class="relative">
                 <button type="button" onclick="toggleListMenu(event, this)" class="w-7 h-7 bg-slate-900/90 backdrop-blur-sm rounded-lg flex items-center justify-center hover:bg-cyan-500 transition-colors">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" /></svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" /></svg>
                 </button>
                 <div class="list-dropdown hidden absolute bottom-full right-0 mb-2 w-44 bg-slate-800 border border-slate-700 rounded-xl shadow-2xl overflow-hidden" onclick="event.stopPropagation()">
                   <button type="button" class="w-full px-4 py-2.5 text-left text-sm text-gray-300 hover:bg-slate-700 hover:text-cyan-400 transition-colors flex items-center gap-3"><span class="text-cyan-400">▶</span> Дивлюсь</button>
@@ -224,14 +224,14 @@
               </div>
             </div>
             <div class="relative overflow-hidden rounded-xl">
-              <img src="https://placehold.co/180x250/1e293b/94a3b8?text=Anime+2" alt="Anime" class="w-full aspect-[3/4] object-cover group-hover:scale-105 transition-transform duration-300">
+              <img src="https://placehold.co/180x250/1e293b/94a3b8?text=Anime+2" alt="Anime" class="w-full aspect-[3/4] object-cover group-hover:scale-105 transition-transform duration-300" loading="lazy">
               <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
               <div class="absolute bottom-2 left-2 px-2 py-0.5 bg-green-500/80 text-xs rounded">Продовження</div>
             </div>
             <div class="absolute bottom-2 right-2 z-10 opacity-0 group-hover:opacity-100 transition-opacity list-menu-container">
               <div class="relative">
                 <button type="button" onclick="toggleListMenu(event, this)" class="w-7 h-7 bg-slate-900/90 backdrop-blur-sm rounded-lg flex items-center justify-center hover:bg-cyan-500 transition-colors">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" /></svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" /></svg>
                 </button>
                 <div class="list-dropdown hidden absolute bottom-full right-0 mb-2 w-44 bg-slate-800 border border-slate-700 rounded-xl shadow-2xl overflow-hidden" onclick="event.stopPropagation()">
                   <button type="button" class="w-full px-4 py-2.5 text-left text-sm text-gray-300 hover:bg-slate-700 hover:text-cyan-400 transition-colors flex items-center gap-3"><span class="text-cyan-400">▶</span> Дивлюсь</button>
@@ -257,14 +257,14 @@
               </div>
             </div>
             <div class="relative overflow-hidden rounded-xl">
-              <img src="https://placehold.co/180x250/1e293b/94a3b8?text=Anime+3" alt="Anime" class="w-full aspect-[3/4] object-cover group-hover:scale-105 transition-transform duration-300">
+              <img src="https://placehold.co/180x250/1e293b/94a3b8?text=Anime+3" alt="Anime" class="w-full aspect-[3/4] object-cover group-hover:scale-105 transition-transform duration-300" loading="lazy">
               <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
               <div class="absolute bottom-2 left-2 px-2 py-0.5 bg-cyan-500/80 text-xs rounded">Новинка</div>
             </div>
             <div class="absolute bottom-2 right-2 z-10 opacity-0 group-hover:opacity-100 transition-opacity list-menu-container">
               <div class="relative">
                 <button type="button" onclick="toggleListMenu(event, this)" class="w-7 h-7 bg-slate-900/90 backdrop-blur-sm rounded-lg flex items-center justify-center hover:bg-cyan-500 transition-colors">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" /></svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" /></svg>
                 </button>
                 <div class="list-dropdown hidden absolute bottom-full right-0 mb-2 w-44 bg-slate-800 border border-slate-700 rounded-xl shadow-2xl overflow-hidden" onclick="event.stopPropagation()">
                   <button type="button" class="w-full px-4 py-2.5 text-left text-sm text-gray-300 hover:bg-slate-700 hover:text-cyan-400 transition-colors flex items-center gap-3"><span class="text-cyan-400">▶</span> Дивлюсь</button>
@@ -290,14 +290,14 @@
               </div>
             </div>
             <div class="relative overflow-hidden rounded-xl">
-              <img src="https://placehold.co/180x250/1e293b/94a3b8?text=Anime+4" alt="Anime" class="w-full aspect-[3/4] object-cover group-hover:scale-105 transition-transform duration-300">
+              <img src="https://placehold.co/180x250/1e293b/94a3b8?text=Anime+4" alt="Anime" class="w-full aspect-[3/4] object-cover group-hover:scale-105 transition-transform duration-300" loading="lazy">
               <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
               <div class="absolute bottom-2 left-2 px-2 py-0.5 bg-green-500/80 text-xs rounded">Продовження</div>
             </div>
             <div class="absolute bottom-2 right-2 z-10 opacity-0 group-hover:opacity-100 transition-opacity list-menu-container">
               <div class="relative">
                 <button type="button" onclick="toggleListMenu(event, this)" class="w-7 h-7 bg-slate-900/90 backdrop-blur-sm rounded-lg flex items-center justify-center hover:bg-cyan-500 transition-colors">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" /></svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" /></svg>
                 </button>
                 <div class="list-dropdown hidden absolute bottom-full right-0 mb-2 w-44 bg-slate-800 border border-slate-700 rounded-xl shadow-2xl overflow-hidden" onclick="event.stopPropagation()">
                   <button type="button" class="w-full px-4 py-2.5 text-left text-sm text-gray-300 hover:bg-slate-700 hover:text-cyan-400 transition-colors flex items-center gap-3"><span class="text-cyan-400">▶</span> Дивлюсь</button>
@@ -323,14 +323,14 @@
               </div>
             </div>
             <div class="relative overflow-hidden rounded-xl">
-              <img src="https://placehold.co/180x250/1e293b/94a3b8?text=Anime+5" alt="Anime" class="w-full aspect-[3/4] object-cover group-hover:scale-105 transition-transform duration-300">
+              <img src="https://placehold.co/180x250/1e293b/94a3b8?text=Anime+5" alt="Anime" class="w-full aspect-[3/4] object-cover group-hover:scale-105 transition-transform duration-300" loading="lazy">
               <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
               <div class="absolute bottom-2 left-2 px-2 py-0.5 bg-cyan-500/80 text-xs rounded">Новинка</div>
             </div>
             <div class="absolute bottom-2 right-2 z-10 opacity-0 group-hover:opacity-100 transition-opacity list-menu-container">
               <div class="relative">
                 <button type="button" onclick="toggleListMenu(event, this)" class="w-7 h-7 bg-slate-900/90 backdrop-blur-sm rounded-lg flex items-center justify-center hover:bg-cyan-500 transition-colors">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" /></svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" /></svg>
                 </button>
                 <div class="list-dropdown hidden absolute bottom-full right-0 mb-2 w-44 bg-slate-800 border border-slate-700 rounded-xl shadow-2xl overflow-hidden" onclick="event.stopPropagation()">
                   <button type="button" class="w-full px-4 py-2.5 text-left text-sm text-gray-300 hover:bg-slate-700 hover:text-cyan-400 transition-colors flex items-center gap-3"><span class="text-cyan-400">▶</span> Дивлюсь</button>
@@ -356,14 +356,14 @@
               </div>
             </div>
             <div class="relative overflow-hidden rounded-xl">
-              <img src="https://placehold.co/180x250/1e293b/94a3b8?text=Anime+6" alt="Anime" class="w-full aspect-[3/4] object-cover group-hover:scale-105 transition-transform duration-300">
+              <img src="https://placehold.co/180x250/1e293b/94a3b8?text=Anime+6" alt="Anime" class="w-full aspect-[3/4] object-cover group-hover:scale-105 transition-transform duration-300" loading="lazy">
               <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
               <div class="absolute bottom-2 left-2 px-2 py-0.5 bg-cyan-500/80 text-xs rounded">Новинка</div>
             </div>
             <div class="absolute bottom-2 right-2 z-10 opacity-0 group-hover:opacity-100 transition-opacity list-menu-container">
               <div class="relative">
                 <button type="button" onclick="toggleListMenu(event, this)" class="w-7 h-7 bg-slate-900/90 backdrop-blur-sm rounded-lg flex items-center justify-center hover:bg-cyan-500 transition-colors">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" /></svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" /></svg>
                 </button>
                 <div class="list-dropdown hidden absolute bottom-full right-0 mb-2 w-44 bg-slate-800 border border-slate-700 rounded-xl shadow-2xl overflow-hidden" onclick="event.stopPropagation()">
                   <button type="button" class="w-full px-4 py-2.5 text-left text-sm text-gray-300 hover:bg-slate-700 hover:text-cyan-400 transition-colors flex items-center gap-3"><span class="text-cyan-400">▶</span> Дивлюсь</button>
@@ -389,19 +389,5 @@
 @endsection
 
 @push('scripts')
-<script>
-  function toggleListMenu(event, btn) {
-    event.stopPropagation();
-    const menu = btn.nextElementSibling;
-    const isOpen = !menu.classList.contains('hidden');
-    document.querySelectorAll('.list-dropdown').forEach(m => m.classList.add('hidden'));
-    if (!isOpen) menu.classList.remove('hidden');
-    menu.classList.add('list-dropdown');
-  }
-  document.addEventListener('click', function(e) {
-    if (!e.target.closest('.list-menu-container')) {
-      document.querySelectorAll('.list-dropdown').forEach(m => m.classList.add('hidden'));
-    }
-  });
-</script>
+@include('main.components.list-menu-script')
 @endpush

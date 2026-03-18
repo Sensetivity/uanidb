@@ -54,7 +54,7 @@
       <!-- VA Card 2 -->
       <a href="{{ route('people.show', 'example-slug') }}" class="group text-center">
         <div class="relative overflow-hidden rounded-2xl mb-3">
-          <img src="https://placehold.co/200x200/1e293b/94a3b8?text=Kamiya" alt="VA" class="w-full aspect-square object-cover group-hover:scale-105 transition-transform duration-300">
+          <img src="https://placehold.co/200x200/1e293b/94a3b8?text=Kamiya" alt="VA" class="w-full aspect-square object-cover group-hover:scale-105 transition-transform duration-300" loading="lazy">
           <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
           <div class="absolute top-2 right-2 px-2 py-0.5 bg-amber-500 text-white text-xs font-bold rounded">#2</div>
           <div class="absolute bottom-2 left-2 right-2 text-sm text-gray-300">312 ролей</div>
@@ -65,7 +65,7 @@
       <!-- VA Card 3 -->
       <a href="{{ route('people.show', 'example-slug') }}" class="group text-center">
         <div class="relative overflow-hidden rounded-2xl mb-3">
-          <img src="https://placehold.co/200x200/1e293b/94a3b8?text=Kaji" alt="VA" class="w-full aspect-square object-cover group-hover:scale-105 transition-transform duration-300">
+          <img src="https://placehold.co/200x200/1e293b/94a3b8?text=Kaji" alt="VA" class="w-full aspect-square object-cover group-hover:scale-105 transition-transform duration-300" loading="lazy">
           <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
           <div class="absolute top-2 right-2 px-2 py-0.5 bg-slate-700 text-white text-xs font-bold rounded">#3</div>
           <div class="absolute bottom-2 left-2 right-2 text-sm text-gray-300">245 ролей</div>
@@ -76,7 +76,7 @@
       <!-- VA Card 4 -->
       <a href="{{ route('people.show', 'example-slug') }}" class="group text-center">
         <div class="relative overflow-hidden rounded-2xl mb-3">
-          <img src="https://placehold.co/200x200/1e293b/94a3b8?text=Hanazawa" alt="VA" class="w-full aspect-square object-cover group-hover:scale-105 transition-transform duration-300">
+          <img src="https://placehold.co/200x200/1e293b/94a3b8?text=Hanazawa" alt="VA" class="w-full aspect-square object-cover group-hover:scale-105 transition-transform duration-300" loading="lazy">
           <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
           <div class="absolute top-2 right-2 px-2 py-0.5 bg-slate-700 text-white text-xs font-bold rounded">#4</div>
           <div class="absolute bottom-2 left-2 right-2 text-sm text-gray-300">289 ролей</div>
@@ -87,7 +87,7 @@
       <!-- VA Card 5 -->
       <a href="{{ route('people.show', 'example-slug') }}" class="group text-center">
         <div class="relative overflow-hidden rounded-2xl mb-3">
-          <img src="https://placehold.co/200x200/1e293b/94a3b8?text=Miyano" alt="VA" class="w-full aspect-square object-cover group-hover:scale-105 transition-transform duration-300">
+          <img src="https://placehold.co/200x200/1e293b/94a3b8?text=Miyano" alt="VA" class="w-full aspect-square object-cover group-hover:scale-105 transition-transform duration-300" loading="lazy">
           <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
           <div class="absolute top-2 right-2 px-2 py-0.5 bg-slate-700 text-white text-xs font-bold rounded">#5</div>
           <div class="absolute bottom-2 left-2 right-2 text-sm text-gray-300">278 ролей</div>
@@ -98,7 +98,7 @@
       <!-- VA Card 6 -->
       <a href="{{ route('people.show', 'example-slug') }}" class="group text-center">
         <div class="relative overflow-hidden rounded-2xl mb-3">
-          <img src="https://placehold.co/200x200/1e293b/94a3b8?text=Ono" alt="VA" class="w-full aspect-square object-cover group-hover:scale-105 transition-transform duration-300">
+          <img src="https://placehold.co/200x200/1e293b/94a3b8?text=Ono" alt="VA" class="w-full aspect-square object-cover group-hover:scale-105 transition-transform duration-300" loading="lazy">
           <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
           <div class="absolute top-2 right-2 px-2 py-0.5 bg-slate-700 text-white text-xs font-bold rounded">#6</div>
           <div class="absolute bottom-2 left-2 right-2 text-sm text-gray-300">256 ролей</div>
@@ -109,7 +109,7 @@
       <!-- VA Card 7 -->
       <a href="{{ route('people.show', 'example-slug') }}" class="group text-center">
         <div class="relative overflow-hidden rounded-2xl mb-3">
-          <img src="https://placehold.co/200x200/1e293b/94a3b8?text=Sakura" alt="VA" class="w-full aspect-square object-cover group-hover:scale-105 transition-transform duration-300">
+          <img src="https://placehold.co/200x200/1e293b/94a3b8?text=Sakura" alt="VA" class="w-full aspect-square object-cover group-hover:scale-105 transition-transform duration-300" loading="lazy">
           <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
           <div class="absolute top-2 right-2 px-2 py-0.5 bg-slate-700 text-white text-xs font-bold rounded">#7</div>
           <div class="absolute bottom-2 left-2 right-2 text-sm text-gray-300">198 ролей</div>
@@ -120,7 +120,7 @@
       <!-- VA Card 8 -->
       <a href="{{ route('people.show', 'example-slug') }}" class="group text-center">
         <div class="relative overflow-hidden rounded-2xl mb-3">
-          <img src="https://placehold.co/200x200/1e293b/94a3b8?text=Hayami" alt="VA" class="w-full aspect-square object-cover group-hover:scale-105 transition-transform duration-300">
+          <img src="https://placehold.co/200x200/1e293b/94a3b8?text=Hayami" alt="VA" class="w-full aspect-square object-cover group-hover:scale-105 transition-transform duration-300" loading="lazy">
           <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
           <div class="absolute top-2 right-2 px-2 py-0.5 bg-slate-700 text-white text-xs font-bold rounded">#8</div>
           <div class="absolute bottom-2 left-2 right-2 text-sm text-gray-300">187 ролей</div>
@@ -131,7 +131,7 @@
       <!-- VA Card 9 -->
       <a href="{{ route('people.show', 'example-slug') }}" class="group text-center">
         <div class="relative overflow-hidden rounded-2xl mb-3">
-          <img src="https://placehold.co/200x200/1e293b/94a3b8?text=Nakamura" alt="VA" class="w-full aspect-square object-cover group-hover:scale-105 transition-transform duration-300">
+          <img src="https://placehold.co/200x200/1e293b/94a3b8?text=Nakamura" alt="VA" class="w-full aspect-square object-cover group-hover:scale-105 transition-transform duration-300" loading="lazy">
           <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
           <div class="absolute top-2 right-2 px-2 py-0.5 bg-slate-700 text-white text-xs font-bold rounded">#9</div>
           <div class="absolute bottom-2 left-2 right-2 text-sm text-gray-300">234 ролі</div>
@@ -142,7 +142,7 @@
       <!-- VA Card 10 -->
       <a href="{{ route('people.show', 'example-slug') }}" class="group text-center">
         <div class="relative overflow-hidden rounded-2xl mb-3">
-          <img src="https://placehold.co/200x200/1e293b/94a3b8?text=Suwabe" alt="VA" class="w-full aspect-square object-cover group-hover:scale-105 transition-transform duration-300">
+          <img src="https://placehold.co/200x200/1e293b/94a3b8?text=Suwabe" alt="VA" class="w-full aspect-square object-cover group-hover:scale-105 transition-transform duration-300" loading="lazy">
           <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
           <div class="absolute top-2 right-2 px-2 py-0.5 bg-slate-700 text-white text-xs font-bold rounded">#10</div>
           <div class="absolute bottom-2 left-2 right-2 text-sm text-gray-300">267 ролей</div>
@@ -153,7 +153,7 @@
       <!-- VA Card 11 -->
       <a href="{{ route('people.show', 'example-slug') }}" class="group text-center">
         <div class="relative overflow-hidden rounded-2xl mb-3">
-          <img src="https://placehold.co/200x200/1e293b/94a3b8?text=Ishikawa" alt="VA" class="w-full aspect-square object-cover group-hover:scale-105 transition-transform duration-300">
+          <img src="https://placehold.co/200x200/1e293b/94a3b8?text=Ishikawa" alt="VA" class="w-full aspect-square object-cover group-hover:scale-105 transition-transform duration-300" loading="lazy">
           <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
           <div class="absolute top-2 right-2 px-2 py-0.5 bg-slate-700 text-white text-xs font-bold rounded">#11</div>
           <div class="absolute bottom-2 left-2 right-2 text-sm text-gray-300">143 ролі</div>
@@ -164,7 +164,7 @@
       <!-- VA Card 12 -->
       <a href="{{ route('people.show', 'example-slug') }}" class="group text-center">
         <div class="relative overflow-hidden rounded-2xl mb-3">
-          <img src="https://placehold.co/200x200/1e293b/94a3b8?text=Matsuoka" alt="VA" class="w-full aspect-square object-cover group-hover:scale-105 transition-transform duration-300">
+          <img src="https://placehold.co/200x200/1e293b/94a3b8?text=Matsuoka" alt="VA" class="w-full aspect-square object-cover group-hover:scale-105 transition-transform duration-300" loading="lazy">
           <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
           <div class="absolute top-2 right-2 px-2 py-0.5 bg-slate-700 text-white text-xs font-bold rounded">#12</div>
           <div class="absolute bottom-2 left-2 right-2 text-sm text-gray-300">212 ролей</div>

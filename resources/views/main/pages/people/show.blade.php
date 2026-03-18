@@ -12,7 +12,7 @@
       <div class="lg:w-80 flex-shrink-0">
         <img src="https://placehold.co/320x400/1e293b/94a3b8?text=VA+Photo" alt="Танезакі Ацумі" class="w-full rounded-2xl shadow-2xl mb-6">
         <button class="w-full py-3 bg-gradient-to-r from-pink-500 to-red-500 rounded-xl font-semibold flex items-center justify-center gap-2 hover:opacity-90 transition-opacity mb-6">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
             <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
           </svg>
           Додати до улюблених
@@ -51,7 +51,7 @@
           <h2 class="text-2xl font-bold mb-6">Популярні ролі</h2>
           <div class="grid sm:grid-cols-2 gap-4">
             <a href="{{ route('characters.show', 'example-slug') }}" class="flex gap-4 p-4 bg-slate-800/50 rounded-xl hover:bg-slate-800 transition-colors group">
-              <img src="https://placehold.co/80x100/1e293b/94a3b8?text=Frieren" alt="Frieren" class="w-20 h-24 object-cover rounded-lg">
+              <img src="https://placehold.co/80x100/1e293b/94a3b8?text=Frieren" alt="Frieren" class="w-20 h-24 object-cover rounded-lg" loading="lazy">
               <div>
                 <h3 class="font-semibold text-gray-200 group-hover:text-cyan-400 transition-colors">Фрірен</h3>
                 <p class="text-sm text-gray-500">Frieren: Похоронний обряд</p>
@@ -59,7 +59,7 @@
               </div>
             </a>
             <a href="{{ route('characters.show', 'example-slug') }}" class="flex gap-4 p-4 bg-slate-800/50 rounded-xl hover:bg-slate-800 transition-colors group">
-              <img src="https://placehold.co/80x100/1e293b/94a3b8?text=Anya" alt="Anya" class="w-20 h-24 object-cover rounded-lg">
+              <img src="https://placehold.co/80x100/1e293b/94a3b8?text=Anya" alt="Anya" class="w-20 h-24 object-cover rounded-lg" loading="lazy">
               <div>
                 <h3 class="font-semibold text-gray-200 group-hover:text-cyan-400 transition-colors">Аня Форджер</h3>
                 <p class="text-sm text-gray-500">Spy x Family</p>
@@ -67,7 +67,7 @@
               </div>
             </a>
             <a href="{{ route('characters.show', 'example-slug') }}" class="flex gap-4 p-4 bg-slate-800/50 rounded-xl hover:bg-slate-800 transition-colors group">
-              <img src="https://placehold.co/80x100/1e293b/94a3b8?text=Char" alt="Character" class="w-20 h-24 object-cover rounded-lg">
+              <img src="https://placehold.co/80x100/1e293b/94a3b8?text=Char" alt="Character" class="w-20 h-24 object-cover rounded-lg" loading="lazy">
               <div>
                 <h3 class="font-semibold text-gray-200 group-hover:text-cyan-400 transition-colors">Віві</h3>
                 <p class="text-sm text-gray-500">Vivy: Fluorite Eye's Song</p>
@@ -75,7 +75,7 @@
               </div>
             </a>
             <a href="{{ route('characters.show', 'example-slug') }}" class="flex gap-4 p-4 bg-slate-800/50 rounded-xl hover:bg-slate-800 transition-colors group">
-              <img src="https://placehold.co/80x100/1e293b/94a3b8?text=Char" alt="Character" class="w-20 h-24 object-cover rounded-lg">
+              <img src="https://placehold.co/80x100/1e293b/94a3b8?text=Char" alt="Character" class="w-20 h-24 object-cover rounded-lg" loading="lazy">
               <div>
                 <h3 class="font-semibold text-gray-200 group-hover:text-cyan-400 transition-colors">Еурека</h3>
                 <p class="text-sm text-gray-500">Eureka Seven</p>
@@ -90,7 +90,7 @@
           <h2 class="text-2xl font-bold mb-6">Фільмографія</h2>
           <div class="space-y-3">
             <a href="{{ route('anime.show', 'example-slug') }}" class="flex items-center gap-4 p-4 bg-slate-800/50 rounded-xl hover:bg-slate-800 transition-colors group">
-              <img src="https://placehold.co/60x80/1e293b/94a3b8?text=Anime" alt="Anime" class="w-14 h-18 object-cover rounded-lg">
+              <img src="https://placehold.co/60x80/1e293b/94a3b8?text=Anime" alt="Anime" class="w-14 h-18 object-cover rounded-lg" loading="lazy">
               <div class="flex-grow">
                 <h3 class="font-semibold text-gray-200 group-hover:text-cyan-400 transition-colors">Frieren: Похоронний обряд</h3>
                 <p class="text-sm text-gray-500">Фрірен - Головна роль</p>
@@ -98,7 +98,7 @@
               <span class="text-sm text-gray-500">2023</span>
             </a>
             <a href="{{ route('anime.show', 'example-slug') }}" class="flex items-center gap-4 p-4 bg-slate-800/50 rounded-xl hover:bg-slate-800 transition-colors group">
-              <img src="https://placehold.co/60x80/1e293b/94a3b8?text=Anime" alt="Anime" class="w-14 h-18 object-cover rounded-lg">
+              <img src="https://placehold.co/60x80/1e293b/94a3b8?text=Anime" alt="Anime" class="w-14 h-18 object-cover rounded-lg" loading="lazy">
               <div class="flex-grow">
                 <h3 class="font-semibold text-gray-200 group-hover:text-cyan-400 transition-colors">Spy x Family S2</h3>
                 <p class="text-sm text-gray-500">Аня Форджер - Головна роль</p>
@@ -106,7 +106,7 @@
               <span class="text-sm text-gray-500">2023</span>
             </a>
             <a href="{{ route('anime.show', 'example-slug') }}" class="flex items-center gap-4 p-4 bg-slate-800/50 rounded-xl hover:bg-slate-800 transition-colors group">
-              <img src="https://placehold.co/60x80/1e293b/94a3b8?text=Anime" alt="Anime" class="w-14 h-18 object-cover rounded-lg">
+              <img src="https://placehold.co/60x80/1e293b/94a3b8?text=Anime" alt="Anime" class="w-14 h-18 object-cover rounded-lg" loading="lazy">
               <div class="flex-grow">
                 <h3 class="font-semibold text-gray-200 group-hover:text-cyan-400 transition-colors">Spy x Family</h3>
                 <p class="text-sm text-gray-500">Аня Форджер - Головна роль</p>

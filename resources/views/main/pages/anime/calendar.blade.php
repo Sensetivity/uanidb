@@ -27,7 +27,7 @@
         <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
           <div class="flex items-center gap-3">
             <button class="flex items-center gap-2 px-4 py-2 bg-slate-800 hover:bg-slate-700 rounded-xl text-sm text-gray-300 hover:text-white transition-colors">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
               </svg>
               Попередній тиждень
@@ -35,7 +35,7 @@
             <span class="font-semibold text-gray-100 px-4 py-2 bg-slate-800/60 rounded-xl text-sm">17–23 лютого 2025</span>
             <button class="flex items-center gap-2 px-4 py-2 bg-slate-800 hover:bg-slate-700 rounded-xl text-sm text-gray-300 hover:text-white transition-colors">
               Наступний тиждень
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
               </svg>
             </button>
@@ -177,7 +177,7 @@
           <div class="relative group">
             <a href="{{ route('anime.show', 'example-slug') }}" class="block bg-slate-800/60 rounded-2xl overflow-hidden hover:bg-slate-800 transition-all duration-300">
               <div class="relative aspect-[2/3]">
-                <img src="https://placehold.co/300x450/0f172a/a855f7?text=Oshi+no+Ko+S2" alt="Oshi no Ko S2" class="w-full h-full object-cover">
+                <img src="https://placehold.co/300x450/0f172a/a855f7?text=Oshi+no+Ko+S2" alt="Oshi no Ko S2" loading="lazy" class="w-full h-full object-cover">
                 <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/20 to-transparent"></div>
                 <div class="absolute top-3 left-3">
                   <span class="px-2 py-0.5 bg-cyan-500 text-white text-xs font-bold rounded animate-pulse">НОВА СЕРІЯ</span>
@@ -224,7 +224,7 @@
           <div class="relative group">
             <a href="{{ route('anime.show', 'example-slug') }}" class="block bg-slate-800/60 rounded-2xl overflow-hidden hover:bg-slate-800 transition-all duration-300">
               <div class="relative aspect-[2/3]">
-                <img src="https://placehold.co/300x450/0f172a/22c55e?text=Sakamoto+Days" alt="Sakamoto Days" class="w-full h-full object-cover">
+                <img src="https://placehold.co/300x450/0f172a/22c55e?text=Sakamoto+Days" alt="Sakamoto Days" loading="lazy" class="w-full h-full object-cover">
                 <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/20 to-transparent"></div>
                 <div class="absolute bottom-0 left-0 right-0 p-3">
                   <div class="text-white font-semibold text-sm leading-tight mb-1">Sakamoto Days</div>
@@ -290,7 +290,7 @@
 
             <!-- Ван Піс -->
             <div class="relative group flex items-center gap-2 p-2 bg-slate-800/50 rounded-xl hover:bg-slate-800 transition-colors cursor-pointer">
-              <img src="https://placehold.co/40x56/1e293b/94a3b8?text=ВП" class="w-10 h-14 object-cover rounded-lg flex-shrink-0" alt="Ван Піс">
+              <img src="https://placehold.co/40x56/1e293b/94a3b8?text=ВП" class="w-10 h-14 object-cover rounded-lg flex-shrink-0" loading="lazy" alt="Ван Піс">
               <div class="flex-grow min-w-0">
                 <div class="text-xs font-medium line-clamp-2 text-gray-200">Ван Піс</div>
                 <div class="text-xs text-gray-500 mt-0.5">Ep.1113 • 09:00</div>
@@ -317,7 +317,7 @@
 
             <!-- Mashle S2 -->
             <div class="relative group flex items-center gap-2 p-2 bg-slate-800/50 rounded-xl hover:bg-slate-800 transition-colors cursor-pointer">
-              <img src="https://placehold.co/40x56/1e293b/94a3b8?text=МШ" class="w-10 h-14 object-cover rounded-lg flex-shrink-0" alt="Mashle S2">
+              <img src="https://placehold.co/40x56/1e293b/94a3b8?text=МШ" class="w-10 h-14 object-cover rounded-lg flex-shrink-0" loading="lazy" alt="Mashle S2">
               <div class="flex-grow min-w-0">
                 <div class="text-xs font-medium line-clamp-2 text-gray-200">Mashle S2</div>
                 <div class="text-xs text-gray-500 mt-0.5">Ep.5 • 18:00</div>
@@ -356,7 +356,7 @@
 
             <!-- Solo Leveling Ep.7 -->
             <div class="relative group flex items-center gap-2 p-2 bg-slate-800/50 rounded-xl hover:bg-slate-800 transition-colors cursor-pointer">
-              <img src="https://placehold.co/40x56/1e293b/94a3b8?text=SL" class="w-10 h-14 object-cover rounded-lg flex-shrink-0" alt="Solo Leveling S2">
+              <img src="https://placehold.co/40x56/1e293b/94a3b8?text=SL" class="w-10 h-14 object-cover rounded-lg flex-shrink-0" loading="lazy" alt="Solo Leveling S2">
               <div class="flex-grow min-w-0">
                 <div class="text-xs font-medium line-clamp-2 text-gray-200">Solo Leveling S2</div>
                 <div class="text-xs text-gray-500 mt-0.5">Ep.7 • 11:00</div>
@@ -383,7 +383,7 @@
 
             <!-- Dandadan Ep.6 -->
             <div class="relative group flex items-center gap-2 p-2 bg-slate-800/50 rounded-xl hover:bg-slate-800 transition-colors cursor-pointer">
-              <img src="https://placehold.co/40x56/1e293b/94a3b8?text=DD" class="w-10 h-14 object-cover rounded-lg flex-shrink-0" alt="Dandadan">
+              <img src="https://placehold.co/40x56/1e293b/94a3b8?text=DD" class="w-10 h-14 object-cover rounded-lg flex-shrink-0" loading="lazy" alt="Dandadan">
               <div class="flex-grow min-w-0">
                 <div class="text-xs font-medium line-clamp-2 text-gray-200">Dandadan</div>
                 <div class="text-xs text-gray-500 mt-0.5">Ep.6 • 22:30</div>
@@ -422,7 +422,7 @@
 
             <!-- Медичний клас -->
             <div class="relative group flex items-center gap-2 p-2 bg-slate-800/50 rounded-xl hover:bg-slate-800 transition-colors cursor-pointer">
-              <img src="https://placehold.co/40x56/1e293b/94a3b8?text=МК" class="w-10 h-14 object-cover rounded-lg flex-shrink-0" alt="Медичний клас">
+              <img src="https://placehold.co/40x56/1e293b/94a3b8?text=МК" class="w-10 h-14 object-cover rounded-lg flex-shrink-0" loading="lazy" alt="Медичний клас">
               <div class="flex-grow min-w-0">
                 <div class="text-xs font-medium line-clamp-2 text-gray-200">Медичний клас</div>
                 <div class="text-xs text-gray-500 mt-0.5">Ep.6 • 10:30</div>
@@ -449,7 +449,7 @@
 
             <!-- Frieren Ep.27 -->
             <div class="relative group flex items-center gap-2 p-2 bg-slate-800/50 rounded-xl hover:bg-slate-800 transition-colors cursor-pointer">
-              <img src="https://placehold.co/40x56/1e293b/94a3b8?text=FR" class="w-10 h-14 object-cover rounded-lg flex-shrink-0" alt="Frieren">
+              <img src="https://placehold.co/40x56/1e293b/94a3b8?text=FR" class="w-10 h-14 object-cover rounded-lg flex-shrink-0" loading="lazy" alt="Frieren">
               <div class="flex-grow min-w-0">
                 <div class="text-xs font-medium line-clamp-2 text-gray-200">Frieren</div>
                 <div class="text-xs text-gray-500 mt-0.5">Ep.27 • 17:30</div>
@@ -476,7 +476,7 @@
 
             <!-- Blue Box Ep.18 -->
             <div class="relative group flex items-center gap-2 p-2 bg-slate-800/50 rounded-xl hover:bg-slate-800 transition-colors cursor-pointer">
-              <img src="https://placehold.co/40x56/1e293b/94a3b8?text=BB" class="w-10 h-14 object-cover rounded-lg flex-shrink-0" alt="Blue Box">
+              <img src="https://placehold.co/40x56/1e293b/94a3b8?text=BB" class="w-10 h-14 object-cover rounded-lg flex-shrink-0" loading="lazy" alt="Blue Box">
               <div class="flex-grow min-w-0">
                 <div class="text-xs font-medium line-clamp-2 text-gray-200">Blue Box</div>
                 <div class="text-xs text-gray-500 mt-0.5">Ep.18 • 23:00</div>
@@ -515,7 +515,7 @@
 
             <!-- Solo Leveling Ep.8 -->
             <div class="relative group flex items-center gap-2 p-2 bg-cyan-500/10 border border-cyan-500/10 rounded-xl hover:bg-cyan-500/20 transition-colors cursor-pointer">
-              <img src="https://placehold.co/40x56/0c1929/3b82f6?text=SL" class="w-10 h-14 object-cover rounded-lg flex-shrink-0" alt="Solo Leveling S2">
+              <img src="https://placehold.co/40x56/0c1929/3b82f6?text=SL" class="w-10 h-14 object-cover rounded-lg flex-shrink-0" loading="lazy" alt="Solo Leveling S2">
               <div class="flex-grow min-w-0">
                 <div class="text-xs font-medium line-clamp-2 text-gray-100">Solo Leveling S2</div>
                 <div class="text-xs text-gray-500 mt-0.5">Ep.8 • 19:00</div>
@@ -542,7 +542,7 @@
 
             <!-- Oshi no Ko S2 Ep.10 -->
             <div class="relative group flex items-center gap-2 p-2 bg-cyan-500/10 border border-cyan-500/10 rounded-xl hover:bg-cyan-500/20 transition-colors cursor-pointer">
-              <img src="https://placehold.co/40x56/0c1929/a855f7?text=ONK" class="w-10 h-14 object-cover rounded-lg flex-shrink-0" alt="Oshi no Ko S2">
+              <img src="https://placehold.co/40x56/0c1929/a855f7?text=ONK" class="w-10 h-14 object-cover rounded-lg flex-shrink-0" loading="lazy" alt="Oshi no Ko S2">
               <div class="flex-grow min-w-0">
                 <div class="text-xs font-medium line-clamp-2 text-gray-100">Oshi no Ko S2</div>
                 <div class="text-xs text-gray-500 mt-0.5">Ep.10 • 22:00</div>
@@ -569,7 +569,7 @@
 
             <!-- Sakamoto Days Ep.8 -->
             <div class="relative group flex items-center gap-2 p-2 bg-cyan-500/10 border border-cyan-500/10 rounded-xl hover:bg-cyan-500/20 transition-colors cursor-pointer">
-              <img src="https://placehold.co/40x56/0c1929/22c55e?text=SD" class="w-10 h-14 object-cover rounded-lg flex-shrink-0" alt="Sakamoto Days">
+              <img src="https://placehold.co/40x56/0c1929/22c55e?text=SD" class="w-10 h-14 object-cover rounded-lg flex-shrink-0" loading="lazy" alt="Sakamoto Days">
               <div class="flex-grow min-w-0">
                 <div class="text-xs font-medium line-clamp-2 text-gray-100">Sakamoto Days</div>
                 <div class="text-xs text-gray-500 mt-0.5">Ep.8 • 23:30</div>
@@ -596,7 +596,7 @@
 
             <!-- Haikyuu!! Movie -->
             <div class="relative group flex items-center gap-2 p-2 bg-cyan-500/10 border border-cyan-500/10 rounded-xl hover:bg-cyan-500/20 transition-colors cursor-pointer">
-              <img src="https://placehold.co/40x56/0c1929/f59e0b?text=HQ" class="w-10 h-14 object-cover rounded-lg flex-shrink-0" alt="Haikyuu Movie">
+              <img src="https://placehold.co/40x56/0c1929/f59e0b?text=HQ" class="w-10 h-14 object-cover rounded-lg flex-shrink-0" loading="lazy" alt="Haikyuu Movie">
               <div class="flex-grow min-w-0">
                 <div class="text-xs font-medium line-clamp-2 text-gray-100">Haikyuu!! FINAL</div>
                 <div class="text-xs text-gray-500 mt-0.5">Фільм • 16:00</div>
@@ -623,7 +623,7 @@
 
             <!-- Re:Zero OVA -->
             <div class="relative group flex items-center gap-2 p-2 bg-cyan-500/10 border border-cyan-500/10 rounded-xl hover:bg-cyan-500/20 transition-colors cursor-pointer">
-              <img src="https://placehold.co/40x56/0c1929/6366f1?text=RZ" class="w-10 h-14 object-cover rounded-lg flex-shrink-0" alt="Re:Zero OVA">
+              <img src="https://placehold.co/40x56/0c1929/6366f1?text=RZ" class="w-10 h-14 object-cover rounded-lg flex-shrink-0" loading="lazy" alt="Re:Zero OVA">
               <div class="flex-grow min-w-0">
                 <div class="text-xs font-medium line-clamp-2 text-gray-100">Re:Zero OVA</div>
                 <div class="text-xs text-gray-500 mt-0.5">OVA • 20:00</div>
@@ -650,7 +650,7 @@
 
             <!-- Zenshu Ep.8 -->
             <div class="relative group flex items-center gap-2 p-2 bg-cyan-500/10 border border-cyan-500/10 rounded-xl hover:bg-cyan-500/20 transition-colors cursor-pointer">
-              <img src="https://placehold.co/40x56/0c1929/ec4899?text=ZS" class="w-10 h-14 object-cover rounded-lg flex-shrink-0" alt="Zenshu">
+              <img src="https://placehold.co/40x56/0c1929/ec4899?text=ZS" class="w-10 h-14 object-cover rounded-lg flex-shrink-0" loading="lazy" alt="Zenshu">
               <div class="flex-grow min-w-0">
                 <div class="text-xs font-medium line-clamp-2 text-gray-100">Zenshu</div>
                 <div class="text-xs text-gray-500 mt-0.5">Ep.8 • 21:00</div>
@@ -689,7 +689,7 @@
 
             <!-- Dungeon Meshi -->
             <div class="relative group flex items-center gap-2 p-2 bg-slate-800/50 rounded-xl hover:bg-slate-800 transition-colors cursor-pointer">
-              <img src="https://placehold.co/40x56/1e293b/94a3b8?text=DM" class="w-10 h-14 object-cover rounded-lg flex-shrink-0" alt="Dungeon Meshi">
+              <img src="https://placehold.co/40x56/1e293b/94a3b8?text=DM" class="w-10 h-14 object-cover rounded-lg flex-shrink-0" loading="lazy" alt="Dungeon Meshi">
               <div class="flex-grow min-w-0">
                 <div class="text-xs font-medium line-clamp-2 text-gray-200">Dungeon Meshi</div>
                 <div class="text-xs text-gray-500 mt-0.5">Ep.23 • 12:00</div>
@@ -716,7 +716,7 @@
 
             <!-- Apothecary Diaries -->
             <div class="relative group flex items-center gap-2 p-2 bg-slate-800/50 rounded-xl hover:bg-slate-800 transition-colors cursor-pointer">
-              <img src="https://placehold.co/40x56/1e293b/94a3b8?text=AP" class="w-10 h-14 object-cover rounded-lg flex-shrink-0" alt="Apothecary Diaries">
+              <img src="https://placehold.co/40x56/1e293b/94a3b8?text=AP" class="w-10 h-14 object-cover rounded-lg flex-shrink-0" loading="lazy" alt="Apothecary Diaries">
               <div class="flex-grow min-w-0">
                 <div class="text-xs font-medium line-clamp-2 text-gray-200">Apothecary Diaries</div>
                 <div class="text-xs text-gray-500 mt-0.5">Ep.19 • 17:00</div>
@@ -743,7 +743,7 @@
 
             <!-- Spy x Family -->
             <div class="relative group flex items-center gap-2 p-2 bg-slate-800/50 rounded-xl hover:bg-slate-800 transition-colors cursor-pointer">
-              <img src="https://placehold.co/40x56/1e293b/94a3b8?text=SxF" class="w-10 h-14 object-cover rounded-lg flex-shrink-0" alt="Spy x Family">
+              <img src="https://placehold.co/40x56/1e293b/94a3b8?text=SxF" class="w-10 h-14 object-cover rounded-lg flex-shrink-0" loading="lazy" alt="Spy x Family">
               <div class="flex-grow min-w-0">
                 <div class="text-xs font-medium line-clamp-2 text-gray-200">Spy x Family</div>
                 <div class="text-xs text-gray-500 mt-0.5">Ep.18 • 20:00</div>
@@ -770,7 +770,7 @@
 
             <!-- Yakuza Fiancé -->
             <div class="relative group flex items-center gap-2 p-2 bg-slate-800/50 rounded-xl hover:bg-slate-800 transition-colors cursor-pointer">
-              <img src="https://placehold.co/40x56/1e293b/94a3b8?text=YF" class="w-10 h-14 object-cover rounded-lg flex-shrink-0" alt="Yakuza Fiancé">
+              <img src="https://placehold.co/40x56/1e293b/94a3b8?text=YF" class="w-10 h-14 object-cover rounded-lg flex-shrink-0" loading="lazy" alt="Yakuza Fiancé">
               <div class="flex-grow min-w-0">
                 <div class="text-xs font-medium line-clamp-2 text-gray-200">Yakuza Fiancé</div>
                 <div class="text-xs text-gray-500 mt-0.5">Ep.6 • 23:00</div>
@@ -809,7 +809,7 @@
 
             <!-- Frieren Ep.28 -->
             <div class="relative group flex items-center gap-2 p-2 bg-slate-800/50 rounded-xl hover:bg-slate-800 transition-colors cursor-pointer">
-              <img src="https://placehold.co/40x56/1e293b/94a3b8?text=FR" class="w-10 h-14 object-cover rounded-lg flex-shrink-0" alt="Frieren">
+              <img src="https://placehold.co/40x56/1e293b/94a3b8?text=FR" class="w-10 h-14 object-cover rounded-lg flex-shrink-0" loading="lazy" alt="Frieren">
               <div class="flex-grow min-w-0">
                 <div class="text-xs font-medium line-clamp-2 text-gray-200">Frieren</div>
                 <div class="text-xs text-gray-500 mt-0.5">Ep.28 • 11:30</div>
@@ -836,7 +836,7 @@
 
             <!-- Demon Slayer Hashira -->
             <div class="relative group flex items-center gap-2 p-2 bg-slate-800/50 rounded-xl hover:bg-slate-800 transition-colors cursor-pointer">
-              <img src="https://placehold.co/40x56/1e293b/94a3b8?text=DS" class="w-10 h-14 object-cover rounded-lg flex-shrink-0" alt="Demon Slayer">
+              <img src="https://placehold.co/40x56/1e293b/94a3b8?text=DS" class="w-10 h-14 object-cover rounded-lg flex-shrink-0" loading="lazy" alt="Demon Slayer">
               <div class="flex-grow min-w-0">
                 <div class="text-xs font-medium line-clamp-2 text-gray-200">Demon Slayer: Hashira</div>
                 <div class="text-xs text-gray-500 mt-0.5">Ep.1 • 14:00</div>
@@ -863,7 +863,7 @@
 
             <!-- Naruto New Era -->
             <div class="relative group flex items-center gap-2 p-2 bg-slate-800/50 rounded-xl hover:bg-slate-800 transition-colors cursor-pointer">
-              <img src="https://placehold.co/40x56/1e293b/94a3b8?text=NE" class="w-10 h-14 object-cover rounded-lg flex-shrink-0" alt="Naruto New Era">
+              <img src="https://placehold.co/40x56/1e293b/94a3b8?text=NE" class="w-10 h-14 object-cover rounded-lg flex-shrink-0" loading="lazy" alt="Naruto New Era">
               <div class="flex-grow min-w-0">
                 <div class="text-xs font-medium line-clamp-2 text-gray-200">Naruto: New Era</div>
                 <div class="text-xs text-gray-500 mt-0.5">Ep.52 • 09:30</div>
@@ -890,7 +890,7 @@
 
             <!-- MHA S7 -->
             <div class="relative group flex items-center gap-2 p-2 bg-slate-800/50 rounded-xl hover:bg-slate-800 transition-colors cursor-pointer">
-              <img src="https://placehold.co/40x56/1e293b/94a3b8?text=MHA" class="w-10 h-14 object-cover rounded-lg flex-shrink-0" alt="My Hero Academia S7">
+              <img src="https://placehold.co/40x56/1e293b/94a3b8?text=MHA" class="w-10 h-14 object-cover rounded-lg flex-shrink-0" loading="lazy" alt="My Hero Academia S7">
               <div class="flex-grow min-w-0">
                 <div class="text-xs font-medium line-clamp-2 text-gray-200">My Hero Academia S7</div>
                 <div class="text-xs text-gray-500 mt-0.5">Ep.12 • 17:00</div>
@@ -917,7 +917,7 @@
 
             <!-- Bucchigiri -->
             <div class="relative group flex items-center gap-2 p-2 bg-slate-800/50 rounded-xl hover:bg-slate-800 transition-colors cursor-pointer">
-              <img src="https://placehold.co/40x56/1e293b/94a3b8?text=BG" class="w-10 h-14 object-cover rounded-lg flex-shrink-0" alt="Bucchigiri">
+              <img src="https://placehold.co/40x56/1e293b/94a3b8?text=BG" class="w-10 h-14 object-cover rounded-lg flex-shrink-0" loading="lazy" alt="Bucchigiri">
               <div class="flex-grow min-w-0">
                 <div class="text-xs font-medium line-clamp-2 text-gray-200">Bucchigiri?!</div>
                 <div class="text-xs text-gray-500 mt-0.5">Ep.7 • 20:30</div>
@@ -944,7 +944,7 @@
 
             <!-- Classroom of the Elite S3 -->
             <div class="relative group flex items-center gap-2 p-2 bg-slate-800/50 rounded-xl hover:bg-slate-800 transition-colors cursor-pointer">
-              <img src="https://placehold.co/40x56/1e293b/94a3b8?text=CE" class="w-10 h-14 object-cover rounded-lg flex-shrink-0" alt="Classroom of the Elite S3">
+              <img src="https://placehold.co/40x56/1e293b/94a3b8?text=CE" class="w-10 h-14 object-cover rounded-lg flex-shrink-0" loading="lazy" alt="Classroom of the Elite S3">
               <div class="flex-grow min-w-0">
                 <div class="text-xs font-medium line-clamp-2 text-gray-200">Classroom of the Elite S3</div>
                 <div class="text-xs text-gray-500 mt-0.5">Ep.7 • 22:00</div>
@@ -983,7 +983,7 @@
 
             <!-- Mushoku Tensei S2 -->
             <div class="relative group flex items-center gap-2 p-2 bg-slate-800/50 rounded-xl hover:bg-slate-800 transition-colors cursor-pointer">
-              <img src="https://placehold.co/40x56/1e293b/94a3b8?text=MT" class="w-10 h-14 object-cover rounded-lg flex-shrink-0" alt="Mushoku Tensei S2">
+              <img src="https://placehold.co/40x56/1e293b/94a3b8?text=MT" class="w-10 h-14 object-cover rounded-lg flex-shrink-0" loading="lazy" alt="Mushoku Tensei S2">
               <div class="flex-grow min-w-0">
                 <div class="text-xs font-medium line-clamp-2 text-gray-200">Mushoku Tensei S2</div>
                 <div class="text-xs text-gray-500 mt-0.5">Ep.8 • 10:00</div>
@@ -1010,7 +1010,7 @@
 
             <!-- One Punch Man S3 -->
             <div class="relative group flex items-center gap-2 p-2 bg-slate-800/50 rounded-xl hover:bg-slate-800 transition-colors cursor-pointer">
-              <img src="https://placehold.co/40x56/1e293b/94a3b8?text=OPM" class="w-10 h-14 object-cover rounded-lg flex-shrink-0" alt="One Punch Man S3">
+              <img src="https://placehold.co/40x56/1e293b/94a3b8?text=OPM" class="w-10 h-14 object-cover rounded-lg flex-shrink-0" loading="lazy" alt="One Punch Man S3">
               <div class="flex-grow min-w-0">
                 <div class="text-xs font-medium line-clamp-2 text-gray-200">One Punch Man S3</div>
                 <div class="text-xs text-gray-500 mt-0.5">Ep.5 • 13:00</div>
@@ -1037,7 +1037,7 @@
 
             <!-- Dragon Ball Daima -->
             <div class="relative group flex items-center gap-2 p-2 bg-slate-800/50 rounded-xl hover:bg-slate-800 transition-colors cursor-pointer">
-              <img src="https://placehold.co/40x56/1e293b/94a3b8?text=DBD" class="w-10 h-14 object-cover rounded-lg flex-shrink-0" alt="Dragon Ball Daima">
+              <img src="https://placehold.co/40x56/1e293b/94a3b8?text=DBD" class="w-10 h-14 object-cover rounded-lg flex-shrink-0" loading="lazy" alt="Dragon Ball Daima">
               <div class="flex-grow min-w-0">
                 <div class="text-xs font-medium line-clamp-2 text-gray-200">Dragon Ball Daima</div>
                 <div class="text-xs text-gray-500 mt-0.5">Ep.18 • 09:00</div>
@@ -1064,7 +1064,7 @@
 
             <!-- Jujutsu Kaisen OVA -->
             <div class="relative group flex items-center gap-2 p-2 bg-slate-800/50 rounded-xl hover:bg-slate-800 transition-colors cursor-pointer">
-              <img src="https://placehold.co/40x56/1e293b/94a3b8?text=JJK" class="w-10 h-14 object-cover rounded-lg flex-shrink-0" alt="Jujutsu Kaisen OVA">
+              <img src="https://placehold.co/40x56/1e293b/94a3b8?text=JJK" class="w-10 h-14 object-cover rounded-lg flex-shrink-0" loading="lazy" alt="Jujutsu Kaisen OVA">
               <div class="flex-grow min-w-0">
                 <div class="text-xs font-medium line-clamp-2 text-gray-200">Jujutsu Kaisen OVA</div>
                 <div class="text-xs text-gray-500 mt-0.5">OVA • 15:30</div>
@@ -1091,7 +1091,7 @@
 
             <!-- Shangri-La Frontier -->
             <div class="relative group flex items-center gap-2 p-2 bg-slate-800/50 rounded-xl hover:bg-slate-800 transition-colors cursor-pointer">
-              <img src="https://placehold.co/40x56/1e293b/94a3b8?text=SLF" class="w-10 h-14 object-cover rounded-lg flex-shrink-0" alt="Shangri-La Frontier">
+              <img src="https://placehold.co/40x56/1e293b/94a3b8?text=SLF" class="w-10 h-14 object-cover rounded-lg flex-shrink-0" loading="lazy" alt="Shangri-La Frontier">
               <div class="flex-grow min-w-0">
                 <div class="text-xs font-medium line-clamp-2 text-gray-200">Shangri-La Frontier</div>
                 <div class="text-xs text-gray-500 mt-0.5">Ep.7 • 19:00</div>
@@ -1118,7 +1118,7 @@
 
             <!-- Metallic Rouge -->
             <div class="relative group flex items-center gap-2 p-2 bg-slate-800/50 rounded-xl hover:bg-slate-800 transition-colors cursor-pointer">
-              <img src="https://placehold.co/40x56/1e293b/94a3b8?text=MR" class="w-10 h-14 object-cover rounded-lg flex-shrink-0" alt="Metallic Rouge">
+              <img src="https://placehold.co/40x56/1e293b/94a3b8?text=MR" class="w-10 h-14 object-cover rounded-lg flex-shrink-0" loading="lazy" alt="Metallic Rouge">
               <div class="flex-grow min-w-0">
                 <div class="text-xs font-medium line-clamp-2 text-gray-200">Metallic Rouge</div>
                 <div class="text-xs text-gray-500 mt-0.5">Ep.6 • 21:30</div>
@@ -1155,22 +1155,8 @@
 @endsection
 
 @push('scripts')
+@include('main.components.list-menu-script')
 <script>
-    function toggleListMenu(e, btn) {
-      e.preventDefault();
-      e.stopPropagation();
-      const menu = btn.nextElementSibling;
-      const isHidden = menu.classList.contains('hidden');
-      document.querySelectorAll('.list-dropdown').forEach(m => m.classList.add('hidden'));
-      if (isHidden) { menu.classList.remove('hidden'); }
-    }
-
-    document.addEventListener('click', function(e) {
-      if (!e.target.closest('.list-menu-container')) {
-        document.querySelectorAll('.list-dropdown').forEach(m => m.classList.add('hidden'));
-      }
-    });
-
     function showDay(dayId) {
       document.querySelectorAll('.day-column').forEach(el => el.classList.add('hidden'));
       document.querySelectorAll('.day-tab').forEach(el => {

@@ -49,7 +49,7 @@
           <div class="absolute top-2 right-2 px-2 py-0.5 bg-amber-500 text-white text-xs font-bold rounded">#1</div>
           <div class="absolute bottom-2 left-2 right-2">
             <div class="flex items-center justify-center gap-1 text-pink-400 text-sm">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
               </svg>
               <span>125,430</span>
@@ -62,12 +62,12 @@
       <!-- Character Card 2 -->
       <a href="{{ route('characters.show', 'example-slug') }}" class="group text-center">
         <div class="relative overflow-hidden rounded-2xl mb-3">
-          <img src="https://placehold.co/200x200/1e293b/94a3b8?text=Gojo" alt="Годзьо" class="w-full aspect-square object-cover group-hover:scale-105 transition-transform duration-300">
+          <img src="https://placehold.co/200x200/1e293b/94a3b8?text=Gojo" alt="Годзьо" class="w-full aspect-square object-cover group-hover:scale-105 transition-transform duration-300" loading="lazy">
           <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
           <div class="absolute top-2 right-2 px-2 py-0.5 bg-amber-500 text-white text-xs font-bold rounded">#2</div>
           <div class="absolute bottom-2 left-2 right-2">
             <div class="flex items-center justify-center gap-1 text-pink-400 text-sm">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
               </svg>
               <span>118,250</span>
@@ -80,12 +80,12 @@
       <!-- Character Card 3 -->
       <a href="{{ route('characters.show', 'example-slug') }}" class="group text-center">
         <div class="relative overflow-hidden rounded-2xl mb-3">
-          <img src="https://placehold.co/200x200/1e293b/94a3b8?text=Mikasa" alt="Мікаса" class="w-full aspect-square object-cover group-hover:scale-105 transition-transform duration-300">
+          <img src="https://placehold.co/200x200/1e293b/94a3b8?text=Mikasa" alt="Мікаса" class="w-full aspect-square object-cover group-hover:scale-105 transition-transform duration-300" loading="lazy">
           <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
           <div class="absolute top-2 right-2 px-2 py-0.5 bg-slate-700 text-white text-xs font-bold rounded">#3</div>
           <div class="absolute bottom-2 left-2 right-2">
             <div class="flex items-center justify-center gap-1 text-pink-400 text-sm">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
               </svg>
               <span>98,120</span>
@@ -98,12 +98,12 @@
       <!-- Character Card 4 -->
       <a href="{{ route('characters.show', 'example-slug') }}" class="group text-center">
         <div class="relative overflow-hidden rounded-2xl mb-3">
-          <img src="https://placehold.co/200x200/1e293b/94a3b8?text=Tanjiro" alt="Танджіро" class="w-full aspect-square object-cover group-hover:scale-105 transition-transform duration-300">
+          <img src="https://placehold.co/200x200/1e293b/94a3b8?text=Tanjiro" alt="Танджіро" class="w-full aspect-square object-cover group-hover:scale-105 transition-transform duration-300" loading="lazy">
           <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
           <div class="absolute top-2 right-2 px-2 py-0.5 bg-slate-700 text-white text-xs font-bold rounded">#4</div>
           <div class="absolute bottom-2 left-2 right-2">
             <div class="flex items-center justify-center gap-1 text-pink-400 text-sm">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
               </svg>
               <span>89,540</span>
@@ -116,12 +116,12 @@
       <!-- Character Card 5 -->
       <a href="{{ route('characters.show', 'example-slug') }}" class="group text-center">
         <div class="relative overflow-hidden rounded-2xl mb-3">
-          <img src="https://placehold.co/200x200/1e293b/94a3b8?text=Anya" alt="Аня" class="w-full aspect-square object-cover group-hover:scale-105 transition-transform duration-300">
+          <img src="https://placehold.co/200x200/1e293b/94a3b8?text=Anya" alt="Аня" class="w-full aspect-square object-cover group-hover:scale-105 transition-transform duration-300" loading="lazy">
           <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
           <div class="absolute top-2 right-2 px-2 py-0.5 bg-slate-700 text-white text-xs font-bold rounded">#5</div>
           <div class="absolute bottom-2 left-2 right-2">
             <div class="flex items-center justify-center gap-1 text-pink-400 text-sm">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
               </svg>
               <span>85,870</span>
@@ -134,12 +134,12 @@
       <!-- Character Card 6 -->
       <a href="{{ route('characters.show', 'example-slug') }}" class="group text-center">
         <div class="relative overflow-hidden rounded-2xl mb-3">
-          <img src="https://placehold.co/200x200/1e293b/94a3b8?text=Zero+Two" alt="Zero Two" class="w-full aspect-square object-cover group-hover:scale-105 transition-transform duration-300">
+          <img src="https://placehold.co/200x200/1e293b/94a3b8?text=Zero+Two" alt="Zero Two" class="w-full aspect-square object-cover group-hover:scale-105 transition-transform duration-300" loading="lazy">
           <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
           <div class="absolute top-2 right-2 px-2 py-0.5 bg-slate-700 text-white text-xs font-bold rounded">#6</div>
           <div class="absolute bottom-2 left-2 right-2">
             <div class="flex items-center justify-center gap-1 text-pink-400 text-sm">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
               </svg>
               <span>82,340</span>
@@ -152,12 +152,12 @@
       <!-- Character Card 7 -->
       <a href="{{ route('characters.show', 'example-slug') }}" class="group text-center">
         <div class="relative overflow-hidden rounded-2xl mb-3">
-          <img src="https://placehold.co/200x200/1e293b/94a3b8?text=Eren" alt="Ерен" class="w-full aspect-square object-cover group-hover:scale-105 transition-transform duration-300">
+          <img src="https://placehold.co/200x200/1e293b/94a3b8?text=Eren" alt="Ерен" class="w-full aspect-square object-cover group-hover:scale-105 transition-transform duration-300" loading="lazy">
           <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
           <div class="absolute top-2 right-2 px-2 py-0.5 bg-slate-700 text-white text-xs font-bold rounded">#7</div>
           <div class="absolute bottom-2 left-2 right-2">
             <div class="flex items-center justify-center gap-1 text-pink-400 text-sm">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
               </svg>
               <span>78,920</span>
@@ -170,12 +170,12 @@
       <!-- Character Card 8 -->
       <a href="{{ route('characters.show', 'example-slug') }}" class="group text-center">
         <div class="relative overflow-hidden rounded-2xl mb-3">
-          <img src="https://placehold.co/200x200/1e293b/94a3b8?text=Nezuko" alt="Незуко" class="w-full aspect-square object-cover group-hover:scale-105 transition-transform duration-300">
+          <img src="https://placehold.co/200x200/1e293b/94a3b8?text=Nezuko" alt="Незуко" class="w-full aspect-square object-cover group-hover:scale-105 transition-transform duration-300" loading="lazy">
           <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
           <div class="absolute top-2 right-2 px-2 py-0.5 bg-slate-700 text-white text-xs font-bold rounded">#8</div>
           <div class="absolute bottom-2 left-2 right-2">
             <div class="flex items-center justify-center gap-1 text-pink-400 text-sm">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
               </svg>
               <span>75,640</span>
@@ -188,12 +188,12 @@
       <!-- Character Card 9 -->
       <a href="{{ route('characters.show', 'example-slug') }}" class="group text-center">
         <div class="relative overflow-hidden rounded-2xl mb-3">
-          <img src="https://placehold.co/200x200/1e293b/94a3b8?text=Rem" alt="Рем" class="w-full aspect-square object-cover group-hover:scale-105 transition-transform duration-300">
+          <img src="https://placehold.co/200x200/1e293b/94a3b8?text=Rem" alt="Рем" class="w-full aspect-square object-cover group-hover:scale-105 transition-transform duration-300" loading="lazy">
           <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
           <div class="absolute top-2 right-2 px-2 py-0.5 bg-slate-700 text-white text-xs font-bold rounded">#9</div>
           <div class="absolute bottom-2 left-2 right-2">
             <div class="flex items-center justify-center gap-1 text-pink-400 text-sm">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
               </svg>
               <span>72,350</span>
@@ -206,12 +206,12 @@
       <!-- Character Card 10 -->
       <a href="{{ route('characters.show', 'example-slug') }}" class="group text-center">
         <div class="relative overflow-hidden rounded-2xl mb-3">
-          <img src="https://placehold.co/200x200/1e293b/94a3b8?text=Luffy" alt="Луффі" class="w-full aspect-square object-cover group-hover:scale-105 transition-transform duration-300">
+          <img src="https://placehold.co/200x200/1e293b/94a3b8?text=Luffy" alt="Луффі" class="w-full aspect-square object-cover group-hover:scale-105 transition-transform duration-300" loading="lazy">
           <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
           <div class="absolute top-2 right-2 px-2 py-0.5 bg-slate-700 text-white text-xs font-bold rounded">#10</div>
           <div class="absolute bottom-2 left-2 right-2">
             <div class="flex items-center justify-center gap-1 text-pink-400 text-sm">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
               </svg>
               <span>69,870</span>
@@ -224,12 +224,12 @@
       <!-- Character Card 11 -->
       <a href="{{ route('characters.show', 'example-slug') }}" class="group text-center">
         <div class="relative overflow-hidden rounded-2xl mb-3">
-          <img src="https://placehold.co/200x200/1e293b/94a3b8?text=Marin" alt="Марін" class="w-full aspect-square object-cover group-hover:scale-105 transition-transform duration-300">
+          <img src="https://placehold.co/200x200/1e293b/94a3b8?text=Marin" alt="Марін" class="w-full aspect-square object-cover group-hover:scale-105 transition-transform duration-300" loading="lazy">
           <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
           <div class="absolute top-2 right-2 px-2 py-0.5 bg-slate-700 text-white text-xs font-bold rounded">#11</div>
           <div class="absolute bottom-2 left-2 right-2">
             <div class="flex items-center justify-center gap-1 text-pink-400 text-sm">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
               </svg>
               <span>65,420</span>
@@ -242,12 +242,12 @@
       <!-- Character Card 12 -->
       <a href="{{ route('characters.show', 'example-slug') }}" class="group text-center">
         <div class="relative overflow-hidden rounded-2xl mb-3">
-          <img src="https://placehold.co/200x200/1e293b/94a3b8?text=Frieren" alt="Фрірен" class="w-full aspect-square object-cover group-hover:scale-105 transition-transform duration-300">
+          <img src="https://placehold.co/200x200/1e293b/94a3b8?text=Frieren" alt="Фрірен" class="w-full aspect-square object-cover group-hover:scale-105 transition-transform duration-300" loading="lazy">
           <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
           <div class="absolute top-2 right-2 px-2 py-0.5 bg-slate-700 text-white text-xs font-bold rounded">#12</div>
           <div class="absolute bottom-2 left-2 right-2">
             <div class="flex items-center justify-center gap-1 text-pink-400 text-sm">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
               </svg>
               <span>42,150</span>
