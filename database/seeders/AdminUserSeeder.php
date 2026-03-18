@@ -16,7 +16,7 @@ class AdminUserSeeder extends Seeder
             ['email' => 'admin@uanidb.com'],
             [
                 'name' => 'Admin',
-                'password' => bcrypt('passwor'),
+                'password' => bcrypt('password'),
                 'is_admin' => true,
                 'email_verified_at' => now(),
             ]

@@ -19,15 +19,11 @@ class ImportActivityChart extends ChartWidget
         $start = Carbon::now()->subMonths(6)->startOfWeek();
         $end = Carbon::now()->endOfWeek();
 
-        $animes = Anime::query()
+        $weekCounts = Anime::query()
             ->where('created_at', '>=', $start)
-            ->get(['created_at']);
-
-        $weekCounts = [];
-        foreach ($animes as $anime) {
-            $key = $anime->created_at->startOfWeek()->format('Y-W');
-            $weekCounts[$key] = ($weekCounts[$key] ?? 0) + 1;
-        }
+            ->pluck('created_at')
+            ->groupBy(fn (Carbon $date): string => $date->startOfWeek()->format('Y-W'))
+            ->map->count();
 
         $labels = [];
         $data = [];

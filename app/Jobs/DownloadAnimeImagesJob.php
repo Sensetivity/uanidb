@@ -3,39 +3,28 @@
 namespace App\Jobs;
 
 use App\Enums\ImportJobTypeEnum;
-use App\Enums\ImportStatusEnum;
+use App\Jobs\Concerns\TracksImportLog;
 use App\Models\Anime;
-use App\Models\ImportLog;
 use App\Models\Person;
-use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Foundation\Bus\Dispatchable;
-use Illuminate\Queue\InteractsWithQueue;
-use Illuminate\Queue\SerializesModels;
+use Illuminate\Foundation\Queue\Queueable;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Spatie\MediaLibrary\HasMedia;
 
 class DownloadAnimeImagesJob implements ShouldQueue
 {
-    use Dispatchable;
-    use InteractsWithQueue;
     use Queueable;
-    use SerializesModels;
+    use TracksImportLog;
 
     public int $timeout = 600;
     public int $tries = 3;
 
-    /**
-     * Create a new job instance.
-     */
     public function __construct(
         private readonly int $animeId,
     ) {}
 
     /**
-     * Calculate the number of seconds to wait before retrying the job.
-     *
      * @return array<int>
      */
     public function backoff(): array
@@ -43,29 +32,12 @@ class DownloadAnimeImagesJob implements ShouldQueue
         return [10, 30, 60];
     }
 
-    /**
-     * Execute the job.
-     */
     public function handle(): void
     {
         $anime = Anime::query()->find($this->animeId);
 
-        $importLog = ImportLog::query()->create([
-            'job_type' => ImportJobTypeEnum::DownloadImages,
-            'anime_id' => $anime?->id,
-            'mal_id' => $anime?->mal_id,
-            'status' => ImportStatusEnum::Pending,
-        ]);
-
-        $importLog->markAsRunning();
-
-        try {
-            Log::info("DownloadAnimeImagesJob: Starting for anime ID {$this->animeId}.");
-
-            if (! $anime) {
-                Log::warning("DownloadAnimeImagesJob: Anime ID {$this->animeId} not found.");
-                $importLog->markAsCompleted();
-
+        $this->runWithImportLog($anime, function ($importLog) use ($anime): void {
+            if (! $anime = $this->resolveAnimeOrSkip($this->animeId, $importLog)) {
                 return;
             }
 
@@ -108,19 +80,14 @@ class DownloadAnimeImagesJob implements ShouldQueue
             Log::info("DownloadAnimeImagesJob: People done — {$peopleDownloaded}/{$personIds->count()} downloaded.");
 
             Log::info("DownloadAnimeImagesJob: Completed for '{$anime->title}' (ID: {$anime->id}).");
-
-            $importLog->markAsCompleted();
-        } catch (\Throwable $e) {
-            Log::error("DownloadAnimeImagesJob: Failed for anime ID {$this->animeId}: {$e->getMessage()}");
-            $importLog->markAsFailed($e->getMessage());
-
-            throw $e;
-        }
+        });
     }
 
-    /**
-     * Download an image and attach it to a model's media collection.
-     */
+    protected function jobType(): ImportJobTypeEnum
+    {
+        return ImportJobTypeEnum::DownloadImages;
+    }
+
     private function downloadImage(HasMedia $model, ?string $imageUrl, string $collection): void
     {
         if (! $imageUrl) {

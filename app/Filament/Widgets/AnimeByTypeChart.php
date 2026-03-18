@@ -15,8 +15,6 @@ class AnimeByTypeChart extends ChartWidget
 
     protected function getData(): array
     {
-        $data = [];
-        $labels = [];
         $colors = [
             '#f59e0b', // amber
             '#3b82f6', // blue
@@ -26,8 +24,16 @@ class AnimeByTypeChart extends ChartWidget
             '#6b7280', // gray
         ];
 
+        $counts = Anime::query()
+            ->selectRaw('type, count(*) as count')
+            ->groupBy('type')
+            ->pluck('count', 'type');
+
+        $data = [];
+        $labels = [];
+
         foreach (AnimeTypeEnum::cases() as $type) {
-            $count = Anime::query()->where('type', $type)->count();
+            $count = $counts[$type->value] ?? 0;
             if ($count > 0) {
                 $labels[] = $type->getLabel();
                 $data[] = $count;

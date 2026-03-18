@@ -3,9 +3,8 @@
 namespace App\Jobs;
 
 use App\Enums\ImportJobTypeEnum;
-use App\Enums\ImportStatusEnum;
+use App\Jobs\Concerns\TracksImportLog;
 use App\Models\Anime;
-use App\Models\ImportLog;
 use App\Services\TitleImport\TitleImportService;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Queue\Queueable;
@@ -14,6 +13,7 @@ use Illuminate\Support\Facades\Log;
 class ImportAniDbTitlesJob implements ShouldQueue
 {
     use Queueable;
+    use TracksImportLog;
 
     public function __construct(
         private readonly int $animeId,
@@ -24,26 +24,13 @@ class ImportAniDbTitlesJob implements ShouldQueue
     {
         $anime = Anime::query()->find($this->animeId);
 
-        $importLog = ImportLog::query()->create([
-            'job_type' => ImportJobTypeEnum::ImportAniDbTitles,
-            'anime_id' => $anime?->id,
-            'mal_id' => $anime?->mal_id,
-            'status' => ImportStatusEnum::Pending,
-        ]);
-
-        $importLog->markAsRunning();
-
-        try {
-            if (! $anime) {
-                Log::warning("ImportAniDbTitlesJob: Anime ID {$this->animeId} not found.");
-                $importLog->markAsCompleted();
-
+        $this->runWithImportLog($anime, function ($importLog) use ($anime, $service): void {
+            if (! $anime = $this->resolveAnimeOrSkip($this->animeId, $importLog)) {
                 return;
             }
 
             if (! $anime->anidb_id) {
                 Log::warning("ImportAniDbTitlesJob: Anime \"{$anime->title}\" has no anidb_id, skipping.");
-                $importLog->markAsCompleted();
 
                 return;
             }
@@ -53,13 +40,11 @@ class ImportAniDbTitlesJob implements ShouldQueue
             $count = $service->importAnime($anime, $this->force);
 
             Log::info("ImportAniDbTitlesJob: Completed — imported {$count} title(s) for \"{$anime->title}\".");
+        });
+    }
 
-            $importLog->markAsCompleted();
-        } catch (\Throwable $e) {
-            Log::error("ImportAniDbTitlesJob: Failed for anime ID {$this->animeId}: {$e->getMessage()}");
-            $importLog->markAsFailed($e->getMessage());
-
-            throw $e;
-        }
+    protected function jobType(): ImportJobTypeEnum
+    {
+        return ImportJobTypeEnum::ImportAniDbTitles;
     }
 }

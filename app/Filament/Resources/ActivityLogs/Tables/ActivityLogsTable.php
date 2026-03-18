@@ -26,17 +26,12 @@ class ActivityLogsTable
                     ->sortable(),
                 TextColumn::make('subject_type')
                     ->label('Модель')
-                    ->formatStateUsing(fn (?string $state): string => $state ? class_basename($state) : '—')
+                    ->formatStateUsing(fn (?string $state): string => self::formatSubjectType($state))
                     ->sortable(),
                 TextColumn::make('event')
                     ->label('Подія')
                     ->badge()
-                    ->color(fn (?string $state): string => match ($state) {
-                        'created' => 'success',
-                        'updated' => 'warning',
-                        'deleted' => 'danger',
-                        default => 'gray',
-                    }),
+                    ->color(fn (?string $state): string => self::eventColor($state)),
                 TextColumn::make('description')
                     ->label('Опис')
                     ->limit(50)
@@ -66,5 +61,20 @@ class ActivityLogsTable
             ->recordActions([
                 ViewAction::make()->iconButton(),
             ]);
+    }
+
+    public static function eventColor(?string $state): string
+    {
+        return match ($state) {
+            'created' => 'success',
+            'updated' => 'warning',
+            'deleted' => 'danger',
+            default => 'gray',
+        };
+    }
+
+    public static function formatSubjectType(?string $state): string
+    {
+        return $state ? class_basename($state) : '—';
     }
 }

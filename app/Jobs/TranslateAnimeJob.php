@@ -3,30 +3,21 @@
 namespace App\Jobs;
 
 use App\Enums\ImportJobTypeEnum;
-use App\Enums\ImportStatusEnum;
+use App\Jobs\Concerns\TracksImportLog;
 use App\Models\Anime;
-use App\Models\ImportLog;
 use App\Services\Translation\TranslationService;
-use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Foundation\Bus\Dispatchable;
-use Illuminate\Queue\InteractsWithQueue;
-use Illuminate\Queue\SerializesModels;
+use Illuminate\Foundation\Queue\Queueable;
 use Illuminate\Support\Facades\Log;
 
 class TranslateAnimeJob implements ShouldQueue
 {
-    use Dispatchable;
-    use InteractsWithQueue;
     use Queueable;
-    use SerializesModels;
+    use TracksImportLog;
 
     public int $maxExceptions = 2;
     public int $tries = 3;
 
-    /**
-     * Create a new job instance.
-     */
     public function __construct(
         private readonly int $animeId,
         private readonly bool $withEpisodes = true,
@@ -40,29 +31,12 @@ class TranslateAnimeJob implements ShouldQueue
         return [10, 30, 60];
     }
 
-    /**
-     * Execute the job.
-     */
     public function handle(TranslationService $translationService): void
     {
         $anime = Anime::query()->find($this->animeId);
 
-        $importLog = ImportLog::query()->create([
-            'job_type' => ImportJobTypeEnum::TranslateAnime,
-            'anime_id' => $anime?->id,
-            'mal_id' => $anime?->mal_id,
-            'status' => ImportStatusEnum::Pending,
-        ]);
-
-        $importLog->markAsRunning();
-
-        try {
-            Log::info("TranslateAnimeJob: Starting for anime ID {$this->animeId}.");
-
-            if (! $anime) {
-                Log::warning("TranslateAnimeJob: Anime ID {$this->animeId} not found.");
-                $importLog->markAsCompleted();
-
+        $this->runWithImportLog($anime, function ($importLog) use ($anime, $translationService): void {
+            if (! $anime = $this->resolveAnimeOrSkip($this->animeId, $importLog)) {
                 return;
             }
 
@@ -106,13 +80,11 @@ class TranslateAnimeJob implements ShouldQueue
             }
 
             Log::info("TranslateAnimeJob: Completed for '{$anime->title}' (ID: {$anime->id}).");
+        });
+    }
 
-            $importLog->markAsCompleted();
-        } catch (\Throwable $e) {
-            Log::error("TranslateAnimeJob: Failed for anime ID {$this->animeId}: {$e->getMessage()}");
-            $importLog->markAsFailed($e->getMessage());
-
-            throw $e;
-        }
+    protected function jobType(): ImportJobTypeEnum
+    {
+        return ImportJobTypeEnum::TranslateAnime;
     }
 }

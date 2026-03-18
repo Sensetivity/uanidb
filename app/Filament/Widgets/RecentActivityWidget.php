@@ -2,6 +2,7 @@
 
 namespace App\Filament\Widgets;
 
+use App\Filament\Resources\ActivityLogs\Tables\ActivityLogsTable;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
@@ -30,15 +31,10 @@ class RecentActivityWidget extends TableWidget
                 TextColumn::make('event')
                     ->label('Подія')
                     ->badge()
-                    ->color(fn (?string $state): string => match ($state) {
-                        'created' => 'success',
-                        'updated' => 'warning',
-                        'deleted' => 'danger',
-                        default => 'gray',
-                    }),
+                    ->color(fn (?string $state): string => ActivityLogsTable::eventColor($state)),
                 TextColumn::make('subject_type')
                     ->label('Модель')
-                    ->formatStateUsing(fn (?string $state): string => $state ? class_basename($state) : '—'),
+                    ->formatStateUsing(fn (?string $state): string => ActivityLogsTable::formatSubjectType($state)),
                 TextColumn::make('description')
                     ->label('Опис')
                     ->limit(40)

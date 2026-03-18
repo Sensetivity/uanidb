@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\ActivityLogs\Schemas;
 
+use App\Filament\Resources\ActivityLogs\Tables\ActivityLogsTable;
 use Filament\Infolists\Components\KeyValueEntry;
 use Filament\Infolists\Components\TextEntry;
 use Filament\Schemas\Components\Section;
@@ -26,12 +27,7 @@ class ActivityLogInfolist
                         TextEntry::make('event')
                             ->label('Подія')
                             ->badge()
-                            ->color(fn (?string $state): string => match ($state) {
-                                'created' => 'success',
-                                'updated' => 'warning',
-                                'deleted' => 'danger',
-                                default => 'gray',
-                            }),
+                            ->color(fn (?string $state): string => ActivityLogsTable::eventColor($state)),
                         TextEntry::make('description')
                             ->label('Опис'),
                         TextEntry::make('causer.name')
@@ -39,7 +35,7 @@ class ActivityLogInfolist
                             ->placeholder('Система'),
                         TextEntry::make('subject_type')
                             ->label('Тип моделі')
-                            ->formatStateUsing(fn (?string $state): string => $state ? class_basename($state) : '—'),
+                            ->formatStateUsing(fn (?string $state): string => ActivityLogsTable::formatSubjectType($state)),
                         TextEntry::make('subject_id')
                             ->label('ID моделі')
                             ->placeholder('—'),
