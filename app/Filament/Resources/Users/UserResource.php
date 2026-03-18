@@ -6,6 +6,7 @@ use App\Filament\Resources\Users\Pages\CreateUser;
 use App\Filament\Resources\Users\Pages\EditUser;
 use App\Filament\Resources\Users\Pages\ListUsers;
 use App\Filament\Resources\Users\Pages\ViewUser;
+use App\Filament\Resources\Users\RelationManagers\AnimeListRelationManager;
 use App\Filament\Resources\Users\Schemas\UserForm;
 use App\Filament\Resources\Users\Schemas\UserInfolist;
 use App\Filament\Resources\Users\Tables\UsersTable;
@@ -15,11 +16,17 @@ use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
+use UnitEnum;
 
 class UserResource extends Resource
 {
     protected static ?string $model = User::class;
+    protected static ?string $modelLabel = 'користувач';
+    protected static string|UnitEnum|null $navigationGroup = 'Користувачі';
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedUsers;
+    protected static ?string $navigationLabel = 'Користувачі';
+    protected static ?int $navigationSort = 1;
+    protected static ?string $pluralModelLabel = 'Користувачі';
 
     public static function form(Schema $schema): Schema
     {
@@ -39,7 +46,7 @@ class UserResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            AnimeListRelationManager::class,
         ];
     }
 

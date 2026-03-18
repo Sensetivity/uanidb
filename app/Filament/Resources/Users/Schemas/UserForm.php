@@ -13,14 +13,17 @@ class UserForm
         return $schema
             ->components([
                 TextInput::make('name')
+                    ->label("Ім'я")
                     ->required()
                     ->maxLength(255),
                 TextInput::make('email')
+                    ->label('Ел. пошта')
                     ->email()
                     ->required()
                     ->unique()
                     ->maxLength(255),
                 TextInput::make('password')
+                    ->label('Пароль')
                     ->password()
                     ->required()
                     ->minLength(8)
@@ -28,7 +31,8 @@ class UserForm
                     ->dehydrateStateUsing(fn (string $state): string => bcrypt($state))
                     ->dehydrated(fn (?string $state): bool => filled($state))
                     ->required(fn (string $operation): bool => $operation === 'create'),
-                Toggle::make('is_admin'),
+                Toggle::make('is_admin')
+                    ->label('Адмін'),
             ]);
     }
 }

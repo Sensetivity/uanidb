@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\Animes\Pages;
 
+use App\Filament\Actions\BatchImportFromMalAction;
 use App\Filament\Actions\ImportFromMalAction;
 use App\Filament\Resources\Animes\AnimeResource;
 use Filament\Actions\CreateAction;
@@ -15,6 +16,7 @@ class ListAnimes extends ListRecords
     {
         return [
             ImportFromMalAction::make(),
+            BatchImportFromMalAction::make(),
             CreateAction::make(),
         ];
     }

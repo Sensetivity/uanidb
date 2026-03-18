@@ -121,6 +121,26 @@ class AnimeInfolist
                     ])
                     ->collapsible(),
 
+                Section::make('Медіа')
+                    ->icon(Heroicon::OutlinedPhoto)
+                    ->schema([
+                        Grid::make(['default' => 1, 'sm' => 2])
+                            ->schema([
+                                TextEntry::make('posters_count')
+                                    ->label('Постери')
+                                    ->state(fn (Anime $record): string => (string) $record->getMedia('posters')->count())
+                                    ->icon(Heroicon::OutlinedPhoto)
+                                    ->placeholder('0'),
+                                TextEntry::make('screenshots_count')
+                                    ->label('Скріншоти')
+                                    ->state(fn (Anime $record): string => (string) $record->getMedia('screenshots')->count())
+                                    ->icon(Heroicon::OutlinedCamera)
+                                    ->placeholder('0'),
+                            ]),
+                    ])
+                    ->collapsible()
+                    ->collapsed(),
+
                 Section::make('Українські назви')
                     ->icon(Heroicon::OutlinedLanguage)
                     ->schema([

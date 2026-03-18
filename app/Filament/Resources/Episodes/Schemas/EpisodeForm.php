@@ -16,37 +16,43 @@ class EpisodeForm
         return $schema
             ->components([
                 Select::make('anime_id')
+                    ->label('Аніме')
                     ->relationship('anime', 'title')
                     ->searchable()
                     ->preload()
                     ->required(),
                 TextInput::make('number')
+                    ->label('Номер')
                     ->numeric()
                     ->required(),
                 Select::make('type')
+                    ->label('Тип')
                     ->options(EpisodeTypeEnum::class)
                     ->required(),
                 TextInput::make('title')
-                    ->label('Title (Romaji)')
+                    ->label('Назва (ромадзі)')
                     ->maxLength(255),
                 TextInput::make('title_en')
-                    ->label('Title (EN)')
+                    ->label('Назва (EN)')
                     ->maxLength(255),
                 TextInput::make('title_uk')
-                    ->label('Title (UK)')
+                    ->label('Назва (UK)')
                     ->maxLength(255),
                 TextInput::make('title_ja')
-                    ->label('Title (JA)')
+                    ->label('Назва (JA)')
                     ->maxLength(255),
-                DatePicker::make('aired'),
+                DatePicker::make('aired')
+                    ->label('Дата виходу'),
                 TextInput::make('duration')
+                    ->label('Тривалість')
                     ->numeric()
-                    ->suffix('min'),
+                    ->suffix('хв'),
                 Textarea::make('synopsis')
+                    ->label('Опис')
                     ->rows(4)
                     ->columnSpanFull(),
                 Textarea::make('synopsis_uk')
-                    ->label('Synopsis (Ukrainian)')
+                    ->label('Опис (українською)')
                     ->rows(4)
                     ->columnSpanFull(),
             ]);

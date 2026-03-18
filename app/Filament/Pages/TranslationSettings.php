@@ -24,8 +24,8 @@ class TranslationSettings extends Page
 
     protected static string|UnitEnum|null $navigationGroup = 'Налаштування';
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedCog6Tooth;
-    protected static ?string $navigationLabel = 'Translation Settings';
-    protected static ?string $title = 'Translation Settings';
+    protected static ?string $navigationLabel = 'Налаштування перекладу';
+    protected static ?string $title = 'Налаштування перекладу';
     protected string $view = 'filament.pages.translation-settings';
 
     public function form(Schema $schema): Schema
@@ -35,21 +35,21 @@ class TranslationSettings extends Page
                 Section::make('DeepL')
                     ->schema([
                         Select::make('translation_provider')
-                            ->label('Translation Provider')
+                            ->label('Провайдер перекладу')
                             ->options(['deepl' => 'DeepL'])
                             ->required(),
                         TextInput::make('target_language')
-                            ->label('Target Language')
+                            ->label('Цільова мова')
                             ->default('UK')
                             ->required(),
                     ]),
                 Section::make('AniDB')
                     ->schema([
                         TextInput::make('anidb_client')
-                            ->label('AniDB Client Name')
-                            ->helperText('Registered AniDB client name (for episode API)'),
+                            ->label('Клієнт AniDB')
+                            ->helperText('Зареєстроване ім\'я клієнта AniDB (для API епізодів)'),
                         TextInput::make('anidb_client_ver')
-                            ->label('AniDB Client Version')
+                            ->label('Версія клієнта AniDB')
                             ->default('1'),
                     ]),
             ])
@@ -85,7 +85,7 @@ class TranslationSettings extends Page
     {
         return [
             Action::make('save')
-                ->label('Save')
+                ->label('Зберегти')
                 ->visible()
                 ->action('save'),
         ];

@@ -18,14 +18,18 @@ class ThemesTable
         return $table
             ->columns([
                 TextColumn::make('name')
+                    ->label('Назва')
                     ->searchable()
                     ->sortable(),
                 TextColumn::make('type')
+                    ->label('Тип')
                     ->badge()
                     ->sortable(),
             ])
+            ->defaultSort('name')
             ->filters([
                 SelectFilter::make('type')
+                    ->label('Тип')
                     ->options(ThemeType::class),
             ])
             ->recordActions([

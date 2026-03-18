@@ -2,9 +2,14 @@
 
 namespace App\Filament\Resources\Seasons\Schemas;
 
+use App\Models\Season;
 use Filament\Infolists\Components\IconEntry;
 use Filament\Infolists\Components\TextEntry;
+use Filament\Schemas\Components\Grid;
 use Filament\Schemas\Schema;
+use Filament\Support\Enums\FontWeight;
+use Filament\Support\Enums\TextSize;
+use Filament\Support\Icons\Heroicon;
 
 class SeasonInfolist
 {
@@ -12,20 +17,38 @@ class SeasonInfolist
     {
         return $schema
             ->components([
-                TextEntry::make('name'),
-                TextEntry::make('year'),
-                TextEntry::make('season_of_year')
-                    ->badge(),
-                TextEntry::make('start_date')
-                    ->date(),
-                TextEntry::make('end_date')
-                    ->date(),
-                IconEntry::make('is_current')
-                    ->boolean(),
-                TextEntry::make('created_at')
-                    ->dateTime(),
-                TextEntry::make('updated_at')
-                    ->dateTime(),
+                TextEntry::make('name')
+                    ->hiddenLabel()
+                    ->size(TextSize::Large)
+                    ->weight(FontWeight::Bold),
+
+                Grid::make(4)
+                    ->schema([
+                        TextEntry::make('year')
+                            ->label('Рік'),
+                        TextEntry::make('season_of_year')
+                            ->label('Пора року')
+                            ->badge(),
+                        IconEntry::make('is_current')
+                            ->label('Поточний')
+                            ->boolean(),
+                        TextEntry::make('animes_count')
+                            ->label('Аніме')
+                            ->state(fn (Season $record): int => $record->animes()->count())
+                            ->icon(Heroicon::OutlinedTv),
+                    ]),
+
+                Grid::make(2)
+                    ->schema([
+                        TextEntry::make('start_date')
+                            ->label('Початок')
+                            ->date('d.m.Y')
+                            ->placeholder('—'),
+                        TextEntry::make('end_date')
+                            ->label('Кінець')
+                            ->date('d.m.Y')
+                            ->placeholder('—'),
+                    ]),
             ]);
     }
 }

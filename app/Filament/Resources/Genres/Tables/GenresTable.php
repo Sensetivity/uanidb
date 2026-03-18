@@ -16,12 +16,14 @@ class GenresTable
         return $table
             ->columns([
                 TextColumn::make('name')
+                    ->label('Назва')
                     ->searchable()
                     ->sortable(),
                 TextColumn::make('animes_count')
                     ->counts('animes')
-                    ->label('Anime'),
+                    ->label('Аніме'),
             ])
+            ->defaultSort('name')
             ->filters([
                 //
             ])

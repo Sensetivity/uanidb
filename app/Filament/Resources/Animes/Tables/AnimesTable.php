@@ -21,6 +21,7 @@ use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Actions\ForceDeleteBulkAction;
+use Filament\Actions\RestoreAction;
 use Filament\Actions\RestoreBulkAction;
 use Filament\Actions\ViewAction;
 use Filament\Notifications\Notification;
@@ -42,47 +43,63 @@ class AnimesTable
             ->modifyQueryUsing(fn (Builder $query) => $query->with(['seasons', 'media']))
             ->columns([
                 ImageColumn::make('poster')
+                    ->label('Постер')
                     ->state(fn (Anime $record): ?string => $record->poster_url)
                     ->width(40)
                     ->height(56)
                     ->defaultImageUrl(null),
                 TextColumn::make('title')
+                    ->label('Назва')
                     ->searchable(['title', 'mal_id'])
                     ->sortable()
                     ->limit(40),
                 TextColumn::make('type')
+                    ->label('Тип')
                     ->badge()
                     ->sortable(),
                 TextColumn::make('status')
+                    ->label('Статус')
                     ->badge()
                     ->sortable(),
                 TextColumn::make('seasons.name')
-                    ->label('Season')
+                    ->label('Сезон')
                     ->tooltip(fn (Anime $record): ?string => implode(' · ', array_filter([
                         $record->aired_from?->format('d M Y'),
                         $record->broadcast,
                     ])) ?: null),
                 TextColumn::make('aired_from')
+                    ->label('Рік')
                     ->date('Y')
                     ->sortable(),
                 TextColumn::make('episodes_count')
                     ->counts('episodes')
-                    ->label('Episodes'),
+                    ->label('Епізоди'),
+                TextColumn::make('deleted_at')
+                    ->label('Стан')
+                    ->badge()
+                    ->formatStateUsing(fn ($state): ?string => $state ? 'Видалено' : null)
+                    ->color('danger')
+                    ->placeholder('')
+                    ->toggleable()
+                    ->sortable(),
                 TextColumn::make('created_at')
+                    ->label('Створено')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
                 SelectFilter::make('type')
+                    ->label('Тип')
                     ->options(AnimeTypeEnum::class),
                 SelectFilter::make('status')
+                    ->label('Статус')
                     ->options(AnimeStatusEnum::class),
                 TernaryFilter::make('synopsis_uk')
-                    ->label('Translated')
-                    ->placeholder('All')
-                    ->trueLabel('Translated')
-                    ->falseLabel('Not translated')
+                    ->label('Переклад')
+                    ->placeholder('Усі')
+                    ->trueLabel('Перекладено')
+                    ->falseLabel('Не перекладено')
                     ->queries(
                         true: fn ($query) => $query->whereNotNull('synopsis_uk')->where('synopsis_uk', '!=', ''),
                         false: fn ($query) => $query->where(fn ($q) => $q->whereNull('synopsis_uk')->orWhere('synopsis_uk', '')),
@@ -93,17 +110,18 @@ class AnimesTable
             ->recordActions([
                 ViewAction::make()->iconButton(),
                 EditAction::make()->iconButton(),
+                RestoreAction::make()->iconButton(),
                 ActionGroup::make([
                     self::dispatchAction(
                         'translate',
-                        'Translate',
+                        'Перекласти',
                         Heroicon::OutlinedLanguage,
                         'Переклад поставлено в чергу',
                         fn (Anime $record) => TranslateAnimeJob::dispatch($record->id, withEpisodes: true)
                     ),
                     self::dispatchAction(
                         'reimport',
-                        'Re-import',
+                        'Повторний імпорт',
                         Heroicon::OutlinedArrowPath,
                         'Повторний імпорт поставлено в чергу',
                         fn (Anime $record) => ImportAnimeJob::dispatch($record->mal_id, true, true, false),
@@ -111,7 +129,7 @@ class AnimesTable
                     ),
                     self::dispatchAction(
                         'reimport_images',
-                        'Re-import Images',
+                        'Повторний імпорт зображень',
                         Heroicon::OutlinedPhoto,
                         'Завантаження зображень поставлено в чергу',
                         fn (Anime $record) => DownloadAnimeImagesJob::dispatch($record->id),
@@ -119,7 +137,7 @@ class AnimesTable
                     ),
                     self::dispatchAction(
                         'reimport_episodes',
-                        'Re-import Episodes',
+                        'Повторний імпорт епізодів',
                         Heroicon::OutlinedFilm,
                         'Імпорт епізодів поставлено в чергу',
                         fn (Anime $record) => ImportEpisodesJob::dispatch($record->id),
@@ -127,7 +145,7 @@ class AnimesTable
                     ),
                     self::dispatchAction(
                         'reimport_characters',
-                        'Re-import Characters & Staff',
+                        'Повторний імпорт персонажів',
                         Heroicon::OutlinedUsers,
                         'Імпорт персонажів поставлено в чергу',
                         fn (Anime $record) => ImportCharactersStaffJob::dispatch($record->id),
@@ -135,7 +153,7 @@ class AnimesTable
                     ),
                     self::dispatchAction(
                         'reimport_videos',
-                        'Re-import Videos',
+                        'Повторний імпорт відео',
                         Heroicon::OutlinedVideoCamera,
                         'Імпорт відео поставлено в чергу',
                         fn (Anime $record) => ImportVideosJob::dispatch($record->id),
@@ -143,7 +161,7 @@ class AnimesTable
                     ),
                     self::dispatchAction(
                         'import_anidb_titles',
-                        'Import AniDB Titles',
+                        'Імпорт назв AniDB',
                         Heroicon::OutlinedTag,
                         'Імпорт назв AniDB поставлено в чергу',
                         fn (Anime $record) => ImportAniDbTitlesJob::dispatch($record->id),
@@ -151,7 +169,7 @@ class AnimesTable
                     ),
                     self::dispatchAction(
                         'import_anidb_episode_titles',
-                        'Import AniDB Episode Titles',
+                        'Імпорт назв епізодів AniDB',
                         Heroicon::OutlinedQueueList,
                         'Імпорт назв епізодів AniDB поставлено в чергу',
                         fn (Anime $record) => ImportAniDbEpisodeTitlesJob::dispatch($record->id),
@@ -159,12 +177,12 @@ class AnimesTable
                     ),
                 ])
                     ->icon(Heroicon::OutlinedEllipsisVertical)
-                    ->tooltip('More actions'),
+                    ->tooltip('Більше дій'),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([
                     BulkAction::make('bulk_translate')
-                        ->label('Translate selected')
+                        ->label('Перекласти обрані')
                         ->icon(Heroicon::OutlinedLanguage)
                         ->visible()
                         ->action(function (Collection $records): void {

@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\Episodes\Tables;
 
+use App\Enums\EpisodeTypeEnum;
 use App\Models\Episode;
 use App\Services\TitleImport\TitleImportService;
 use Filament\Actions\Action;
@@ -10,11 +11,14 @@ use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Actions\ForceDeleteBulkAction;
+use Filament\Actions\RestoreAction;
 use Filament\Actions\RestoreBulkAction;
 use Filament\Actions\ViewAction;
 use Filament\Notifications\Notification;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Filters\SelectFilter;
+use Filament\Tables\Filters\TernaryFilter;
 use Filament\Tables\Filters\TrashedFilter;
 use Filament\Tables\Table;
 
@@ -25,36 +29,66 @@ class EpisodesTable
         return $table
             ->columns([
                 TextColumn::make('anime.title')
-                    ->label('Anime')
+                    ->label('Аніме')
                     ->limit(30)
                     ->sortable()
                     ->searchable(),
                 TextColumn::make('title')
-                    ->label('Title (Romaji)')
+                    ->label('Назва (ромадзі)')
                     ->limit(40),
                 TextColumn::make('title_en')
-                    ->label('Title (EN)')
+                    ->label('Назва (EN)')
                     ->limit(40)
                     ->toggleable(),
                 TextColumn::make('title_uk')
-                    ->label('Title (UK)')
+                    ->label('Назва (UK)')
                     ->limit(40)
                     ->toggleable(),
                 TextColumn::make('aired')
+                    ->label('Дата виходу')
                     ->date()
                     ->sortable(),
                 TextColumn::make('type')
+                    ->label('Тип')
                     ->badge(),
+                TextColumn::make('deleted_at')
+                    ->label('Стан')
+                    ->badge()
+                    ->formatStateUsing(fn ($state): ?string => $state ? 'Видалено' : null)
+                    ->color('danger')
+                    ->placeholder('')
+                    ->toggleable()
+                    ->sortable(),
             ])
+            ->defaultSort('aired', 'desc')
             ->filters([
+                SelectFilter::make('anime_id')
+                    ->label('Аніме')
+                    ->relationship('anime', 'title')
+                    ->searchable()
+                    ->preload(),
+                SelectFilter::make('type')
+                    ->label('Тип')
+                    ->options(EpisodeTypeEnum::class),
+                TernaryFilter::make('title_uk')
+                    ->label('Переклад')
+                    ->placeholder('Усі')
+                    ->trueLabel('Перекладено')
+                    ->falseLabel('Не перекладено')
+                    ->queries(
+                        true: fn ($query) => $query->whereNotNull('title_uk')->where('title_uk', '!=', ''),
+                        false: fn ($query) => $query->where(fn ($q) => $q->whereNull('title_uk')->orWhere('title_uk', '')),
+                        blank: fn ($query) => $query,
+                    ),
                 TrashedFilter::make(),
             ])
             ->recordActions([
                 ViewAction::make()->iconButton(),
                 EditAction::make()->iconButton(),
+                RestoreAction::make()->iconButton(),
                 ActionGroup::make([
                     Action::make('import_anidb_title')
-                        ->label('Import AniDB Title')
+                        ->label('Імпорт назви AniDB')
                         ->icon(Heroicon::OutlinedTag)
                         ->color('info')
                         ->visible()
@@ -68,7 +102,7 @@ class EpisodesTable
                         }),
                 ])
                     ->icon(Heroicon::OutlinedEllipsisVertical)
-                    ->tooltip('More actions'),
+                    ->tooltip('Більше дій'),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([

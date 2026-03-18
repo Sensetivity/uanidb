@@ -49,9 +49,9 @@ enum AnimeStatusEnum: int implements HasColor, HasIcon, HasLabel
     public function getLabel(): string
     {
         return match ($this) {
-            self::AIRING => 'Airing',
-            self::FINISHED => 'Finished',
-            self::NOT_YET_AIRED => 'Not Yet Aired',
+            self::AIRING => 'Виходить',
+            self::FINISHED => 'Завершено',
+            self::NOT_YET_AIRED => 'Ще не вийшло',
         };
     }
 }

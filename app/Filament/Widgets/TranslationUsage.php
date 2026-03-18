@@ -9,6 +9,7 @@ use Filament\Widgets\StatsOverviewWidget\Stat;
 class TranslationUsage extends StatsOverviewWidget
 {
     protected ?string $pollingInterval = null;
+    protected static ?int $sort = 3;
 
     protected function getStats(): array
     {
@@ -23,8 +24,8 @@ class TranslationUsage extends StatsOverviewWidget
         };
 
         return [
-            Stat::make('Translation Usage', number_format($usage->characterCount) . ' / ' . number_format($usage->characterLimit))
-                ->description($percent . '% used')
+            Stat::make('Використання перекладу', number_format($usage->characterCount) . ' / ' . number_format($usage->characterLimit))
+                ->description($percent . '% використано')
                 ->color($color),
         ];
     }

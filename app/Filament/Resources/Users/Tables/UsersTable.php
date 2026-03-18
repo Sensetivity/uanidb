@@ -18,22 +18,26 @@ class UsersTable
         return $table
             ->columns([
                 TextColumn::make('name')
+                    ->label("Ім'я")
                     ->searchable()
                     ->sortable(),
                 TextColumn::make('email')
+                    ->label('Ел. пошта')
                     ->searchable()
                     ->sortable(),
                 IconColumn::make('is_admin')
+                    ->label('Адмін')
                     ->boolean(),
                 TextColumn::make('created_at')
+                    ->label('Створено')
                     ->dateTime()
                     ->sortable(),
             ])
             ->filters([
                 TernaryFilter::make('is_admin')
-                    ->label('Admin'),
+                    ->label('Адмін'),
                 TernaryFilter::make('email_verified_at')
-                    ->label('Verified')
+                    ->label('Підтверджено')
                     ->nullable(),
             ])
             ->recordActions([

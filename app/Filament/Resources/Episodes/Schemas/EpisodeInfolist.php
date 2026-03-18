@@ -12,30 +12,37 @@ class EpisodeInfolist
         return $schema
             ->components([
                 TextEntry::make('anime.title')
-                    ->label('Anime'),
-                TextEntry::make('number'),
+                    ->label('Аніме'),
+                TextEntry::make('number')
+                    ->label('Номер'),
                 TextEntry::make('type')
+                    ->label('Тип')
                     ->badge(),
                 TextEntry::make('title')
-                    ->label('Title (Romaji)'),
+                    ->label('Назва (ромадзі)'),
                 TextEntry::make('title_en')
-                    ->label('Title (EN)'),
+                    ->label('Назва (EN)'),
                 TextEntry::make('title_uk')
-                    ->label('Title (UK)'),
+                    ->label('Назва (UK)'),
                 TextEntry::make('title_ja')
-                    ->label('Title (JA)'),
+                    ->label('Назва (JA)'),
                 TextEntry::make('aired')
+                    ->label('Дата виходу')
                     ->date(),
                 TextEntry::make('duration')
-                    ->suffix(' min'),
+                    ->label('Тривалість')
+                    ->suffix(' хв'),
                 TextEntry::make('synopsis')
+                    ->label('Опис')
                     ->columnSpanFull(),
                 TextEntry::make('synopsis_uk')
-                    ->label('Synopsis (Ukrainian)')
+                    ->label('Опис (українською)')
                     ->columnSpanFull(),
                 TextEntry::make('created_at')
+                    ->label('Створено')
                     ->dateTime(),
                 TextEntry::make('updated_at')
+                    ->label('Оновлено')
                     ->dateTime(),
             ]);
     }

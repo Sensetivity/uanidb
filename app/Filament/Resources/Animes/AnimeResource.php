@@ -21,15 +21,29 @@ use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\SoftDeletingScope;
+use UnitEnum;
 
 class AnimeResource extends Resource
 {
     protected static ?string $model = Anime::class;
+    protected static ?string $modelLabel = 'аніме';
+    protected static string|UnitEnum|null $navigationGroup = 'Контент';
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedTv;
+    protected static ?string $navigationLabel = 'Аніме';
+    protected static ?int $navigationSort = 1;
+    protected static ?string $pluralModelLabel = 'Аніме';
+    protected static ?string $recordTitleAttribute = 'title';
 
     public static function form(Schema $schema): Schema
     {
         return AnimeForm::configure($schema);
+    }
+
+    public static function getGloballySearchableAttributes(): array
+    {
+        return ['title', 'mal_id'];
     }
 
     public static function getPages(): array
@@ -40,6 +54,14 @@ class AnimeResource extends Resource
             'view' => ViewAnime::route('/{record}'),
             'edit' => EditAnime::route('/{record}/edit'),
         ];
+    }
+
+    public static function getRecordRouteBindingEloquentQuery(): Builder
+    {
+        return parent::getRecordRouteBindingEloquentQuery()
+            ->withoutGlobalScopes([
+                SoftDeletingScope::class,
+            ]);
     }
 
     public static function getRelations(): array

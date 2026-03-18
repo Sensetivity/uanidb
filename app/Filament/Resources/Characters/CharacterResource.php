@@ -19,15 +19,27 @@ use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use UnitEnum;
 
 class CharacterResource extends Resource
 {
     protected static ?string $model = Character::class;
+    protected static ?string $modelLabel = 'персонаж';
+    protected static string|UnitEnum|null $navigationGroup = 'Контент';
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedUserGroup;
+    protected static ?string $navigationLabel = 'Персонажі';
+    protected static ?int $navigationSort = 2;
+    protected static ?string $pluralModelLabel = 'Персонажі';
+    protected static ?string $recordTitleAttribute = 'name';
 
     public static function form(Schema $schema): Schema
     {
         return CharacterForm::configure($schema);
+    }
+
+    public static function getGloballySearchableAttributes(): array
+    {
+        return ['name', 'mal_id'];
     }
 
     public static function getPages(): array

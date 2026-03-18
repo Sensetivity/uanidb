@@ -10,6 +10,7 @@ use Filament\Widgets\StatsOverviewWidget\Stat;
 class TranslationProgress extends StatsOverviewWidget
 {
     protected ?string $pollingInterval = null;
+    protected static ?int $sort = 2;
 
     protected function getStats(): array
     {
@@ -33,10 +34,10 @@ class TranslationProgress extends StatsOverviewWidget
         $episodePercent = $totalEpisodes > 0 ? round($translatedEpisodes / $totalEpisodes * 100) : 0;
 
         return [
-            Stat::make('Anime Translated', "{$translatedAnime} / {$totalAnime}")
-                ->description("{$animePercent}% completed"),
-            Stat::make('Episodes Translated', "{$translatedEpisodes} / {$totalEpisodes}")
-                ->description("{$episodePercent}% completed"),
+            Stat::make('Аніме перекладено', "{$translatedAnime} / {$totalAnime}")
+                ->description("{$animePercent}% завершено"),
+            Stat::make('Епізоди перекладено', "{$translatedEpisodes} / {$totalEpisodes}")
+                ->description("{$episodePercent}% завершено"),
         ];
     }
 }

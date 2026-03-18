@@ -2,6 +2,10 @@
 
 namespace App\Providers\Filament;
 
+use App\Filament\Widgets\AnimeByTypeChart;
+use App\Filament\Widgets\ImportActivityChart;
+use App\Filament\Widgets\RecentActivityWidget;
+use App\Filament\Widgets\RecentlyImportedAnime;
 use App\Filament\Widgets\StatsOverview;
 use App\Filament\Widgets\TranslationProgress;
 use App\Filament\Widgets\TranslationUsage;
@@ -43,6 +47,10 @@ class AdminPanelProvider extends PanelProvider
                 StatsOverview::class,
                 TranslationProgress::class,
                 TranslationUsage::class,
+                AnimeByTypeChart::class,
+                ImportActivityChart::class,
+                RecentlyImportedAnime::class,
+                RecentActivityWidget::class,
             ])
             ->middleware([
                 EncryptCookies::class,

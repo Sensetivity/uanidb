@@ -20,7 +20,7 @@ class ImportFromMalAction extends Action
         parent::setUp();
 
         $this
-            ->label('Import from MAL')
+            ->label('Імпорт з MAL')
             ->icon(Heroicon::OutlinedArrowDownTray)
             ->schema([
                 TextInput::make('mal_id')

@@ -17,11 +17,17 @@ use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use UnitEnum;
 
 class EpisodeResource extends Resource
 {
     protected static ?string $model = Episode::class;
+    protected static ?string $modelLabel = 'епізод';
+    protected static string|UnitEnum|null $navigationGroup = 'Контент';
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedPlayCircle;
+    protected static ?string $navigationLabel = 'Епізоди';
+    protected static ?int $navigationSort = 3;
+    protected static ?string $pluralModelLabel = 'Епізоди';
 
     public static function form(Schema $schema): Schema
     {

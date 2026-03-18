@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\Characters\Tables;
 
+use App\Enums\CharacterRoleEnum;
 use App\Models\Character;
 use Filament\Actions\Action;
 use Filament\Actions\ActionGroup;
@@ -9,12 +10,14 @@ use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Actions\ForceDeleteBulkAction;
+use Filament\Actions\RestoreAction;
 use Filament\Actions\RestoreBulkAction;
 use Filament\Actions\ViewAction;
 use Filament\Notifications\Notification;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Filters\TrashedFilter;
 use Filament\Tables\Table;
 
@@ -26,25 +29,46 @@ class CharactersTable
             ->modifyQueryUsing(fn ($query) => $query->with('media'))
             ->columns([
                 ImageColumn::make('image')
+                    ->label('Зображення')
                     ->state(fn (Character $record): ?string => $record->image_display_url)
                     ->width(40)
                     ->height(56)
                     ->defaultImageUrl(null),
                 TextColumn::make('name')
+                    ->label("Ім'я")
                     ->searchable(['name', 'mal_id'])
                     ->sortable(),
                 TextColumn::make('japanese_name')
+                    ->label("Японське ім'я")
                     ->toggleable(),
+                TextColumn::make('deleted_at')
+                    ->label('Стан')
+                    ->badge()
+                    ->formatStateUsing(fn ($state): ?string => $state ? 'Видалено' : null)
+                    ->color('danger')
+                    ->placeholder('')
+                    ->toggleable()
+                    ->sortable(),
             ])
+            ->defaultSort('name')
             ->filters([
+                SelectFilter::make('role')
+                    ->label('Роль')
+                    ->options(CharacterRoleEnum::class)
+                    ->query(
+                        fn ($query, array $data) => $data['value']
+                        ? $query->whereHas('animes', fn ($q) => $q->where('anime_character.role', $data['value']))
+                        : $query
+                    ),
                 TrashedFilter::make(),
             ])
             ->recordActions([
                 ViewAction::make()->iconButton(),
                 EditAction::make()->iconButton(),
+                RestoreAction::make()->iconButton(),
                 ActionGroup::make([
                     Action::make('download_image')
-                        ->label('Download Image')
+                        ->label('Завантажити зображення')
                         ->icon(Heroicon::OutlinedPhoto)
                         ->color('gray')
                         ->visible()
@@ -69,7 +93,7 @@ class CharactersTable
                         }),
                 ])
                     ->icon(Heroicon::OutlinedEllipsisVertical)
-                    ->tooltip('More actions'),
+                    ->tooltip('Більше дій'),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([
