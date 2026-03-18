@@ -36,7 +36,6 @@ class SeasonProcessorTest extends TestCase
     {
         $anime  = Anime::factory()->create();
         $season = Season::query()->create([
-            'name'           => 'Fall 2022',
             'year'           => 2022,
             'season_of_year' => SeasonOfYearEnum::Fall,
             'is_current'     => false,
@@ -52,7 +51,6 @@ class SeasonProcessorTest extends TestCase
     {
         $anime  = Anime::factory()->create();
         $season = Season::query()->create([
-            'name'           => 'Winter 2024',
             'year'           => 2024,
             'season_of_year' => SeasonOfYearEnum::Winter,
             'is_current'     => false,
@@ -73,9 +71,9 @@ class SeasonProcessorTest extends TestCase
         $this->assertDatabaseHas('seasons', [
             'year'           => 2023,
             'season_of_year' => SeasonOfYearEnum::Spring->value,
-            'name'           => 'Spring 2023',
         ]);
         $this->assertCount(1, $anime->fresh()->seasons);
+        $this->assertSame('Весна 2023', $anime->fresh()->seasons->first()->name);
     }
 
     public function test_sync_skips_unknown_season_string(): void
