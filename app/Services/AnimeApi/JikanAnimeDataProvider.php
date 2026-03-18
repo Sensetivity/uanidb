@@ -183,7 +183,7 @@ class JikanAnimeDataProvider implements AnimeDataProvider
                     continue;
                 }
 
-                $url = is_array($trailer) ? ($trailer['url'] ?? null) : $trailer->getUrl();
+                $url = $trailer['url'] ?? ($trailer instanceof \ArrayAccess ? ($trailer['url'] ?? null) : null);
 
                 if (!$url) {
                     continue;
@@ -395,8 +395,8 @@ class JikanAnimeDataProvider implements AnimeDataProvider
             'source' => $animeData->getSource(),
             'season' => $animeData->getSeason(),
             'year' => $animeData->getYear(),
-            'relations' => $this->convertRelationsToArray($animeData->getRelations()),
-            'external' => $this->convertExternalLinksToArray($animeData->getExternal()),
+            'relations' => method_exists($animeData, 'getRelations') ? $this->convertRelationsToArray($animeData->getRelations()) : [],
+            'external' => method_exists($animeData, 'getExternal') ? $this->convertExternalLinksToArray($animeData->getExternal()) : [],
         ];
     }
 }

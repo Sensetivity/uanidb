@@ -151,7 +151,7 @@ class TranslationService
 
         if ($updated) {
             $episode->update($data);
-            Log::info("Translated episode: {$episode->anime_id} ep.{$episode->number}");
+            Log::info("Translated anime episode: {$episode->anime_id} ep.{$episode->number}");
         }
 
         return $updated;
