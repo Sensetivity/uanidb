@@ -61,8 +61,11 @@ class AnimesTable
                     ->label('Статус')
                     ->badge()
                     ->sortable(),
-                TextColumn::make('seasons.name')
+                TextColumn::make('seasons.season_of_year')
                     ->label('Сезон')
+                    ->formatStateUsing(fn ($state, Anime $record): string => $record->seasons
+                        ->map(fn ($s): string => $s->name)
+                        ->join(', '))
                     ->tooltip(fn (Anime $record): ?string => implode(' · ', array_filter([
                         $record->aired_from?->format('d M Y'),
                         $record->broadcast,

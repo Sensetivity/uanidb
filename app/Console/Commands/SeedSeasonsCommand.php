@@ -42,7 +42,6 @@ class SeedSeasonsCommand extends Command
                 $season = Season::query()->updateOrCreate(
                     ['year' => $year, 'season_of_year' => $enum],
                     [
-                        'name'       => "{$meta['label']} {$year}",
                         'start_date' => "{$year}-{$meta['start']}",
                         'end_date'   => "{$year}-{$meta['end']}",
                         'is_current' => $isCurrent,
@@ -79,14 +78,14 @@ class SeedSeasonsCommand extends Command
         return [$now->year, $season];
     }
 
-    /** @return array<int, array{enum: SeasonOfYearEnum, label: string, start: string, end: string}> */
+    /** @return array<int, array{enum: SeasonOfYearEnum, start: string, end: string}> */
     private static function seasons(): array
     {
         return [
-            ['enum' => SeasonOfYearEnum::Winter, 'label' => 'Winter', 'start' => '01-01', 'end' => '03-31'],
-            ['enum' => SeasonOfYearEnum::Spring, 'label' => 'Spring', 'start' => '04-01', 'end' => '06-30'],
-            ['enum' => SeasonOfYearEnum::Summer, 'label' => 'Summer', 'start' => '07-01', 'end' => '09-30'],
-            ['enum' => SeasonOfYearEnum::Fall,   'label' => 'Fall',   'start' => '10-01', 'end' => '12-31'],
+            ['enum' => SeasonOfYearEnum::Winter, 'start' => '01-01', 'end' => '03-31'],
+            ['enum' => SeasonOfYearEnum::Spring, 'start' => '04-01', 'end' => '06-30'],
+            ['enum' => SeasonOfYearEnum::Summer, 'start' => '07-01', 'end' => '09-30'],
+            ['enum' => SeasonOfYearEnum::Fall,   'start' => '10-01', 'end' => '12-31'],
         ];
     }
 }

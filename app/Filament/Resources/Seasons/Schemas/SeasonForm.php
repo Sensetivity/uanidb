@@ -15,9 +15,6 @@ class SeasonForm
     {
         return $schema
             ->components([
-                TextInput::make('name')
-                    ->required()
-                    ->maxLength(255),
                 TextInput::make('year')
                     ->numeric()
                     ->required(),

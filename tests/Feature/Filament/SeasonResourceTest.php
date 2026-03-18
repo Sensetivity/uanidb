@@ -23,7 +23,6 @@ class SeasonResourceTest extends TestCase
     {
         Livewire::test(CreateSeason::class)
             ->fillForm([
-                'name' => 'Winter 2026',
                 'year' => 2026,
                 'season_of_year' => SeasonOfYearEnum::Winter->value,
             ])
@@ -32,7 +31,6 @@ class SeasonResourceTest extends TestCase
             ->assertRedirect();
 
         $this->assertDatabaseHas(Season::class, [
-            'name' => 'Winter 2026',
             'year' => 2026,
             'season_of_year' => SeasonOfYearEnum::Winter->value,
         ]);
@@ -44,14 +42,14 @@ class SeasonResourceTest extends TestCase
 
         Livewire::test(EditSeason::class, ['record' => $season->id])
             ->fillForm([
-                'name' => 'Updated Season',
+                'season_of_year' => SeasonOfYearEnum::Summer->value,
             ])
             ->call('save')
             ->assertNotified();
 
         $this->assertDatabaseHas(Season::class, [
             'id' => $season->id,
-            'name' => 'Updated Season',
+            'season_of_year' => SeasonOfYearEnum::Summer->value,
         ]);
     }
 
@@ -65,13 +63,11 @@ class SeasonResourceTest extends TestCase
     {
         Livewire::test(CreateSeason::class)
             ->fillForm([
-                'name' => null,
                 'year' => null,
                 'season_of_year' => null,
             ])
             ->call('create')
             ->assertHasFormErrors([
-                'name' => 'required',
                 'year' => 'required',
                 'season_of_year' => 'required',
             ])
@@ -94,6 +90,16 @@ class SeasonResourceTest extends TestCase
             ->assertOk();
     }
 
+    public function test_season_has_computed_name(): void
+    {
+        $season = Season::factory()->create([
+            'year' => 2026,
+            'season_of_year' => SeasonOfYearEnum::Winter,
+        ]);
+
+        $this->assertSame('Зима 2026', $season->name);
+    }
+
     public function test_view_page_renders(): void
     {
         $season = Season::factory()->create();
@@ -106,7 +112,7 @@ class SeasonResourceTest extends TestCase
     {
         parent::setUp();
 
-        $this->admin = User::factory()->create(['is_admin' => true]);
+        $this->admin = User::factory()->admin()->create();
         $this->actingAs($this->admin);
     }
 }

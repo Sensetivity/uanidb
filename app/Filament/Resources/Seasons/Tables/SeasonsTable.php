@@ -23,16 +23,13 @@ class SeasonsTable
     {
         return $table
             ->columns([
-                TextColumn::make('name')
-                    ->label('Назва')
-                    ->searchable()
-                    ->sortable(),
-                TextColumn::make('year')
-                    ->label('Рік')
-                    ->sortable(),
                 TextColumn::make('season_of_year')
                     ->label('Пора року')
                     ->badge()
+                    ->sortable(),
+                TextColumn::make('year')
+                    ->label('Рік')
+                    ->searchable()
                     ->sortable(),
                 IconColumn::make('is_current')
                     ->label('Поточний')

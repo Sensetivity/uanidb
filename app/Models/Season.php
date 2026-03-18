@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Enums\SeasonOfYearEnum;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Spatie\Activitylog\LogOptions;
@@ -33,5 +34,10 @@ class Season extends BaseModel
             'season_of_year' => SeasonOfYearEnum::class,
             'is_current' => 'boolean',
         ];
+    }
+
+    protected function name(): Attribute
+    {
+        return Attribute::get(fn (): string => $this->season_of_year->getLabel() . ' ' . $this->year);
     }
 }

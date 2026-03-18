@@ -11,6 +11,16 @@ use Illuminate\Support\Str;
 class UserFactory extends Factory
 {
     /**
+     * Indicate that the user is an admin.
+     */
+    public function admin(): static
+    {
+        return $this->state(fn (array $attributes) => [
+            'is_admin' => true,
+        ]);
+    }
+
+    /**
      * Define the model's default state.
      *
      * @return array<string, mixed>

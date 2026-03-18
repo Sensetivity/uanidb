@@ -32,7 +32,6 @@ class SeasonProcessor implements RelationProcessor
         $season = Season::query()->firstOrCreate(
             ['year' => $year, 'season_of_year' => $seasonEnum],
             [
-                'name'       => "{$seasonEnum->name} {$year}",
                 'start_date' => $this->startDate($seasonEnum, $year),
                 'end_date'   => $this->endDate($seasonEnum, $year),
                 'is_current' => false,

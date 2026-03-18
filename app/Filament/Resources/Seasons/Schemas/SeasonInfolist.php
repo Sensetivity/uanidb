@@ -7,8 +7,6 @@ use Filament\Infolists\Components\IconEntry;
 use Filament\Infolists\Components\TextEntry;
 use Filament\Schemas\Components\Grid;
 use Filament\Schemas\Schema;
-use Filament\Support\Enums\FontWeight;
-use Filament\Support\Enums\TextSize;
 use Filament\Support\Icons\Heroicon;
 
 class SeasonInfolist
@@ -17,11 +15,6 @@ class SeasonInfolist
     {
         return $schema
             ->components([
-                TextEntry::make('name')
-                    ->hiddenLabel()
-                    ->size(TextSize::Large)
-                    ->weight(FontWeight::Bold),
-
                 Grid::make(4)
                     ->schema([
                         TextEntry::make('year')
