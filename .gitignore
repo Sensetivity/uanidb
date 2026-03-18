@@ -23,3 +23,6 @@ yarn-error.log
 /plan.md
 /.ai/
 /.claude/
+/tests/screenshots/
+/.playwright-cli/
+/.playwright/

@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>УкрАніме - Список Персонажів</title>
+  <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Montserrat', sans-serif;
+    }
+  </style>
+</head>
+<body class="bg-gray-100">
+  <!-- Navbar - Consistent with previous pages -->
+  <nav class="bg-indigo-800 text-white shadow-lg">
+    <div class="container mx-auto px-4">
+      <div class="flex justify-between items-center py-3">
+        <div class="flex items-center space-x-8">
+          <a href="#" class="text-2xl font-bold">УкрАніме</a>
+          <div class="hidden md:flex space-x-6">
+            <a href="#" class="hover:text-indigo-200 font-medium">Аніме</a>
+            <a href="#" class="hover:text-indigo-200 font-medium">Манґа</a>
+            <a href="#" class="hover:text-indigo-200 font-medium">Персонажі</a>
+            <a href="#" class="hover:text-indigo-200 font-medium">Сейю</a>
+            <a href="#" class="hover:text-indigo-200 font-medium">Рейтинги</a>
+            <a href="#" class="hover:text-indigo-200 font-medium">Форум</a>
+          </div>
+        </div>
+        <div class="flex items-center space-x-4">
+          <div class="relative">
+            <input type="text" placeholder="Пошук аніме, манґи..." class="w-64 py-1 px-3 rounded-full text-gray-800 focus:outline-none">
+            <button class="absolute right-2 top-1.5">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+              </svg>
+            </button>
+          </div>
+          <a href="#" class="hover:text-indigo-200">Увійти</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page Header -->
+  <div class="bg-indigo-700 text-white">
+    <div class="container mx-auto px-4 py-6">
+      <h1 class="text-3xl font-bold">Персонажі</h1>
+      <div class="text-indigo-200 mt-1">Досліджуйте персонажів з різних аніме та манґи</div>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="container mx-auto px-4 py-8">
+    <div class="flex flex-col lg:flex-row gap-8">
+      <!-- Filters Sidebar -->
+      <div class="w-full lg:w-1/4">
+        <div class="bg-white rounded-lg shadow-md p-4 mb-6">
+          <h3 class="font-bold text-lg mb-4 text-gray-800">Фільтри</h3>
+          
+          <!-- Search Filter -->
+          <div class="mb-4">
+            <label class="block text-gray-700 mb-2 font-medium">Пошук за ім'ям</label>
+            <input type="text" class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500" placeholder="Введіть ім'я персонажа...">
+          </div>
+          
+          <!-- Gender Filter -->
+          <div class="mb-4">
+            <label class="block text-gray-700 mb-2 font-medium">Стать</label>
+            <div class="space-y-1">
+              <label class="flex items-center">
+                <input type="radio" name="gender" class="form-radio text-indigo-600" value="all" checked>
+                <span class="ml-2 text-gray-700">Усі</span>
+              </label>
+              <label class="flex items-center">
+                <input type="radio" name="gender" class="form-radio text-indigo-600" value="male">
+                <span class="ml-2 text-gray-700">Чоловіча</span>
+              </label>
+              <label class="flex items-center">
+                <input type="radio" name="gender" class="form-radio text-indigo-600" value="female">
+                <span class="ml-2 text-gray-700">Жіноча</span>
+              </label>
+            </div>
+          </div>
+          
+          <!-- Role Filter -->
+          <div class="mb-4">
+            <label class="block text-gray-700 mb-2 font-medium">Роль</label>
+            <div class="space-y-1">
+              <label class="flex items-center">
+                <input type="checkbox" class="form-checkbox text-indigo-600">
+                <span class="ml-2 text-gray-700">Головний герой</span>
+              </label>
+              <label class="flex items-center">
+                <input type="checkbox" class="form-checkbox text-indigo-600">
+                <span class="ml-2 text-gray-700">Другорядний герой</span>
+              </label>
+              <label class="flex items-center">
+                <input type="checkbox" class="form-checkbox text-indigo-600">
+                <span class="ml-2 text-gray-700">Антагоніст</span>
+              </label>
+              <label class="flex items-center">
+                <input type="checkbox" class="form-checkbox text-indigo-600">
+                <span class="ml-2 text-gray-700">Допоміжний персонаж</span>
+              </label>
+            </div>
+          </div>
+          
+          <!-- Anime Filter -->
+          <div class="mb-4">
+            <label class="block text-gray-700 mb-2 font-medium">Аніме</label>
+            <select class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+              <option value="">Усі аніме</option>
+              <option value="attack_on_titan">Атака Титанів</option>
+              <option value="demon_slayer">Клинок, що знищує демонів</option>
+              <option value="my_hero_academia">Моя геройська академія</option>
+              <option value="jujutsu_kaisen">Дзюцу Кайсен</option>
+              <option value="one_piece">Ван Піс</option>
+              <option value="fullmetal_alchemist">Повнометалевий алхімік</option>
+            </select>
+          </div>
+          
+          <!-- Age Filter -->
+          <div class="mb-4">
+            <label class="block text-gray-700 mb-2 font-medium">Вік</label>
+            <div class="flex gap-2">
+              <input type="number" placeholder="Від" class="w-1/2 border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+              <input type="number" placeholder="До" class="w-1/2 border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+            </div>
+          </div>
+          
+          <!-- Feature Filter -->
+          <div class="mb-4">
+            <label class="block text-gray-700 mb-2 font-medium">Особливості</label>
+            <div class="space-y-1">
+              <label class="flex items-center">
+                <input type="checkbox" class="form-checkbox text-indigo-600">
+                <span class="ml-2 text-gray-700">Надприродні здібності</span>
+              </label>
+              <label class="flex items-center">
+                <input type="checkbox" class="form-checkbox text-indigo-600">
+                <span class="ml-2 text-gray-700">Трагічне минуле</span>
+              </label>
+              <label class="flex items-center">
+                <input type="checkbox" class="form-checkbox text-indigo-600">
+                <span class="ml-2 text-gray-700">Перевтілення</span>
+              </label>
+              <label class="flex items-center">
+                <input type="checkbox" class="form-checkbox text-indigo-600">
+                <span class="ml-2 text-gray-700">Геній/Інтелектуал</span>
+              </label>
+            </div>
+          </div>
+          
+          <!-- Apply Filters Button -->
+          <button class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-2 px-4 rounded">
+            Застосувати фільтри
+          </button>
+        </div>
+      </div>
+      
+      <!-- Character List -->
+      <div class="w-full lg:w-3/4">
+        <!-- Sort Options -->
+        <div class="bg-white rounded-lg shadow-md p-4 mb-6 flex flex-wrap gap-2 items-center">
+          <span class="font-medium text-gray-700">Сортувати за: </span>
+          <div class="flex gap-2 flex-wrap">
+            <button class="px-3 py-1 rounded bg-indigo-600 text-white text-sm">Популярність</button>
+            <button class="px-3 py-1 rounded bg-gray-200 hover:bg-gray-300 text-sm">Ім'я (А-Я)</button>
+            <button class="px-3 py-1 rounded bg-gray-200 hover:bg-gray-300 text-sm">Дата додавання</button>
+            <button class="px-3 py-1 rounded bg-gray-200 hover:bg-gray-300 text-sm">Рейтинг</button>
+          </div>
+          <div class="ml-auto flex gap-2 items-center">
+            <span class="text-gray-700 text-sm">Вигляд:</span>
+            <button class="p-1 rounded bg-indigo-600 text-white">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
+            </button>
+            <button class="p-1 rounded bg-gray-200 hover:bg-gray-300">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16" />
+              </svg>
+            </button>
+          </div>
+        </div>
+        
+        <!-- Character Results -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <!-- Character Card -->
+          <div class="bg-white rounded-lg shadow-md overflow-hidden">
+            <a href="#">
+              <img src="https://placehold.co/300x400/indigo/white?text=Ерен+Єгер" alt="Ерен Єгер" class="w-full h-64 object-cover object-top hover:opacity-90 transition">
+            </a>
+            <div class="p-4">
+              <div class="flex items-center justify-between mb-2">
+                <a href="#" class="text-lg font-bold text-indigo-600 hover:text-indigo-800">Ерен Єгер</a>
+                <span class="bg-indigo-100 text-indigo-800 px-2 py-1 rounded-full text-xs">Рейтинг #3</span>
+              </div>
+              <div class="flex flex-wrap gap-1 mb-2">
+                <span class="bg-gray-200 px-2 py-1 rounded-full text-xs">Головний герой</span>
+                <span class="bg-gray-200 px-2 py-1 rounded-full text-xs">Чоловіча</span>
+              </div>
+              <p class="text-gray-600 text-sm mb-3">
+                Атака Титанів
+              </p>
+              <div class="flex justify-between items-center text-sm text-gray-500">
+                <div>19 років</div>
+                <div>12,546 голосів</div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Character Card -->
+          <div class="bg-white rounded-lg shadow-md overflow-hidden">
+            <a href="#">
+              <img src="https://placehold.co/300x400/indigo/white?text=Мікаса+Аккерман" alt="Мікаса Аккерман" class="w-full h-64 object-cover object-top hover:opacity-90 transition">
+            </a>
+            <div class="p-4">
+              <div class="flex items-center justify-between mb-2">
+                <a href="#" class="text-lg font-bold text-indigo-600 hover:text-indigo-800">Мікаса Аккерман</a>
+                <span class="bg-indigo-100 text-indigo-800 px-2 py-1 rounded-full text-xs">Рейтинг #5</span>
+              </div>
+              <div class="flex flex-wrap gap-1 mb-2">
+                <span class="bg-gray-200 px-2 py-1 rounded-full text-xs">Головний герой</span>
+                <span class="bg-gray-200 px-2 py-1 rounded-full text-xs">Жіноча</span>
+              </div>
+              <p class="text-gray-600 text-sm mb-3">
+                Атака Титанів
+              </p>
+              <div class="flex justify-between items-center text-sm text-gray-500">
+                <div>19 років</div>
+                <div>11,256 голосів</div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Character Card -->
+          <div class="bg-white rounded-lg shadow-md overflow-hidden">
+            <a href="#">
+              <img src="https://placehold.co/300x400/indigo/white?text=Леві+Аккерман" alt="Леві Аккерман" class="w-full h-64 object-cover object-top hover:opacity-90 transition">
+            </a>
+            <div class="p-4">
+              <div class="flex items-center justify-between mb-2">
+                <a href="#" class="text-lg font-bold text-indigo-600 hover:text-indigo-800">Леві Аккерман</a>
+                <span class="bg-indigo-100 text-indigo-800 px-2 py-1 rounded-full text-xs">Рейтинг #1</span>
+              </div>
+              <div class="flex flex-wrap gap-1 mb-2">
+                <span class="bg-gray-200 px-2 py-1 rounded-full text-xs">Другорядний герой</span>
+                <span class="bg-gray-200 px-2 py-1 rounded-full text-xs">Чоловіча</span>
+              </div>
+              <p class="text-gray-600 text-sm mb-3">
+                Атака Титанів
+              </p>
+              <div class="flex justify-between items-center text-sm text-gray-500">
+                <div>30+ років</div>
+                <div>18,925 голосів</div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Character Card -->
+          <div class="bg-white rounded-lg shadow-md overflow-hidden">
+            <a href="#">
+              <img src="https://placehold.co/300x400/indigo/white?text=Танджіро+Камадо" alt="Танджіро Камадо" class="w-full h-64 object-cover object-top hover:opacity-90 transition">
+            </a>
+            <div class="p-4">
+              <div class="flex items-center justify-between mb-2">
+                <a href="#" class="text-lg font-bold text-indigo-600 hover:text-indigo-800">Танджіро Камадо</a>
+                <span class="bg-indigo-100 text-indigo-800 px-2 py-1 rounded-full text-xs">Рейтинг #2</span>
+              </div>
+              <div class="flex flex-wrap gap-1 mb-2">
+                <span class="bg-gray-200 px-2 py-1 rounded-full text-xs">Головний герой</span>
+                <span class="bg-gray-200 px-2 py-1 rounded-full text-xs">Чоловіча</span>
+              </div>
+              <p class="text-gray-600 text-sm mb-3">
+                Клинок, що знищує демонів
+              </p>
+              <div class="flex justify-between items-center text-sm text-gray-500">
+                <div>15 років</div>
+                <div>15,782 голосів</div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Character Card -->
+          <div class="bg-white rounded-lg shadow-md overflow-hidden">
+            <a href="#">
+              <img src="https://placehold.co/300x400/indigo/white?text=Незуко+Камадо" alt="Незуко Камадо" class="w-full h-64 object-cover object-top hover:opacity-90 transition">
+            </a>
+            <div class="p-4">
+              <div class="flex items-center justify-between mb-2">
+                <a href="#" class="text-lg font-bold text-indigo-600 hover:text-indigo-800">Незуко Камадо</a>
+                <span class="bg-indigo-100 text-indigo-800 px-2 py-1 rounded-full text-xs">Рейтинг #8</span>
+              </div>
+              <div class="flex flex-wrap gap-1 mb-2">
+                <span class="bg-gray-200 px-2 py-1 rounded-full text-xs">Головний герой</span>
+                <span class="bg-gray-200 px-2 py-1 rounded-full text-xs">Жіноча</span>
+              </div>
+              <p class="text-gray-600 text-sm mb-3">
+                Клинок, що знищує демонів
+              </p>
+              <div class="flex justify-between items-center text-sm text-gray-500">
+                <div>12 років</div>
+                <div>9,425 голосів</div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Character Card -->
+          <div class="bg-white rounded-lg shadow-md overflow-hidden">
+            <a href="#">
+              <img src="https://placehold.co/300x400/indigo/white?text=Ізуку+Мідорія" alt="Ізуку Мідорія" class="w-full h-64 object-cover object-top hover:opacity-90 transition">
+            </a>
+            <div class="p-4">
+              <div class="flex items-center justify-between mb-2">
+                <a href="#" class="text-lg font-bold text-indigo-600 hover:text-indigo-800">Ізуку Мідорія</a>
+                <span class="bg-indigo-100 text-indigo-800 px-2 py-1 rounded-full text-xs">Рейтинг #4</span>
+              </div>
+              <div class="flex flex-wrap gap-1 mb-2">
+                <span class="bg-gray-200 px-2 py-1 rounded-full text-xs">Головний герой</span>
+                <span class="bg-gray-200 px-2 py-1 rounded-full text-xs">Чоловіча</span>
+              </div>
+              <p class="text-gray-600 text-sm mb-3">
+                Моя геройська академія
+              </p>
+              <div class="flex justify-between items-center text-sm text-gray-500">
+                <div>16 років</div>
+                <div>12,154 голосів</div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Character Card -->
+          <div class="bg-white rounded-lg shadow-md overflow-hidden">
+            <a href="#">
+              <img src="https://placehold.co/300x400/indigo/white?text=Луффі" alt="Монкі Д. Луффі" class="w-full h-64 object-cover object-top hover:opacity-90 transition">
+            </a>
+            <div class="p-4">
+              <div class="flex items-center justify-between mb-2">
+                <a href="#" class="text-lg font-bold text-indigo-600 hover:text-indigo-800">Монкі Д. Луффі</a>
+                <span class="bg-indigo-100 text-indigo-800 px-2 py-1 rounded-full text-xs">Рейтинг #6</span>
+              </div>
+              <div class="flex flex-wrap gap-1 mb-2">
+                <span class="bg-gray-200 px-2 py-1 rounded-full text-xs">Головний герой</span>
+                <span class="bg-gray-200 px-2 py-1 rounded-full text-xs">Чоловіча</span>
+              </div>
+              <p class="text-gray-600 text-sm mb-3">
+                Ван Піс
+              </p>
+              <div class="flex justify-between items-center text-sm text-gray-500">
+                <div>19 років</div>
+                <div>10,875 голосів</div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Character Card -->
+          <div class="bg-white rounded-lg shadow-md overflow-hidden">
+            <a href="#">
+              <img src="https://placehold.co/300x400/indigo/white?text=Ітачі+Учіха" alt="Ітачі Учіха" class="w-full h-64 object-cover object-top hover:opacity-90 transition">
+            </a>
+            <div class="p-4">
+              <div class="flex items-center justify-between mb-2">
+                <a href="#" class="text-lg font-bold text-indigo-600 hover:text-indigo-800">Ітачі Учіха</a>
+                <span class="bg-indigo-100 text-indigo-800 px-2 py-1 rounded-full text-xs">Рейтинг #7</span>
+              </div>
+              <div class="flex flex-wrap gap-1 mb-2">
+                <span class="bg-gray-200 px-2 py-1 rounded-full text-xs">Антагоніст</span>
+                <span class="bg-gray-200 px-2 py-1 rounded-full text-xs">Чоловіча</span>
+              </div>
+              <p class="text-gray-600 text-sm mb-3">
+                Наруто
+              </p>
+              <div class="flex justify-between items-center text-sm text-gray-500">
+                <div>21 рік</div>
+                <div>10,328 голосів</div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Character Card -->
+          <div class="bg-white rounded-lg shadow-md overflow-hidden">
+            <a href="#">
+              <img src="https://placehold.co/300x400/indigo/white?text=Кен+Канекі" alt="Кен Канекі" class="w-full h-64 object-cover object-top hover:opacity-90 transition">
+            </a>
+            <div class="p-4">
+              <div class="flex items-center justify-between mb-2">
+                <a href="#" class="text-lg font-bold text-indigo-600 hover:text-indigo-800">Кен Канекі</a>
+                <span class="bg-indigo-100 text-indigo-800 px-2 py-1 rounded-full text-xs">Рейтинг #9</span>
+              </div>
+              <div class="flex flex-wrap gap-1 mb-2">
+                <span class="bg-gray-200 px-2 py-1 rounded-full text-xs">Головний герой</span>
+                <span class="bg-gray-200 px-2 py-1 rounded-full text-xs">Чоловіча</span>
+              </div>
+              <p class="text-gray-600 text-sm mb-3">
+                Токійський гуль
+              </p>
+              <div class="flex justify-between items-center text-sm text-gray-500">
+                <div>19 років</div>
+                <div>9,127 голосів</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Pagination -->
+        <div class="mt-8 flex justify-center">
+          <nav class="flex items-center space-x-2">
+            <a href="#" class="px-3 py-2 rounded-md border border-gray-300 bg-white text-gray-500 hover:bg-gray-50">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+              </svg>
+            </a>
+            <a href="#" class="px-3 py-2 rounded-md border border-indigo-600 bg-indigo-600 text-white">1</a>
+            <a href="#" class="px-3 py-2 rounded-md border border-gray-300 bg-white text-gray-700 hover:bg-gray-50">2</a>
+            <a href="#" class="px-3 py-2 rounded-md border border-gray-300 bg-white text-gray-700 hover:bg-gray-50">3</a>
+            <span class="px-3 py-2 text-gray-500">...</span>
+            <a href="#" class="px-3 py-2 rounded-md border border-gray-300 bg-white text-gray-700 hover:bg-gray-50">24</a>
+            <a href="#" class="px-3 py-2 rounded-md border border-gray-300 bg-white text-gray-500 hover:bg-gray-50">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+              </svg>
+            </a>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Footer -->
+  <footer class="bg-indigo-900 text-white mt-12">
+    <div class="container mx-auto px-4 py-8">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div>
+          <h3 class="text-xl font-bold mb-4">УкрАніме</h3>
+          <p class="text-indigo-200">Найбільша українська база даних аніме, манґи, персонажів та сейю.</p>
+        </div>
+        <div>
+          <h4 class="font-bold mb-4">Навігація</h4>
+          <ul class="space-y-2">
+            <li><a href="#" class="text-indigo-200 hover:text-white">Головна</a></li>
+            <li><a href="#" class="text-indigo-200 hover:text-white">Аніме</a></li>
+            <li><a href="#" class="text-indigo-200 hover:text-white">Манґа</a></li>
+            <li><a href="#" class="text-indigo-200 hover:text-white">Персонажі</a></li>
+            <li><a href="#" class="text-indigo-200 hover:text-white">Сейю</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-bold mb-4">Інформація</h4>
+          <ul class="space-y-2">
+            <li><a href="#" class="text-indigo-200 hover:text-white">Про нас</a></li>
+            <li><a href="#" class="text-indigo-200 hover:text-white">Допомога</a></li>
+            <li><a href="#" class="text-indigo-200 hover:text-white">FAQ</a></li>
+            <li><a href="#" class="

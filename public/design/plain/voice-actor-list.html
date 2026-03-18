@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>УкрАніме - Список Сейю</title>
+  <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Montserrat', sans-serif;
+    }
+  </style>
+</head>
+<body class="bg-gray-100">
+  <!-- Navbar - Consistent with previous pages -->
+  <nav class="bg-indigo-800 text-white shadow-lg">
+    <div class="container mx-auto px-4">
+      <div class="flex justify-between items-center py-3">
+        <div class="flex items-center space-x-8">
+          <a href="#" class="text-2xl font-bold">УкрАніме</a>
+          <div class="hidden md:flex space-x-6">
+            <a href="#" class="hover:text-indigo-200 font-medium">Аніме</a>
+            <a href="#" class="hover:text-indigo-200 font-medium">Манґа</a>
+            <a href="#" class="hover:text-indigo-200 font-medium">Персонажі</a>
+            <a href="#" class="hover:text-indigo-200 font-medium">Сейю</a>
+            <a href="#" class="hover:text-indigo-200 font-medium">Рейтинги</a>
+            <a href="#" class="hover:text-indigo-200 font-medium">Форум</a>
+          </div>
+        </div>
+        <div class="flex items-center space-x-4">
+          <div class="relative">
+            <input type="text" placeholder="Пошук аніме, манґи..." class="w-64 py-1 px-3 rounded-full text-gray-800 focus:outline-none">
+            <button class="absolute right-2 top-1.5">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+              </svg>
+            </button>
+          </div>
+          <a href="#" class="hover:text-indigo-200">Увійти</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page Header -->
+  <div class="bg-indigo-700 text-white">
+    <div class="container mx-auto px-4 py-6">
+      <h1 class="text-3xl font-bold">Сейю (Актори озвучення)</h1>
+      <div class="text-indigo-200 mt-1">Досліджуйте японських акторів озвучення, які дарують голоси улюбленим персонажам</div>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="container mx-auto px-4 py-8">
+    <div class="flex flex-col lg:flex-row gap-8">
+      <!-- Filters Sidebar -->
+      <div class="w-full lg:w-1/4">
+        <div class="bg-white rounded-lg shadow-md p-4 mb-6">
+          <h3 class="font-bold text-lg mb-4 text-gray-800">Фільтри</h3>
+          
+          <!-- Search Filter -->
+          <div class="mb-4">
+            <label class="block text-gray-700 mb-2 font-medium">Пошук за ім'ям</label>
+            <input type="text" class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500" placeholder="Введіть ім'я сейю...">
+          </div>
+          
+          <!-- Gender Filter -->
+          <div class="mb-4">
+            <label class="block text-gray-700 mb-2 font-medium">Стать</label>
+            <div class="space-y-1">
+              <label class="flex items-center">
+                <input type="radio" name="gender" class="form-radio text-indigo-600" value="all" checked>
+                <span class="ml-2 text-gray-700">Усі</span>
+              </label>
+              <label class="flex items-center">
+                <input type="radio" name="gender" class="form-radio text-indigo-600" value="male">
+                <span class="ml-2 text-gray-700">Чоловіча</span>
+              </label>
+              <label class="flex items-center">
+                <input type="radio" name="gender" class="form-radio text-indigo-600" value="female">
+                <span class="ml-2 text-gray-700">Жіноча</span>
+              </label>
+            </div>
+          </div>
+          
+          <!-- Birthday Filter -->
+          <div class="mb-4">
+            <label class="block text-gray-700 mb-2 font-medium">Місяць народження</label>
+            <select class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+              <option value="">Усі місяці</option>
+              <option value="1">Січень</option>
+              <option value="2">Лютий</option>
+              <option value="3">Березень</option>
+              <option value="4">Квітень</option>
+              <option value="5">Травень</option>
+              <option value="6">Червень</option>
+              <option value="7">Липень</option>
+              <option value="8">Серпень</option>
+              <option value="9">Вересень</option>
+              <option value="10">Жовтень</option>
+              <option value="11">Листопад</option>
+              <option value="12">Грудень</option>
+            </select>
+          </div>
+          
+          <!-- Age Filter -->
+          <div class="mb-4">
+            <label class="block text-gray-700 mb-2 font-medium">Вік</label>
+            <div class="flex gap-2">
+              <input type="number" placeholder="Від" class="w-1/2 border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+              <input type="number" placeholder="До" class="w-1/2 border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+            </div>
+          </div>
+          
+          <!-- Agency Filter -->
+          <div class="mb-4">
+            <label class="block text-gray-700 mb-2 font-medium">Агентство</label>
+            <select class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+              <option value="">Усі агентства</option>
+              <option value="81_produce">81 Produce</option>
+              <option value="aoni_production">Aoni Production</option>
+              <option value="arts_vision">Arts Vision</option>
+              <option value="im_enterprise">I'm Enterprise</option>
+              <option value="vims">VIMS</option>
+              <option value="mausu_promotion">Mausu Promotion</option>
+              <option value="sigma_seven">Sigma Seven</option>
+            </select>
+          </div>
+          
+          <!-- Status Filter -->
+          <div class="mb-4">
+            <label class="block text-gray-700 mb-2 font-medium">Статус</label>
+            <div class="space-y-1">
+              <label class="flex items-center">
+                <input type="checkbox" class="form-checkbox text-indigo-600" checked>
+                <span class="ml-2 text-gray-700">Активний</span>
+              </label>
+              <label class="flex items-center">
+                <input type="checkbox" class="form-checkbox text-indigo-600" checked>
+                <span class="ml-2 text-gray-700">На пенсії</span>
+              </label>
+              <label class="flex items-center">
+                <input type="checkbox" class="form-checkbox text-indigo-600" checked>
+                <span class="ml-2 text-gray-700">Померлий</span>
+              </label>
+            </div>
+          </div>
+          
+          <!-- Apply Filters Button -->
+          <button class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-2 px-4 rounded">
+            Застосувати фільтри
+          </button>
+        </div>
+      </div>
+      
+      <!-- Seiyuu List -->
+      <div class="w-full lg:w-3/4">
+        <!-- Sort Options -->
+        <div class="bg-white rounded-lg shadow-md p-4 mb-6 flex flex-wrap gap-2 items-center">
+          <span class="font-medium text-gray-700">Сортувати за: </span>
+          <div class="flex gap-2 flex-wrap">
+            <button class="px-3 py-1 rounded bg-indigo-600 text-white text-sm">Популярність</button>
+            <button class="px-3 py-1 rounded bg-gray-200 hover:bg-gray-300 text-sm">Ім'я (А-Я)</button>
+            <button class="px-3 py-1 rounded bg-gray-200 hover:bg-gray-300 text-sm">Вік</button>
+            <button class="px-3 py-1 rounded bg-gray-200 hover:bg-gray-300 text-sm">Кількість ролей</button>
+          </div>
+          <div class="ml-auto flex gap-2 items-center">
+            <span class="text-gray-700 text-sm">Вигляд:</span>
+            <button class="p-1 rounded bg-indigo-600 text-white">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
+            </button>
+            <button class="p-1 rounded bg-gray-200 hover:bg-gray-300">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16" />
+              </svg>
+            </button>
+          </div>
+        </div>
+        
+        <!-- Seiyuu Grid -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <!-- Seiyuu Card -->
+          <div class="bg-white rounded-lg shadow-md overflow-hidden">
+            <a href="#">
+              <img src="https://placehold.co/300x400/indigo/white?text=Юкі+Кадзі" alt="Юкі Кадзі" class="w-full h-64 object-cover object-top hover:opacity-90 transition">
+            </a>
+            <div class="p-4">
+              <div class="flex items-center justify-between mb-2">
+                <a href="#" class="text-lg font-bold text-indigo-600 hover:text-indigo-800">Юкі Кадзі</a>
+                <span class="bg-indigo-100 text-indigo-800 px-2 py-1 rounded-full text-xs">Рейтинг #5</span>
+              </div>
+              <div class="flex flex-wrap gap-1 mb-2">
+                <span class="bg-gray-200 px-2 py-1 rounded-full text-xs">37 років</span>
+                <span class="bg-gray-200 px-2 py-1 rounded-full text-xs">VIMS</span>
+              </div>
+              <p class="text-gray-600 text-sm mb-3">
+                Найвідоміші ролі:
+              </p>
+              <div class="flex flex-wrap gap-1 text-xs text-indigo-600">
+                <a href="#" class="hover:text-indigo-800">Ерен Єгер,</a>
+                <a href="#" class="hover:text-indigo-800">Шото Тодорокі,</a>
+                <a href="#" class="hover:text-indigo-800">Мелодіас</a>
+              </div>
+              <div class="mt-3 flex justify-between items-center text-sm text-gray-500">
+                <div>145 ролей</div>
+                <div>9,874 голосів</div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Seiyuu Card -->
+          <div class="bg-white rounded-lg shadow-md overflow-hidden">
+            <a href="#">
+              <img src="https://placehold.co/300x400/indigo/white?text=Мамору+Міяно" alt="Мамору Міяно" class="w-full h-64 object-cover object-top hover:opacity-90 transition">
+            </a>
+            <div class="p-4">
+              <div class="flex items-center justify-between mb-2">
+                <a href="#" class="text-lg font-bold text-indigo-600 hover:text-indigo-800">Мамору Міяно</a>
+                <span class="bg-indigo-100 text-indigo-800 px-2 py-1 rounded-full text-xs">Рейтинг #4</span>
+              </div>
+              <div class="flex flex-wrap gap-1 mb-2">
+                <span class="bg-gray-200 px-2 py-1 rounded-full text-xs">39 років</span>
+                <span class="bg-gray-200 px-2 py-1 rounded-full text-xs">Aoni Production</span>
+              </div>
+              <p class="text-gray-600 text-sm mb-3">
+                Найвідоміші ролі:
+              </p>
+              <div class="flex flex-wrap gap-1 text-xs text-indigo-600">
+                <a href="#" class="hover:text-indigo-800">Лайт Ягамі,</a>
+                <a href="#" class="hover:text-indigo-800">Рін Окумура,</a>
+                <a href="#" class="hover:text-indigo-800">Дзюн'їчіро Сорґаку</a>
+              </div>
+              <div class="mt-3 flex justify-between items-center text-sm text-gray-500">
+                <div>187 ролей</div>
+                <div>10,256 голосів</div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Seiyuu Card -->
+          <div class="bg-white rounded-lg shadow-md overflow-hidden">
+            <a href="#">
+              <img src="https://placehold.co/300x400/indigo/white?text=Кана+Ханазава" alt="Кана Ханазава" class="w-full h-64 object-cover object-top hover:opacity-90 transition">
+            </a>
+            <div class="p-4">
+              <div class="flex items-center justify-between mb-2">
+                <a href="#" class="text-lg font-bold text-indigo-600 hover:text-indigo-800">Кана Ханазава</a>
+                <span class="bg-indigo-100 text-indigo-800 px-2 py-1 rounded-full text-xs">Рейтинг #1</span>
+              </div>
+              <div class="flex flex-wrap gap-1 mb-2">
+                <span class="bg-gray-200 px-2 py-1 rounded-full text-xs">34 роки</span>
+                <span class="bg-gray-200 px-2 py-1 rounded-full text-xs">Sigma Seven</span>
+              </div>
+              <p class="text-gray-600 text-sm mb-3">
+                Найвідоміші ролі:
+              </p>
+              <div class="flex flex-wrap gap-1 text-xs text-indigo-600">
+                <a href="#" class="hover:text-indigo-800">Майурі Шіна,</a>
+                <a href="#" class="hover:text-indigo-800">Косакі Онодера,</a>
+                <a href="#" class="hover:text-indigo-800">Надеко Сенгоку</a>
+              </div>
+              <div class="mt-3 flex justify-between items-center text-sm text-gray-500">
+                <div>180 ролей</div>
+                <div>18,762 голосів</div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Seiyuu Card -->
+          <div class="bg-white rounded-lg shadow-md overflow-hidden">
+            <a href="#">
+              <img src="https://placehold.co/300x400/indigo/white?text=Хіроші+Камія" alt="Хіроші Камія" class="w-full h-64 object-cover object-top hover:opacity-90 transition">
+            </a>
+            <div class="p-4">
+              <div class="flex items-center justify-between mb-2">
+                <a href="#" class="text-lg font-bold text-indigo-600 hover:text-indigo-800">Хіроші Камія</a>
+                <span class="bg-indigo-100 text-indigo-800 px-2 py-1 rounded-full text-xs">Рейтинг #3</span>
+              </div>
+              <div class="flex flex-wrap gap-1 mb-2">
+                <span class="bg-gray-200 px-2 py-1 rounded-full text-xs">48 років</span>
+                <span class="bg-gray-200 px-2 py-1 rounded-full text-xs">Aoni Production</span>
+              </div>
+              <p class="text-gray-600 text-sm mb-3">
+                Найвідоміші ролі:
+              </p>
+              <div class="flex flex-wrap gap-1 text-xs text-indigo-600">
+                <a href="#" class="hover:text-indigo-800">Леві Аккерман,</a>
+                <a href="#" class="hover:text-indigo-800">Трафальгар Ло,</a>
+                <a href="#" class="hover:text-indigo-800">Юто Кацукі</a>
+              </div>
+              <div class="mt-3 flex justify-between items-center text-sm text-gray-500">
+                <div>205 ролей</div>
+                <div>14,359 голосів</div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Seiyuu Card -->
+          <div class="bg-white rounded-lg shadow-md overflow-hidden">
+            <a href="#">
+              <img src="https://placehold.co/300x400/indigo/white?text=Аяне+Сакура" alt="Аяне Сакура" class="w-full h-64 object-cover object-top hover:opacity-90 transition">
+            </a>
+            <div class="p-4">
+              <div class="flex items-center justify-between mb-2">
+                <a href="#" class="text-lg font-bold text-indigo-600 hover:text-indigo-800">Аяне Сакура</a>
+                <span class="bg-indigo-100 text-indigo-800 px-2 py-1 rounded-full text-xs">Рейтинг #7</span>
+              </div>
+              <div class="flex flex-wrap gap-1 mb-2">
+                <span class="bg-gray-200 px-2 py-1 rounded-full text-xs">29 років</span>
+                <span class="bg-gray-200 px-2 py-1 rounded-full text-xs">I'm Enterprise</span>
+              </div>
+              <p class="text-gray-600 text-sm mb-3">
+                Найвідоміші ролі:
+              </p>
+              <div class="flex flex-wrap gap-1 text-xs text-indigo-600">
+                <a href="#" class="hover:text-indigo-800">Ютаха Гаґю,</a>
+                <a href="#" class="hover:text-indigo-800">Очако Урарака,</a>
+                <a href="#" class="hover:text-indigo-800">Юкі Йосіда</a>
+              </div>
+              <div class="mt-3 flex justify-between items-center text-sm text-gray-500">
+                <div>112 ролей</div>
+                <div>8,927 голосів</div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Seiyuu Card -->
+          <div class="bg-white rounded-lg shadow-md overflow-hidden">
+            <a href="#">
+              <img src="https://placehold.co/300x400/indigo/white?text=Томоказу+Сугіта" alt="Томоказу Сугіта" class="w-full h-64 object-cover object-top hover:opacity-90 transition">
+            </a>
+            <div class="p-4">
+              <div class="flex items-center justify-between mb-2">
+                <a href="#" class="text-lg font-bold text-indigo-600 hover:text-indigo-800">Томоказу Сугіта</a>
+                <span class="bg-indigo-100 text-indigo-800 px-2 py-1 rounded-full text-xs">Рейтинг #2</span>
+              </div>
+              <div class="flex flex-wrap gap-1 mb-2">
+                <span class="bg-gray-200 px-2 py-1 rounded-full text-xs">44 роки</span>
+                <span class="bg-gray-200 px-2 py-1 rounded-full text-xs">Atomis</span>
+              </div>
+              <p class="text-gray-600 text-sm mb-3">
+                Найвідоміші ролі:
+              </p>
+              <div class="flex flex-wrap gap-1 text-xs text-indigo-600">
+                <a href="#" class="hover:text-indigo-800">Гінтокі Саката,</a>
+                <a href="#" class="hover:text-indigo-800">Джозеф Джостар,</a>
+                <a href="#" class="hover:text-indigo-800">Коро-сенсей</a>
+              </div>
+              <div class="mt-3 flex justify-between items-center text-sm text-gray-500">
+                <div>223 ролі</div>
+                <div>16,521 голосів</div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Seiyuu Card -->
+          <div class="bg-white rounded-lg shadow-md overflow-hidden">
+            <a href="#">
+              <img src="https://placehold.co/300x400/indigo/white?text=Юї+Ішікава" alt="Юї Ішікава" class="w-full h-64 object-cover object-top hover:opacity-90 transition">
+            </a>
+            <div class="p-4">
+              <div class="flex items-center justify-between mb-2">
+                <a href="#" class="text-lg font-bold text-indigo-600 hover:text-indigo-800">Юї Ішікава</a>
+                <span class="bg-indigo-100 text-indigo-800 px-2 py-1 rounded-full text-xs">Рейтинг #9</span>
+              </div>
+              <div class="flex flex-wrap gap-1 mb-2">
+                <span class="bg-gray-200 px-2 py-1 rounded-full text-xs">34 роки</span>
+                <span class="bg-gray-200 px-2 py-1 rounded-full text-xs">Mausu Promotion</span>
+              </div>
+              <p class="text-gray-600 text-sm mb-3">
+                Найвідоміші ролі:
+              </p>
+              <div class="flex flex-wrap gap-1 text-xs text-indigo-600">
+                <a href="#" class="hover:text-indigo-800">Мікаса Аккерман,</a>
+                <a href="#" class="hover:text-indigo-800">Віолет Еверґарден,</a>
+                <a href="#" class="hover:text-indigo-800">2B</a>
+              </div>
+              <div class="mt-3 flex justify-between items-center text-sm text-gray-500">
+                <div>98 ролей</div>
+                <div>7,654 голосів</div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Seiyuu Card -->
+          <div class="bg-white rounded-lg shadow-md overflow-hidden">
+            <a href="#">
+              <img src="https://placehold.co/300x400/indigo/white?text=Дайсуке+Оно" alt="Дайсуке Оно" class="w-full h-64 object-cover object-top hover:opacity-90 transition">
+            </a>
+            <div class="p-4">
+              <div class="flex items-center justify-between mb-2">
+                <a href="#" class="text-lg font-bold text-indigo-600 hover:text-indigo-800">Дайсуке Оно</a>
+                <span class="bg-indigo-100 text-indigo-800 px-2 py-1 rounded-full text-xs">Рейтинг #6</span>
+              </div>
+              <div class="flex flex-wrap gap-1 mb-2">
+                <span class="bg-gray-200 px-2 py-1 rounded-full text-xs">45 років</span>
+                <span class="bg-gray-200 px-2 py-1 rounded-full text-xs">Mausu Promotion</span>
+              </div>
+              <p class="text-gray-600 text-sm mb-3">
+                Найвідоміші ролі:
+              </p>
+              <div class="flex flex-wrap gap-1 text-xs text-indigo-600">
+                <a href="#" class="hover:text-indigo-800">Себастіан Міхаеліс,</a>
+                <a href="#" class="hover:text-indigo-800">Джотаро Куджо,</a>
+                <a href="#" class="hover:text-indigo-800">Шідзуо Хейваджіма</a>
+              </div>
+              <div class="mt-3 flex justify-between items-center text-sm text-gray-500">
+                <div>156 ролей</div>
+                <div>9,345 голосів</div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Seiyuu Card -->
+          <div class="bg-white rounded-lg shadow-md overflow-hidden">
+            <a href="#">
+              <img src="https://placehold.co/300x400/indigo/white?text=Аой+Юкі" alt="Аой Юкі" class="w-full h-64 object-cover object-top hover:opacity-90 transition">
+            </a>
+            <div class="p-4">
+              <div class="flex items-center justify-between mb-2">
+                <a href="#" class="text-lg font-bold text-indigo-600 hover:text-indigo-800">Аой Юкі</a>
+                <span class="bg-indigo-100 text-indigo-800 px-2 py-1 rounded-full text-xs">Рейтинг #8</span>
+              </div>
+              <div class="flex flex-wrap gap-1 mb-2">
+                <span class="bg-gray-200 px-2 py-1 rounded-full text-xs">31 рік</span>
+                <span class="bg-gray-200 px-2 py-1 rounded-full text-xs">VIMS</span>
+              </div>
+              <p class="text-gray-600 text-sm mb-3">
+                Найвідоміші ролі:
+              </p>
+              <div class="flex flex-wrap gap-1 text-xs text-indigo-600">
+                <a href="#" class="hover:text-indigo-800">Мадока Канаме,</a>
+                <a href="#" class="hover:text-indigo-800">Танджіро Камадо,</a>
+                <a href="#" class="hover:text-indigo-800">Юно</a>
+              </div>
+              <div class="mt-3 flex justify-between items-center text-sm text-gray-500">
+                <div>124 ролі</div>
+                <div>8,123 голосів</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Pagination -->
+        <div class="mt-8 flex justify-center">
+          <nav class="

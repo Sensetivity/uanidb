@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>УкрАніме - Рейтинги та Топ-списки</title>
+  <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Montserrat', sans-serif;
+    }
+  </style>
+</head>
+<body class="bg-gray-100">
+  <!-- Navbar - Consistent with previous pages -->
+  <nav class="bg-indigo-800 text-white shadow-lg">
+    <div class="container mx-auto px-4">
+      <div class="flex justify-between items-center py-3">
+        <div class="flex items-center space-x-8">
+          <a href="#" class="text-2xl font-bold">УкрАніме</a>
+          <div class="hidden md:flex space-x-6">
+            <a href="#" class="hover:text-indigo-200 font-medium">Аніме</a>
+            <a href="#" class="hover:text-indigo-200 font-medium">Манґа</a>
+            <a href="#" class="hover:text-indigo-200 font-medium">Персонажі</a>
+            <a href="#" class="hover:text-indigo-200 font-medium">Сейю</a>
+            <a href="#" class="hover:text-indigo-200 font-medium">Рейтинги</a>
+            <a href="#" class="hover:text-indigo-200 font-medium">Форум</a>
+          </div>
+        </div>
+        <div class="flex items-center space-x-4">
+          <div class="relative">
+            <input type="text" placeholder="Пошук аніме, манґи..." class="w-64 py-1 px-3 rounded-full text-gray-800 focus:outline-none">
+            <button class="absolute right-2 top-1.5">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+              </svg>
+            </button>
+          </div>
+          <a href="#" class="hover:text-indigo-200">Увійти</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page Header -->
+  <div class="bg-indigo-700 text-white">
+    <div class="container mx-auto px-4 py-6">
+      <h1 class="text-3xl font-bold">Рейтинги та Топ-списки</h1>
+      <div class="text-indigo-200 mt-1">Досліджуйте найкращі аніме, манґи, персонажів та сейю за різними категоріями</div>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="container mx-auto px-4 py-8">
+    <!-- Category Tabs -->
+    <div class="mb-6 bg-white rounded-lg shadow-md overflow-hidden">
+      <div class="flex overflow-x-auto">
+        <button class="bg-indigo-600 text-white px-6 py-3 text-lg">Аніме</button>
+        <button class="hover:bg-indigo-100 px-6 py-3 text-lg">Манґа</button>
+        <button class="hover:bg-indigo-100 px-6 py-3 text-lg">Персонажі</button>
+        <button class="hover:bg-indigo-100 px-6 py-3 text-lg">Сейю</button>
+        <button class="hover:bg-indigo-100 px-6 py-3 text-lg">Студії</button>
+      </div>
+    </div>
+    
+    <!-- Rank Type Selection -->
+    <div class="mb-6">
+      <div class="flex flex-wrap gap-2">
+        <button class="bg-indigo-600 text-white px-4 py-2 rounded-lg">Популярність</button>
+        <button class="bg-white hover:bg-indigo-100 px-4 py-2 rounded-lg shadow-sm">Рейтинг</button>
+        <button class="bg-white hover:bg-indigo-100 px-4 py-2 rounded-lg shadow-sm">Сезонне</button>
+        <button class="bg-white hover:bg-indigo-100 px-4 py-2 rounded-lg shadow-sm">Жанр</button>
+        <button class="bg-white hover:bg-indigo-100 px-4 py-2 rounded-lg shadow-sm">Рік</button>
+        <button class="bg-white hover:bg-indigo-100 px-4 py-2 rounded-lg shadow-sm">Формат</button>
+      </div>
+    </div>
+    
+    <!-- Filter Options -->
+    <div class="mb-6 bg-white rounded-lg shadow-md p-6">
+      <h3 class="font-bold text-lg mb-4 text-gray-800">Фільтрувати результати</h3>
+      
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+        <!-- Type -->
+        <div>
+          <label class="block text-gray-700 mb-2 font-medium">Тип</label>
+          <select class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+            <option value="all">Усі типи</option>
+            <option value="tv">ТБ</option>
+            <option value="movie">Фільм</option>
+            <option value="ova">OVA</option>
+            <option value="ona">ONA</option>
+            <option value="special">Спешл</option>
+          </select>
+        </div>
+        
+        <!-- Time Period -->
+        <div>
+          <label class="block text-gray-700 mb-2 font-medium">Період</label>
+          <select class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+            <option value="all_time">Весь час</option>
+            <option value="year">За останній рік</option>
+            <option value="season">За сезон</option>
+            <option value="month">За останній місяць</option>
+            <option value="week">За останній тиждень</option>
+          </select>
+        </div>
+        
+        <!-- Genre -->
+        <div>
+          <label class="block text-gray-700 mb-2 font-medium">Жанр</label>
+          <select class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+            <option value="all">Усі жанри</option>
+            <option value="action">Екшн</option>
+            <option value="adventure">Пригоди</option>
+            <option value="comedy">Комедія</option>
+            <option value="drama">Драма</option>
+            <option value="fantasy">Фентезі</option>
+            <option value="horror">Жахи</option>
+            <option value="mecha">Меха</option>
+            <option value="romance">Романтика</option>
+            <option value="sci_fi">Наукова фантастика</option>
+            <option value="slice_of_life">Повсякденність</option>
+          </select>
+        </div>
+        
+        <!-- Year -->
+        <div>
+          <label class="block text-gray-700 mb-2 font-medium">Рік</label>
+          <select class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+            <option value="all">Усі роки</option>
+            <option value="2025">2025</option>
+            <option value="2024">2024</option>
+            <option value="2023">2023</option>
+            <option value="2022">2022</option>
+            <option value="2021">2021</option>
+            <option value="2020">2020</option>
+            <option value="2010s">2010-2019</option>
+            <option value="2000s">2000-2009</option>
+            <option value="1990s">1990-1999</option>
+            <option value="older">До 1990</option>
+          </select>
+        </div>
+      </div>
+      
+      <div class="mt-4 flex justify-end">
+        <button class="bg-indigo-600 hover:bg-indigo-700 text-white font-medium px-4 py-2 rounded">
+          Застосувати фільтри
+        </button>
+      </div>
+    </div>
+
+    <!-- Rankings List -->
+    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+      <div class="p-4 bg-indigo-50 border-b border-indigo-100 flex justify-between items-center">
+        <h2 class="text-xl font-bold text-gray-800">Найпопулярніші аніме всіх часів</h2>
+        <select class="border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+          <option value="50">Показати 50</option>
+          <option value="100">Показати 100</option>
+          <option value="200">Показати 200</option>
+        </select>
+      </div>
+      
+      <!-- Anime Rankings -->
+      <div class="divide-y divide-gray-200">
+        <!-- Rank Item #1 -->
+        <div class="p-4 hover:bg-gray-50">
+          <div class="flex">
+            <div class="flex items-center justify-center w-12 mr-4">
+              <span class="text-2xl font-bold text-indigo-600">#1</span>
+            </div>
+            <div class="w-20 mr-4">
+              <a href="#">
+                <img src="https://placehold.co/120x160/indigo/white?text=FMAB" alt="Повнометалевий алхімік: Братерство" class="w-full rounded shadow-sm hover:opacity-90 transition">
+              </a>
+            </div>
+            <div class="flex-1">
+              <div class="flex justify-between items-start">
+                <div>
+                  <a href="#" class="text-lg font-bold text-indigo-600 hover:text-indigo-800">Повнометалевий алхімік: Братерство</a>
+                  <div class="text-sm text-gray-600">Fullmetal Alchemist: Brotherhood</div>
+                </div>
+                <div class="flex items-center">
+                  <span class="bg-indigo-600 text-white px-2 py-1 rounded text-sm flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
+                    </svg>
+                    9.12
+                  </span>
+                  <span class="ml-2 text-gray-600">(159,423 голосів)</span>
+                </div>
+              </div>
+              <div class="flex flex-wrap gap-1 mt-2">
+                <span class="bg-gray-200 px-2 py-1 rounded-full text-xs">ТБ (64 епізоди)</span>
+                <span class="bg-gray-200 px-2 py-1 rounded-full text-xs">Екшн</span>
+                <span class="bg-gray-200 px-2 py-1 rounded-full text-xs">Пригоди</span>
+                <span class="bg-gray-200 px-2 py-1 rounded-full text-xs">Фентезі</span>
+                <span class="bg-gray-200 px-2 py-1 rounded-full text-xs">Драма</span>
+              </div>
+              <p class="text-gray-700 text-sm mt-2 line-clamp-2">
+                Після невдалої спроби повернути свою матір до життя, брати Едвард і Альфонс Елрік шукають Філософський Камінь, щоб відновити свої втрачені тіла, але знаходять державну змову, яка загрожує існуванню всієї країни.
+              </p>
+              <div class="flex items-center mt-2 text-sm text-gray-600">
+                <span>Студія: Bones</span>
+                <span class="mx-2">•</span>
+                <span>Квітень 2009 - липень 2010</span>
+                <span class="mx-2">•</span>
+                <span>Рейтинг #1</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Rank Item #2 -->
+        <div class="p-4 hover:bg-gray-50">
+          <div class="flex">
+            <div class="flex items-center justify-center w-12 mr-4">
+              <span class="text-2xl font-bold text-indigo-600">#2</span>
+            </div>
+            <div class="w-20 mr-4">
+              <a href="#">
+                <img src="https://placehold.co/120x160/indigo/white?text=SG" alt="Брама Штейна" class="w-full rounded shadow-sm hover:opacity-90 transition">
+              </a>
+            </div>
+            <div class="flex-1">
+              <div class="flex justify-between items-start">
+                <div>
+                  <a href="#" class="text-lg font-bold text-indigo-600 hover:text-indigo-800">Брама Штейна</a>
+                  <div class="text-sm text-gray-600">Steins;Gate</div>
+                </div>
+                <div class="flex items-center">
+                  <span class="bg-indigo-600 text-white px-2 py-1 rounded text-sm flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
+                    </svg>
+                    9.09
+                  </span>
+                  <span class="ml-2 text-gray-600">(142,876 голосів)</span>
+                </div>
+              </div>
+              <div class="flex flex-wrap gap-1 mt-2">
+                <span class="bg-gray-200 px-2 py-1 rounded-full text-xs">ТБ (24 епізоди)</span>
+                <span class="bg-gray-200 px-2 py-1 rounded-full text-xs">Наукова фантастика</span>
+                <span class="bg-gray-200 px-2 py-1 rounded-full text-xs">Триллер</span>
+                <span class="bg-gray-200 px-2 py-1 rounded-full text-xs">Драма</span>
+              </div>
+              <p class="text-gray-700 text-sm mt-2 line-clamp-2">
+                Ексцентричний вчений Рінтаро Окабе випадково виявляє спосіб подорожувати у часі, що затягує його та його друзів у небезпечну гру з долею, де ставки — життя тих, кого він любить.
+              </p>
+              <div class="flex items-center mt-2 text-sm text-gray-600">
+                <span>Студія: White Fox</span>
+                <span class="mx-2">•</span>
+                <span>Квітень 2011 - вересень 2011</span>
+                <span class="mx-2">•</span>
+                <span>Рейтинг #2</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Rank Item #3 -->
+        <div class="p-4 hover:bg-gray-50">
+          <div class="flex">
+            <div class="flex items-center justify-center w-12 mr-4">
+              <span class="text-2xl font-bold text-indigo-600">#3</span>
+            </div>
+            <div class="w-20 mr-4">
+              <a href="#">
+                <img src="https://placehold.co/120x160/indigo/white?text=AOT" alt="Атака Титанів" class="w-full rounded shadow-sm hover:opacity-90 transition">
+              </a>
+            </div>
+            <div class="flex-1">
+              <div class="flex justify-between items-start">
+                <div>
+                  <a href="#" class="text-lg font-bold text-indigo-600 hover:text-indigo-800">Атака Титанів: Фінальний сезон</a>
+                  <div class="text-sm text-gray-600">Shingeki no Kyojin: The Final Season</div>
+                </div>
+                <div class="flex items-center">
+                  <span class="bg-indigo-600 text-white px-2 py-1 rounded text-sm flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
+                    </svg>
+                    9.06
+                  </span>
+                  <span class="ml-2 text-gray-600">(138,245 голосів)</span>
+                </div>
+              </div>
+              <div class="flex flex-wrap gap-1 mt-2">
+                <span class="bg-gray-200 px-2 py-1 rounded-full text-xs">ТБ (12 епізодів)</span>
+                <span class="bg-gray-200 px-2 py-1 rounded-full text-xs">Екшн</span>
+                <span class="bg-gray-200 px-2 py-1 rounded-full text-xs">Драма</span>
+                <span class="bg-gray-200 px-2 py-1 rounded-full text-xs">Фентезі</span>
+              </div>
+              <p class="text-gray-700 text-sm mt-2 line-clamp-2">
+                У завершальному сезоні, після відкриття істини про зовнішній світ, Ерен Єгер та його друзі повинні розібратися з наслідками війни, що триває століттями, та вирішити долю людства.
+              </p>
+              <div class="flex items-center mt-2 text-sm text-gray-600">
+                <span>Студія: MAPPA</span>
+                <span class="mx-2">•</span>
+                <span>Грудень 2020 - березень 2021</span>
+                <span class="mx-2">•</span>
+                <span>Рейтинг #3</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Rank Item #4 -->
+        <div class="p-4 hover:bg-gray-50">
+          <div class="flex">
+            <div class="flex items-center justify-center w-12 mr-4">
+              <span class="text-2xl font-bold text-indigo-600">#4</span>
+            </div>
+            <div class="w-20 mr-4">
+              <a href="#">
+                <img src="https://placehold.co/120x160/indigo/white?text=Gintama" alt="Гінтама" class="w-full rounded shadow-sm hover:opacity-90 transition">
+              </a>
+            </div>
+            <div class="flex-1">
+              <div class="flex justify-between items-start">
+                <div>
+                  <a href="#" class="text-lg font-bold text-indigo-600 hover:text-indigo-800">Гінтама°</a>
+                  <div class="text-sm text-gray-600">Gintama°</div>
+                </div>
+                <div class="flex items-center">
+                  <span class="bg-indigo-600 text-white px-2 py-1 rounded text-sm flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
+                    </svg>
+                    9.04
+                  </span>
+                  <span class="ml-2 text-gray-600">(89,712 голосів)</span>
+                </div>
+              </div>
+              <div class="flex flex-wrap gap-1 mt-2">
+                <span class="bg-gray-200 px-2 py-1 rounded-full text-xs">ТБ (51 епізод)</span>
+                <span class="bg-gray-200 px-2 py-1 rounded-full text-xs">Комедія</span>
+                <span class="bg-gray-200 px-2 py-1 rounded-full text-xs">Пародія</span>
+                <span class="bg-gray-200 px-2 py-1 rounded-full text-xs">Самурай</span>
+                <span class="bg-gray-200 px-2 py-1 rounded-full text-xs">Наукова фантастика</span>
+              </div>
+              <p class="text-gray-700 text-sm mt-2 line-clamp-2">
+                У альтернативному Едо, захопленому інопланетянами, колишній самурай Гінтокі Сакат та його друзі виконують будь-яку роботу, щоб сплатити оренду, потрапляючи в абсурдні та часто смішні ситуації.
+              </p>
+              <div class="flex items-center mt-2 text-sm text-gray-600">
+                <span>Студія: Bandai Namco Pictures</span>
+                <span class="mx-2">•</span>
+                <span>Квітень 2015 - березень 2016</span>
+                <span class="mx-2">•</span>
+                <span>Рейтинг #4</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Rank Item #5 -->
+        <div class="p-4 hover:bg-gray-50">
+          <div class="flex">
+            <div class="flex items-center justify-center w-12 mr-4">
+              <span class="text-2xl font-bold text-indigo-600">#5</span>
+            </div>
+            <div class="w-20 mr-4">
+              <a href="#">
+                <img src="https://placehold.co/120x160/indigo/white?text=FMAB:Movie" alt="ФМА: Священна зірка Мілоса" class="w-full rounded shadow-sm hover:opacity-90 transition">
+              </a>
+            </div>
+            <div class="flex-1">
+              <div class="flex justify-between items-start">
+                <div>
+                  <a href="#" class="text-lg font-bold text-indigo-600 hover:text-indigo-800">Повнометалевий алхімік: Священна зірка Мілоса</a>
+                  <div class="text-sm text-gray-600">Fullmetal Alchemist: The Sacred Star of Milos</div>
+                </div>
+                <div class="flex items-center">
+                  <span class="bg-indigo-600 text-white px-2 py-1 rounded text-sm flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
+                    </svg>
+                    8.99
+                  </span>
+                  <span class="ml-2 text-gray-600">(78,546 голосів)</span>
+                </div>
+              </div>
+              <div class="flex flex-wrap gap-1 mt-2">
+                

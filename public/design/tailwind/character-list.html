@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Персонажі - УкрАніме</title>
+  <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+  </style>
+</head>
+<body class="bg-slate-950 text-gray-100">
+  <!-- Navbar -->
+  <nav class="bg-slate-900/95 backdrop-blur-md border-b border-slate-800 sticky top-0 z-50">
+    <div class="container mx-auto px-4">
+      <div class="flex justify-between items-center py-4">
+        <div class="flex items-center space-x-10">
+          <a href="index.html" class="text-2xl font-extrabold bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent">
+            УкрАніме
+          </a>
+          <div class="hidden lg:flex space-x-8">
+            <a href="anime-list.html" class="text-gray-300 hover:text-cyan-400 font-medium transition-colors">Аніме</a>
+            <a href="#" class="text-gray-300 hover:text-cyan-400 font-medium transition-colors">Манґа</a>
+            <a href="character-list.html" class="text-cyan-400 font-medium transition-colors">Персонажі</a>
+            <a href="voice-actor-list.html" class="text-gray-300 hover:text-cyan-400 font-medium transition-colors">Сейю</a>
+            <a href="studio-list.html" class="text-gray-300 hover:text-cyan-400 font-medium transition-colors">Студії</a>
+            <a href="rankings-page.html" class="text-gray-300 hover:text-cyan-400 font-medium transition-colors">Рейтинги</a>
+            <a href="season-preview.html" class="text-gray-300 hover:text-cyan-400 font-medium transition-colors">Сезон</a>
+          </div>
+        </div>
+        <div class="flex items-center space-x-4">
+          <div class="relative hidden md:block">
+            <input type="text" placeholder="Пошук персонажів..." class="w-72 py-2.5 px-4 pl-10 rounded-xl bg-slate-800 border border-slate-700 text-gray-100 placeholder-gray-500 focus:outline-none focus:border-cyan-500 transition-all">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500 absolute left-3 top-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            </svg>
+          </div>
+          <a href="user-profile.html" class="p-2 rounded-lg bg-slate-800 hover:bg-slate-700 transition-colors">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+            </svg>
+          </a>
+          <a href="auth-login.html" class="px-5 py-2.5 bg-gradient-to-r from-cyan-500 to-purple-600 rounded-xl font-medium hover:opacity-90 transition-opacity">
+            Увійти
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page Header -->
+  <div class="bg-gradient-to-r from-pink-500/10 to-purple-500/10 border-b border-slate-800">
+    <div class="container mx-auto px-4 py-8">
+      <h1 class="text-4xl font-bold mb-2">Персонажі аніме</h1>
+      <p class="text-gray-400">Понад 85,000 персонажів з усіх аніме та манґи</p>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="container mx-auto px-4 py-8">
+    <!-- Filters -->
+    <div class="flex flex-wrap items-center gap-4 mb-8 p-4 bg-slate-900/50 rounded-2xl">
+      <div class="flex items-center gap-2">
+        <span class="text-sm text-gray-500">Сортувати:</span>
+        <select class="py-2 px-3 rounded-lg bg-slate-800 border border-slate-700 text-gray-300 text-sm focus:outline-none focus:border-cyan-500 transition-all">
+          <option>За популярністю</option>
+          <option>За уподобаннями</option>
+          <option>За алфавітом (А-Я)</option>
+          <option>За алфавітом (Я-А)</option>
+        </select>
+      </div>
+      <div class="flex items-center gap-2">
+        <span class="text-sm text-gray-500">Стать:</span>
+        <select class="py-2 px-3 rounded-lg bg-slate-800 border border-slate-700 text-gray-300 text-sm focus:outline-none focus:border-cyan-500 transition-all">
+          <option>Усі</option>
+          <option>Чоловіча</option>
+          <option>Жіноча</option>
+          <option>Інша</option>
+        </select>
+      </div>
+      <div class="flex-grow"></div>
+      <span class="text-gray-400 text-sm">Знайдено: <span class="text-white font-medium">85,432</span> персонажів</span>
+    </div>
+
+    <!-- Character Grid -->
+    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-6">
+      <!-- Character Card 1 -->
+      <a href="anime-character.html" class="group text-center">
+        <div class="relative overflow-hidden rounded-2xl mb-3">
+          <img src="https://placehold.co/200x200/1e293b/94a3b8?text=Levi" alt="Леві" class="w-full aspect-square object-cover group-hover:scale-105 transition-transform duration-300">
+          <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
+          <div class="absolute top-2 right-2 px-2 py-0.5 bg-amber-500 text-white text-xs font-bold rounded">#1</div>
+          <div class="absolute bottom-2 left-2 right-2">
+            <div class="flex items-center justify-center gap-1 text-pink-400 text-sm">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+              </svg>
+              <span>125,430</span>
+            </div>
+          </div>
+        </div>
+        <h3 class="font-semibold text-gray-200 group-hover:text-cyan-400 transition-colors">Леві Аккерман</h3>
+        <p class="text-sm text-gray-500">Атака Титанів</p>
+      </a>
+      <!-- Character Card 2 -->
+      <a href="anime-character.html" class="group text-center">
+        <div class="relative overflow-hidden rounded-2xl mb-3">
+          <img src="https://placehold.co/200x200/1e293b/94a3b8?text=Gojo" alt="Годзьо" class="w-full aspect-square object-cover group-hover:scale-105 transition-transform duration-300">
+          <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
+          <div class="absolute top-2 right-2 px-2 py-0.5 bg-amber-500 text-white text-xs font-bold rounded">#2</div>
+          <div class="absolute bottom-2 left-2 right-2">
+            <div class="flex items-center justify-center gap-1 text-pink-400 text-sm">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+              </svg>
+              <span>118,250</span>
+            </div>
+          </div>
+        </div>
+        <h3 class="font-semibold text-gray-200 group-hover:text-cyan-400 transition-colors">Сатору Годзьо</h3>
+        <p class="text-sm text-gray-500">Дзюцу Кайсен</p>
+      </a>
+      <!-- Character Card 3 -->
+      <a href="anime-character.html" class="group text-center">
+        <div class="relative overflow-hidden rounded-2xl mb-3">
+          <img src="https://placehold.co/200x200/1e293b/94a3b8?text=Mikasa" alt="Мікаса" class="w-full aspect-square object-cover group-hover:scale-105 transition-transform duration-300">
+          <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
+          <div class="absolute top-2 right-2 px-2 py-0.5 bg-slate-700 text-white text-xs font-bold rounded">#3</div>
+          <div class="absolute bottom-2 left-2 right-2">
+            <div class="flex items-center justify-center gap-1 text-pink-400 text-sm">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+              </svg>
+              <span>98,120</span>
+            </div>
+          </div>
+        </div>
+        <h3 class="font-semibold text-gray-200 group-hover:text-cyan-400 transition-colors">Мікаса Аккерман</h3>
+        <p class="text-sm text-gray-500">Атака Титанів</p>
+      </a>
+      <!-- Character Card 4 -->
+      <a href="anime-character.html" class="group text-center">
+        <div class="relative overflow-hidden rounded-2xl mb-3">
+          <img src="https://placehold.co/200x200/1e293b/94a3b8?text=Tanjiro" alt="Танджіро" class="w-full aspect-square object-cover group-hover:scale-105 transition-transform duration-300">
+          <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
+          <div class="absolute top-2 right-2 px-2 py-0.5 bg-slate-700 text-white text-xs font-bold rounded">#4</div>
+          <div class="absolute bottom-2 left-2 right-2">
+            <div class="flex items-center justify-center gap-1 text-pink-400 text-sm">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+              </svg>
+              <span>89,540</span>
+            </div>
+          </div>
+        </div>
+        <h3 class="font-semibold text-gray-200 group-hover:text-cyan-400 transition-colors">Танджіро Камадо</h3>
+        <p class="text-sm text-gray-500">Клинок</p>
+      </a>
+      <!-- Character Card 5 -->
+      <a href="anime-character.html" class="group text-center">
+        <div class="relative overflow-hidden rounded-2xl mb-3">
+          <img src="https://placehold.co/200x200/1e293b/94a3b8?text=Anya" alt="Аня" class="w-full aspect-square object-cover group-hover:scale-105 transition-transform duration-300">
+          <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
+          <div class="absolute top-2 right-2 px-2 py-0.5 bg-slate-700 text-white text-xs font-bold rounded">#5</div>
+          <div class="absolute bottom-2 left-2 right-2">
+            <div class="flex items-center justify-center gap-1 text-pink-400 text-sm">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+              </svg>
+              <span>85,870</span>
+            </div>
+          </div>
+        </div>
+        <h3 class="font-semibold text-gray-200 group-hover:text-cyan-400 transition-colors">Аня Форджер</h3>
+        <p class="text-sm text-gray-500">Spy x Family</p>
+      </a>
+      <!-- Character Card 6 -->
+      <a href="anime-character.html" class="group text-center">
+        <div class="relative overflow-hidden rounded-2xl mb-3">
+          <img src="https://placehold.co/200x200/1e293b/94a3b8?text=Zero+Two" alt="Zero Two" class="w-full aspect-square object-cover group-hover:scale-105 transition-transform duration-300">
+          <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
+          <div class="absolute top-2 right-2 px-2 py-0.5 bg-slate-700 text-white text-xs font-bold rounded">#6</div>
+          <div class="absolute bottom-2 left-2 right-2">
+            <div class="flex items-center justify-center gap-1 text-pink-400 text-sm">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+              </svg>
+              <span>82,340</span>
+            </div>
+          </div>
+        </div>
+        <h3 class="font-semibold text-gray-200 group-hover:text-cyan-400 transition-colors">Zero Two</h3>
+        <p class="text-sm text-gray-500">Darling in the Franxx</p>
+      </a>
+      <!-- Character Card 7 -->
+      <a href="anime-character.html" class="group text-center">
+        <div class="relative overflow-hidden rounded-2xl mb-3">
+          <img src="https://placehold.co/200x200/1e293b/94a3b8?text=Eren" alt="Ерен" class="w-full aspect-square object-cover group-hover:scale-105 transition-transform duration-300">
+          <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
+          <div class="absolute top-2 right-2 px-2 py-0.5 bg-slate-700 text-white text-xs font-bold rounded">#7</div>
+          <div class="absolute bottom-2 left-2 right-2">
+            <div class="flex items-center justify-center gap-1 text-pink-400 text-sm">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+              </svg>
+              <span>78,920</span>
+            </div>
+          </div>
+        </div>
+        <h3 class="font-semibold text-gray-200 group-hover:text-cyan-400 transition-colors">Ерен Єгер</h3>
+        <p class="text-sm text-gray-500">Атака Титанів</p>
+      </a>
+      <!-- Character Card 8 -->
+      <a href="anime-character.html" class="group text-center">
+        <div class="relative overflow-hidden rounded-2xl mb-3">
+          <img src="https://placehold.co/200x200/1e293b/94a3b8?text=Nezuko" alt="Незуко" class="w-full aspect-square object-cover group-hover:scale-105 transition-transform duration-300">
+          <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
+          <div class="absolute top-2 right-2 px-2 py-0.5 bg-slate-700 text-white text-xs font-bold rounded">#8</div>
+          <div class="absolute bottom-2 left-2 right-2">
+            <div class="flex items-center justify-center gap-1 text-pink-400 text-sm">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+              </svg>
+              <span>75,640</span>
+            </div>
+          </div>
+        </div>
+        <h3 class="font-semibold text-gray-200 group-hover:text-cyan-400 transition-colors">Незуко Камадо</h3>
+        <p class="text-sm text-gray-500">Клинок</p>
+      </a>
+      <!-- Character Card 9 -->
+      <a href="anime-character.html" class="group text-center">
+        <div class="relative overflow-hidden rounded-2xl mb-3">
+          <img src="https://placehold.co/200x200/1e293b/94a3b8?text=Rem" alt="Рем" class="w-full aspect-square object-cover group-hover:scale-105 transition-transform duration-300">
+          <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
+          <div class="absolute top-2 right-2 px-2 py-0.5 bg-slate-700 text-white text-xs font-bold rounded">#9</div>
+          <div class="absolute bottom-2 left-2 right-2">
+            <div class="flex items-center justify-center gap-1 text-pink-400 text-sm">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+              </svg>
+              <span>72,350</span>
+            </div>
+          </div>
+        </div>
+        <h3 class="font-semibold text-gray-200 group-hover:text-cyan-400 transition-colors">Рем</h3>
+        <p class="text-sm text-gray-500">Re:Zero</p>
+      </a>
+      <!-- Character Card 10 -->
+      <a href="anime-character.html" class="group text-center">
+        <div class="relative overflow-hidden rounded-2xl mb-3">
+          <img src="https://placehold.co/200x200/1e293b/94a3b8?text=Luffy" alt="Луффі" class="w-full aspect-square object-cover group-hover:scale-105 transition-transform duration-300">
+          <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
+          <div class="absolute top-2 right-2 px-2 py-0.5 bg-slate-700 text-white text-xs font-bold rounded">#10</div>
+          <div class="absolute bottom-2 left-2 right-2">
+            <div class="flex items-center justify-center gap-1 text-pink-400 text-sm">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+              </svg>
+              <span>69,870</span>
+            </div>
+          </div>
+        </div>
+        <h3 class="font-semibold text-gray-200 group-hover:text-cyan-400 transition-colors">Монкі Д. Луффі</h3>
+        <p class="text-sm text-gray-500">Ван Піс</p>
+      </a>
+      <!-- Character Card 11 -->
+      <a href="anime-character.html" class="group text-center">
+        <div class="relative overflow-hidden rounded-2xl mb-3">
+          <img src="https://placehold.co/200x200/1e293b/94a3b8?text=Marin" alt="Марін" class="w-full aspect-square object-cover group-hover:scale-105 transition-transform duration-300">
+          <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
+          <div class="absolute top-2 right-2 px-2 py-0.5 bg-slate-700 text-white text-xs font-bold rounded">#11</div>
+          <div class="absolute bottom-2 left-2 right-2">
+            <div class="flex items-center justify-center gap-1 text-pink-400 text-sm">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+              </svg>
+              <span>65,420</span>
+            </div>
+          </div>
+        </div>
+        <h3 class="font-semibold text-gray-200 group-hover:text-cyan-400 transition-colors">Марін Кітагава</h3>
+        <p class="text-sm text-gray-500">My Dress-Up Darling</p>
+      </a>
+      <!-- Character Card 12 -->
+      <a href="anime-character.html" class="group text-center">
+        <div class="relative overflow-hidden rounded-2xl mb-3">
+          <img src="https://placehold.co/200x200/1e293b/94a3b8?text=Frieren" alt="Фрірен" class="w-full aspect-square object-cover group-hover:scale-105 transition-transform duration-300">
+          <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
+          <div class="absolute top-2 right-2 px-2 py-0.5 bg-slate-700 text-white text-xs font-bold rounded">#12</div>
+          <div class="absolute bottom-2 left-2 right-2">
+            <div class="flex items-center justify-center gap-1 text-pink-400 text-sm">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+              </svg>
+              <span>42,150</span>
+            </div>
+          </div>
+        </div>
+        <h3 class="font-semibold text-gray-200 group-hover:text-cyan-400 transition-colors">Фрірен</h3>
+        <p class="text-sm text-gray-500">Frieren</p>
+      </a>
+    </div>
+
+    <!-- Pagination -->
+    <div class="flex justify-center mt-10">
+      <nav class="flex items-center gap-2">
+        <button class="w-10 h-10 flex items-center justify-center rounded-lg bg-slate-800 text-gray-400 hover:bg-slate-700 hover:text-white transition-colors">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+        </button>
+        <button class="w-10 h-10 flex items-center justify-center rounded-lg bg-cyan-500 text-white font-medium">1</button>
+        <button class="w-10 h-10 flex items-center justify-center rounded-lg bg-slate-800 text-gray-300 hover:bg-slate-700 transition-colors">2</button>
+        <button class="w-10 h-10 flex items-center justify-center rounded-lg bg-slate-800 text-gray-300 hover:bg-slate-700 transition-colors">3</button>
+        <span class="text-gray-500 px-2">...</span>
+        <button class="w-10 h-10 flex items-center justify-center rounded-lg bg-slate-800 text-gray-300 hover:bg-slate-700 transition-colors">4272</button>
+        <button class="w-10 h-10 flex items-center justify-center rounded-lg bg-slate-800 text-gray-400 hover:bg-slate-700 hover:text-white transition-colors">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+          </svg>
+        </button>
+      </nav>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-slate-900 border-t border-slate-800 mt-16">
+    <div class="container mx-auto px-4 py-12">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+        <div>
+          <a href="index.html" class="text-2xl font-extrabold bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent">
+            УкрАніме
+          </a>
+          <p class="text-gray-500 mt-4">Найбільша українська база даних аніме, манґи, персонажів та сейю.</p>
+        </div>
+        <div>
+          <h4 class="font-semibold text-gray-200 mb-4">Навігація</h4>
+          <ul class="space-y-3">
+            <li><a href="anime-list.html" class="text-gray-500 hover:text-cyan-400 transition-colors">Аніме</a></li>
+            <li><a href="character-list.html" class="text-gray-500 hover:text-cyan-400 transition-colors">Персонажі</a></li>
+            <li><a href="voice-actor-list.html" class="text-gray-500 hover:text-cyan-400 transition-colors">Сейю</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-semibold text-gray-200 mb-4">Спільнота</h4>
+          <ul class="space-y-3">
+            <li><a href="rankings-page.html" class="text-gray-500 hover:text-cyan-400 transition-colors">Рейтинги</a></li>
+            <li><a href="season-preview.html" class="text-gray-500 hover:text-cyan-400 transition-colors">Сезонні аніме</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-semibold text-gray-200 mb-4">Інформація</h4>
+          <ul class="space-y-3">
+            <li><a href="#" class="text-gray-500 hover:text-cyan-400 transition-colors">Про нас</a></li>
+            <li><a href="#" class="text-gray-500 hover:text-cyan-400 transition-colors">Контакти</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="pt-8 border-t border-slate-800 text-center text-gray-500">
+        <p>&copy; 2025 УкрАніме. Усі права захищені.</p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

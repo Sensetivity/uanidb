@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>УкрАніме - Профіль користувача</title>
+  <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Montserrat', sans-serif;
+    }
+  </style>
+</head>
+<body class="bg-gray-100">
+  <!-- Navbar - Consistent with previous pages -->
+  <nav class="bg-indigo-800 text-white shadow-lg">
+    <div class="container mx-auto px-4">
+      <div class="flex justify-between items-center py-3">
+        <div class="flex items-center space-x-8">
+          <a href="#" class="text-2xl font-bold">УкрАніме</a>
+          <div class="hidden md:flex space-x-6">
+            <a href="#" class="hover:text-indigo-200 font-medium">Аніме</a>
+            <a href="#" class="hover:text-indigo-200 font-medium">Манґа</a>
+            <a href="#" class="hover:text-indigo-200 font-medium">Персонажі</a>
+            <a href="#" class="hover:text-indigo-200 font-medium">Сейю</a>
+            <a href="#" class="hover:text-indigo-200 font-medium">Рейтинги</a>
+            <a href="#" class="hover:text-indigo-200 font-medium">Форум</a>
+          </div>
+        </div>
+        <div class="flex items-center space-x-4">
+          <div class="relative">
+            <input type="text" placeholder="Пошук аніме, манґи..." class="w-64 py-1 px-3 rounded-full text-gray-800 focus:outline-none">
+            <button class="absolute right-2 top-1.5">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+              </svg>
+            </button>
+          </div>
+          <div class="relative group">
+            <button class="flex items-center space-x-1 hover:text-indigo-200">
+              <img src="https://placehold.co/36x36/indigo/white?text=А" class="w-8 h-8 rounded-full border-2 border-indigo-500" alt="Аватар користувача">
+              <span>АнімеФан</span>
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+            <div class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg hidden group-hover:block z-10">
+              <div class="py-1">
+                <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-indigo-100">Мій профіль</a>
+                <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-indigo-100">Мої списки</a>
+                <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-indigo-100">Налаштування</a>
+                <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-indigo-100">Вийти</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Profile Header -->
+  <div class="bg-indigo-700 relative">
+    <!-- Cover Image -->
+    <div class="h-48 md:h-64 bg-indigo-600 bg-opacity-60 bg-cover bg-center" style="background-image: url('https://placehold.co/1600x400/indigo/white?text=Cover+Image')">
+      <div class="absolute inset-0 bg-gradient-to-t from-indigo-700 to-transparent opacity-70"></div>
+    </div>
+    
+    <div class="container mx-auto px-4">
+      <div class="relative flex flex-col md:flex-row items-center md:items-end -mt-16 md:-mt-20 mb-6 z-10">
+        <!-- Profile Avatar -->
+        <div class="mb-2 md:mb-0 md:mr-6">
+          <img src="https://placehold.co/180x180/indigo/white?text=АнімеФан" alt="АнімеФан" class="w-32 h-32 rounded-full border-4 border-indigo-500 bg-white shadow-lg">
+        </div>
+        
+        <!-- Profile Info -->
+        <div class="text-center md:text-left text-white pb-4">
+          <div class="flex flex-col md:flex-row items-center">
+            <h1 class="text-3xl font-bold">АнімеФан</h1>
+            <span class="bg-indigo-500 text-white text-xs px-2 py-1 rounded ml-0 md:ml-3 mt-2 md:mt-0">Преміум користувач</span>
+          </div>
+          <p class="text-indigo-200 mt-1">Приєднався: Квітень 2023 • Останній вхід: Сьогодні</p>
+        </div>
+        
+        <!-- Action Buttons (right side) -->
+        <div class="mt-4 md:mt-0 md:ml-auto pb-4 flex space-x-2">
+          <button class="bg-indigo-500 hover:bg-indigo-600 text-white px-4 py-2 rounded">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z" />
+            </svg>
+            Додати у друзі
+          </button>
+          <button class="bg-indigo-500 hover:bg-indigo-600 text-white px-4 py-2 rounded">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+            </svg>
+            Написати
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Profile Navigation -->
+  <div class="bg-white border-b border-gray-200">
+    <div class="container mx-auto px-4">
+      <div class="flex overflow-x-auto">
+        <a href="#" class="border-b-2 border-indigo-600 text-indigo-600 px-4 py-3 font-medium whitespace-nowrap">Огляд</a>
+        <a href="#" class="text-gray-600 hover:text-indigo-600 px-4 py-3 font-medium whitespace-nowrap">Списки аніме</a>
+        <a href="#" class="text-gray-600 hover:text-indigo-600 px-4 py-3 font-medium whitespace-nowrap">Списки манґи</a>
+        <a href="#" class="text-gray-600 hover:text-indigo-600 px-4 py-3 font-medium whitespace-nowrap">Улюблені</a>
+        <a href="#" class="text-gray-600 hover:text-indigo-600 px-4 py-3 font-medium whitespace-nowrap">Відгуки</a>
+        <a href="#" class="text-gray-600 hover:text-indigo-600 px-4 py-3 font-medium whitespace-nowrap">Дописи</a>
+        <a href="#" class="text-gray-600 hover:text-indigo-600 px-4 py-3 font-medium whitespace-nowrap">Друзі</a>
+        <a href="#" class="text-gray-600 hover:text-indigo-600 px-4 py-3 font-medium whitespace-nowrap">Галерея</a>
+        <a href="#" class="text-gray-600 hover:text-indigo-600 px-4 py-3 font-medium whitespace-nowrap">Налаштування</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="container mx-auto px-4 py-8">
+    <div class="flex flex-col lg:flex-row gap-8">
+      <!-- Left Column - About, Stats -->
+      <div class="w-full lg:w-1/3">
+        <!-- About Section -->
+        <div class="bg-white rounded-lg shadow-md p-6 mb-6">
+          <h3 class="text-xl font-bold text-gray-800 mb-4">Про мене</h3>
+          <p class="text-gray-700 mb-4">
+            Привіт всім! Я величезний фанат аніме з України. Найбільше люблю жанри сьонен, психологічні трилери та наукову фантастику. Мої улюблені аніме - "Атака Титанів", "Стіна Привидів", "Віоллета Еверґарден" та "Повнометалевий алхімік".
+          </p>
+          <p class="text-gray-700">
+            Коли не дивлюся аніме, я студент комп'ютерних наук, який полюбляє програмування та відеоігри. Також обожнюю подорожувати та дізнаватись про різні культури.
+          </p>
+          
+          <div class="border-t border-gray-200 pt-4 mt-4">
+            <div class="flex justify-between items-center mb-2">
+              <span class="text-gray-600">Улюблені жанри:</span>
+              <div class="flex flex-wrap gap-1 justify-end">
+                <span class="bg-gray-200 px-2 py-1 rounded-full text-xs">Сьонен</span>
+                <span class="bg-gray-200 px-2 py-1 rounded-full text-xs">Психологія</span>
+                <span class="bg-gray-200 px-2 py-1 rounded-full text-xs">Фантастика</span>
+              </div>
+            </div>
+            
+            <div class="flex justify-between items-center mb-2">
+              <span class="text-gray-600">Улюблені студії:</span>
+              <div class="flex flex-wrap gap-1 justify-end">
+                <a href="#" class="bg-gray-200 hover:bg-gray-300 px-2 py-1 rounded-full text-xs">Ufotable</a>
+                <a href="#" class="bg-gray-200 hover:bg-gray-300 px-2 py-1 rounded-full text-xs">Kyoto Animation</a>
+              </div>
+            </div>
+            
+            <div class="flex justify-between items-center">
+              <span class="text-gray-600">Соціальні мережі:</span>
+              <div class="flex space-x-2">
+                <a href="#" class="text-gray-600 hover:text-indigo-600">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/>
+                  </svg>
+                </a>
+                <a href="#" class="text-gray-600 hover:text-indigo-600">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                  </svg>
+                </a>
+                <a href="#" class="text-gray-600 hover:text-indigo-600">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/>
+                  </svg>
+                </a>
+                <a href="#" class="text-gray-600 hover:text-indigo-600">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M22.675 0h-21.35c-.732 0-1.325.593-1.325 1.325v21.351c0 .731.593 1.324 1.325 1.324h11.495v-9.294h-3.128v-3.622h3.128v-2.671c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12v9.293h6.116c.73 0 1.323-.593 1.323-1.325v-21.35c0-.732-.593-1.325-1.325-1.325z"/>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Stats Section -->
+        <div class="bg-white rounded-lg shadow-md p-6 mb-6">
+          <h3 class="text-xl font-bold text-gray-800 mb-4">Статистика</h3>
+          
+          <!-- Anime Stats -->
+          <div class="mb-6">
+            <h4 class="font-medium text-gray-700 mb-3">Аніме</h4>
+            <div class="space-y-3">
+              <div>
+                <div class="flex justify-between items-center mb-1">
+                  <span class="text-sm text-gray-600">Переглянутих</span>
+                  <span class="text-sm font-medium">154</span>
+                </div>
+                <div class="w-full h-2 bg-gray-200 rounded-full">
+                  <div class="h-2 bg-indigo-600 rounded-full" style="width: 48%"></div>
+                </div>
+              </div>
+              
+              <div>
+                <div class="flex justify-between items-center mb-1">
+                  <span class="text-sm text-gray-600">В процесі</span>
+                  <span class="text-sm font-medium">12</span>
+                </div>
+                <div class="w-full h-2 bg-gray-200 rounded-full">
+                  <div class="h-2 bg-green-500 rounded-full" style="width: 10%"></div>
+                </div>
+              </div>
+              
+              <div>
+                <div class="flex justify-between items-center mb-1">
+                  <span class="text-sm text-gray-600">На утриманні</span>
+                  <span class="text-sm font-medium">27</span>
+                </div>
+                <div class="w-full h-2 bg-gray-200 rounded-full">
+                  <div class="h-2 bg-yellow-500 rounded-full" style="width: 15%"></div>
+                </div>
+              </div>
+              
+              <div>
+                <div class="flex justify-between items-center mb-1">
+                  <span class="text-sm text-gray-600">Заплановано</span>
+                  <span class="text-sm font-medium">63</span>
+                </div>
+                <div class="w-full h-2 bg-gray-200 rounded-full">
+                  <div class="h-2 bg-blue-500 rounded-full" style="width: 25%"></div>
+                </div>
+              </div>
+              
+              <div>
+                <div class="flex justify-between items-center mb-1">
+                  <span class="text-sm text-gray-600">Кинуто</span>
+                  <span class="text-sm font-medium">5</span>
+                </div>
+                <div class="w-full h-2 bg-gray-200 rounded-full">
+                  <div class="h-2 bg-red-500 rounded-full" style="width: 2%"></div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="mt-4 pt-4 border-t border-gray-200">
+              <div class="flex justify-between mb-2">
+                <span class="text-gray-600">Усього епізодів:</span>
+                <span class="font-medium">1,924</span>
+              </div>
+              <div class="flex justify-between mb-2">
+                <span class="text-gray-600">Днів проведено:</span>
+                <span class="font-medium">80.2</span>
+              </div>
+              <div class="flex justify-between">
+                <span class="text-gray-600">Середня оцінка:</span>
+                <span class="font-medium">8.4</span>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Manga Stats -->
+          <div>
+            <h4 class="font-medium text-gray-700 mb-3">Манґа</h4>
+            <div class="space-y-3">
+              <div>
+                <div class="flex justify-between items-center mb-1">
+                  <span class="text-sm text-gray-600">Прочитана</span>
+                  <span class="text-sm font-medium">28</span>
+                </div>
+                <div class="w-full h-2 bg-gray-200 rounded-full">
+                  <div class="h-2 bg-indigo-600 rounded-full" style="width: 40%"></div>
+                </div>
+              </div>
+              
+              <div>
+                <div class="flex justify-between items-center mb-1">
+                  <span class="text-sm text-gray-600">Читаю</span>
+                  <span class="text-sm font-medium">8</span>
+                </div>
+                <div class="w-full h-2 bg-gray-200 rounded-full">
+                  <div class="h-2 bg-green-500 rounded-full" style="width: 20%"></div>
+                </div>
+              </div>
+              
+              <div>
+                <div class="flex justify-between items-center mb-1">
+                  <span class="text-sm text-gray-600">Заплановано</span>
+                  <span class="text-sm font-medium">15</span>
+                </div>
+                <div class="w-full h-2 bg-gray-200 rounded-full">
+                  <div class="h-2 bg-blue-500 rounded-full" style="width: 35%"></div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="mt-4 pt-4 border-t border-gray-200">
+              <div class="flex justify-between mb-2">
+                <span class="text-gray-600">Усього глав:</span>
+                <span class="font-medium">1,256</span>
+              </div>
+              <div class="flex justify-between">
+                <span class="text-gray-600">Середня оцінка:</span>
+                <span class="font-medium">8.2</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Friends Preview -->
+        <div class="bg-white rounded-lg shadow-md p-6 mb-6">
+          <div class="flex justify-between items-center mb-4">
+            <h3 class="text-xl font-bold text-gray-800">Друзі</h3>
+            <a href="#" class="text-indigo-600 hover:text-indigo-800 text-sm font-medium">Переглянути всіх (42)</a>
+          </div>
+          
+          <div class="grid grid-cols-3 gap-2">
+            <a href="#" class="text-center">
+              <img src="https://placehold.co/80x80/indigo/white?text=М" alt="МегаОтаку" class="w-16 h-16 rounded-full mx-auto mb-1 hover:opacity-90 transition">
+              <span class="text-xs text-gray-700 block truncate">МегаОтаку</span>
+            </a>
+            <a href="#" class="text-center">
+              <img src="https://placehold.co/80x80/indigo/white?text=Н" alt="НаруFAN" class="w-16 h-16 rounded-full mx-auto mb-1 hover:opacity-90 transition">
+              <span class="text-xs text-gray-700 block truncate">НаруFAN</span>
+            </a>
+            <a href="#" class="text-center">
+              <img src="https://placehold.co/80x80/indigo/white?text=С" alt="СенпайДес" class="w-16 h-16 rounded-full mx-auto mb-1 hover:opacity-90 transition">
+              <span class="text-xs text-gray-700 block truncate">СенпайДес</span>
+            </a>
+            <a href="#" class="text-center">
+              <img src="https://placehold.co/80x80/indigo/white?text=Л" alt="ЛеґендаAнiме" class="w-16 h-16 rounded-full mx-auto mb-1 hover:opacity-90 transition">
+              <span class="text-xs text-gray-700 block truncate">ЛеґендаAнiме</span>
+            </a>
+            <a href="#" class="text-center">
+              <img src="https://placehold.co/80x80/indigo/white?text=К" alt="КавайДесу" class="w-16 h-16 rounded-full mx-auto mb-1 hover:opacity-90 transition">
+              <span class="text-xs text-gray-700 block truncate">КавайДесу</span>
+            </a>
+            <a href="#" class="text-center">
+              <img src="https://placehold.co/80x80/indigo/white?text=В" alt="ВайфуЛовер" class="w-16 h-16 rounded-full mx-auto mb-1 hover:opacity-90 transition">
+              <span class="text-xs text-gray-700 block truncate">ВайфуЛовер</span>
+            </a>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Right Column - Activity, Favorites, etc -->
+      <div class="w-full lg:w-2/3">
+        <!-- Recent Activity -->
+        <div class="bg-white rounded-lg shadow-md p-6 mb-6">
+          <h3 class="text-xl font-bold text-gray-800 mb-4">Недавня активність</h3>
+          
+          <div class="space-y-4">
+            <!-- Activity Item -->
+            <div class="border-b border-gray-200 pb-4">
+              <div class="flex items-start">
+                <div class="text-indigo-600 mr-3">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538

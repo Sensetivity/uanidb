@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>УкрАніме - Список Студій</title>
+  <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Montserrat', sans-serif;
+    }
+  </style>
+</head>
+<body class="bg-gray-100">
+  <!-- Navbar - Consistent with previous pages -->
+  <nav class="bg-indigo-800 text-white shadow-lg">
+    <div class="container mx-auto px-4">
+      <div class="flex justify-between items-center py-3">
+        <div class="flex items-center space-x-8">
+          <a href="#" class="text-2xl font-bold">УкрАніме</a>
+          <div class="hidden md:flex space-x-6">
+            <a href="#" class="hover:text-indigo-200 font-medium">Аніме</a>
+            <a href="#" class="hover:text-indigo-200 font-medium">Манґа</a>
+            <a href="#" class="hover:text-indigo-200 font-medium">Персонажі</a>
+            <a href="#" class="hover:text-indigo-200 font-medium">Сейю</a>
+            <a href="#" class="hover:text-indigo-200 font-medium">Рейтинги</a>
+            <a href="#" class="hover:text-indigo-200 font-medium">Форум</a>
+          </div>
+        </div>
+        <div class="flex items-center space-x-4">
+          <div class="relative">
+            <input type="text" placeholder="Пошук аніме, манґи..." class="w-64 py-1 px-3 rounded-full text-gray-800 focus:outline-none">
+            <button class="absolute right-2 top-1.5">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+              </svg>
+            </button>
+          </div>
+          <a href="#" class="hover:text-indigo-200">Увійти</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page Header -->
+  <div class="bg-indigo-700 text-white">
+    <div class="container mx-auto px-4 py-6">
+      <h1 class="text-3xl font-bold">Аніме Студії</h1>
+      <div class="text-indigo-200 mt-1">Перегляньте всі студії, які створюють ваші улюблені аніме</div>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="container mx-auto px-4 py-8">
+    <!-- Filters Section -->
+    <div class="bg-white rounded-lg shadow-md p-6 mb-6">
+      <div class="flex justify-between items-center mb-4">
+        <h3 class="text-xl font-bold text-gray-800">Фільтрувати студії</h3>
+        <div class="flex space-x-2">
+          <button class="bg-indigo-600 text-white px-4 py-2 rounded">Популярність</button>
+          <button class="bg-white text-gray-700 border border-gray-300 px-4 py-2 rounded hover:bg-gray-50">Назва</button>
+          <button class="bg-white text-gray-700 border border-gray-300 px-4 py-2 rounded hover:bg-gray-50">Рейтинг</button>
+          <button class="bg-white text-gray-700 border border-gray-300 px-4 py-2 rounded hover:bg-gray-50">Кількість аніме</button>
+        </div>
+      </div>
+      
+      <div class="flex flex-col md:flex-row gap-4">
+        <!-- Search Filter -->
+        <div class="md:w-1/3">
+          <label class="block text-gray-700 mb-2 font-medium">Пошук за назвою</label>
+          <input type="text" class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500" placeholder="Введіть назву студії...">
+        </div>
+        
+        <!-- Established Year -->
+        <div class="md:w-1/3">
+          <label class="block text-gray-700 mb-2 font-medium">Рік заснування</label>
+          <div class="flex gap-2">
+            <select class="w-1/2 border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+              <option value="">Від</option>
+              <option value="2020">2020</option>
+              <option value="2010">2010</option>
+              <option value="2000">2000</option>
+              <option value="1990">1990</option>
+              <option value="1980">1980</option>
+              <option value="1970">1970</option>
+              <option value="1960">1960</option>
+              <option value="1950">1950</option>
+            </select>
+            <select class="w-1/2 border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+              <option value="">До</option>
+              <option value="2025">2025</option>
+              <option value="2020">2020</option>
+              <option value="2010">2010</option>
+              <option value="2000">2000</option>
+              <option value="1990">1990</option>
+              <option value="1980">1980</option>
+              <option value="1970">1970</option>
+              <option value="1960">1960</option>
+            </select>
+          </div>
+        </div>
+        
+        <!-- Status Filter -->
+        <div class="md:w-1/3">
+          <label class="block text-gray-700 mb-2 font-medium">Статус</label>
+          <div class="space-y-1">
+            <label class="flex items-center">
+              <input type="checkbox" class="form-checkbox text-indigo-600" checked>
+              <span class="ml-2 text-gray-700">Активна</span>
+            </label>
+            <label class="flex items-center">
+              <input type="checkbox" class="form-checkbox text-indigo-600" checked>
+              <span class="ml-2 text-gray-700">Неактивна</span>
+            </label>
+            <label class="flex items-center">
+              <input type="checkbox" class="form-checkbox text-indigo-600" checked>
+              <span class="ml-2 text-gray-700">Закрита</span>
+            </label>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Letter Filter -->
+      <div class="mt-6 pt-4 border-t border-gray-200">
+        <div class="flex flex-wrap justify-center gap-2">
+          <a href="#" class="w-8 h-8 flex items-center justify-center bg-indigo-600 text-white rounded">Всі</a>
+          <a href="#" class="w-8 h-8 flex items-center justify-center bg-white hover:bg-gray-100 border border-gray-300 rounded">A</a>
+          <a href="#" class="w-8 h-8 flex items-center justify-center bg-white hover:bg-gray-100 border border-gray-300 rounded">B</a>
+          <a href="#" class="w-8 h-8 flex items-center justify-center bg-white hover:bg-gray-100 border border-gray-300 rounded">C</a>
+          <a href="#" class="w-8 h-8 flex items-center justify-center bg-white hover:bg-gray-100 border border-gray-300 rounded">D</a>
+          <a href="#" class="w-8 h-8 flex items-center justify-center bg-white hover:bg-gray-100 border border-gray-300 rounded">E</a>
+          <a href="#" class="w-8 h-8 flex items-center justify-center bg-white hover:bg-gray-100 border border-gray-300 rounded">F</a>
+          <a href="#" class="w-8 h-8 flex items-center justify-center bg-white hover:bg-gray-100 border border-gray-300 rounded">G</a>
+          <a href="#" class="w-8 h-8 flex items-center justify-center bg-white hover:bg-gray-100 border border-gray-300 rounded">H</a>
+          <a href="#" class="w-8 h-8 flex items-center justify-center bg-white hover:bg-gray-100 border border-gray-300 rounded">I</a>
+          <a href="#" class="w-8 h-8 flex items-center justify-center bg-white hover:bg-gray-100 border border-gray-300 rounded">J</a>
+          <a href="#" class="w-8 h-8 flex items-center justify-center bg-white hover:bg-gray-100 border border-gray-300 rounded">K</a>
+          <a href="#" class="w-8 h-8 flex items-center justify-center bg-white hover:bg-gray-100 border border-gray-300 rounded">L</a>
+          <a href="#" class="w-8 h-8 flex items-center justify-center bg-white hover:bg-gray-100 border border-gray-300 rounded">M</a>
+          <a href="#" class="w-8 h-8 flex items-center justify-center bg-white hover:bg-gray-100 border border-gray-300 rounded">N</a>
+          <a href="#" class="w-8 h-8 flex items-center justify-center bg-white hover:bg-gray-100 border border-gray-300 rounded">O</a>
+          <a href="#" class="w-8 h-8 flex items-center justify-center bg-white hover:bg-gray-100 border border-gray-300 rounded">P</a>
+          <a href="#" class="w-8 h-8 flex items-center justify-center bg-white hover:bg-gray-100 border border-gray-300 rounded">Q</a>
+          <a href="#" class="w-8 h-8 flex items-center justify-center bg-white hover:bg-gray-100 border border-gray-300 rounded">R</a>
+          <a href="#" class="w-8 h-8 flex items-center justify-center bg-white hover:bg-gray-100 border border-gray-300 rounded">S</a>
+          <a href="#" class="w-8 h-8 flex items-center justify-center bg-white hover:bg-gray-100 border border-gray-300 rounded">T</a>
+          <a href="#" class="w-8 h-8 flex items-center justify-center bg-white hover:bg-gray-100 border border-gray-300 rounded">U</a>
+          <a href="#" class="w-8 h-8 flex items-center justify-center bg-white hover:bg-gray-100 border border-gray-300 rounded">V</a>
+          <a href="#" class="w-8 h-8 flex items-center justify-center bg-white hover:bg-gray-100 border border-gray-300 rounded">W</a>
+          <a href="#" class="w-8 h-8 flex items-center justify-center bg-white hover:bg-gray-100 border border-gray-300 rounded">X</a>
+          <a href="#" class="w-8 h-8 flex items-center justify-center bg-white hover:bg-gray-100 border border-gray-300 rounded">Y</a>
+          <a href="#" class="w-8 h-8 flex items-center justify-center bg-white hover:bg-gray-100 border border-gray-300 rounded">Z</a>
+          <a href="#" class="w-8 h-8 flex items-center justify-center bg-white hover:bg-gray-100 border border-gray-300 rounded">#</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Studios Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <!-- Studio Card -->
+      <div class="bg-white rounded-lg shadow-md overflow-hidden">
+        <div class="relative">
+          <img src="https://placehold.co/600x300/indigo/white?text=Kyoto+Animation" alt="Kyoto Animation" class="w-full h-40 object-cover">
+          <div class="absolute top-0 left-0 bg-indigo-600 text-white text-xs px-2 py-1">Засновано: 1981</div>
+          <div class="absolute top-0 right-0 bg-green-600 text-white text-xs px-2 py-1">Активна</div>
+        </div>
+        <div class="p-4">
+          <div class="flex justify-between items-start mb-2">
+            <a href="#" class="text-xl font-bold text-indigo-600 hover:text-indigo-800">Kyoto Animation</a>
+            <div class="flex items-center">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-yellow-500" viewBox="0 0 20 20" fill="currentColor">
+                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118l-2.8-2.034c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+              </svg>
+              <span class="ml-1 text-gray-700">9.2</span>
+            </div>
+          </div>
+          <p class="text-gray-600 text-sm mb-4">
+            Одна з найбільш шанованих аніме-студій, відома своїм винятковим рівнем якості анімації, увагою до деталей та емоційними історіями. Створили такі відомі аніме як "Віолетта Еверґарден", "Небесна блакить!" та "Мовчазний голос".
+          </p>
+          <div class="flex flex-wrap gap-2 mb-3">
+            <span class="bg-gray-200 px-2 py-1 rounded-full text-xs">К'ото, Японія</span>
+            <span class="bg-gray-200 px-2 py-1 rounded-full text-xs">Драма</span>
+            <span class="bg-gray-200 px-2 py-1 rounded-full text-xs">Фентезі</span>
+            <span class="bg-gray-200 px-2 py-1 rounded-full text-xs">Повсякденність</span>
+          </div>
+          <div class="flex justify-between items-center text-sm text-gray-500">
+            <div>Усього аніме: 45</div>
+            <div>Популярність: #3</div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Studio Card -->
+      <div class="bg-white rounded-lg shadow-md overflow-hidden">
+        <div class="relative">
+          <img src="https://placehold.co/600x300/indigo/white?text=MAPPA" alt="MAPPA" class="w-full h-40 object-cover">
+          <div class="absolute top-0 left-0 bg-indigo-600 text-white text-xs px-2 py-1">Засновано: 2011</div>
+          <div class="absolute top-0 right-0 bg-green-600 text-white text-xs px-2 py-1">Активна</div>
+        </div>
+        <div class="p-4">
+          <div class="flex justify-between items-start mb-2">
+            <a href="#" class="text-xl font-bold text-indigo-600 hover:text-indigo-800">MAPPA</a>
+            <div class="flex items-center">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-yellow-500" viewBox="0 0 20 20" fill="currentColor">
+                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118l-2.8-2.034c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+              </svg>
+              <span class="ml-1 text-gray-700">9.0</span>
+            </div>
+          </div>
+          <p class="text-gray-600 text-sm mb-4">
+            Відносно молода, але надзвичайно успішна студія, яка швидко здобула популярність завдяки високоякісним проектам. Відома своїми роботами над "Атака Титанів: Фінальний сезон", "Дзюцу Кайсен" та "Чейнсо Мен".
+          </p>
+          <div class="flex flex-wrap gap-2 mb-3">
+            <span class="bg-gray-200 px-2 py-1 rounded-full text-xs">Токіо, Японія</span>
+            <span class="bg-gray-200 px-2 py-1 rounded-full text-xs">Екшн</span>
+            <span class="bg-gray-200 px-2 py-1 rounded-full text-xs">Надприродне</span>
+            <span class="bg-gray-200 px-2 py-1 rounded-full text-xs">Драма</span>
+          </div>
+          <div class="flex justify-between items-center text-sm text-gray-500">
+            <div>Усього аніме: 38</div>
+            <div>Популярність: #1</div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Studio Card -->
+      <div class="bg-white rounded-lg shadow-md overflow-hidden">
+        <div class="relative">
+          <img src="https://placehold.co/600x300/indigo/white?text=ufotable" alt="ufotable" class="w-full h-40 object-cover">
+          <div class="absolute top-0 left-0 bg-indigo-600 text-white text-xs px-2 py-1">Засновано: 2000</div>
+          <div class="absolute top-0 right-0 bg-green-600 text-white text-xs px-2 py-1">Активна</div>
+        </div>
+        <div class="p-4">
+          <div class="flex justify-between items-start mb-2">
+            <a href="#" class="text-xl font-bold text-indigo-600 hover:text-indigo-800">ufotable</a>
+            <div class="flex items-center">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-yellow-500" viewBox="0 0 20 20" fill="currentColor">
+                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118l-2.8-2.034c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+              </svg>
+              <span class="ml-1 text-gray-700">9.1</span>
+            </div>
+          </div>
+          <p class="text-gray-600 text-sm mb-4">
+            Студія відома своєю потужною анімацією та неперевершеними візуальними ефектами. Створила такі хіти як "Клинок, що знищує демонів", серія "Доля/ніч останку" та "Мандрівник Кенсін: Згадуючи минуле".
+          </p>
+          <div class="flex flex-wrap gap-2 mb-3">
+            <span class="bg-gray-200 px-2 py-1 rounded-full text-xs">Токіо, Японія</span>
+            <span class="bg-gray-200 px-2 py-1 rounded-full text-xs">Екшн</span>
+            <span class="bg-gray-200 px-2 py-1 rounded-full text-xs">Фентезі</span>
+            <span class="bg-gray-200 px-2 py-1 rounded-full text-xs">Надприродне</span>
+          </div>
+          <div class="flex justify-between items-center text-sm text-gray-500">
+            <div>Усього аніме: 32</div>
+            <div>Популярність: #2</div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Studio Card -->
+      <div class="bg-white rounded-lg shadow-md overflow-hidden">
+        <div class="relative">
+          <img src="https://placehold.co/600x300/indigo/white?text=Bones" alt="Bones" class="w-full h-40 object-cover">
+          <div class="absolute top-0 left-0 bg-indigo-600 text-white text-xs px-2 py-1">Засновано: 1998</div>
+          <div class="absolute top-0 right-0 bg-green-600 text-white text-xs px-2 py-1">Активна</div>
+        </div>
+        <div class="p-4">
+          <div class="flex justify-between items-start mb-2">
+            <a href="#" class="text-xl font-bold text-indigo-600 hover:text-indigo-800">Bones</a>
+            <div class="flex items-center">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-yellow-500" viewBox="0 0 20 20" fill="currentColor">
+                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118l-2.8-2.034c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+              </svg>
+              <span class="ml-1 text-gray-700">8.8</span>
+            </div>
+          </div>
+          <p class="text-gray-600 text-sm mb-4">
+            Відома своїми оригінальними та експресивними анімаціями. Найвідоміші роботи включають "Повнометалевий алхімік: Братерство", "Моя геройська академія" та "Космічний Денді".
+          </p>
+          <div class="flex flex-wrap gap-2 mb-3">
+            <span class="bg-gray-200 px-2 py-1 rounded-full text-xs">Токіо, Японія</span>
+            <span class="bg-gray-200 px-2 py-1 rounded-full text-xs">Екшн</span>
+            <span class="bg-gray-200 px-2 py-1 rounded-full text-xs">Фентезі</span>
+            <span class="bg-gray-200 px-2 py-1 rounded-full text-xs">Комедія</span>
+          </div>
+          <div class="flex justify-between items-center text-sm text-gray-500">
+            <div>Усього аніме: 56</div>
+            <div>Популярність: #4</div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Studio Card -->
+      <div class="bg-white rounded-lg shadow-md overflow-hidden">
+        <div class="relative">
+          <img src="https://placehold.co/600x300/indigo/white?text=Madhouse" alt="Madhouse" class="w-full h-40 object-cover">
+          <div class="absolute top-0 left-0 bg-indigo-600 text-white text-xs px-2 py-1">Засновано: 1972</div>
+          <div class="absolute top-0 right-0 bg-green-600 text-white text-xs px-2 py-1">Активна</div>
+        </div>
+        <div class="p-4">
+          <div class="flex justify-between items-start mb-2">
+            <a href="#" class="text-xl font-bold text-indigo-600 hover:text-indigo-800">Madhouse</a>
+            <div class="flex items-center">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-yellow-500" viewBox="0 0 20 20" fill="currentColor">
+                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118l-2.8-2.034c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+              </svg>
+              <span class="ml-1 text-gray-700">8.7</span>
+            </div>
+          </div>
+          <p class="text-gray-600 text-sm mb-4">
+            Легендарна студія з багатою історією. Славиться різноманітним портфоліо від психологічних трилерів до спортивних драм. Створили "Тетрадь смерті", "Чорний клевер", "Людина-бензопила" та "Ванпанчмен".
+          </p>
+          <div class="flex flex-wrap gap-2 mb-3">
+            <span class="bg-gray-200 px-2 py-1 rounded-full text-xs">Токіо, Японія</span>
+            <span class="bg-gray-200 px-2 py-1 rounded-full text-xs">Психологія</span>
+            <span class="bg-gray-200 px-2 py-1 rounded-full text-xs">Спорт</span>
+            <span class="bg-gray-200 px-2 py-1 rounde
