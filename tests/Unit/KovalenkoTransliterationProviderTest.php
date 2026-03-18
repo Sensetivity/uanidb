@@ -207,6 +207,43 @@ class KovalenkoTransliterationProviderTest extends TestCase
         ];
     }
 
+    // ─── Hiragana ぢ, づ ───
+
+    /**
+     * @return array<string, array{string, string}>
+     */
+    public static function hiraganaDakutenDiDuProvider(): array
+    {
+        return [
+            'di (ぢ)' => ['ぢ', 'джі'],
+            'du (づ)' => ['づ', 'дзу'],
+            'hanadi (nosebleed)' => ['はなぢ', 'ханаджі'],
+            'tsuduku (continue)' => ['つづく', 'цудзуку'],
+        ];
+    }
+
+    // ─── Sokuon (っ/ッ) ───
+
+    /**
+     * @return array<string, array{string, string}>
+     */
+    public static function hiraganaSokuonProvider(): array
+    {
+        return [
+            'gakkou (school)' => ['がっこう', 'ґаккоу'],
+            'nippon (Japan)' => ['にっぽん', 'ніппон'],
+            'kitte (stamp)' => ['きって', 'кітте'],
+            'motto (more)' => ['もっと', 'мотто'],
+            'yappari (as expected)' => ['やっぱり', 'яппарі'],
+            'massugu (straight)' => ['まっすぐ', 'массуґу'],
+            'kekka (result)' => ['けっか', 'кекка'],
+            'zasshi (magazine)' => ['ざっし', 'дзашші'],
+            'kocchi (this way)' => ['こっち', 'коччі'],
+            'issho (together)' => ['いっしょ', 'ішшьо'],
+            'sokuon at end' => ['あっ', 'а'],
+        ];
+    }
+
     // ─── Special Rule 2: ie → є ───
 
     /**
@@ -401,6 +438,20 @@ class KovalenkoTransliterationProviderTest extends TestCase
     }
 
     #[Test]
+    #[DataProvider('hiraganaDakutenDiDuProvider')]
+    public function it_transliterates_hiragana_di_du(string $input, string $expected): void
+    {
+        $this->assertSame($expected, $this->provider->transliterate($input, ScriptTypeEnum::Hiragana));
+    }
+
+    #[Test]
+    #[DataProvider('hiraganaSokuonProvider')]
+    public function it_transliterates_hiragana_sokuon(string $input, string $expected): void
+    {
+        $this->assertSame($expected, $this->provider->transliterate($input, ScriptTypeEnum::Hiragana));
+    }
+
+    #[Test]
     public function it_transliterates_hiragana_words(): void
     {
         // たなか = ta-na-ka
@@ -419,6 +470,20 @@ class KovalenkoTransliterationProviderTest extends TestCase
     #[Test]
     #[DataProvider('katakanaCompoundProvider')]
     public function it_transliterates_katakana_compounds(string $input, string $expected): void
+    {
+        $this->assertSame($expected, $this->provider->transliterate($input, ScriptTypeEnum::Katakana));
+    }
+
+    #[Test]
+    #[DataProvider('katakanaExtendedProvider')]
+    public function it_transliterates_katakana_extended(string $input, string $expected): void
+    {
+        $this->assertSame($expected, $this->provider->transliterate($input, ScriptTypeEnum::Katakana));
+    }
+
+    #[Test]
+    #[DataProvider('katakanaSokuonProvider')]
+    public function it_transliterates_katakana_sokuon(string $input, string $expected): void
     {
         $this->assertSame($expected, $this->provider->transliterate($input, ScriptTypeEnum::Katakana));
     }
@@ -449,6 +514,20 @@ class KovalenkoTransliterationProviderTest extends TestCase
     #[Test]
     #[DataProvider('romajiCompoundSyllablesProvider')]
     public function it_transliterates_romaji_compound_syllables(string $input, string $expected): void
+    {
+        $this->assertSame($expected, $this->provider->transliterate($input, ScriptTypeEnum::Romaji));
+    }
+
+    #[Test]
+    #[DataProvider('romajiDoubledConsonantProvider')]
+    public function it_transliterates_romaji_doubled_consonants(string $input, string $expected): void
+    {
+        $this->assertSame($expected, $this->provider->transliterate($input, ScriptTypeEnum::Romaji));
+    }
+
+    #[Test]
+    #[DataProvider('romajiVariantsProvider')]
+    public function it_transliterates_romaji_variants(string $input, string $expected): void
     {
         $this->assertSame($expected, $this->provider->transliterate($input, ScriptTypeEnum::Romaji));
     }
@@ -593,6 +672,51 @@ class KovalenkoTransliterationProviderTest extends TestCase
             'rya' => ['リャ', 'ря'],
             'ryu' => ['リュ', 'рю'],
             'ryo' => ['リョ', 'рьо'],
+        ];
+    }
+
+    // ─── Extended katakana for foreign words ───
+
+    /**
+     * @return array<string, array{string, string}>
+     */
+    public static function katakanaExtendedProvider(): array
+    {
+        return [
+            'vu' => ['ヴ', 'ву'],
+            'va' => ['ヴァ', 'ва'],
+            'vi' => ['ヴィ', 'ві'],
+            've' => ['ヴェ', 'ве'],
+            'vo' => ['ヴォ', 'во'],
+            'fa' => ['ファ', 'фа'],
+            'fi' => ['フィ', 'фі'],
+            'fe' => ['フェ', 'фе'],
+            'fo' => ['フォ', 'фо'],
+            'ti' => ['ティ', 'ті'],
+            'di' => ['ディ', 'ді'],
+            'tu' => ['トゥ', 'ту'],
+            'du' => ['ドゥ', 'ду'],
+            'wi' => ['ウィ', 'ві'],
+            'we' => ['ウェ', 'ве'],
+            'wo extended' => ['ウォ', 'во'],
+            'she' => ['シェ', 'ше'],
+            'che' => ['チェ', 'че'],
+            'je' => ['ジェ', 'дже'],
+        ];
+    }
+
+    /**
+     * @return array<string, array{string, string}>
+     */
+    public static function katakanaSokuonProvider(): array
+    {
+        return [
+            'rakkii (lucky)' => ['ラッキー', 'раккі'],
+            'sakka (soccer)' => ['サッカー', 'сакка'],
+            'netto (net)' => ['ネット', 'нетто'],
+            'beddo (bed)' => ['ベッド', 'беддо'],
+            'katto (cut)' => ['カット', 'катто'],
+            'rokku (rock)' => ['ロック', 'рокку'],
         ];
     }
 
@@ -774,6 +898,52 @@ class KovalenkoTransliterationProviderTest extends TestCase
             'rya' => ['rya', 'ря'],
             'ryu' => ['ryu', 'рю'],
             'ryo' => ['ryo', 'рьо'],
+        ];
+    }
+
+    /**
+     * @return array<string, array{string, string}>
+     */
+    public static function romajiDoubledConsonantProvider(): array
+    {
+        return [
+            'kko' => ['kko', 'кко'],
+            'ppa' => ['ppa', 'ппа'],
+            'ssa' => ['ssa', 'сса'],
+            'tta' => ['tta', 'тта'],
+            'cchi' => ['cchi', 'ччі'],
+            'sshi' => ['sshi', 'шші'],
+            'ttsu' => ['ttsu', 'ццу'],
+            'tchi' => ['tchi', 'ччі'],
+            'gakkou' => ['gakkou', 'ґаккоу'],
+            'nippon' => ['nippon', 'ніппон'],
+            'kitte' => ['kitte', 'кітте'],
+            'motto' => ['motto', 'мотто'],
+            'yappari' => ['yappari', 'яппарі'],
+        ];
+    }
+
+    // ─── Romaji variants (Nihon-shiki / Kunrei-shiki) ───
+
+    /**
+     * @return array<string, array{string, string}>
+     */
+    public static function romajiVariantsProvider(): array
+    {
+        return [
+            'si (shi)' => ['si', 'ші'],
+            'ti (chi)' => ['ti', 'чі'],
+            'tu (tsu)' => ['tu', 'цу'],
+            'hu (fu)' => ['hu', 'фу'],
+            'zi (ji)' => ['zi', 'джі'],
+            'di (ji)' => ['di', 'джі'],
+            'du (dzu)' => ['du', 'дзу'],
+            'sya (sha)' => ['sya', 'шя'],
+            'syu (shu)' => ['syu', 'шю'],
+            'syo (sho)' => ['syo', 'шьо'],
+            'tya (cha)' => ['tya', 'чя'],
+            'tyu (chu)' => ['tyu', 'чю'],
+            'tyo (cho)' => ['tyo', 'чьо'],
         ];
     }
 

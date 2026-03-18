@@ -150,6 +150,16 @@ class TransliterationServiceTest extends TestCase
         $this->assertSame('---', $result);
     }
 
+    #[Test]
+    public function it_handles_sokuon_through_service(): void
+    {
+        $service = $this->app->make(TransliterationService::class);
+
+        $this->assertSame('ніппон', $service->transliterate('nippon', ScriptTypeEnum::Romaji));
+        $this->assertSame('кітте', $service->transliterate('きって', ScriptTypeEnum::Hiragana));
+        $this->assertSame('раккі', $service->transliterate('ラッキー', ScriptTypeEnum::Katakana));
+    }
+
     // ─── Consistency ───
 
     #[Test]
@@ -161,6 +171,22 @@ class TransliterationServiceTest extends TestCase
         $second = $service->transliterate('naruto', ScriptTypeEnum::Romaji);
 
         $this->assertSame($first, $second);
+    }
+
+    // ─── Sokuon across scripts ───
+
+    #[Test]
+    public function it_produces_consistent_sokuon_results_across_scripts(): void
+    {
+        $service = $this->app->make(TransliterationService::class);
+
+        $hiragana = $service->transliterate('がっこう', ScriptTypeEnum::Hiragana);
+        $katakana = $service->transliterate('ガッコウ', ScriptTypeEnum::Katakana);
+        $romaji = $service->transliterate('gakkou', ScriptTypeEnum::Romaji);
+
+        $this->assertSame('ґаккоу', $hiragana);
+        $this->assertSame('ґаккоу', $katakana);
+        $this->assertSame('ґаккоу', $romaji);
     }
 
     #[Test]

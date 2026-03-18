@@ -43,6 +43,8 @@ class KovalenkoTransliterationProvider implements TransliterationProvider
         'て' => 'те',
         'と' => 'то',
         'だ' => 'да',
+        'ぢ' => 'джі',
+        'づ' => 'дзу',
         'で' => 'де',
         'ど' => 'до',
         'な' => 'на',
@@ -191,6 +193,7 @@ class KovalenkoTransliterationProvider implements TransliterationProvider
         'ワ' => 'ва',
         'ヲ' => 'о',
         'ン' => 'н',
+        'ヴ' => 'ву',
         'キャ' => 'кя',
         'キュ' => 'кю',
         'キョ' => 'кьо',
@@ -224,6 +227,24 @@ class KovalenkoTransliterationProvider implements TransliterationProvider
         'リャ' => 'ря',
         'リュ' => 'рю',
         'リョ' => 'рьо',
+        'ヴァ' => 'ва',
+        'ヴィ' => 'ві',
+        'ヴェ' => 'ве',
+        'ヴォ' => 'во',
+        'ファ' => 'фа',
+        'フィ' => 'фі',
+        'フェ' => 'фе',
+        'フォ' => 'фо',
+        'ティ' => 'ті',
+        'ディ' => 'ді',
+        'トゥ' => 'ту',
+        'ドゥ' => 'ду',
+        'ウィ' => 'ві',
+        'ウェ' => 'ве',
+        'ウォ' => 'во',
+        'シェ' => 'ше',
+        'チェ' => 'че',
+        'ジェ' => 'дже',
         'ー' => '',
     ];
 
@@ -333,8 +354,22 @@ class KovalenkoTransliterationProvider implements TransliterationProvider
         'rya' => 'ря',
         'ryu' => 'рю',
         'ryo' => 'рьо',
+        'si' => 'ші',
+        'ti' => 'чі',
+        'tu' => 'цу',
+        'hu' => 'фу',
+        'zi' => 'джі',
+        'di' => 'джі',
+        'du' => 'дзу',
+        'sya' => 'шя',
+        'syu' => 'шю',
+        'syo' => 'шьо',
+        'tya' => 'чя',
+        'tyu' => 'чю',
+        'tyo' => 'чьо',
     ];
 
+    private const array UKRAINIAN_VOWELS = ['а', 'е', 'є', 'и', 'і', 'ї', 'о', 'у', 'ю', 'я', 'ь'];
     private const array VOWELS = ['a', 'i', 'u', 'e', 'o'];
 
     public function system(): TransliterationSystemEnum
@@ -367,6 +402,28 @@ class KovalenkoTransliterationProvider implements TransliterationProvider
     }
 
     /**
+     * Extract the leading consonant cluster from a Ukrainian transliteration.
+     * Returns everything before the first Ukrainian vowel character.
+     */
+    private function extractLeadingConsonant(string $transliteration): string
+    {
+        $consonant = '';
+        $length = mb_strlen($transliteration);
+
+        for ($i = 0; $i < $length; $i++) {
+            $char = mb_substr($transliteration, $i, 1);
+
+            if (in_array($char, self::UKRAINIAN_VOWELS, true)) {
+                break;
+            }
+
+            $consonant .= $char;
+        }
+
+        return $consonant;
+    }
+
+    /**
      * Transliterate hiragana/katakana text to Ukrainian.
      * Uses longest-match-first (max 2 chars for kana compound syllables).
      *
@@ -383,6 +440,28 @@ class KovalenkoTransliterationProvider implements TransliterationProvider
 
             if ($char === ' ') {
                 $result .= ' ';
+                $i++;
+
+                continue;
+            }
+
+            // Sokuon (っ/ッ): double the first consonant of the next syllable
+            if ($char === 'っ' || $char === 'ッ') {
+                $nextCheckLen = min(2, $length - $i - 1);
+
+                while ($nextCheckLen > 0) {
+                    $nextChunk = mb_substr($text, $i + 1, $nextCheckLen);
+
+                    if (isset($dictionary[$nextChunk])) {
+                        $consonant = $this->extractLeadingConsonant($dictionary[$nextChunk]);
+                        $result .= $consonant;
+
+                        break;
+                    }
+
+                    $nextCheckLen--;
+                }
+
                 $i++;
 
                 continue;
@@ -442,6 +521,37 @@ class KovalenkoTransliterationProvider implements TransliterationProvider
             }
 
             $matched = false;
+
+            // Doubled consonant (sokuon in romaji): kk, pp, ss, tt, cch, ssh, tch
+            if (! in_array($char, self::VOWELS, true)) {
+                $nextRomajiChar = ($i + 1 < $length) ? mb_substr($lower, $i + 1, 1) : '';
+                $isDoubled = $char === $nextRomajiChar
+                    || ($char === 't' && $nextRomajiChar === 'c');
+
+                if ($isDoubled) {
+                    $syllableCheckLen = min(3, $length - $i - 1);
+
+                    while ($syllableCheckLen > 0) {
+                        $syllable = mb_substr($lower, $i + 1, $syllableCheckLen);
+
+                        if (isset(self::ROMAJI_UK[$syllable])) {
+                            $consonant = $this->extractLeadingConsonant(self::ROMAJI_UK[$syllable]);
+                            $result .= $this->applyCapitalization($text, $i, $consonant);
+                            $i++;
+                            $matched = true;
+
+                            break;
+                        }
+
+                        $syllableCheckLen--;
+                    }
+                }
+            }
+
+            if ($matched) {
+                continue;
+            }
+
             $checkLen = min(3, $length - $i);
 
             while ($checkLen > 0) {
