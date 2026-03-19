@@ -43,9 +43,11 @@ trait TracksImportLog
             $callback($importLog);
 
             $importLog->markAsCompleted();
+            $anime?->markAsSynced();
         } catch (\Throwable $e) {
             Log::error("{$jobName}: Failed — {$e->getMessage()}");
             $importLog->markAsFailed($e->getMessage());
+            $anime?->markSyncFailed();
 
             throw $e;
         }

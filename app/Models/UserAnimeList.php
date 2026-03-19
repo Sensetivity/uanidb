@@ -24,8 +24,6 @@ class UserAnimeList extends BaseModel
         'status' => WatchlistStatusEnum::class,
     ];
 
-    protected $guarded = ['id', 'created_at', 'updated_at'];
-
     /**
      * Get the anime associated with the list item.
      */

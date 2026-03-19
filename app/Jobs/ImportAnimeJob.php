@@ -15,6 +15,10 @@ class ImportAnimeJob implements ShouldQueue
     use Queueable;
     use TracksImportLog;
 
+    public int $backoff = 30;
+    public int $timeout = 120;
+    public int $tries = 3;
+
     public function __construct(
         private readonly int $malId,
         private readonly bool $forceUpdate = false,
@@ -55,6 +59,8 @@ class ImportAnimeJob implements ShouldQueue
             Log::info("ImportAnimeJob: Dispatching chain [" . implode(' → ', $jobNames) . "] for '{$anime->title}'.");
 
             Bus::chain($jobs)->dispatch();
+
+            $anime->markAsSynced();
 
             Log::info("ImportAnimeJob: Completed base import for '{$anime->title}' (MAL ID: {$this->malId}), chain dispatched.");
         }, $this->malId);

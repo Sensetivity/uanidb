@@ -35,6 +35,13 @@ return [
         'rate_limit_delay' => (int) env('ANIME_IMPORT_RATE_LIMIT_DELAY', 2),
         'api_delay' => (int) env('ANIME_IMPORT_API_DELAY', 1),
         'image_download_delay' => (int) env('ANIME_IMPORT_IMAGE_DELAY', 5),
+        'sync' => [
+            'batch_size' => (int) env('ANIME_SYNC_BATCH_SIZE', 10),
+            'interval_minutes' => (int) env('ANIME_SYNC_INTERVAL', 30),
+            'min_resync_minutes' => (int) env('ANIME_SYNC_MIN_RESYNC', 10),
+            'full_resync_days' => (int) env('ANIME_SYNC_FULL_RESYNC_DAYS', 14),
+            'airing_resync_hours' => (int) env('ANIME_SYNC_AIRING_RESYNC_HOURS', 6),
+        ],
     ],
 
     'deepl' => [

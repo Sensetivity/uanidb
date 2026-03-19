@@ -7,6 +7,7 @@ use App\Filament\Widgets\ImportActivityChart;
 use App\Filament\Widgets\RecentActivityWidget;
 use App\Filament\Widgets\RecentlyImportedAnime;
 use App\Filament\Widgets\StatsOverview;
+use App\Filament\Widgets\SyncStatusWidget;
 use App\Filament\Widgets\TranslationProgress;
 use App\Filament\Widgets\TranslationUsage;
 use Filament\Http\Middleware\Authenticate;
@@ -45,6 +46,7 @@ class AdminPanelProvider extends PanelProvider
             ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\Filament\Widgets')
             ->widgets([
                 StatsOverview::class,
+                SyncStatusWidget::class,
                 TranslationProgress::class,
                 TranslationUsage::class,
                 AnimeByTypeChart::class,

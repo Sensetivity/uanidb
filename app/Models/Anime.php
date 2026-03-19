@@ -10,6 +10,7 @@ use App\Enums\CharacterRoleEnum;
 use App\Enums\SourceTypeEnum;
 use Carbon\Carbon;
 use Cviebrock\EloquentSluggable\Sluggable;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -50,6 +51,9 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
  * @property int|null $rank Popularity rank
  * @property float|null $popularity Popularity score
  * @property string|null $image_url URL to the anime image
+ * @property Carbon|null $last_synced_at When last successfully synced from API
+ * @property float $sync_priority Cached priority score for sync ordering
+ * @property int $failed_sync_count Consecutive sync failures for backoff
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
  * @property Carbon|null $deleted_at
@@ -102,6 +106,9 @@ class Anime extends BaseModel implements HasMedia
         'score' => 'float',
         'rank' => 'integer',
         'popularity' => 'float',
+        'last_synced_at' => 'datetime',
+        'sync_priority' => 'float',
+        'failed_sync_count' => 'integer',
     ];
 
     /**
@@ -181,6 +188,22 @@ class Anime extends BaseModel implements HasMedia
     {
         /** @var Studio|null */
         return $this->studios()->wherePivot('is_main', true)->first();
+    }
+
+    /**
+     * Mark this anime as successfully synced.
+     */
+    public function markAsSynced(): void
+    {
+        $this->update(['last_synced_at' => now(), 'failed_sync_count' => 0]);
+    }
+
+    /**
+     * Increment the failed sync counter.
+     */
+    public function markSyncFailed(): void
+    {
+        $this->increment('failed_sync_count');
     }
 
     /**
@@ -266,6 +289,14 @@ class Anime extends BaseModel implements HasMedia
     public function reviews(): MorphMany
     {
         return $this->morphMany(Review::class, 'reviewable');
+    }
+
+    /**
+     * Scope to anime that need syncing, ordered by priority.
+     */
+    public function scopeNeedingSync(Builder $query): Builder
+    {
+        return $query->where('sync_priority', '>', 0)->orderByDesc('sync_priority');
     }
 
     /**

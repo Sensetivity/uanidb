@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Contracts\Services\AnimeApi\AnimeDataProvider;
+use App\Contracts\Services\Sync\PriorityCalculator;
 use App\Models\Genre;
 use App\Models\Theme;
 use App\Services\AnimeApi\JikanAnimeDataProvider;
@@ -17,24 +18,16 @@ use App\Services\AnimeImport\Processors\SeasonProcessor;
 use App\Services\AnimeImport\Processors\StaffProcessor;
 use App\Services\AnimeImport\Processors\TaxonomyProcessor;
 use App\Services\AnimeImport\Processors\TitleProcessor;
+use App\Services\Sync\SyncPriorityCalculator;
 use Illuminate\Support\ServiceProvider;
 use Jikan\JikanPHP\Client;
 
 class AnimeImportServiceProvider extends ServiceProvider
 {
-    /**
-     * Bootstrap services.
-     */
-    public function boot(): void
-    {
-        //
-    }
-
-    /**
-     * Register services.
-     */
     public function register(): void
     {
+        $this->app->bind(PriorityCalculator::class, SyncPriorityCalculator::class);
+
         $this->app->singleton(Client::class, function () {
             return Client::create();
         });
