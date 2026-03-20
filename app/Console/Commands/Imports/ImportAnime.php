@@ -2,7 +2,6 @@
 
 namespace App\Console\Commands\Imports;
 
-use App\Jobs\DownloadAnimeImagesJob;
 use App\Jobs\ImportAnimeJob;
 use App\Jobs\TranslateAnimeJob;
 use App\Services\AnimeImport\AnimeImportService;
@@ -26,7 +25,6 @@ class ImportAnime extends Command
         {malId : MyAnimeList ID}
         {--force : Force update even if anime exists}
         {--queue : Dispatch import as a queued job}
-        {--with-images : Download images after import}
         {--translate : Translate to Ukrainian after import}';
 
     /**
@@ -36,11 +34,10 @@ class ImportAnime extends Command
     {
         $malId = (int) $this->argument('malId');
         $force = $this->option('force');
-        $withImages = $this->option('with-images');
         $translate = $this->option('translate');
 
         if ($this->option('queue')) {
-            ImportAnimeJob::dispatch($malId, $force, $withImages, $translate);
+            ImportAnimeJob::dispatch($malId, $force, $translate);
             $this->info("Dispatched import job for MAL ID: {$malId}");
 
             return self::SUCCESS;
@@ -53,11 +50,6 @@ class ImportAnime extends Command
 
             if ($anime) {
                 $this->info("Successfully imported: {$anime->title} (ID: {$anime->id})");
-
-                if ($withImages) {
-                    DownloadAnimeImagesJob::dispatch($anime->id);
-                    $this->info('Dispatched image download job.');
-                }
 
                 if ($translate) {
                     TranslateAnimeJob::dispatch($anime->id);

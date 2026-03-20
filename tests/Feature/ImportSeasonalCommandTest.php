@@ -2,38 +2,15 @@
 
 namespace Tests\Feature;
 
-use App\Jobs\DownloadAnimeImagesJob;
 use App\Models\Anime;
 use App\Services\AnimeImport\AnimeImportService;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Support\Facades\Queue;
 use Mockery;
 use Tests\TestCase;
 
 class ImportSeasonalCommandTest extends TestCase
 {
     use RefreshDatabase;
-
-    public function test_dispatches_image_jobs_with_flag(): void
-    {
-        Queue::fake();
-
-        $anime = Anime::factory()->create();
-
-        $mock = Mockery::mock(AnimeImportService::class);
-        $mock->shouldReceive('importSeasonalAnime')
-            ->once()
-            ->andReturn([$anime]);
-        $this->app->instance(AnimeImportService::class, $mock);
-
-        $this->artisan('import:seasonal', [
-            'year' => 2024,
-            'season' => 'fall',
-            '--with-images' => true,
-        ])->assertExitCode(0);
-
-        Queue::assertPushed(DownloadAnimeImagesJob::class);
-    }
 
     public function test_fails_gracefully_on_exception(): void
     {

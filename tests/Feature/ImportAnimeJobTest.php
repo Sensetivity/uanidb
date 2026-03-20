@@ -11,6 +11,7 @@ use App\Jobs\ImportAnimeJob;
 use App\Jobs\ImportCharactersStaffJob;
 use App\Jobs\ImportEpisodesJob;
 use App\Jobs\ImportVideosJob;
+use App\Jobs\TranslateAnimeJob;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Bus;
 use Mockery;
@@ -20,7 +21,7 @@ class ImportAnimeJobTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_job_dispatches_chain_with_images(): void
+    public function test_job_always_includes_image_download_in_chain(): void
     {
         Bus::fake([ImportEpisodesJob::class, ImportCharactersStaffJob::class, ImportVideosJob::class, DownloadAnimeImagesJob::class]);
 
@@ -40,7 +41,7 @@ class ImportAnimeJobTest extends TestCase
         $mockProvider->shouldNotReceive('getAnimeStaff');
         $mockProvider->shouldNotReceive('getAnimeVideos');
 
-        $job = new ImportAnimeJob(1, false, true);
+        $job = new ImportAnimeJob(1);
         $job->handle($this->app->make(\App\Services\AnimeImport\AnimeImportService::class));
 
         Bus::assertChained([
@@ -48,32 +49,6 @@ class ImportAnimeJobTest extends TestCase
             ImportCharactersStaffJob::class,
             ImportVideosJob::class,
             DownloadAnimeImagesJob::class,
-        ]);
-    }
-
-    public function test_job_dispatches_chain_without_images(): void
-    {
-        Bus::fake([ImportEpisodesJob::class, ImportCharactersStaffJob::class, ImportVideosJob::class]);
-
-        $mockProvider = Mockery::mock(AnimeDataProvider::class);
-        $this->app->instance(AnimeDataProvider::class, $mockProvider);
-
-        $animeDto = new AnimeDto(
-            malId: 2,
-            title: 'Test Anime 2',
-            type: AnimeTypeEnum::TV,
-            status: AnimeStatusEnum::AIRING,
-        );
-
-        $mockProvider->shouldReceive('getAnime')->once()->andReturn($animeDto);
-
-        $job = new ImportAnimeJob(2, false, false);
-        $job->handle($this->app->make(\App\Services\AnimeImport\AnimeImportService::class));
-
-        Bus::assertChained([
-            ImportEpisodesJob::class,
-            ImportCharactersStaffJob::class,
-            ImportVideosJob::class,
         ]);
     }
 
@@ -90,5 +65,33 @@ class ImportAnimeJobTest extends TestCase
         $job->handle($this->app->make(\App\Services\AnimeImport\AnimeImportService::class));
 
         Bus::assertNothingDispatched();
+    }
+
+    public function test_job_includes_translate_when_flag_set(): void
+    {
+        Bus::fake([ImportEpisodesJob::class, ImportCharactersStaffJob::class, ImportVideosJob::class, DownloadAnimeImagesJob::class, TranslateAnimeJob::class]);
+
+        $mockProvider = Mockery::mock(AnimeDataProvider::class);
+        $this->app->instance(AnimeDataProvider::class, $mockProvider);
+
+        $animeDto = new AnimeDto(
+            malId: 2,
+            title: 'Test Anime 2',
+            type: AnimeTypeEnum::TV,
+            status: AnimeStatusEnum::AIRING,
+        );
+
+        $mockProvider->shouldReceive('getAnime')->once()->andReturn($animeDto);
+
+        $job = new ImportAnimeJob(2, false, true);
+        $job->handle($this->app->make(\App\Services\AnimeImport\AnimeImportService::class));
+
+        Bus::assertChained([
+            ImportEpisodesJob::class,
+            ImportCharactersStaffJob::class,
+            ImportVideosJob::class,
+            DownloadAnimeImagesJob::class,
+            TranslateAnimeJob::class,
+        ]);
     }
 }

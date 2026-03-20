@@ -2,7 +2,6 @@
 
 namespace App\Console\Commands\Imports;
 
-use App\Jobs\DownloadAnimeImagesJob;
 use App\Services\AnimeImport\AnimeImportService;
 use Illuminate\Console\Command;
 
@@ -24,8 +23,7 @@ class ImportSeasonal extends Command
         {year : Year (e.g. 2024)}
         {season : Season name (winter, spring, summer, fall)}
         {--pages=1 : Number of pages to import}
-        {--force : Force update even if anime exists}
-        {--with-images : Download images after import}';
+        {--force : Force update even if anime exists}';
 
     /**
      * Execute the console command.
@@ -41,12 +39,6 @@ class ImportSeasonal extends Command
 
         try {
             $results = $importService->importSeasonalAnime($year, $season, $pages, $force);
-
-            if ($this->option('with-images')) {
-                foreach ($results as $anime) {
-                    DownloadAnimeImagesJob::dispatch($anime->id);
-                }
-            }
 
             $this->info('Successfully imported ' . count($results) . ' anime.');
 

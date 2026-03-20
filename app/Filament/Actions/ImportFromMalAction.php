@@ -29,7 +29,7 @@ class ImportFromMalAction extends Action
                     ->required(),
             ])
             ->action(function (array $data): void {
-                ImportAnimeJob::dispatch((int) $data['mal_id'], false, true, true);
+                ImportAnimeJob::dispatch((int) $data['mal_id'], false, true);
 
                 Notification::make()
                     ->title('Імпорт поставлено в чергу')

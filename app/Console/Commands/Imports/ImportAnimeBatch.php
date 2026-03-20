@@ -2,7 +2,6 @@
 
 namespace App\Console\Commands\Imports;
 
-use App\Jobs\DownloadAnimeImagesJob;
 use App\Jobs\ImportAnimeJob;
 use App\Services\AnimeImport\AnimeImportService;
 use Illuminate\Console\Command;
@@ -25,8 +24,7 @@ class ImportAnimeBatch extends Command
         {--from=1 : Starting MAL ID}
         {--to=100 : Ending MAL ID}
         {--force : Force update even if anime exists}
-        {--queue : Dispatch imports as queued jobs}
-        {--with-images : Download images after import}';
+        {--queue : Dispatch imports as queued jobs}';
 
     /**
      * Execute the console command.
@@ -36,13 +34,12 @@ class ImportAnimeBatch extends Command
         $from = (int) $this->option('from');
         $to = (int) $this->option('to');
         $force = $this->option('force');
-        $withImages = $this->option('with-images');
 
         $this->info("Importing anime from MAL ID {$from} to {$to}...");
 
         if ($this->option('queue')) {
             for ($malId = $from; $malId <= $to; $malId++) {
-                ImportAnimeJob::dispatch($malId, $force, $withImages);
+                ImportAnimeJob::dispatch($malId, $force);
             }
 
             $this->info('Dispatched ' . ($to - $from + 1) . ' import jobs.');
@@ -61,10 +58,6 @@ class ImportAnimeBatch extends Command
                 $anime = $importService->importAnimeByMalId($malId, $force);
                 if ($anime) {
                     $imported++;
-
-                    if ($withImages) {
-                        DownloadAnimeImagesJob::dispatch($anime->id);
-                    }
                 }
             } catch (\Exception $e) {
                 $errors++;

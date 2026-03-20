@@ -2,7 +2,6 @@
 
 namespace App\Console\Commands\Imports;
 
-use App\Jobs\DownloadAnimeImagesJob;
 use App\Services\AnimeImport\AnimeImportService;
 use Illuminate\Console\Command;
 
@@ -23,8 +22,7 @@ class ImportTopAnime extends Command
     protected $signature = 'import:top
         {--type=tv : Type of ranking (all, airing, upcoming, tv, movie, ova, special)}
         {--pages=1 : Number of pages to import}
-        {--force : Force update even if anime exists}
-        {--with-images : Download images after import}';
+        {--force : Force update even if anime exists}';
 
     /**
      * Execute the console command.
@@ -39,12 +37,6 @@ class ImportTopAnime extends Command
 
         try {
             $results = $importService->importTopAnime($type, $pages, $force);
-
-            if ($this->option('with-images')) {
-                foreach ($results as $anime) {
-                    DownloadAnimeImagesJob::dispatch($anime->id);
-                }
-            }
 
             $this->info('Successfully imported ' . count($results) . ' anime.');
 

@@ -4,7 +4,6 @@ namespace App\Filament\Resources\Animes\Tables;
 
 use App\Enums\AnimeStatusEnum;
 use App\Enums\AnimeTypeEnum;
-use App\Jobs\DownloadAnimeImagesJob;
 use App\Jobs\ImportAniDbEpisodeTitlesJob;
 use App\Jobs\ImportAniDbTitlesJob;
 use App\Jobs\ImportAnimeJob;
@@ -127,15 +126,7 @@ class AnimesTable
                         'Повторний імпорт',
                         Heroicon::OutlinedArrowPath,
                         'Повторний імпорт поставлено в чергу',
-                        fn (Anime $record) => ImportAnimeJob::dispatch($record->mal_id, true, true, false),
-                        'warning'
-                    ),
-                    self::dispatchAction(
-                        'reimport_images',
-                        'Повторний імпорт зображень',
-                        Heroicon::OutlinedPhoto,
-                        'Завантаження зображень поставлено в чергу',
-                        fn (Anime $record) => DownloadAnimeImagesJob::dispatch($record->id),
+                        fn (Anime $record) => ImportAnimeJob::dispatch($record->mal_id, true),
                         'warning'
                     ),
                     self::dispatchAction(

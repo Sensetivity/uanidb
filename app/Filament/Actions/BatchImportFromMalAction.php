@@ -48,7 +48,7 @@ class BatchImportFromMalAction extends Action
                 }
 
                 foreach ($ids as $malId) {
-                    ImportAnimeJob::dispatch($malId, false, true, true);
+                    ImportAnimeJob::dispatch($malId, false, true);
                 }
 
                 $count = count($ids);

@@ -2,36 +2,15 @@
 
 namespace Tests\Feature;
 
-use App\Jobs\DownloadAnimeImagesJob;
 use App\Models\Anime;
 use App\Services\AnimeImport\AnimeImportService;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Support\Facades\Queue;
 use Mockery;
 use Tests\TestCase;
 
 class ImportTopAnimeCommandTest extends TestCase
 {
     use RefreshDatabase;
-
-    public function test_dispatches_image_jobs_with_flag(): void
-    {
-        Queue::fake();
-
-        $anime1 = Anime::factory()->create();
-        $anime2 = Anime::factory()->create();
-
-        $mock = Mockery::mock(AnimeImportService::class);
-        $mock->shouldReceive('importTopAnime')
-            ->once()
-            ->andReturn([$anime1, $anime2]);
-        $this->app->instance(AnimeImportService::class, $mock);
-
-        $this->artisan('import:top', ['--with-images' => true])
-            ->assertExitCode(0);
-
-        Queue::assertPushed(DownloadAnimeImagesJob::class, 2);
-    }
 
     public function test_fails_gracefully_on_exception(): void
     {

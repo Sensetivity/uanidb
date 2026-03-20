@@ -22,7 +22,6 @@ class ImportAnimeJob implements ShouldQueue
     public function __construct(
         private readonly int $malId,
         private readonly bool $forceUpdate = false,
-        private readonly bool $downloadImages = false,
         private readonly bool $translate = false,
     ) {}
 
@@ -45,11 +44,8 @@ class ImportAnimeJob implements ShouldQueue
                 new ImportEpisodesJob($anime->id),
                 new ImportCharactersStaffJob($anime->id),
                 new ImportVideosJob($anime->id),
+                new DownloadAnimeImagesJob($anime->id),
             ];
-
-            if ($this->downloadImages) {
-                $jobs[] = new DownloadAnimeImagesJob($anime->id);
-            }
 
             if ($this->translate) {
                 $jobs[] = new TranslateAnimeJob($anime->id);
