@@ -15,6 +15,7 @@ use Spatie\Activitylog\Traits\LogsActivity;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 /**
  * Class Character
@@ -27,7 +28,7 @@ use Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection;
  * @property string $slug URL-friendly name
  * @property string|null $japanese_name Character's name in Japanese
  * @property string|null $about Character description/biography
- * @property string|null $image_url URL to the character's image
+ * @property string|null $source_image_url Original image URL from API
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
  * @property Carbon|null $deleted_at
@@ -103,6 +104,24 @@ class Character extends BaseModel implements HasMedia
     }
 
     /**
+     * Register media conversions for image processing.
+     */
+    public function registerMediaConversions(?Media $media = null): void
+    {
+        $this->addMediaConversion('thumbnail')
+            ->width(100)
+            ->height(140)
+            ->sharpen(10)
+            ->nonQueued();
+
+        $this->addMediaConversion('medium')
+            ->width(225)
+            ->height(350)
+            ->sharpen(10)
+            ->nonQueued();
+    }
+
+    /**
      * Get reviews for this character.
      *
      * @return MorphMany
@@ -144,6 +163,6 @@ class Character extends BaseModel implements HasMedia
      */
     protected function imageDisplayUrl(): Attribute
     {
-        return Attribute::get(fn (): ?string => $this->getFirstMediaUrl('main_image') ?: $this->image_url);
+        return Attribute::get(fn (): ?string => $this->getFirstMediaUrl('main_image') ?: $this->source_image_url);
     }
 }

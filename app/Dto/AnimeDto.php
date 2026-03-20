@@ -118,7 +118,7 @@ class AnimeDto
             'score' => $this->score,
             'rank' => $this->rank,
             'popularity' => $this->popularity,
-            'image_url' => $this->imageUrl,
+            'source_image_url' => $this->imageUrl,
         ];
     }
 

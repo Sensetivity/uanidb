@@ -50,7 +50,7 @@ class DownloadAnimeImagesJob implements ShouldQueue
 
             Log::info("DownloadAnimeImagesJob: Processing poster + {$characterCount} character(s) + {$personIds->count()} person(s) for '{$anime->title}'.");
 
-            $this->downloadImage($anime, $anime->image_url, 'main_poster');
+            $this->downloadImage($anime, $anime->source_image_url, 'main_poster');
             Log::info("DownloadAnimeImagesJob: Poster done for '{$anime->title}'.");
 
             $charactersDownloaded = 0;
@@ -58,7 +58,7 @@ class DownloadAnimeImagesJob implements ShouldQueue
                 foreach ($characters as $character) {
                     usleep($delay * 1000);
                     $before = $character->hasMedia('main_image');
-                    $this->downloadImage($character, $character->image_url, 'main_image');
+                    $this->downloadImage($character, $character->source_image_url, 'main_image');
                     if (! $before && $character->fresh()->hasMedia('main_image')) {
                         $charactersDownloaded++;
                     }
@@ -71,7 +71,7 @@ class DownloadAnimeImagesJob implements ShouldQueue
                 foreach ($people as $person) {
                     usleep($delay * 1000);
                     $before = $person->hasMedia('main_image');
-                    $this->downloadImage($person, $person->image_url, 'main_image');
+                    $this->downloadImage($person, $person->source_image_url, 'main_image');
                     if (! $before && $person->fresh()->hasMedia('main_image')) {
                         $peopleDownloaded++;
                     }

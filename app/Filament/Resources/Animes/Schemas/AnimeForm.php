@@ -77,8 +77,8 @@ class AnimeForm
                     ->label('Опис (українською)')
                     ->rows(5)
                     ->columnSpanFull(),
-                TextInput::make('image_url')
-                    ->label('URL зображення')
+                TextInput::make('source_image_url')
+                    ->label('URL джерела зображення')
                     ->url()
                     ->maxLength(500)
                     ->columnSpanFull(),

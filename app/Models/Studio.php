@@ -3,14 +3,19 @@
 namespace App\Models;
 
 use Cviebrock\EloquentSluggable\Sluggable;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Spatie\Activitylog\LogOptions;
 use Spatie\Activitylog\Traits\LogsActivity;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
-class Studio extends BaseModel
+class Studio extends BaseModel implements HasMedia
 {
     use HasFactory;
+    use InteractsWithMedia;
     use LogsActivity;
     use Sluggable;
 
@@ -53,6 +58,27 @@ class Studio extends BaseModel
     }
 
     /**
+     * Register media collections.
+     */
+    public function registerMediaCollections(): void
+    {
+        $this->addMediaCollection('logo')
+            ->singleFile();
+    }
+
+    /**
+     * Register media conversions for image processing.
+     */
+    public function registerMediaConversions(?Media $media = null): void
+    {
+        $this->addMediaConversion('thumbnail')
+            ->width(100)
+            ->height(100)
+            ->sharpen(10)
+            ->nonQueued();
+    }
+
+    /**
      * Return the sluggable configuration array for this model.
      *
      * @return array
@@ -65,5 +91,13 @@ class Studio extends BaseModel
                 'onUpdate' => false,
             ]
         ];
+    }
+
+    /**
+     * Get the display logo URL, preferring media library over source_logo_url.
+     */
+    protected function logoDisplayUrl(): Attribute
+    {
+        return Attribute::get(fn (): ?string => $this->getFirstMediaUrl('logo') ?: $this->source_logo_url);
     }
 }

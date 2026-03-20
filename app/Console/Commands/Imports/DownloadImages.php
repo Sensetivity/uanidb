@@ -53,7 +53,7 @@ class DownloadImages extends Command
         $chunk = (int) $this->option('chunk');
 
         $query = Anime::query()
-            ->whereNotNull('image_url')
+            ->whereNotNull('source_image_url')
             ->whereDoesntHave('media', function ($q) {
                 $q->where('collection_name', 'main_poster');
             });

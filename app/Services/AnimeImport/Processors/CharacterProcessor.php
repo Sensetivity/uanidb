@@ -25,7 +25,7 @@ class CharacterProcessor implements RelationProcessor
                 ['mal_id' => $charDto->malId],
                 [
                     'name' => $charDto->name,
-                    'image_url' => $charDto->imageUrl,
+                    'source_image_url' => $charDto->imageUrl,
                 ],
             );
 
@@ -36,7 +36,7 @@ class CharacterProcessor implements RelationProcessor
                     ['mal_id' => $vaDto->malId],
                     [
                         'name' => $vaDto->name,
-                        'image_url' => $vaDto->imageUrl,
+                        'source_image_url' => $vaDto->imageUrl,
                     ],
                 );
 

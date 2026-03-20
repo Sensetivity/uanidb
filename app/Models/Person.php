@@ -11,6 +11,7 @@ use Spatie\Activitylog\LogOptions;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 /**
  * Class Person
@@ -23,7 +24,7 @@ use Spatie\MediaLibrary\InteractsWithMedia;
  * @property string $slug URL-friendly name
  * @property string|null $japanese_name Person's name in Japanese
  * @property string|null $about Person description/biography
- * @property string|null $image_url URL to the person's image
+ * @property string|null $source_image_url Original image URL from API
  * @property \Carbon\Carbon|null $birth_date Birth date
  * @property \Carbon\Carbon|null $created_at
  * @property \Carbon\Carbon|null $updated_at
@@ -91,6 +92,24 @@ class Person extends BaseModel implements HasMedia
     }
 
     /**
+     * Register media conversions for image processing.
+     */
+    public function registerMediaConversions(?Media $media = null): void
+    {
+        $this->addMediaConversion('thumbnail')
+            ->width(100)
+            ->height(140)
+            ->sharpen(10)
+            ->nonQueued();
+
+        $this->addMediaConversion('medium')
+            ->width(225)
+            ->height(350)
+            ->sharpen(10)
+            ->nonQueued();
+    }
+
+    /**
      * Get reviews for this person.
      */
     public function reviews(): MorphMany
@@ -128,6 +147,6 @@ class Person extends BaseModel implements HasMedia
      */
     protected function imageDisplayUrl(): Attribute
     {
-        return Attribute::get(fn (): ?string => $this->getFirstMediaUrl('main_image') ?: $this->image_url);
+        return Attribute::get(fn (): ?string => $this->getFirstMediaUrl('main_image') ?: $this->source_image_url);
     }
 }

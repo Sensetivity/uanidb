@@ -21,7 +21,7 @@ class StaffProcessor implements RelationProcessor
                 ['mal_id' => $personDto->malId],
                 [
                     'name' => $personDto->name,
-                    'image_url' => $personDto->imageUrl,
+                    'source_image_url' => $personDto->imageUrl,
                 ],
             );
 

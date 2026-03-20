@@ -3,8 +3,6 @@
 namespace App\Filament\Resources\People\Tables;
 
 use App\Models\Person;
-use Filament\Actions\Action;
-use Filament\Actions\ActionGroup;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
@@ -12,8 +10,6 @@ use Filament\Actions\ForceDeleteBulkAction;
 use Filament\Actions\RestoreAction;
 use Filament\Actions\RestoreBulkAction;
 use Filament\Actions\ViewAction;
-use Filament\Notifications\Notification;
-use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\TrashedFilter;
@@ -60,34 +56,6 @@ class PeopleTable
                 ViewAction::make()->iconButton(),
                 EditAction::make()->iconButton(),
                 RestoreAction::make()->iconButton(),
-                ActionGroup::make([
-                    Action::make('download_image')
-                        ->label('Завантажити зображення')
-                        ->icon(Heroicon::OutlinedPhoto)
-                        ->color('gray')
-                        ->visible()
-                        ->action(function (Person $record): void {
-                            if (!$record->image_url) {
-                                Notification::make()
-                                    ->title('URL зображення відсутній')
-                                    ->warning()
-                                    ->send();
-
-                                return;
-                            }
-
-                            $record->clearMediaCollection('main_image');
-                            $record->addMediaFromUrl($record->image_url)
-                                ->toMediaCollection('main_image');
-
-                            Notification::make()
-                                ->title('Зображення завантажено')
-                                ->success()
-                                ->send();
-                        }),
-                ])
-                    ->icon(Heroicon::OutlinedEllipsisVertical)
-                    ->tooltip('Більше дій'),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([

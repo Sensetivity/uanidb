@@ -21,8 +21,8 @@ class StudioForm
                 Textarea::make('about')
                     ->rows(4)
                     ->columnSpanFull(),
-                TextInput::make('logo_url')
-                    ->label('Logo URL')
+                TextInput::make('source_logo_url')
+                    ->label('URL джерела логотипу')
                     ->url()
                     ->maxLength(500),
                 TextInput::make('website')

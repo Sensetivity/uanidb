@@ -50,7 +50,7 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
  * @property float|null $score Average user score
  * @property int|null $rank Popularity rank
  * @property float|null $popularity Popularity score
- * @property string|null $image_url URL to the anime image
+ * @property string|null $source_image_url Original image URL from API
  * @property Carbon|null $last_synced_at When last successfully synced from API
  * @property float $sync_priority Cached priority score for sync ordering
  * @property int $failed_sync_count Consecutive sync failures for backoff
@@ -271,6 +271,12 @@ class Anime extends BaseModel implements HasMedia
             ->height(350)
             ->sharpen(10)
             ->nonQueued();
+
+        $this->addMediaConversion('large')
+            ->width(450)
+            ->height(700)
+            ->sharpen(10)
+            ->nonQueued();
     }
 
     /**
@@ -380,6 +386,6 @@ class Anime extends BaseModel implements HasMedia
      */
     protected function posterUrl(): Attribute
     {
-        return Attribute::get(fn (): ?string => $this->getFirstMediaUrl('main_poster') ?: $this->image_url);
+        return Attribute::get(fn (): ?string => $this->getFirstMediaUrl('main_poster') ?: $this->source_image_url);
     }
 }

@@ -15,7 +15,7 @@ class DownloadAnimeImagesJobTest extends TestCase
     public function test_job_continues_after_single_image_failure(): void
     {
         $anime = Anime::factory()->create([
-            'image_url' => 'https://invalid-domain-that-does-not-exist.test/image.jpg',
+            'source_image_url' => 'https://invalid-domain-that-does-not-exist.test/image.jpg',
         ]);
 
         Log::shouldReceive('warning')
@@ -44,9 +44,9 @@ class DownloadAnimeImagesJobTest extends TestCase
         $job->handle();
     }
 
-    public function test_job_skips_anime_with_no_image_url(): void
+    public function test_job_skips_anime_with_no_source_image_url(): void
     {
-        $anime = Anime::factory()->create(['image_url' => null]);
+        $anime = Anime::factory()->create(['source_image_url' => null]);
 
         $job = new DownloadAnimeImagesJob($anime->id);
         $job->handle();
