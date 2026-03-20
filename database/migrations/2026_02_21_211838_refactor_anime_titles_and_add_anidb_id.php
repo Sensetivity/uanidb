@@ -10,6 +10,7 @@ return new class () extends Migration
     public function down(): void
     {
         Schema::table('animes', function (Blueprint $table): void {
+            $table->dropUnique(['anidb_id']);
             $table->dropColumn('anidb_id');
         });
 

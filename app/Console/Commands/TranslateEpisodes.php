@@ -35,7 +35,7 @@ class TranslateEpisodes extends Command
         $query = Episode::query();
 
         if ($animeId) {
-            $anime = Anime::find((int) $animeId);
+            $anime = Anime::query()->find((int) $animeId);
 
             if (!$anime) {
                 $this->error("Anime with ID {$animeId} not found.");

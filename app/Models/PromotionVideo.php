@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use App\Enums\PromotionVideoTypeEnum;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
@@ -23,8 +22,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  */
 class PromotionVideo extends BaseModel
 {
-    use HasFactory;
-
     /**
      * The attributes that should be cast.
      *
