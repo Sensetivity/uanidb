@@ -5,15 +5,14 @@ namespace App\Services\Transliteration\Legacy;
 use App\Contracts\Services\Transliteration\TransliterationProvider;
 use App\Enums\ScriptTypeEnum;
 use App\Enums\TransliterationSystemEnum;
-use App\Feature\Transliterator\TransliterationService as LegacyService;
 
 class LegacyTransliterationProvider implements TransliterationProvider
 {
-    private LegacyService $legacy;
+    private LegacyTransliterationService $legacy;
 
     public function __construct()
     {
-        $this->legacy = new LegacyService();
+        $this->legacy = new LegacyTransliterationService();
     }
 
     public function system(): TransliterationSystemEnum
