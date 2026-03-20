@@ -4,12 +4,6 @@
 
 @php $activeNav = ''; @endphp
 
-@push('styles')
-<style>
-  .scrollbar-hide::-webkit-scrollbar { display: none; }
-  .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
-</style>
-@endpush
 
 @section('content')
   <!-- Profile Header -->

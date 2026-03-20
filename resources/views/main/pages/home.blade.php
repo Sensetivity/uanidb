@@ -4,14 +4,6 @@
 
 @section('title', 'УкрАніме - Українська База Аніме')
 
-@push('styles')
-<style>
-    .gradient-border { background: linear-gradient(135deg, #06b6d4, #8b5cf6); padding: 2px; }
-    .card-hover { transition: all 0.3s ease; }
-    .card-hover:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(0,0,0,0.4); }
-</style>
-@endpush
-
 @section('content')
   <!-- Hero Section -->
   <section class="relative overflow-hidden">
@@ -150,21 +142,7 @@
                 <span class="px-2 py-1 bg-slate-800/80 backdrop-blur-sm text-xs rounded-lg">Виходить</span>
               </div>
             </div>
-            <div class="absolute bottom-3 right-3 z-10 opacity-0 group-hover:opacity-100 transition-opacity list-menu-container">
-              <div class="relative">
-                <button type="button" onclick="toggleListMenu(event, this)" class="w-8 h-8 bg-slate-900/90 backdrop-blur-sm rounded-lg flex items-center justify-center hover:bg-cyan-500 transition-colors">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" /></svg>
-                </button>
-                <div class="list-dropdown hidden absolute bottom-full right-0 mb-2 w-44 bg-slate-800 border border-slate-700 rounded-xl shadow-2xl overflow-hidden" onclick="event.stopPropagation()">
-                  <button type="button" class="w-full px-4 py-2.5 text-left text-sm text-gray-300 hover:bg-slate-700 hover:text-cyan-400 transition-colors flex items-center gap-3"><span class="text-cyan-400">▶</span> Дивлюсь</button>
-                  <button type="button" class="w-full px-4 py-2.5 text-left text-sm text-gray-300 hover:bg-slate-700 hover:text-cyan-400 transition-colors flex items-center gap-3"><span class="text-amber-400">📋</span> Заплановано</button>
-                  <button type="button" class="w-full px-4 py-2.5 text-left text-sm text-gray-300 hover:bg-slate-700 hover:text-cyan-400 transition-colors flex items-center gap-3"><span class="text-green-400">✓</span> Переглянуто</button>
-                  <button type="button" class="w-full px-4 py-2.5 text-left text-sm text-gray-300 hover:bg-slate-700 hover:text-cyan-400 transition-colors flex items-center gap-3"><span class="text-red-400">✗</span> Кинув</button>
-                  <div class="border-t border-slate-700"></div>
-                  <button type="button" class="w-full px-4 py-2.5 text-left text-sm text-gray-300 hover:bg-slate-700 hover:text-red-400 transition-colors flex items-center gap-3"><span class="text-red-400">♥</span> Улюблене</button>
-                </div>
-              </div>
-            </div>
+            @include('main.components.anime-list-menu')
           </div>
           <h3 class="font-semibold text-gray-200 group-hover:text-cyan-400 transition-colors line-clamp-2">Frieren: Похоронний обряд</h3>
           <p class="text-sm text-gray-500">ТБ, 2024</p>
@@ -197,21 +175,7 @@
                 <span class="px-2 py-1 bg-slate-800/80 backdrop-blur-sm text-xs rounded-lg">Виходить</span>
               </div>
             </div>
-            <div class="absolute bottom-3 right-3 z-10 opacity-0 group-hover:opacity-100 transition-opacity list-menu-container">
-              <div class="relative">
-                <button type="button" onclick="toggleListMenu(event, this)" class="w-8 h-8 bg-slate-900/90 backdrop-blur-sm rounded-lg flex items-center justify-center hover:bg-cyan-500 transition-colors">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" /></svg>
-                </button>
-                <div class="list-dropdown hidden absolute bottom-full right-0 mb-2 w-44 bg-slate-800 border border-slate-700 rounded-xl shadow-2xl overflow-hidden" onclick="event.stopPropagation()">
-                  <button type="button" class="w-full px-4 py-2.5 text-left text-sm text-gray-300 hover:bg-slate-700 hover:text-cyan-400 transition-colors flex items-center gap-3"><span class="text-cyan-400">▶</span> Дивлюсь</button>
-                  <button type="button" class="w-full px-4 py-2.5 text-left text-sm text-gray-300 hover:bg-slate-700 hover:text-cyan-400 transition-colors flex items-center gap-3"><span class="text-amber-400">📋</span> Заплановано</button>
-                  <button type="button" class="w-full px-4 py-2.5 text-left text-sm text-gray-300 hover:bg-slate-700 hover:text-cyan-400 transition-colors flex items-center gap-3"><span class="text-green-400">✓</span> Переглянуто</button>
-                  <button type="button" class="w-full px-4 py-2.5 text-left text-sm text-gray-300 hover:bg-slate-700 hover:text-cyan-400 transition-colors flex items-center gap-3"><span class="text-red-400">✗</span> Кинув</button>
-                  <div class="border-t border-slate-700"></div>
-                  <button type="button" class="w-full px-4 py-2.5 text-left text-sm text-gray-300 hover:bg-slate-700 hover:text-red-400 transition-colors flex items-center gap-3"><span class="text-red-400">♥</span> Улюблене</button>
-                </div>
-              </div>
-            </div>
+            @include('main.components.anime-list-menu')
           </div>
           <h3 class="font-semibold text-gray-200 group-hover:text-cyan-400 transition-colors line-clamp-2">Solo Leveling</h3>
           <p class="text-sm text-gray-500">ТБ, 2024</p>
@@ -241,21 +205,7 @@
               <div class="absolute top-3 left-3 px-2 py-1 bg-cyan-500 text-white text-xs font-bold rounded-lg">9.1</div>
               <div class="absolute top-3 right-3 px-2 py-1 bg-slate-700/90 text-white text-xs font-bold rounded-lg">#3</div>
             </div>
-            <div class="absolute bottom-3 right-3 z-10 opacity-0 group-hover:opacity-100 transition-opacity list-menu-container">
-              <div class="relative">
-                <button type="button" onclick="toggleListMenu(event, this)" class="w-8 h-8 bg-slate-900/90 backdrop-blur-sm rounded-lg flex items-center justify-center hover:bg-cyan-500 transition-colors">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" /></svg>
-                </button>
-                <div class="list-dropdown hidden absolute bottom-full right-0 mb-2 w-44 bg-slate-800 border border-slate-700 rounded-xl shadow-2xl overflow-hidden" onclick="event.stopPropagation()">
-                  <button type="button" class="w-full px-4 py-2.5 text-left text-sm text-gray-300 hover:bg-slate-700 hover:text-cyan-400 transition-colors flex items-center gap-3"><span class="text-cyan-400">▶</span> Дивлюсь</button>
-                  <button type="button" class="w-full px-4 py-2.5 text-left text-sm text-gray-300 hover:bg-slate-700 hover:text-cyan-400 transition-colors flex items-center gap-3"><span class="text-amber-400">📋</span> Заплановано</button>
-                  <button type="button" class="w-full px-4 py-2.5 text-left text-sm text-gray-300 hover:bg-slate-700 hover:text-cyan-400 transition-colors flex items-center gap-3"><span class="text-green-400">✓</span> Переглянуто</button>
-                  <button type="button" class="w-full px-4 py-2.5 text-left text-sm text-gray-300 hover:bg-slate-700 hover:text-cyan-400 transition-colors flex items-center gap-3"><span class="text-red-400">✗</span> Кинув</button>
-                  <div class="border-t border-slate-700"></div>
-                  <button type="button" class="w-full px-4 py-2.5 text-left text-sm text-gray-300 hover:bg-slate-700 hover:text-red-400 transition-colors flex items-center gap-3"><span class="text-red-400">♥</span> Улюблене</button>
-                </div>
-              </div>
-            </div>
+            @include('main.components.anime-list-menu')
           </div>
           <h3 class="font-semibold text-gray-200 group-hover:text-cyan-400 transition-colors line-clamp-2">Клинок, що знищує демонів S4</h3>
           <p class="text-sm text-gray-500">ТБ, 2024</p>
@@ -285,21 +235,7 @@
               <div class="absolute top-3 left-3 px-2 py-1 bg-cyan-500 text-white text-xs font-bold rounded-lg">8.9</div>
               <div class="absolute top-3 right-3 px-2 py-1 bg-slate-700/90 text-white text-xs font-bold rounded-lg">#4</div>
             </div>
-            <div class="absolute bottom-3 right-3 z-10 opacity-0 group-hover:opacity-100 transition-opacity list-menu-container">
-              <div class="relative">
-                <button type="button" onclick="toggleListMenu(event, this)" class="w-8 h-8 bg-slate-900/90 backdrop-blur-sm rounded-lg flex items-center justify-center hover:bg-cyan-500 transition-colors">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" /></svg>
-                </button>
-                <div class="list-dropdown hidden absolute bottom-full right-0 mb-2 w-44 bg-slate-800 border border-slate-700 rounded-xl shadow-2xl overflow-hidden" onclick="event.stopPropagation()">
-                  <button type="button" class="w-full px-4 py-2.5 text-left text-sm text-gray-300 hover:bg-slate-700 hover:text-cyan-400 transition-colors flex items-center gap-3"><span class="text-cyan-400">▶</span> Дивлюсь</button>
-                  <button type="button" class="w-full px-4 py-2.5 text-left text-sm text-gray-300 hover:bg-slate-700 hover:text-cyan-400 transition-colors flex items-center gap-3"><span class="text-amber-400">📋</span> Заплановано</button>
-                  <button type="button" class="w-full px-4 py-2.5 text-left text-sm text-gray-300 hover:bg-slate-700 hover:text-cyan-400 transition-colors flex items-center gap-3"><span class="text-green-400">✓</span> Переглянуто</button>
-                  <button type="button" class="w-full px-4 py-2.5 text-left text-sm text-gray-300 hover:bg-slate-700 hover:text-cyan-400 transition-colors flex items-center gap-3"><span class="text-red-400">✗</span> Кинув</button>
-                  <div class="border-t border-slate-700"></div>
-                  <button type="button" class="w-full px-4 py-2.5 text-left text-sm text-gray-300 hover:bg-slate-700 hover:text-red-400 transition-colors flex items-center gap-3"><span class="text-red-400">♥</span> Улюблене</button>
-                </div>
-              </div>
-            </div>
+            @include('main.components.anime-list-menu')
           </div>
           <h3 class="font-semibold text-gray-200 group-hover:text-cyan-400 transition-colors line-clamp-2">Дзюцу Кайсен S2</h3>
           <p class="text-sm text-gray-500">ТБ, 2024</p>
@@ -332,21 +268,7 @@
                 <span class="px-2 py-1 bg-slate-800/80 backdrop-blur-sm text-xs rounded-lg">Виходить</span>
               </div>
             </div>
-            <div class="absolute bottom-3 right-3 z-10 opacity-0 group-hover:opacity-100 transition-opacity list-menu-container">
-              <div class="relative">
-                <button type="button" onclick="toggleListMenu(event, this)" class="w-8 h-8 bg-slate-900/90 backdrop-blur-sm rounded-lg flex items-center justify-center hover:bg-cyan-500 transition-colors">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" /></svg>
-                </button>
-                <div class="list-dropdown hidden absolute bottom-full right-0 mb-2 w-44 bg-slate-800 border border-slate-700 rounded-xl shadow-2xl overflow-hidden" onclick="event.stopPropagation()">
-                  <button type="button" class="w-full px-4 py-2.5 text-left text-sm text-gray-300 hover:bg-slate-700 hover:text-cyan-400 transition-colors flex items-center gap-3"><span class="text-cyan-400">▶</span> Дивлюсь</button>
-                  <button type="button" class="w-full px-4 py-2.5 text-left text-sm text-gray-300 hover:bg-slate-700 hover:text-cyan-400 transition-colors flex items-center gap-3"><span class="text-amber-400">📋</span> Заплановано</button>
-                  <button type="button" class="w-full px-4 py-2.5 text-left text-sm text-gray-300 hover:bg-slate-700 hover:text-cyan-400 transition-colors flex items-center gap-3"><span class="text-green-400">✓</span> Переглянуто</button>
-                  <button type="button" class="w-full px-4 py-2.5 text-left text-sm text-gray-300 hover:bg-slate-700 hover:text-cyan-400 transition-colors flex items-center gap-3"><span class="text-red-400">✗</span> Кинув</button>
-                  <div class="border-t border-slate-700"></div>
-                  <button type="button" class="w-full px-4 py-2.5 text-left text-sm text-gray-300 hover:bg-slate-700 hover:text-red-400 transition-colors flex items-center gap-3"><span class="text-red-400">♥</span> Улюблене</button>
-                </div>
-              </div>
-            </div>
+            @include('main.components.anime-list-menu')
           </div>
           <h3 class="font-semibold text-gray-200 group-hover:text-cyan-400 transition-colors line-clamp-2">Ван Піс</h3>
           <p class="text-sm text-gray-500">ТБ, 1999</p>
@@ -376,21 +298,7 @@
               <div class="absolute top-3 left-3 px-2 py-1 bg-cyan-500 text-white text-xs font-bold rounded-lg">8.7</div>
               <div class="absolute top-3 right-3 px-2 py-1 bg-slate-700/90 text-white text-xs font-bold rounded-lg">#6</div>
             </div>
-            <div class="absolute bottom-3 right-3 z-10 opacity-0 group-hover:opacity-100 transition-opacity list-menu-container">
-              <div class="relative">
-                <button type="button" onclick="toggleListMenu(event, this)" class="w-8 h-8 bg-slate-900/90 backdrop-blur-sm rounded-lg flex items-center justify-center hover:bg-cyan-500 transition-colors">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" /></svg>
-                </button>
-                <div class="list-dropdown hidden absolute bottom-full right-0 mb-2 w-44 bg-slate-800 border border-slate-700 rounded-xl shadow-2xl overflow-hidden" onclick="event.stopPropagation()">
-                  <button type="button" class="w-full px-4 py-2.5 text-left text-sm text-gray-300 hover:bg-slate-700 hover:text-cyan-400 transition-colors flex items-center gap-3"><span class="text-cyan-400">▶</span> Дивлюсь</button>
-                  <button type="button" class="w-full px-4 py-2.5 text-left text-sm text-gray-300 hover:bg-slate-700 hover:text-cyan-400 transition-colors flex items-center gap-3"><span class="text-amber-400">📋</span> Заплановано</button>
-                  <button type="button" class="w-full px-4 py-2.5 text-left text-sm text-gray-300 hover:bg-slate-700 hover:text-cyan-400 transition-colors flex items-center gap-3"><span class="text-green-400">✓</span> Переглянуто</button>
-                  <button type="button" class="w-full px-4 py-2.5 text-left text-sm text-gray-300 hover:bg-slate-700 hover:text-cyan-400 transition-colors flex items-center gap-3"><span class="text-red-400">✗</span> Кинув</button>
-                  <div class="border-t border-slate-700"></div>
-                  <button type="button" class="w-full px-4 py-2.5 text-left text-sm text-gray-300 hover:bg-slate-700 hover:text-red-400 transition-colors flex items-center gap-3"><span class="text-red-400">♥</span> Улюблене</button>
-                </div>
-              </div>
-            </div>
+            @include('main.components.anime-list-menu')
           </div>
           <h3 class="font-semibold text-gray-200 group-hover:text-cyan-400 transition-colors line-clamp-2">Oshi no Ko S2</h3>
           <p class="text-sm text-gray-500">ТБ, 2024</p>
