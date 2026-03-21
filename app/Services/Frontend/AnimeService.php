@@ -2,7 +2,9 @@
 
 namespace App\Services\Frontend;
 
+use App\Dto\AnimeFilterDto;
 use App\Enums\AnimeTypeEnum;
+use App\Enums\RankingCategoryEnum;
 use App\Models\Anime;
 use App\Models\Season;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
@@ -30,38 +32,21 @@ class AnimeService
         return $anime;
     }
 
-    /**
-     * @param  array{
-     *     search?: string,
-     *     types?: int[],
-     *     statuses?: int[],
-     *     genres?: int[],
-     *     themes?: int[],
-     *     yearFrom?: int|null,
-     *     yearTo?: int|null,
-     *     minScore?: float|null,
-     *     sortBy?: string,
-     *     sortDirection?: string,
-     * }  $filters
-     */
-    public function getByFilters(array $filters, int $perPage = 24): LengthAwarePaginator
+    public function getByFilters(AnimeFilterDto $filters, int $perPage = 24): LengthAwarePaginator
     {
-        $sortBy = $filters['sortBy'] ?? 'popularity';
-        $sortDirection = $filters['sortDirection'] ?? 'desc';
-
         return Anime::query()
-            ->when($filters['search'] ?? null, fn ($q, $search) => $q->search($search))
-            ->when($filters['types'] ?? [], fn ($q, $types) => $q->byType($types))
-            ->when($filters['statuses'] ?? [], fn ($q, $statuses) => $q->byStatus($statuses))
-            ->when($filters['genres'] ?? [], fn ($q, $genres) => $q->byGenres($genres))
-            ->when($filters['themes'] ?? [], fn ($q, $themes) => $q->byThemes($themes))
+            ->when($filters->search, fn ($q, $search) => $q->search($search))
+            ->when($filters->types, fn ($q, $types) => $q->byType($types))
+            ->when($filters->statuses, fn ($q, $statuses) => $q->byStatus($statuses))
+            ->when($filters->genres, fn ($q, $genres) => $q->byGenres($genres))
+            ->when($filters->themes, fn ($q, $themes) => $q->byThemes($themes))
             ->when(
-                ($filters['yearFrom'] ?? null) || ($filters['yearTo'] ?? null),
-                fn ($q) => $q->byYearRange($filters['yearFrom'] ?? null, $filters['yearTo'] ?? null),
+                $filters->yearFrom || $filters->yearTo,
+                fn ($q) => $q->byYearRange($filters->yearFrom, $filters->yearTo),
             )
-            ->when($filters['minScore'] ?? null, fn ($q, $score) => $q->byMinScore($score))
+            ->when($filters->minScore, fn ($q, $score) => $q->byMinScore($score))
             ->with(['genres', 'studios', 'media'])
-            ->orderBy($sortBy, $sortDirection)
+            ->orderBy($filters->sortBy, $filters->sortDirection)
             ->paginate($perPage);
     }
 
@@ -77,15 +62,15 @@ class AnimeService
             ->get();
     }
 
-    public function getTopByCategory(string $category, int $perPage = 25): LengthAwarePaginator
+    public function getTopByCategory(RankingCategoryEnum $category, int $perPage = 25): LengthAwarePaginator
     {
         $query = Anime::query()->with(['genres', 'studios', 'media']);
 
         return match ($category) {
-            'popular' => $query->orderByDesc('popularity')->paginate($perPage),
-            'movies' => $query->byType(AnimeTypeEnum::MOVIE)->whereNotNull('score')->orderByDesc('score')->paginate($perPage),
-            'ova' => $query->byType(AnimeTypeEnum::OVA)->whereNotNull('score')->orderByDesc('score')->paginate($perPage),
-            default => $query->whereNotNull('score')->orderByDesc('score')->paginate($perPage),
+            RankingCategoryEnum::Popular => $query->orderByDesc('popularity')->paginate($perPage),
+            RankingCategoryEnum::Movies => $query->byType(AnimeTypeEnum::MOVIE)->whereNotNull('score')->orderByDesc('score')->paginate($perPage),
+            RankingCategoryEnum::Ova => $query->byType(AnimeTypeEnum::OVA)->whereNotNull('score')->orderByDesc('score')->paginate($perPage),
+            RankingCategoryEnum::Top => $query->whereNotNull('score')->orderByDesc('score')->paginate($perPage),
         };
     }
 

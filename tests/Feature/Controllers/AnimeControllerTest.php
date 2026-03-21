@@ -2,6 +2,9 @@
 
 namespace Tests\Feature\Controllers;
 
+use App\Dto\AnimeFilterDto;
+use App\Enums\AnimeTypeEnum;
+use App\Enums\RankingCategoryEnum;
 use App\Models\Anime;
 use App\Services\Frontend\AnimeService;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -17,18 +20,18 @@ class AnimeControllerTest extends TestCase
         Anime::factory()->create(['score' => 9.0]);
 
         $service = app(AnimeService::class);
-        $results = $service->getByFilters(['minScore' => 8.0]);
+        $results = $service->getByFilters(new AnimeFilterDto(minScore: 8.0));
 
         $this->assertEquals(1, $results->total());
     }
 
     public function test_service_filters_by_type(): void
     {
-        Anime::factory()->create(['type' => \App\Enums\AnimeTypeEnum::TV, 'score' => 8.0]);
-        Anime::factory()->create(['type' => \App\Enums\AnimeTypeEnum::MOVIE, 'score' => 9.0]);
+        Anime::factory()->create(['type' => AnimeTypeEnum::TV, 'score' => 8.0]);
+        Anime::factory()->create(['type' => AnimeTypeEnum::MOVIE, 'score' => 9.0]);
 
         $service = app(AnimeService::class);
-        $results = $service->getByFilters(['types' => [\App\Enums\AnimeTypeEnum::TV]]);
+        $results = $service->getByFilters(new AnimeFilterDto(types: [AnimeTypeEnum::TV]));
 
         $this->assertEquals(1, $results->total());
     }
@@ -48,11 +51,11 @@ class AnimeControllerTest extends TestCase
 
     public function test_service_returns_top_by_category(): void
     {
-        Anime::factory()->create(['type' => \App\Enums\AnimeTypeEnum::MOVIE, 'score' => 9.0]);
-        Anime::factory()->create(['type' => \App\Enums\AnimeTypeEnum::TV, 'score' => 8.0]);
+        Anime::factory()->create(['type' => AnimeTypeEnum::MOVIE, 'score' => 9.0]);
+        Anime::factory()->create(['type' => AnimeTypeEnum::TV, 'score' => 8.0]);
 
         $service = app(AnimeService::class);
-        $movies = $service->getTopByCategory('movies');
+        $movies = $service->getTopByCategory(RankingCategoryEnum::Movies);
 
         $this->assertEquals(1, $movies->total());
     }
@@ -63,7 +66,7 @@ class AnimeControllerTest extends TestCase
         Anime::factory()->create(['title' => 'One Piece']);
 
         $service = app(AnimeService::class);
-        $results = $service->getByFilters(['search' => 'Naruto']);
+        $results = $service->getByFilters(new AnimeFilterDto(search: 'Naruto'));
 
         $this->assertEquals(1, $results->total());
     }
