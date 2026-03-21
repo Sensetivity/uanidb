@@ -8,6 +8,7 @@ use App\Models\Person;
 use App\Models\Studio;
 use Illuminate\Contracts\Console\Kernel;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Support\Facades\DB;
 use Laravel\Dusk\Browser;
 use Tests\DuskTestCase;
 
@@ -17,7 +18,9 @@ class PublicPagesTest extends DuskTestCase
 
     public function runDatabaseMigrations(): void
     {
-        $this->artisan('migrate:fresh');
+        DB::statement('SET FOREIGN_KEY_CHECKS=0');
+        $this->artisan('migrate:fresh', ['--drop-views' => true]);
+        DB::statement('SET FOREIGN_KEY_CHECKS=1');
 
         $this->app[Kernel::class]->setArtisan(null);
     }

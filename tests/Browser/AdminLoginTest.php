@@ -5,6 +5,7 @@ namespace Tests\Browser;
 use App\Models\User;
 use Illuminate\Contracts\Console\Kernel;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Support\Facades\DB;
 use Laravel\Dusk\Browser;
 use Tests\DuskTestCase;
 
@@ -12,15 +13,11 @@ class AdminLoginTest extends DuskTestCase
 {
     use DatabaseMigrations;
 
-    /**
-     * Override trait's rollback behavior.
-     *
-     * migrate:fresh drops all tables at the start of each test, so rollback
-     * is unnecessary. This avoids down() method issues with index constraints.
-     */
     public function runDatabaseMigrations(): void
     {
-        $this->artisan('migrate:fresh');
+        DB::statement('SET FOREIGN_KEY_CHECKS=0');
+        $this->artisan('migrate:fresh', ['--drop-views' => true]);
+        DB::statement('SET FOREIGN_KEY_CHECKS=1');
 
         $this->app[Kernel::class]->setArtisan(null);
     }

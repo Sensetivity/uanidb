@@ -9,6 +9,7 @@ use App\Models\Episode;
 use App\Models\Person;
 use Illuminate\Contracts\Console\Kernel;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Support\Facades\DB;
 use Laravel\Dusk\Browser;
 use Tests\DuskTestCase;
 
@@ -18,7 +19,9 @@ class AnimeTabsE2ETest extends DuskTestCase
 
     public function runDatabaseMigrations(): void
     {
-        $this->artisan('migrate:fresh');
+        DB::statement('SET FOREIGN_KEY_CHECKS=0');
+        $this->artisan('migrate:fresh', ['--drop-views' => true]);
+        DB::statement('SET FOREIGN_KEY_CHECKS=1');
 
         $this->app[Kernel::class]->setArtisan(null);
     }
