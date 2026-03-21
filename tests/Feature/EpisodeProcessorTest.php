@@ -21,7 +21,11 @@ class EpisodeProcessorTest extends TestCase
     public function test_clear_force_deletes_all_episodes(): void
     {
         $anime = Anime::factory()->create();
-        Episode::factory()->count(3)->create(['anime_id' => $anime->id]);
+        Episode::factory()->count(3)->sequence(
+            ['number' => 1],
+            ['number' => 2],
+            ['number' => 3],
+        )->create(['anime_id' => $anime->id]);
 
         (new EpisodeProcessor())->clear($anime);
 
