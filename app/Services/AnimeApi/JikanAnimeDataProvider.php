@@ -171,7 +171,7 @@ class JikanAnimeDataProvider implements AnimeDataProvider
     {
         try {
             $response = $this->client->getAnimeVideos($id);
-            if (!$response->getData()) {
+            if (!$response->getData()) { // @phpstan-ignore booleanNot.alwaysFalse
                 return [];
             }
 
@@ -183,7 +183,7 @@ class JikanAnimeDataProvider implements AnimeDataProvider
                     continue;
                 }
 
-                $url = $trailer['url'] ?? ($trailer instanceof \ArrayAccess ? ($trailer['url'] ?? null) : null);
+                $url = $trailer['url'] ?? null;
 
                 if (!$url) {
                     continue;

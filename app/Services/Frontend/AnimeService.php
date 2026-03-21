@@ -55,6 +55,7 @@ class AnimeService
      */
     public function getForSeason(Season $season, ?string $typeFilter = null): Collection
     {
+        /** @var Collection<int, Anime> */
         return $season->animes()
             ->when($typeFilter && $typeFilter !== 'all', fn ($q) => $q->where('type', AnimeTypeEnum::fromString($typeFilter)))
             ->with(['genres', 'studios', 'media'])

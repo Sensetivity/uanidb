@@ -6,6 +6,20 @@ use App\Enums\WatchlistStatusEnum;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
+/**
+ * @property int $id
+ * @property int $user_id
+ * @property int $anime_id
+ * @property WatchlistStatusEnum $status
+ * @property int|null $score
+ * @property int|null $episode_progress
+ * @property bool $is_private
+ * @property \Carbon\Carbon|null $started_at
+ * @property \Carbon\Carbon|null $completed_at
+ * @property \Carbon\Carbon|null $created_at
+ * @property \Carbon\Carbon|null $updated_at
+ * @property \Carbon\Carbon|null $deleted_at
+ */
 class UserAnimeList extends BaseModel
 {
     use HasFactory;

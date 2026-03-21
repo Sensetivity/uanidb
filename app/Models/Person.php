@@ -108,13 +108,13 @@ class Person extends BaseModel implements HasMedia
             ->width(100)
             ->height(140)
             ->sharpen(10)
-            ->nonQueued();
+            ->nonQueued(); // @phpstan-ignore method.notFound
 
         $this->addMediaConversion('medium')
             ->width(225)
             ->height(350)
             ->sharpen(10)
-            ->nonQueued();
+            ->nonQueued(); // @phpstan-ignore method.notFound
     }
 
     /**

@@ -76,7 +76,7 @@ class VoiceActorsRelationManager extends RelationManager
                         }
 
                         if (! isset($animeCache[$animeId])) {
-                            $animeCache[$animeId] = Anime::query()->find($animeId)?->title ?? '—';
+                            $animeCache[$animeId] = Anime::query()->find($animeId)->title ?? '—';
                         }
 
                         return $animeCache[$animeId];

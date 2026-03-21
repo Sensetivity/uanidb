@@ -9,6 +9,18 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Spatie\Activitylog\LogOptions;
 use Spatie\Activitylog\Traits\LogsActivity;
 
+/**
+ * @property int $id
+ * @property int $year
+ * @property SeasonOfYearEnum $season_of_year
+ * @property string|null $start_date
+ * @property string|null $end_date
+ * @property bool $is_current
+ * @property \Carbon\Carbon|null $created_at
+ * @property \Carbon\Carbon|null $updated_at
+ * @property \Carbon\Carbon|null $deleted_at
+ * @property-read string $name
+ */
 class Season extends BaseModel
 {
     use HasFactory;

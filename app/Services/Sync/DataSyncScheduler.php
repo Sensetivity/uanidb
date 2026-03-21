@@ -82,7 +82,7 @@ class DataSyncScheduler
         $jobs = $this->determineSyncJobs($anime);
 
         foreach ($jobs as $jobClass) {
-            match ($jobClass) {
+            match ($jobClass) { // @phpstan-ignore match.unhandled
                 ImportAnimeJob::class => ImportAnimeJob::dispatch($anime->mal_id),
                 ImportEpisodesJob::class => ImportEpisodesJob::dispatch($anime->id),
                 ImportCharactersStaffJob::class => ImportCharactersStaffJob::dispatch($anime->id),

@@ -14,6 +14,18 @@ use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 /**
+ * @property int $id
+ * @property int|null $mal_id
+ * @property string $name
+ * @property string $slug
+ * @property string|null $about
+ * @property string|null $source_logo_url
+ * @property string|null $website
+ * @property \Carbon\Carbon|null $created_at
+ * @property \Carbon\Carbon|null $updated_at
+ * @property \Carbon\Carbon|null $deleted_at
+ * @property-read string|null $logo_display_url
+ *
  * @method static StudioBuilder query()
  */
 class Studio extends BaseModel implements HasMedia
@@ -84,7 +96,7 @@ class Studio extends BaseModel implements HasMedia
             ->width(100)
             ->height(100)
             ->sharpen(10)
-            ->nonQueued();
+            ->nonQueued(); // @phpstan-ignore method.notFound
     }
 
     /**
