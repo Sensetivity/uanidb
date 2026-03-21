@@ -1,10 +1,11 @@
 includes:
     - vendor/larastan/larastan/extension.neon
+    - phpstan-baseline.neon
 parameters:
     paths:
         - app/
     # Level from 0 to 9
-    level: 2
+    level: 7
 
 #
 #    excludePaths:
