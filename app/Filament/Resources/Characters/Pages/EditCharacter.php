@@ -31,7 +31,7 @@ class EditCharacter extends EditRecord
         ];
     }
 
-    private function handleImageUpload(Model $record): void
+    private function handleImageUpload(Model|int|string|null $record): void
     {
         $data = $this->form->getState();
         $imagePath = $data['main_image_upload'] ?? null;

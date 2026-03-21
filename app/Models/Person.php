@@ -39,7 +39,9 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
  */
 class Person extends BaseModel implements HasMedia
 {
+    /** @use HasFactory<\Database\Factories\PersonFactory> */
     use HasFactory;
+
     use InteractsWithMedia;
     use LogsActivity;
     use Sluggable;
@@ -62,6 +64,8 @@ class Person extends BaseModel implements HasMedia
 
     /**
      * Get anime where this person has a role (director, animator, etc).
+     *
+     * @return BelongsToMany<Anime, $this>
      */
     public function animes(): BelongsToMany
     {
@@ -72,8 +76,10 @@ class Person extends BaseModel implements HasMedia
 
     /**
      * Get anime where this person is a director.
+     *
+     * @return BelongsToMany<Anime, $this>
      */
-    public function directedAnimes()
+    public function directedAnimes(): BelongsToMany
     {
         return $this->animes()->wherePivot('role', 'Director');
     }
@@ -119,6 +125,8 @@ class Person extends BaseModel implements HasMedia
 
     /**
      * Get reviews for this person.
+     *
+     * @return MorphMany<Review, $this>
      */
     public function reviews(): MorphMany
     {
@@ -128,7 +136,7 @@ class Person extends BaseModel implements HasMedia
     /**
      * Return the sluggable configuration array for this model.
      *
-     * @return array
+     * @return array<string, array<string, mixed>>
      */
     public function sluggable(): array
     {
@@ -142,6 +150,8 @@ class Person extends BaseModel implements HasMedia
 
     /**
      * Get characters this person has voiced.
+     *
+     * @return BelongsToMany<Character, $this>
      */
     public function voicedCharacters(): BelongsToMany
     {
@@ -152,6 +162,8 @@ class Person extends BaseModel implements HasMedia
 
     /**
      * Get the display image URL, preferring media library over image_url.
+     *
+     * @return Attribute<string|null, never>
      */
     protected function imageDisplayUrl(): Attribute
     {

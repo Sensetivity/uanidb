@@ -19,7 +19,7 @@ class JikanRateLimitMiddleware
             ->then(function () use ($job, $next) {
                 $next($job);
             }, function () use ($job) {
-                $job->release(2);
+                $job->release(2); // @phpstan-ignore method.notFound
             });
     }
 }

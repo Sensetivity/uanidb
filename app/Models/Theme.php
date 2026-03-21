@@ -11,7 +11,9 @@ use Spatie\Activitylog\Traits\LogsActivity;
 
 class Theme extends Model
 {
+    /** @use HasFactory<\Database\Factories\ThemeFactory> */
     use HasFactory;
+
     use LogsActivity;
 
     protected $attributes = [
@@ -45,6 +47,8 @@ class Theme extends Model
 
     /**
      * Get all animes that belong to this theme.
+     *
+     * @return BelongsToMany<Anime, $this>
      */
     public function animes(): BelongsToMany
     {

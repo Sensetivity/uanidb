@@ -32,6 +32,9 @@ class AnimeService
         return $anime;
     }
 
+    /**
+     * @return LengthAwarePaginator<int, Anime>
+     */
     public function getByFilters(AnimeFilterDto $filters, int $perPage = 24): LengthAwarePaginator
     {
         return Anime::query()
@@ -63,6 +66,9 @@ class AnimeService
             ->get();
     }
 
+    /**
+     * @return LengthAwarePaginator<int, Anime>
+     */
     public function getTopByCategory(RankingCategoryEnum $category, int $perPage = 25): LengthAwarePaginator
     {
         $query = Anime::query()->with(['genres', 'studios', 'media']);

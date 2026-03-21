@@ -49,7 +49,7 @@ class EditAnime extends EditRecord
         ];
     }
 
-    private function handlePosterUpload(Model $record): void
+    private function handlePosterUpload(Model|int|string|null $record): void
     {
         $data = $this->form->getState();
         $posterPath = $data['main_poster_upload'] ?? null;

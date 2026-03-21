@@ -22,6 +22,9 @@ class CharacterService
         return $character;
     }
 
+    /**
+     * @return LengthAwarePaginator<int, Character>
+     */
     public function getList(string $sortBy = 'name', int $perPage = 30): LengthAwarePaginator
     {
         return Character::query()

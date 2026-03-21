@@ -38,13 +38,15 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
  * @property-read Collection|Person[] $voiceActors Voice actors for this character
  * @property-read Collection|Review[] $reviews Reviews of this character
  * @property-read string|null $image_display_url Display image URL
- * @property-read MediaCollection $media All media
+ * @property-read MediaCollection<int, Media> $media All media
  *
  * @method static CharacterBuilder query()
  */
 class Character extends BaseModel implements HasMedia
 {
+    /** @use HasFactory<\Database\Factories\CharacterFactory> */
     use HasFactory;
+
     use InteractsWithMedia;
     use LogsActivity;
     use Sluggable;
@@ -71,7 +73,7 @@ class Character extends BaseModel implements HasMedia
     /**
      * Get all anime associated with this character.
      *
-     * @return BelongsToMany
+     * @return BelongsToMany<Anime, $this>
      */
     public function animes(): BelongsToMany
     {
@@ -83,7 +85,7 @@ class Character extends BaseModel implements HasMedia
     /**
      * Get comments for this character.
      *
-     * @return MorphMany
+     * @return MorphMany<Comment, $this>
      */
     public function comments(): MorphMany
     {
@@ -132,7 +134,7 @@ class Character extends BaseModel implements HasMedia
     /**
      * Get reviews for this character.
      *
-     * @return MorphMany
+     * @return MorphMany<Review, $this>
      */
     public function reviews(): MorphMany
     {
@@ -142,7 +144,7 @@ class Character extends BaseModel implements HasMedia
     /**
      * Return the sluggable configuration array for this model.
      *
-     * @return array
+     * @return array<string, array<string, mixed>>
      */
     public function sluggable(): array
     {
@@ -157,7 +159,7 @@ class Character extends BaseModel implements HasMedia
     /**
      * Get the voice actors for this character.
      *
-     * @return BelongsToMany
+     * @return BelongsToMany<Person, $this>
      */
     public function voiceActors(): BelongsToMany
     {
@@ -168,6 +170,8 @@ class Character extends BaseModel implements HasMedia
 
     /**
      * Get the display image URL, preferring media library over image_url.
+     *
+     * @return Attribute<string|null, never>
      */
     protected function imageDisplayUrl(): Attribute
     {

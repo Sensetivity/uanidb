@@ -21,6 +21,8 @@ class Review extends BaseModel
 
     /**
      * Get all comments for this review.
+     *
+     * @return MorphMany<Comment, $this>
      */
     public function comments(): MorphMany
     {
@@ -29,6 +31,8 @@ class Review extends BaseModel
 
     /**
      * Get the reviewable model.
+     *
+     * @return MorphTo<\Illuminate\Database\Eloquent\Model, $this>
      */
     public function reviewable(): MorphTo
     {
@@ -37,6 +41,8 @@ class Review extends BaseModel
 
     /**
      * Get the user who wrote the review.
+     *
+     * @return BelongsTo<User, $this>
      */
     public function user(): BelongsTo
     {

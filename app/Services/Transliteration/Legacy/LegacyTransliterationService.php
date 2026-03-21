@@ -4,7 +4,10 @@ namespace App\Services\Transliteration\Legacy;
 
 class LegacyTransliterationService
 {
+    /** @var array<string, mixed> */
     private array $currentMap;
+
+    /** @var array<string, array<string, mixed>> */
     private array $maps;
 
     public function __construct()
@@ -39,6 +42,8 @@ class LegacyTransliterationService
 
     /**
      * Recursively traverse the text and apply the transliteration mapping.
+     *
+     * @param  array<string, mixed>  $chars
      */
     private function traverse(int $index, string $text, array $chars, bool $isWhitespace = false): string
     {

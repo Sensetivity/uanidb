@@ -11,6 +11,7 @@ use App\Enums\SourceTypeEnum;
 use App\Models\Builders\AnimeBuilder;
 use Carbon\Carbon;
 use Cviebrock\EloquentSluggable\Sluggable;
+use Database\Factories\AnimeFactory;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -79,13 +80,15 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
  * @property-read Collection|Review[] $reviews Reviews of this anime
  * @property-read Collection|Comment[] $comments Comments on this anime
  * @property-read string|null $poster_url Display poster URL
- * @property-read MediaCollection $media All media
+ * @property-read MediaCollection<int, Media> $media All media
  *
  * @method static AnimeBuilder query()
  */
 class Anime extends BaseModel implements HasMedia
 {
+    /** @use HasFactory<AnimeFactory> */
     use HasFactory;
+
     use InteractsWithMedia;
     use LogsActivity;
     use Sluggable;
@@ -115,6 +118,8 @@ class Anime extends BaseModel implements HasMedia
 
     /**
      * Get all characters associated with this anime.
+     *
+     * @return BelongsToMany<Character, $this>
      */
     public function characters(): BelongsToMany
     {
@@ -125,6 +130,8 @@ class Anime extends BaseModel implements HasMedia
 
     /**
      * Get comments for this anime.
+     *
+     * @return MorphMany<Comment, $this>
      */
     public function comments(): MorphMany
     {
@@ -133,6 +140,8 @@ class Anime extends BaseModel implements HasMedia
 
     /**
      * Get all episodes for this anime.
+     *
+     * @return HasMany<Episode, $this>
      */
     public function episodes(): HasMany
     {
@@ -141,6 +150,8 @@ class Anime extends BaseModel implements HasMedia
 
     /**
      * Get all external links for this anime.
+     *
+     * @return HasMany<AnimeExternalLink, $this>
      */
     public function externalLinks(): HasMany
     {
@@ -149,6 +160,8 @@ class Anime extends BaseModel implements HasMedia
 
     /**
      * Get all genres associated with this anime.
+     *
+     * @return BelongsToMany<Genre, $this>
      */
     public function genres(): BelongsToMany
     {
@@ -165,6 +178,8 @@ class Anime extends BaseModel implements HasMedia
 
     /**
      * Get all licensors for this anime.
+     *
+     * @return BelongsToMany<Studio, $this>
      */
     public function licensors(): BelongsToMany
     {
@@ -175,6 +190,8 @@ class Anime extends BaseModel implements HasMedia
 
     /**
      * Get main characters for this anime.
+     *
+     * @return BelongsToMany<Character, $this>
      */
     public function mainCharacters(): BelongsToMany
     {
@@ -215,6 +232,8 @@ class Anime extends BaseModel implements HasMedia
 
     /**
      * Get all people associated with this anime (directors, etc).
+     *
+     * @return BelongsToMany<Person, $this>
      */
     public function people(): BelongsToMany
     {
@@ -225,6 +244,8 @@ class Anime extends BaseModel implements HasMedia
 
     /**
      * Get prequels for this anime.
+     *
+     * @return BelongsToMany<Anime, $this>
      */
     public function prequels(): BelongsToMany
     {
@@ -233,6 +254,8 @@ class Anime extends BaseModel implements HasMedia
 
     /**
      * Get all producers for this anime.
+     *
+     * @return BelongsToMany<Studio, $this>
      */
     public function producers(): BelongsToMany
     {
@@ -243,6 +266,8 @@ class Anime extends BaseModel implements HasMedia
 
     /**
      * Get all promotional videos for this anime.
+     *
+     * @return HasMany<PromotionVideo, $this>
      */
     public function promotionVideos(): HasMany
     {
@@ -288,6 +313,8 @@ class Anime extends BaseModel implements HasMedia
 
     /**
      * Get all related anime.
+     *
+     * @return BelongsToMany<Anime, $this>
      */
     public function relatedAnime(): BelongsToMany
     {
@@ -298,6 +325,8 @@ class Anime extends BaseModel implements HasMedia
 
     /**
      * Get reviews for this anime.
+     *
+     * @return MorphMany<Review, $this>
      */
     public function reviews(): MorphMany
     {
@@ -306,6 +335,8 @@ class Anime extends BaseModel implements HasMedia
 
     /**
      * Get the seasons for this anime.
+     *
+     * @return BelongsToMany<Season, $this>
      */
     public function seasons(): BelongsToMany
     {
@@ -316,6 +347,8 @@ class Anime extends BaseModel implements HasMedia
 
     /**
      * Get sequels for this anime.
+     *
+     * @return BelongsToMany<Anime, $this>
      */
     public function sequels(): BelongsToMany
     {
@@ -325,7 +358,7 @@ class Anime extends BaseModel implements HasMedia
     /**
      * Return the sluggable configuration array for this model.
      *
-     * @return array
+     * @return array<string, array<string, mixed>>
      */
     public function sluggable(): array
     {
@@ -339,6 +372,8 @@ class Anime extends BaseModel implements HasMedia
 
     /**
      * Get all studios for this anime.
+     *
+     * @return BelongsToMany<Studio, $this>
      */
     public function studios(): BelongsToMany
     {
@@ -349,6 +384,8 @@ class Anime extends BaseModel implements HasMedia
 
     /**
      * Get supporting characters for this anime.
+     *
+     * @return BelongsToMany<Character, $this>
      */
     public function supportingCharacters(): BelongsToMany
     {
@@ -357,6 +394,8 @@ class Anime extends BaseModel implements HasMedia
 
     /**
      * Get all themes associated with this anime.
+     *
+     * @return BelongsToMany<Theme, $this>
      */
     public function themes(): BelongsToMany
     {
@@ -366,6 +405,8 @@ class Anime extends BaseModel implements HasMedia
 
     /**
      * Get all titles for this anime.
+     *
+     * @return HasMany<AnimeTitle, $this>
      */
     public function titles(): HasMany
     {
@@ -374,6 +415,8 @@ class Anime extends BaseModel implements HasMedia
 
     /**
      * Get all users who have this anime in their list.
+     *
+     * @return HasMany<UserAnimeList, $this>
      */
     public function userLists(): HasMany
     {
@@ -382,6 +425,8 @@ class Anime extends BaseModel implements HasMedia
 
     /**
      * Get the poster URL, preferring media library over image_url.
+     *
+     * @return Attribute<string|null, never>
      */
     protected function posterUrl(): Attribute
     {

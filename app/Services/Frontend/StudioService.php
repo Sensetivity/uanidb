@@ -23,6 +23,9 @@ class StudioService
         return $studio;
     }
 
+    /**
+     * @return LengthAwarePaginator<int, Studio>
+     */
     public function getList(string $sortBy = 'name', int $perPage = 24): LengthAwarePaginator
     {
         $query = Studio::query()->with('media');

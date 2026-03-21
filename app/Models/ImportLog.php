@@ -18,7 +18,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property Carbon|null $started_at
  * @property Carbon|null $completed_at
  * @property string|null $error_message
- * @property array|null $metadata
+ * @property array<string, mixed>|null $metadata
  * @property int|null $user_id
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
@@ -50,6 +50,8 @@ class ImportLog extends Model
 
     /**
      * Get the anime associated with this import log.
+     *
+     * @return BelongsTo<Anime, $this>
      */
     public function anime(): BelongsTo
     {
@@ -92,6 +94,8 @@ class ImportLog extends Model
 
     /**
      * Get the user who initiated this import.
+     *
+     * @return BelongsTo<User, $this>
      */
     public function user(): BelongsTo
     {

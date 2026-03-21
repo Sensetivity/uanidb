@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Database\Factories\GenreFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -10,7 +11,9 @@ use Spatie\Activitylog\Traits\LogsActivity;
 
 class Genre extends Model
 {
+    /** @use HasFactory<GenreFactory> */
     use HasFactory;
+
     use LogsActivity;
 
     /**
@@ -32,6 +35,8 @@ class Genre extends Model
 
     /**
      * Get all animes that belong to this genre.
+     *
+     * @return BelongsToMany<Anime, $this>
      */
     public function animes(): BelongsToMany
     {

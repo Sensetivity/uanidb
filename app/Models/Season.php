@@ -23,9 +23,12 @@ use Spatie\Activitylog\Traits\LogsActivity;
  */
 class Season extends BaseModel
 {
+    /** @use HasFactory<\Database\Factories\SeasonFactory> */
     use HasFactory;
+
     use LogsActivity;
 
+    /** @return BelongsToMany<Anime, $this> */
     public function animes(): BelongsToMany
     {
         return $this->belongsToMany(Anime::class, 'anime_season')
@@ -40,6 +43,7 @@ class Season extends BaseModel
             ->logOnlyDirty();
     }
 
+    /** @return array<string, string> */
     protected function casts(): array
     {
         return [
@@ -48,6 +52,7 @@ class Season extends BaseModel
         ];
     }
 
+    /** @return Attribute<string, never> */
     protected function name(): Attribute
     {
         return Attribute::get(fn (): string => $this->season_of_year->getLabel() . ' ' . $this->year);

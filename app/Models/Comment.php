@@ -29,6 +29,8 @@ class Comment extends BaseModel
 
     /**
      * Get the parent model that was commented on.
+     *
+     * @return MorphTo<\Illuminate\Database\Eloquent\Model, $this>
      */
     public function commentable(): MorphTo
     {
@@ -45,6 +47,8 @@ class Comment extends BaseModel
 
     /**
      * Get the parent comment if this is a reply.
+     *
+     * @return BelongsTo<Comment, $this>
      */
     public function parent(): BelongsTo
     {
@@ -53,6 +57,8 @@ class Comment extends BaseModel
 
     /**
      * Get all replies to this comment.
+     *
+     * @return HasMany<Comment, $this>
      */
     public function replies(): HasMany
     {
@@ -61,6 +67,8 @@ class Comment extends BaseModel
 
     /**
      * Get the user who wrote the comment.
+     *
+     * @return BelongsTo<User, $this>
      */
     public function user(): BelongsTo
     {

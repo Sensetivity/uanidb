@@ -28,8 +28,9 @@ class JikanAnimeDataProvider implements AnimeDataProvider
     public function getAnime(int $id): ?AnimeDto
     {
         try {
+            /** @var \Jikan\JikanPHP\Model\AnimeIdFullGetResponse200 $response */
             $response = $this->client->getAnimeFullById($id);
-            if (!$response) {
+            if (!$response) { // @phpstan-ignore booleanNot.alwaysFalse
                 return null;
             }
 
@@ -47,8 +48,9 @@ class JikanAnimeDataProvider implements AnimeDataProvider
     public function getAnimeCharacters(int $id): array
     {
         try {
+            /** @var \Jikan\JikanPHP\Model\AnimeCharacters $response */
             $response = $this->client->getAnimeCharacters($id);
-            if (!$response || !$response->getData()) {
+            if (!$response || !$response->getData()) { // @phpstan-ignore booleanNot.alwaysFalse
                 return [];
             }
 
@@ -97,8 +99,9 @@ class JikanAnimeDataProvider implements AnimeDataProvider
             $page = 1;
 
             do {
+                /** @var \Jikan\JikanPHP\Model\AnimeEpisodes $response */
                 $response = $this->client->getAnimeEpisodes($id, ['page' => $page]);
-                if (!$response || !$response->getData()) {
+                if (!$response || !$response->getData()) { // @phpstan-ignore booleanNot.alwaysFalse
                     break;
                 }
 
@@ -138,8 +141,9 @@ class JikanAnimeDataProvider implements AnimeDataProvider
     public function getAnimeStaff(int $id): array
     {
         try {
+            /** @var \Jikan\JikanPHP\Model\AnimeStaff $response */
             $response = $this->client->getAnimeStaff($id);
-            if (!$response || !$response->getData()) {
+            if (!$response || !$response->getData()) { // @phpstan-ignore booleanNot.alwaysFalse
                 return [];
             }
 
@@ -170,6 +174,7 @@ class JikanAnimeDataProvider implements AnimeDataProvider
     public function getAnimeVideos(int $id): array
     {
         try {
+            /** @var \Jikan\JikanPHP\Model\AnimeVideos $response */
             $response = $this->client->getAnimeVideos($id);
             if (!$response->getData()) { // @phpstan-ignore booleanNot.alwaysFalse
                 return [];
@@ -209,8 +214,9 @@ class JikanAnimeDataProvider implements AnimeDataProvider
     public function getSeasonalAnime(int $year, string $season, int $page = 1): array
     {
         try {
+            /** @var \Jikan\JikanPHP\Model\AnimeSearch $response */
             $response = $this->client->getSeason($year, $season, ['page' => $page]);
-            if (!$response) {
+            if (!$response) { // @phpstan-ignore booleanNot.alwaysFalse
                 return [];
             }
 
@@ -234,13 +240,14 @@ class JikanAnimeDataProvider implements AnimeDataProvider
     public function getTopAnime(string $type = 'all', int $page = 1): array
     {
         try {
+            /** @var \Jikan\JikanPHP\Model\AnimeSearch $response */
             $response = $this->client->getTopAnime([
                 'type' => $type,
                 'page' => $page,
             ]);
             $results = [];
 
-            if (!$response || !$response->getData()) {
+            if (!$response || !$response->getData()) { // @phpstan-ignore booleanNot.alwaysFalse
                 return $results;
             }
 
@@ -263,13 +270,14 @@ class JikanAnimeDataProvider implements AnimeDataProvider
     public function searchAnime(string $query, int $page = 1): array
     {
         try {
+            /** @var \Jikan\JikanPHP\Model\AnimeSearch $response */
             $response = $this->client->getAnimeSearch([
                 'q' => $query,
                 'page' => $page,
             ]);
             $results = [];
 
-            if (!$response || !$response->getData()) {
+            if (!$response || !$response->getData()) { // @phpstan-ignore booleanNot.alwaysFalse
                 return $results;
             }
 
@@ -285,6 +293,7 @@ class JikanAnimeDataProvider implements AnimeDataProvider
     }
 
     /**
+     * @param  array<int, mixed>  $links
      * @return array<int, array{name: string, url: string}>
      */
     private function convertExternalLinksToArray(array $links): array
@@ -301,6 +310,7 @@ class JikanAnimeDataProvider implements AnimeDataProvider
     }
 
     /**
+     * @param  array<int, mixed>  $malUrls
      * @return array<int, array{mal_id: int, name: string}>
      */
     private function convertMalUrlsToArray(array $malUrls): array
@@ -317,6 +327,7 @@ class JikanAnimeDataProvider implements AnimeDataProvider
     }
 
     /**
+     * @param  array<int, mixed>  $relations
      * @return array<int, array{relation: string, entry: array<int, array{mal_id: int, type: string, name: string}>}>
      */
     private function convertRelationsToArray(array $relations): array
@@ -342,6 +353,7 @@ class JikanAnimeDataProvider implements AnimeDataProvider
     }
 
     /**
+     * @param  array<int, mixed>  $titles
      * @return array<int, array{type: string, title: string}>
      */
     private function convertTitlesToArray(array $titles): array

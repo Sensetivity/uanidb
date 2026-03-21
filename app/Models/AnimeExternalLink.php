@@ -19,6 +19,7 @@ class AnimeExternalLink extends Model
 {
     protected $guarded = ['id'];
 
+    /** @return BelongsTo<Anime, $this> */
     public function anime(): BelongsTo
     {
         return $this->belongsTo(Anime::class);

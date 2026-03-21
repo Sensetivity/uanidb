@@ -278,6 +278,7 @@ class AnimeImportService
     }
 
     /**
+     * @param  array<int, mixed>  $items
      * @return array<Anime>
      */
     private function batchImport(array $items, callable $importCallback): array
@@ -341,6 +342,12 @@ class AnimeImportService
         );
     }
 
+    /**
+     * @param  array<int, mixed>  $episodes
+     * @param  array<int, mixed>  $characters
+     * @param  array<int, mixed>  $staff
+     * @param  array<int, mixed>  $promotionVideos
+     */
     private function buildPartialDto(
         Anime $anime,
         array $episodes = [],

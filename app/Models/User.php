@@ -24,7 +24,10 @@ use Spatie\Activitylog\Traits\LogsActivity;
 class User extends Authenticatable implements FilamentUser
 {
     use HasApiTokens;
+
+    /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory;
+
     use LogsActivity;
     use Notifiable;
 
@@ -64,6 +67,8 @@ class User extends Authenticatable implements FilamentUser
 
     /**
      * Get the user's anime list items.
+     *
+     * @return HasMany<UserAnimeList, $this>
      */
     public function animeList(): HasMany
     {
@@ -77,6 +82,8 @@ class User extends Authenticatable implements FilamentUser
 
     /**
      * Get the user's comments.
+     *
+     * @return HasMany<Comment, $this>
      */
     public function comments(): HasMany
     {
@@ -92,6 +99,8 @@ class User extends Authenticatable implements FilamentUser
 
     /**
      * Get the user's reviews.
+     *
+     * @return HasMany<Review, $this>
      */
     public function reviews(): HasMany
     {

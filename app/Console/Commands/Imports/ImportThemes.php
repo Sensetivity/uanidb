@@ -25,7 +25,7 @@ class ImportThemes extends Command
     /**
      * Execute the console command.
      */
-    public function handle()
+    public function handle(): int
     {
         // Get the file path from the command argument or use default
         $filePath = $this->argument('file') ?? storage_path('app/dump/themes.json');
@@ -38,7 +38,7 @@ class ImportThemes extends Command
         }
 
         // Read and decode JSON file
-        $jsonContent = file_get_contents($filePath);
+        $jsonContent = (string) file_get_contents($filePath);
         $themes = json_decode($jsonContent, true);
 
         if (json_last_error() !== JSON_ERROR_NONE) {

@@ -22,6 +22,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  */
 class UserAnimeList extends BaseModel
 {
+    /** @use HasFactory<\Database\Factories\UserAnimeListFactory> */
     use HasFactory;
 
     /**
@@ -40,6 +41,8 @@ class UserAnimeList extends BaseModel
 
     /**
      * Get the anime associated with the list item.
+     *
+     * @return BelongsTo<Anime, $this>
      */
     public function anime(): BelongsTo
     {
@@ -48,6 +51,8 @@ class UserAnimeList extends BaseModel
 
     /**
      * Get the user that owns the list item.
+     *
+     * @return BelongsTo<User, $this>
      */
     public function user(): BelongsTo
     {

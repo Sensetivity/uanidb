@@ -184,7 +184,7 @@ class AnimeDto
     }
 
     /**
-     * @param array<array{relation?: string, entry?: array}|RelatedAnimeGroupDto> $relations
+     * @param  array<int, array{relation?: string, entry?: array<int, array<string, mixed>>}|RelatedAnimeGroupDto>  $relations
      * @return array<RelatedAnimeGroupDto>
      */
     private static function mapRelations(array $relations): array
@@ -241,7 +241,7 @@ class AnimeDto
                 continue;
             }
 
-            if ($title['type'] === 'Default') {
+            if (!isset($title['type']) || $title['type'] === 'Default') {
                 continue;
             }
 
@@ -252,7 +252,7 @@ class AnimeDto
 
             $result[] = new AnimeTitleDto(
                 language: $language,
-                title: $title['title'],
+                title: $title['title'] ?? '',
             );
         }
 

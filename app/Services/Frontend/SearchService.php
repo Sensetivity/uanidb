@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Collection;
 class SearchService
 {
     /**
-     * @return array{anime: Collection, characters: Collection, people: Collection, studios: Collection}
+     * @return array{anime: Collection<int, Anime>, characters: Collection<int, Character>, people: Collection<int, Person>, studios: Collection<int, Studio>}
      */
     public function search(string $query, string $category = 'all', int $limit = 10): array
     {

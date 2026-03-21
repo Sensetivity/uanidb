@@ -37,6 +37,8 @@ class PromotionVideo extends BaseModel
 
     /**
      * Get the anime that owns the promotion video.
+     *
+     * @return BelongsTo<Anime, $this>
      */
     public function anime(): BelongsTo
     {

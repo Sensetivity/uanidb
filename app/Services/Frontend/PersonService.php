@@ -22,6 +22,9 @@ class PersonService
         return $person;
     }
 
+    /**
+     * @return LengthAwarePaginator<int, Person>
+     */
     public function getList(string $sortBy = 'name', int $perPage = 30): LengthAwarePaginator
     {
         return Person::query()

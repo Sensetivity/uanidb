@@ -30,13 +30,17 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
  */
 class Studio extends BaseModel implements HasMedia
 {
+    /** @use HasFactory<\Database\Factories\StudioFactory> */
     use HasFactory;
+
     use InteractsWithMedia;
     use LogsActivity;
     use Sluggable;
 
     /**
      * Get animes where this studio is the primary studio.
+     *
+     * @return BelongsToMany<Anime, $this>
      */
     public function animes(): BelongsToMany
     {
@@ -55,6 +59,8 @@ class Studio extends BaseModel implements HasMedia
 
     /**
      * Get animes where this studio is a licensor.
+     *
+     * @return BelongsToMany<Anime, $this>
      */
     public function licensedAnimes(): BelongsToMany
     {
@@ -70,6 +76,8 @@ class Studio extends BaseModel implements HasMedia
 
     /**
      * Get animes where this studio is a producer.
+     *
+     * @return BelongsToMany<Anime, $this>
      */
     public function producedAnimes(): BelongsToMany
     {
@@ -102,7 +110,7 @@ class Studio extends BaseModel implements HasMedia
     /**
      * Return the sluggable configuration array for this model.
      *
-     * @return array
+     * @return array<string, array<string, mixed>>
      */
     public function sluggable(): array
     {
@@ -116,6 +124,8 @@ class Studio extends BaseModel implements HasMedia
 
     /**
      * Get the display logo URL, preferring media library over source_logo_url.
+     *
+     * @return Attribute<string|null, never>
      */
     protected function logoDisplayUrl(): Attribute
     {

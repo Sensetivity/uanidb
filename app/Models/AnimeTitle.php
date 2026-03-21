@@ -20,15 +20,18 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  */
 class AnimeTitle extends Model
 {
+    /** @use HasFactory<\Illuminate\Database\Eloquent\Factories\Factory<self>> */
     use HasFactory;
 
     protected $guarded = ['id'];
 
+    /** @return BelongsTo<Anime, $this> */
     public function anime(): BelongsTo
     {
         return $this->belongsTo(Anime::class);
     }
 
+    /** @return array<string, string> */
     protected function casts(): array
     {
         return [

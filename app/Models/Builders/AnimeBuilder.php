@@ -28,7 +28,7 @@ class AnimeBuilder extends Builder
         return $this->whereHas(
             'genres',
             fn (Builder $sub) => $sub->whereIn($column, is_string($genres[0])
-                ? array_map(fn ($g) => ucfirst(strtolower($g)), $genres)
+                ? array_map(fn ($g) => ucfirst(strtolower((string) $g)), $genres)
                 : $genres),
         );
     }
@@ -38,6 +38,9 @@ class AnimeBuilder extends Builder
         return $this->where('score', '>=', $minScore);
     }
 
+    /**
+     * @param  array<int, AnimeStatusEnum>|AnimeStatusEnum  $statuses
+     */
     public function byStatus(array|AnimeStatusEnum $statuses): self
     {
         $statuses = is_array($statuses) ? $statuses : [$statuses];
@@ -61,11 +64,14 @@ class AnimeBuilder extends Builder
         return $this->whereHas(
             'themes',
             fn (Builder $sub) => $sub->whereIn($column, is_string($themes[0])
-                ? array_map(fn ($t) => ucfirst(strtolower($t)), $themes)
+                ? array_map(fn ($t) => ucfirst(strtolower((string) $t)), $themes)
                 : $themes),
         );
     }
 
+    /**
+     * @param  array<int, AnimeTypeEnum>|AnimeTypeEnum  $types
+     */
     public function byType(array|AnimeTypeEnum $types): self
     {
         $types = is_array($types) ? $types : [$types];

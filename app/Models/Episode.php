@@ -45,7 +45,9 @@ use Spatie\Activitylog\Traits\LogsActivity;
  */
 class Episode extends BaseModel
 {
+    /** @use HasFactory<\Database\Factories\EpisodeFactory> */
     use HasFactory;
+
     use LogsActivity;
     use Sluggable;
 
@@ -79,7 +81,7 @@ class Episode extends BaseModel
     /**
      * Get the anime that owns the episode.
      *
-     * @return BelongsTo
+     * @return BelongsTo<Anime, $this>
      */
     public function anime(): BelongsTo
     {
@@ -89,7 +91,7 @@ class Episode extends BaseModel
     /**
      * Get comments for this episode.
      *
-     * @return MorphMany
+     * @return MorphMany<Comment, $this>
      */
     public function comments(): MorphMany
     {
@@ -120,7 +122,7 @@ class Episode extends BaseModel
     /**
      * Return the sluggable configuration array for this model.
      *
-     * @return array
+     * @return array<string, array<string, mixed>>
      */
     public function sluggable(): array
     {
