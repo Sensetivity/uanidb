@@ -26,6 +26,14 @@ enum AnimeTypeEnum: int implements HasColor, HasIcon, HasLabel
         'music' => AnimeTypeEnum::MUSIC,
     ];
 
+    public static function fromSlug(string $slug): ?self
+    {
+        return self::MAP[strtolower($slug)] ?? null;
+    }
+
+    /**
+     * @param  string  $relation
+     */
     public static function fromString(string $relation): AnimeTypeEnum
     {
         return self::MAP[$relation] ?? self::UNKNOWN;
@@ -66,6 +74,19 @@ enum AnimeTypeEnum: int implements HasColor, HasIcon, HasLabel
             self::ONA => 'ONA',
             self::MUSIC => 'Кліп',
             self::UNKNOWN => 'Невідомо',
+        };
+    }
+
+    public function slug(): string
+    {
+        return match ($this) {
+            self::TV => 'tv',
+            self::OVA => 'ova',
+            self::MOVIE => 'movie',
+            self::SPECIAL => 'special',
+            self::ONA => 'ona',
+            self::MUSIC => 'music',
+            self::UNKNOWN => 'unknown',
         };
     }
 }

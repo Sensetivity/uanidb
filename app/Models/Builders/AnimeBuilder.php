@@ -12,12 +12,25 @@ use Illuminate\Database\Eloquent\Builder;
  */
 class AnimeBuilder extends Builder
 {
-    public function byGenres(array $genreIds): self
+    /**
+     * Filter by genre slugs (lowercased mal_title) or IDs.
+     *
+     * @param  string[]|int[]  $genres
+     */
+    public function byGenres(array $genres): self
     {
-        return $this->when($genreIds, fn (self $q) => $q->whereHas(
+        if (! $genres) {
+            return $this;
+        }
+
+        $column = is_string($genres[0]) ? 'genres.mal_title' : 'genres.id';
+
+        return $this->whereHas(
             'genres',
-            fn (Builder $sub) => $sub->whereIn('genres.id', $genreIds),
-        ));
+            fn (Builder $sub) => $sub->whereIn($column, is_string($genres[0])
+                ? array_map(fn ($g) => ucfirst(strtolower($g)), $genres)
+                : $genres),
+        );
     }
 
     public function byMinScore(float $minScore): self
@@ -32,12 +45,25 @@ class AnimeBuilder extends Builder
         return $this->when($statuses, fn (self $q) => $q->whereIn('status', $statuses));
     }
 
-    public function byThemes(array $themeIds): self
+    /**
+     * Filter by theme slugs (lowercased mal_title) or IDs.
+     *
+     * @param  string[]|int[]  $themes
+     */
+    public function byThemes(array $themes): self
     {
-        return $this->when($themeIds, fn (self $q) => $q->whereHas(
+        if (! $themes) {
+            return $this;
+        }
+
+        $column = is_string($themes[0]) ? 'themes.mal_title' : 'themes.id';
+
+        return $this->whereHas(
             'themes',
-            fn (Builder $sub) => $sub->whereIn('themes.id', $themeIds),
-        ));
+            fn (Builder $sub) => $sub->whereIn($column, is_string($themes[0])
+                ? array_map(fn ($t) => ucfirst(strtolower($t)), $themes)
+                : $themes),
+        );
     }
 
     public function byType(array|AnimeTypeEnum $types): self

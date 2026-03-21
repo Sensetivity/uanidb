@@ -3,9 +3,11 @@
 namespace Tests\Feature\Controllers;
 
 use App\Dto\AnimeFilterDto;
+use App\Enums\AnimeStatusEnum;
 use App\Enums\AnimeTypeEnum;
 use App\Enums\RankingCategoryEnum;
 use App\Models\Anime;
+use App\Models\Genre;
 use App\Services\Frontend\AnimeService;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
@@ -13,6 +15,73 @@ use Tests\TestCase;
 class AnimeControllerTest extends TestCase
 {
     use RefreshDatabase;
+
+    public function test_filter_dto_from_query_string(): void
+    {
+        $dto = AnimeFilterDto::fromQueryString([
+            'type' => 'tv,movie',
+            'status' => 'airing',
+            'genre' => 'action,comedy',
+            'year' => '2024',
+            'score' => '8',
+            'sort' => 'score',
+            'q' => 'naruto',
+        ]);
+
+        $this->assertEquals('naruto', $dto->search);
+        $this->assertCount(2, $dto->types);
+        $this->assertContains(AnimeTypeEnum::TV, $dto->types);
+        $this->assertContains(AnimeTypeEnum::MOVIE, $dto->types);
+        $this->assertCount(1, $dto->statuses);
+        $this->assertContains(AnimeStatusEnum::AIRING, $dto->statuses);
+        $this->assertEquals(['action', 'comedy'], $dto->genres);
+        $this->assertEquals(2024, $dto->yearFrom);
+        $this->assertEquals(8.0, $dto->minScore);
+        $this->assertEquals('score', $dto->sortBy);
+    }
+
+    public function test_filter_dto_ignores_invalid_slugs(): void
+    {
+        $dto = AnimeFilterDto::fromQueryString([
+            'type' => 'tv,invalid,movie',
+            'status' => 'nonsense',
+        ]);
+
+        $this->assertCount(2, $dto->types);
+        $this->assertCount(0, $dto->statuses);
+    }
+
+    public function test_filter_dto_to_query_string(): void
+    {
+        $dto = new AnimeFilterDto(
+            search: 'test',
+            types: [AnimeTypeEnum::TV],
+            statuses: [AnimeStatusEnum::AIRING],
+            genres: ['action'],
+            yearFrom: 2024,
+        );
+
+        $query = $dto->toQueryString();
+
+        $this->assertEquals('test', $query['q']);
+        $this->assertEquals('tv', $query['type']);
+        $this->assertEquals('airing', $query['status']);
+        $this->assertEquals('action', $query['genre']);
+        $this->assertEquals('2024', $query['year_from']);
+    }
+
+    public function test_service_filters_by_genre_slug(): void
+    {
+        $genre = Genre::factory()->create(['mal_title' => 'Action']);
+        $anime = Anime::factory()->create();
+        $anime->genres()->attach($genre->id);
+        Anime::factory()->create();
+
+        $service = app(AnimeService::class);
+        $results = $service->getByFilters(new AnimeFilterDto(genres: ['action']));
+
+        $this->assertEquals(1, $results->total());
+    }
 
     public function test_service_filters_by_min_score(): void
     {

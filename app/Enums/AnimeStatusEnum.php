@@ -23,6 +23,16 @@ enum AnimeStatusEnum: int implements HasColor, HasIcon, HasLabel
         'upcoming' => self::NOT_YET_AIRED,
     ];
 
+    public static function fromSlug(string $slug): ?self
+    {
+        return match (strtolower($slug)) {
+            'airing' => self::AIRING,
+            'finished' => self::FINISHED,
+            'upcoming' => self::NOT_YET_AIRED,
+            default => null,
+        };
+    }
+
     public static function fromString(string $status): self
     {
         return self::MAP[strtolower($status)] ?? self::NOT_YET_AIRED;
@@ -52,6 +62,15 @@ enum AnimeStatusEnum: int implements HasColor, HasIcon, HasLabel
             self::AIRING => 'Виходить',
             self::FINISHED => 'Завершено',
             self::NOT_YET_AIRED => 'Ще не вийшло',
+        };
+    }
+
+    public function slug(): string
+    {
+        return match ($this) {
+            self::AIRING => 'airing',
+            self::FINISHED => 'finished',
+            self::NOT_YET_AIRED => 'upcoming',
         };
     }
 }
