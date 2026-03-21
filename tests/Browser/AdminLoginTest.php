@@ -3,24 +3,13 @@
 namespace Tests\Browser;
 
 use App\Models\User;
-use Illuminate\Contracts\Console\Kernel;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Foundation\Testing\DatabaseTruncation;
 use Laravel\Dusk\Browser;
 use Tests\DuskTestCase;
 
 class AdminLoginTest extends DuskTestCase
 {
-    use DatabaseMigrations;
-
-    public function runDatabaseMigrations(): void
-    {
-        DB::statement('SET FOREIGN_KEY_CHECKS=0');
-        $this->artisan('migrate:fresh', ['--drop-views' => true]);
-        DB::statement('SET FOREIGN_KEY_CHECKS=1');
-
-        $this->app[Kernel::class]->setArtisan(null);
-    }
+    use DatabaseTruncation;
 
     public function test_admin_can_login(): void
     {
