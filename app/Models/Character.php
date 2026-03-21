@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Builders\CharacterBuilder;
 use Carbon\Carbon;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Casts\Attribute;
@@ -38,6 +39,8 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
  * @property-read Collection|Review[] $reviews Reviews of this character
  * @property-read string|null $image_display_url Display image URL
  * @property-read MediaCollection $media All media
+ *
+ * @method static CharacterBuilder query()
  */
 class Character extends BaseModel implements HasMedia
 {
@@ -92,6 +95,11 @@ class Character extends BaseModel implements HasMedia
         return LogOptions::defaults()
             ->logOnly(['*'])
             ->logOnlyDirty();
+    }
+
+    public function newEloquentBuilder($query): CharacterBuilder
+    {
+        return new CharacterBuilder($query);
     }
 
     /**

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Builders\StudioBuilder;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -12,6 +13,9 @@ use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
+/**
+ * @method static StudioBuilder query()
+ */
 class Studio extends BaseModel implements HasMedia
 {
     use HasFactory;
@@ -45,6 +49,11 @@ class Studio extends BaseModel implements HasMedia
         return $this->belongsToMany(Anime::class, 'anime_licensor')
             ->withPivot('region')
             ->withTimestamps();
+    }
+
+    public function newEloquentBuilder($query): StudioBuilder
+    {
+        return new StudioBuilder($query);
     }
 
     /**

@@ -8,9 +8,9 @@ use App\Enums\AnimeStatusEnum;
 use App\Enums\AnimeTypeEnum;
 use App\Enums\CharacterRoleEnum;
 use App\Enums\SourceTypeEnum;
+use App\Models\Builders\AnimeBuilder;
 use Carbon\Carbon;
 use Cviebrock\EloquentSluggable\Sluggable;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -80,6 +80,8 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
  * @property-read Collection|Comment[] $comments Comments on this anime
  * @property-read string|null $poster_url Display poster URL
  * @property-read MediaCollection $media All media
+ *
+ * @method static AnimeBuilder query()
  */
 class Anime extends BaseModel implements HasMedia
 {
@@ -206,6 +208,11 @@ class Anime extends BaseModel implements HasMedia
         $this->increment('failed_sync_count');
     }
 
+    public function newEloquentBuilder($query): AnimeBuilder
+    {
+        return new AnimeBuilder($query);
+    }
+
     /**
      * Get all people associated with this anime (directors, etc).
      */
@@ -295,14 +302,6 @@ class Anime extends BaseModel implements HasMedia
     public function reviews(): MorphMany
     {
         return $this->morphMany(Review::class, 'reviewable');
-    }
-
-    /**
-     * Scope to anime that need syncing, ordered by priority.
-     */
-    public function scopeNeedingSync(Builder $query): Builder
-    {
-        return $query->where('sync_priority', '>', 0)->orderByDesc('sync_priority');
     }
 
     /**

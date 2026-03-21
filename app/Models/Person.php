@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Builders\PersonBuilder;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -33,6 +34,8 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
  * @property-read string|null $image_display_url Display image URL
  * @property-read \Illuminate\Database\Eloquent\Collection|Anime[] $animes
  * @property-read \Illuminate\Database\Eloquent\Collection|Character[] $voicedCharacters
+ *
+ * @method static PersonBuilder query()
  */
 class Person extends BaseModel implements HasMedia
 {
@@ -80,6 +83,11 @@ class Person extends BaseModel implements HasMedia
         return LogOptions::defaults()
             ->logOnly(['*'])
             ->logOnlyDirty();
+    }
+
+    public function newEloquentBuilder($query): PersonBuilder
+    {
+        return new PersonBuilder($query);
     }
 
     /**

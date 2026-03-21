@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 // Home
-Route::get('/', fn () => view('main.pages.home'))->name('home');
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
 // Anime
 Route::get('/anime', fn () => view('main.pages.anime.index'))->name('anime.index');
