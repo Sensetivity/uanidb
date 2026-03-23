@@ -1,31 +1,7 @@
 parameters:
 	ignoreErrors:
 		-
-			message: '#^Method App\\Models\\Anime\:\:posterUrl\(\) should return Illuminate\\Database\\Eloquent\\Casts\\Attribute\<string\|null, never\> but returns Illuminate\\Database\\Eloquent\\Casts\\Attribute\<string\|null, never\>\.$#'
-			identifier: return.type
-			count: 1
-			path: app/Models/Anime.php
-
-		-
-			message: '#^Method App\\Models\\Character\:\:imageDisplayUrl\(\) should return Illuminate\\Database\\Eloquent\\Casts\\Attribute\<string\|null, never\> but returns Illuminate\\Database\\Eloquent\\Casts\\Attribute\<string\|null, never\>\.$#'
-			identifier: return.type
-			count: 1
-			path: app/Models/Character.php
-
-		-
-			message: '#^Method App\\Models\\Person\:\:imageDisplayUrl\(\) should return Illuminate\\Database\\Eloquent\\Casts\\Attribute\<string\|null, never\> but returns Illuminate\\Database\\Eloquent\\Casts\\Attribute\<string\|null, never\>\.$#'
-			identifier: return.type
-			count: 1
-			path: app/Models/Person.php
-
-		-
 			message: '#^Method App\\Models\\Season\:\:name\(\) should return Illuminate\\Database\\Eloquent\\Casts\\Attribute\<string, never\> but returns Illuminate\\Database\\Eloquent\\Casts\\Attribute\<non\-falsy\-string, never\>\.$#'
 			identifier: return.type
 			count: 1
 			path: app/Models/Season.php
-
-		-
-			message: '#^Method App\\Models\\Studio\:\:logoDisplayUrl\(\) should return Illuminate\\Database\\Eloquent\\Casts\\Attribute\<string\|null, never\> but returns Illuminate\\Database\\Eloquent\\Casts\\Attribute\<string\|null, never\>\.$#'
-			identifier: return.type
-			count: 1
-			path: app/Models/Studio.php

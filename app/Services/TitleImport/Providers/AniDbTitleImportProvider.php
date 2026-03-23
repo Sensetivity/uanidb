@@ -105,7 +105,9 @@ class AniDbTitleImportProvider implements TitleImportProvider
             }
         }
 
-        return $this->parseXml($content);
+        return $content !== null
+            ? $this->parseXml($content)
+            : null;
     }
 
     /**
@@ -145,7 +147,7 @@ class AniDbTitleImportProvider implements TitleImportProvider
             }
         }
 
-        return $this->parseXml($content);
+        return $content !== null ? $this->parseXml($content) : null;
     }
 
     /**

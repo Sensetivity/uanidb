@@ -57,9 +57,7 @@ class DownloadAnimeImagesJob implements ShouldQueue
             $anime->characters()->chunk(50, function ($characters) use ($delay, &$charactersDownloaded) {
                 foreach ($characters as $character) {
                     usleep($delay * 1000);
-                    $before = $character->hasMedia('main_image');
-                    $this->downloadImage($character, $character->source_image_url, 'main_image');
-                    if (! $before && $character->fresh()->hasMedia('main_image')) {
+                    if ($this->downloadImage($character, $character->source_image_url, 'main_image')) {
                         $charactersDownloaded++;
                     }
                 }
@@ -70,9 +68,7 @@ class DownloadAnimeImagesJob implements ShouldQueue
             Person::query()->whereIn('id', $personIds)->chunk(50, function ($people) use ($delay, &$peopleDownloaded) {
                 foreach ($people as $person) {
                     usleep($delay * 1000);
-                    $before = $person->hasMedia('main_image');
-                    $this->downloadImage($person, $person->source_image_url, 'main_image');
-                    if (! $before && $person->fresh()->hasMedia('main_image')) {
+                    if ($this->downloadImage($person, $person->source_image_url, 'main_image')) {
                         $peopleDownloaded++;
                     }
                 }
@@ -88,14 +84,14 @@ class DownloadAnimeImagesJob implements ShouldQueue
         return ImportJobTypeEnum::DownloadImages;
     }
 
-    private function downloadImage(HasMedia $model, ?string $imageUrl, string $collection): void
+    private function downloadImage(HasMedia $model, ?string $imageUrl, string $collection): bool
     {
         if (! $imageUrl) {
-            return;
+            return false;
         }
 
         if ($model->hasMedia($collection)) {
-            return;
+            return false;
         }
 
         try {
@@ -103,8 +99,12 @@ class DownloadAnimeImagesJob implements ShouldQueue
 
             $model->addMediaFromUrl($imageUrl) // @phpstan-ignore method.notFound
                 ->toMediaCollection($collection);
+
+            return true;
         } catch (\Exception $e) {
             Log::warning("DownloadAnimeImagesJob: Failed to download image for {$model->getMorphClass()} ID {$model->getKey()}: {$e->getMessage()}");
+
+            return false;
         }
     }
 }

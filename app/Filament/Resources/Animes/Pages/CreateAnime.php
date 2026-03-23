@@ -14,7 +14,9 @@ class CreateAnime extends CreateRecord
 
     protected function afterCreate(): void
     {
-        $this->handlePosterUpload($this->record);
+        if ($this->record) {
+            $this->handlePosterUpload($this->record);
+        }
     }
 
     private function handlePosterUpload(Model $record): void

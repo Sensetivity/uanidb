@@ -29,9 +29,9 @@ class ImportTopAnime extends Command
      */
     public function handle(AnimeImportService $importService): int
     {
-        $type = $this->option('type');
+        $type = (string) $this->option('type');
         $pages = (int) $this->option('pages');
-        $force = $this->option('force');
+        $force = (bool) $this->option('force');
 
         $this->info("Importing top {$type} anime ({$pages} page(s))...");
 

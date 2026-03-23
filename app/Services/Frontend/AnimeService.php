@@ -60,7 +60,7 @@ class AnimeService
     {
         /** @var Collection<int, Anime> */
         return $season->animes()
-            ->when($typeFilter && $typeFilter !== 'all', fn ($q) => $q->where('type', AnimeTypeEnum::fromString($typeFilter)))
+            ->when($typeFilter && $typeFilter !== 'all', fn ($q) => $q->where('type', AnimeTypeEnum::fromString((string) $typeFilter)))
             ->with(['genres', 'studios', 'media'])
             ->orderByDesc('score')
             ->get();

@@ -52,7 +52,7 @@ class ActivityLogInfolist
                             ->hiddenLabel()
                             ->columnSpanFull(),
                     ])
-                    ->visible(fn (Activity $record): bool => ! empty($record->properties->get('attributes')))
+                    ->visible(fn (Activity $record): bool => ! empty($record->properties?->get('attributes')))
                     ->collapsible()
                     ->columnSpanFull(),
 
@@ -63,7 +63,7 @@ class ActivityLogInfolist
                             ->hiddenLabel()
                             ->columnSpanFull(),
                     ])
-                    ->visible(fn (Activity $record): bool => ! empty($record->properties->get('old')))
+                    ->visible(fn (Activity $record): bool => ! empty($record->properties?->get('old')))
                     ->collapsible()
                     ->columnSpanFull(),
             ]);

@@ -14,7 +14,9 @@ class CreatePerson extends CreateRecord
 
     protected function afterCreate(): void
     {
-        $this->handleImageUpload($this->record);
+        if ($this->record) {
+            $this->handleImageUpload($this->record);
+        }
     }
 
     private function handleImageUpload(Model $record): void

@@ -5,7 +5,7 @@ parameters:
     paths:
         - app/
     # Level from 0 to 9
-    level: 7
+    level: 8
 
 #
 #    excludePaths:
