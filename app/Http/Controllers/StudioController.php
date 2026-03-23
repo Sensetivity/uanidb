@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Services\Frontend\StudioService;
+use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 class StudioController extends Controller
@@ -10,6 +11,14 @@ class StudioController extends Controller
     public function __construct(
         private readonly StudioService $studioService,
     ) {}
+
+    public function index(Request $request): View
+    {
+        $sortBy = $request->query('sort', 'anime_count');
+        $studios = $this->studioService->getList($sortBy, 24);
+
+        return view('main.pages.studios.index', compact('studios', 'sortBy'));
+    }
 
     public function show(string $slug): View
     {

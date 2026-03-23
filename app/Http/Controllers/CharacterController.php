@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Services\Frontend\CharacterService;
+use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 class CharacterController extends Controller
@@ -10,6 +11,14 @@ class CharacterController extends Controller
     public function __construct(
         private readonly CharacterService $characterService,
     ) {}
+
+    public function index(Request $request): View
+    {
+        $sortBy = $request->query('sort', 'name');
+        $characters = $this->characterService->getList($sortBy, 30);
+
+        return view('main.pages.characters.index', compact('characters', 'sortBy'));
+    }
 
     public function show(string $slug): View
     {

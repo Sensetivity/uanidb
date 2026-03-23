@@ -206,7 +206,7 @@ class Anime extends BaseModel implements HasMedia
     public function mainStudio(): ?Studio
     {
         /** @var Studio|null */
-        return $this->studios()->wherePivot('is_main', true)->first(); // @phpstan-ignore property.notFound
+        return $this->studios()->wherePivot('is_main', true)->first();
     }
 
     /**

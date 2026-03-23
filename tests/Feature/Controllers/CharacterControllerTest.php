@@ -11,6 +11,27 @@ class CharacterControllerTest extends TestCase
 {
     use RefreshDatabase;
 
+    public function test_index_paginates_results(): void
+    {
+        Character::factory()->count(35)->create();
+
+        $response = $this->get(route('characters.index'));
+        $response->assertOk();
+
+        $characters = $response->viewData('characters');
+        $this->assertCount(30, $characters->items());
+        $this->assertEquals(35, $characters->total());
+    }
+
+    public function test_index_returns_ok(): void
+    {
+        Character::factory()->count(3)->create();
+
+        $this->get(route('characters.index'))
+            ->assertOk()
+            ->assertViewHas('characters');
+    }
+
     public function test_service_loads_character_with_relations(): void
     {
         $character = Character::factory()->create();

@@ -11,6 +11,27 @@ class PersonControllerTest extends TestCase
 {
     use RefreshDatabase;
 
+    public function test_index_paginates_results(): void
+    {
+        Person::factory()->count(35)->create();
+
+        $response = $this->get(route('people.index'));
+        $response->assertOk();
+
+        $people = $response->viewData('people');
+        $this->assertCount(30, $people->items());
+        $this->assertEquals(35, $people->total());
+    }
+
+    public function test_index_returns_ok(): void
+    {
+        Person::factory()->count(3)->create();
+
+        $this->get(route('people.index'))
+            ->assertOk()
+            ->assertViewHas('people');
+    }
+
     public function test_service_loads_person_with_relations(): void
     {
         $person = Person::factory()->create();

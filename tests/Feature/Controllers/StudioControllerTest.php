@@ -11,6 +11,23 @@ class StudioControllerTest extends TestCase
 {
     use RefreshDatabase;
 
+    public function test_index_returns_ok(): void
+    {
+        Studio::factory()->count(3)->create();
+
+        $this->get(route('studios.index'))
+            ->assertOk()
+            ->assertViewHas('studios');
+    }
+
+    public function test_index_sorts_by_anime_count(): void
+    {
+        Studio::factory()->count(3)->create();
+
+        $this->get(route('studios.index', ['sort' => 'anime_count']))
+            ->assertOk();
+    }
+
     public function test_service_loads_studio_with_relations(): void
     {
         $studio = Studio::factory()->create();
