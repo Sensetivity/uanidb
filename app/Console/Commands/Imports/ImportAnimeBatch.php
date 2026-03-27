@@ -5,6 +5,8 @@ namespace App\Console\Commands\Imports;
 use App\Jobs\ImportAnimeJob;
 use App\Services\AnimeImport\AnimeImportService;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\DB;
+use Laravel\Telescope\Telescope;
 
 class ImportAnimeBatch extends Command
 {
@@ -33,7 +35,7 @@ class ImportAnimeBatch extends Command
     {
         $from = (int) $this->option('from');
         $to = (int) $this->option('to');
-        $force = $this->option('force');
+        $force = (bool) $this->option('force');
 
         $this->info("Importing anime from MAL ID {$from} to {$to}...");
 
@@ -46,6 +48,8 @@ class ImportAnimeBatch extends Command
 
             return self::SUCCESS;
         }
+
+        $this->disableMemoryHogs();
 
         $bar = $this->output->createProgressBar($to - $from + 1);
         $bar->start();
@@ -77,5 +81,16 @@ class ImportAnimeBatch extends Command
         }
 
         return self::SUCCESS;
+    }
+
+    private function disableMemoryHogs(): void
+    {
+        DB::disableQueryLog();
+
+        if (class_exists(Telescope::class)) {
+            Telescope::stopRecording();
+        }
+
+        activity()->disableLogging();
     }
 }
