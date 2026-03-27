@@ -30,3 +30,6 @@ yarn-error.log
 .env.dusk.local
 /.playwright-cli/
 /.playwright/
+/.ai-factory/
+/.ai-factory.json
+/AGENTS.md
