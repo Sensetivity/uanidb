@@ -47,4 +47,12 @@ class RankingsControllerTest extends TestCase
             ->assertViewHas('animes')
             ->assertViewHas('category', RankingCategoryEnum::Top);
     }
+
+    public function test_index_returns_ok_with_empty_results(): void
+    {
+        $response = $this->get(route('rankings'));
+        $response->assertOk();
+
+        $this->assertEquals(0, $response->viewData('animes')->total());
+    }
 }

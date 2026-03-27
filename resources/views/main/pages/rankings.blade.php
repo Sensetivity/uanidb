@@ -13,7 +13,6 @@
   </div>
 
   <div class="container mx-auto px-4 py-8">
-    {{-- Category Tabs --}}
     <div class="flex flex-wrap gap-3 mb-8 p-4 bg-slate-900/50 rounded-2xl">
       @foreach(\App\Enums\RankingCategoryEnum::cases() as $cat)
         <a href="{{ route('rankings', ['category' => $cat->value]) }}"
