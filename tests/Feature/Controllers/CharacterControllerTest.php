@@ -32,6 +32,14 @@ class CharacterControllerTest extends TestCase
             ->assertViewHas('characters');
     }
 
+    public function test_index_returns_ok_with_empty_results(): void
+    {
+        $response = $this->get(route('characters.index'));
+        $response->assertOk();
+
+        $this->assertEquals(0, $response->viewData('characters')->total());
+    }
+
     public function test_service_loads_character_with_relations(): void
     {
         $character = Character::factory()->create();
@@ -49,7 +57,7 @@ class CharacterControllerTest extends TestCase
         Character::factory()->count(5)->create();
 
         $service = app(CharacterService::class);
-        $results = $service->getList('name', 3);
+        $results = $service->getList(perPage: 3);
 
         $this->assertEquals(5, $results->total());
         $this->assertCount(3, $results->items());

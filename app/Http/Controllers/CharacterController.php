@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\CharacterSortEnum;
 use App\Services\Frontend\CharacterService;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -14,10 +15,10 @@ class CharacterController extends Controller
 
     public function index(Request $request): View
     {
-        $sortBy = $request->query('sort', 'name');
-        $characters = $this->characterService->getList($sortBy, 30);
+        $sort = CharacterSortEnum::tryFrom($request->query('sort', '')) ?? CharacterSortEnum::Name;
+        $characters = $this->characterService->getList($sort, 30);
 
-        return view('main.pages.characters.index', compact('characters', 'sortBy'));
+        return view('main.pages.characters.index', compact('characters', 'sort'));
     }
 
     public function show(string $slug): View

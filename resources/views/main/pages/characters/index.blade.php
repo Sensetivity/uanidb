@@ -18,7 +18,9 @@
         <span class="text-sm text-gray-500">Сортувати:</span>
         <select onchange="window.location.href='{{ route('characters.index') }}?sort=' + this.value"
                 class="py-2 px-3 rounded-lg bg-slate-800 border border-slate-700 text-gray-300 text-sm focus:outline-none focus:border-cyan-500 transition-all">
-          <option value="name" @selected($sortBy === 'name')>За алфавітом</option>
+          @foreach(\App\Enums\CharacterSortEnum::cases() as $option)
+            <option value="{{ $option->value }}" @selected($sort === $option)>{{ $option->getLabel() }}</option>
+          @endforeach
         </select>
       </div>
       <div class="flex-grow"></div>

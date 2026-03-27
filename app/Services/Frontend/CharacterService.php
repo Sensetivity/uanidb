@@ -2,6 +2,7 @@
 
 namespace App\Services\Frontend;
 
+use App\Enums\CharacterSortEnum;
 use App\Models\Character;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
@@ -25,12 +26,14 @@ class CharacterService
     /**
      * @return LengthAwarePaginator<int, Character>
      */
-    public function getList(string $sortBy = 'name', int $perPage = 30): LengthAwarePaginator
+    public function getList(CharacterSortEnum $sort = CharacterSortEnum::Name, int $perPage = 30): LengthAwarePaginator
     {
-        return Character::query()
+        $query = Character::query()
             ->withCount('animes')
-            ->with('media')
-            ->orderBy($sortBy)
-            ->paginate($perPage);
+            ->with('media');
+
+        return match ($sort) {
+            CharacterSortEnum::Name => $query->orderBy('name')->paginate($perPage),
+        };
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\PersonSortEnum;
 use App\Services\Frontend\PersonService;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -14,10 +15,10 @@ class PersonController extends Controller
 
     public function index(Request $request): View
     {
-        $sortBy = $request->query('sort', 'name');
-        $people = $this->personService->getList($sortBy, 30);
+        $sort = PersonSortEnum::tryFrom($request->query('sort', '')) ?? PersonSortEnum::Name;
+        $people = $this->personService->getList($sort, 30);
 
-        return view('main.pages.people.index', compact('people', 'sortBy'));
+        return view('main.pages.people.index', compact('people', 'sort'));
     }
 
     public function show(string $slug): View
