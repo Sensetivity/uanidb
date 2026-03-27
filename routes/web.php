@@ -7,6 +7,7 @@ use App\Http\Controllers\PersonController;
 use App\Http\Controllers\RankingsController;
 use App\Http\Controllers\SeasonsController;
 use App\Http\Controllers\StudioController;
+use App\Livewire\AnimeIndex;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,7 +20,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
 // Anime
-Route::get('/anime', fn () => view('main.pages.anime.index'))->name('anime.index');
+Route::get('/anime', AnimeIndex::class)->name('anime.index');
 Route::get('/anime/search', fn () => view('main.pages.anime.search'))->name('anime.search');
 Route::get('/anime/calendar', fn () => view('main.pages.anime.calendar'))->name('anime.calendar');
 Route::get('/anime/{slug}', [AnimeController::class, 'show'])->name('anime.show');

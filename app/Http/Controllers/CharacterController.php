@@ -15,7 +15,7 @@ class CharacterController extends Controller
 
     public function index(Request $request): View
     {
-        $sort = CharacterSortEnum::tryFrom($request->query('sort', '')) ?? CharacterSortEnum::Name;
+        $sort = $request->enum('sort', CharacterSortEnum::class) ?? CharacterSortEnum::Name;
         $characters = $this->characterService->getList($sort, 30);
 
         return view('main.pages.characters.index', compact('characters', 'sort'));

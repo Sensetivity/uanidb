@@ -15,7 +15,7 @@ class StudioController extends Controller
 
     public function index(Request $request): View
     {
-        $sort = StudioSortEnum::tryFrom($request->query('sort', '')) ?? StudioSortEnum::AnimeCount;
+        $sort = $request->enum('sort', StudioSortEnum::class) ?? StudioSortEnum::AnimeCount;
         $studios = $this->studioService->getList($sort, 50);
 
         return view('main.pages.studios.index', compact('studios', 'sort'));

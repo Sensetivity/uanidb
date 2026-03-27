@@ -15,7 +15,7 @@ class PersonController extends Controller
 
     public function index(Request $request): View
     {
-        $sort = PersonSortEnum::tryFrom($request->query('sort', '')) ?? PersonSortEnum::Name;
+        $sort = $request->enum('sort', PersonSortEnum::class) ?? PersonSortEnum::Name;
         $people = $this->personService->getList($sort, 30);
 
         return view('main.pages.people.index', compact('people', 'sort'));
