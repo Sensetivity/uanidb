@@ -26,7 +26,6 @@ class AnimeService
                 'titles',
                 'media',
             ])
-            ->withCount('episodes')
             ->firstOrFail();
 
         return $anime;
