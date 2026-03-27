@@ -36,6 +36,21 @@ class Season extends BaseModel
             ->withTimestamps();
     }
 
+    public static function findByYearAndSlug(string $year, string $seasonSlug): ?self
+    {
+        $seasonEnum = SeasonOfYearEnum::fromString($seasonSlug);
+
+        return $seasonEnum
+            ? static::query()->where('year', $year)->where('season_of_year', $seasonEnum)->first()
+            : null;
+    }
+
+    public static function findCurrentOrLatest(): ?self
+    {
+        return static::query()->where('is_current', true)->first()
+            ?? static::query()->orderByDesc('year')->orderByDesc('season_of_year')->first();
+    }
+
     public function getActivitylogOptions(): LogOptions
     {
         return LogOptions::defaults()

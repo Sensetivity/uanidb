@@ -2,15 +2,7 @@
 
 @section('title', ($season ? $season->name : 'Сезони') . ' - УкрАніме')
 
-@php
-  $activeNav = 'seasons';
-  $seasonEmojis = [
-      \App\Enums\SeasonOfYearEnum::Winter->value => '&#10052;&#65039;',
-      \App\Enums\SeasonOfYearEnum::Spring->value => '&#127800;',
-      \App\Enums\SeasonOfYearEnum::Summer->value => '&#9728;&#65039;',
-      \App\Enums\SeasonOfYearEnum::Fall->value => '&#127810;',
-  ];
-@endphp
+@php $activeNav = 'seasons'; @endphp
 
 @section('content')
   <div class="bg-gradient-to-r from-blue-500/10 via-cyan-500/10 to-purple-500/10 border-b border-slate-800">
@@ -19,7 +11,7 @@
         <div>
           @if($season)
             <div class="flex items-center gap-3 mb-2">
-              <span class="text-4xl">{!! $seasonEmojis[$season->season_of_year->value] ?? '&#128250;' !!}</span>
+              <span class="text-4xl">{{ $season->season_of_year->getEmoji() }}</span>
               <h1 class="text-4xl font-bold">{{ $season->name }}</h1>
             </div>
             <p class="text-gray-400">{{ $animes->count() }} аніме у сезоні</p>
@@ -45,7 +37,6 @@
   </div>
 
   <div class="container mx-auto px-4 py-8">
-    {{-- Type Filter Tabs --}}
     @if($season)
       <div class="flex flex-wrap gap-3 mb-8">
         <a href="{{ route('seasons', ['year' => $season->year, 'season' => strtolower($season->season_of_year->name)]) }}"
@@ -54,15 +45,12 @@
           Усі ({{ $allAnimes->count() }})
         </a>
         @foreach(\App\Enums\AnimeTypeEnum::cases() as $type)
-          @if($type !== \App\Enums\AnimeTypeEnum::UNKNOWN)
-            @php $typeCount = $allAnimes->where('type', $type)->count(); @endphp
-            @if($typeCount > 0)
-              <a href="{{ route('seasons', ['year' => $season->year, 'season' => strtolower($season->season_of_year->name), 'type' => $type->slug()]) }}"
-                 class="{{ $typeFilter === $type->slug() ? 'px-4 py-2 bg-gradient-to-r from-cyan-500 to-purple-600 rounded-xl font-medium text-white' : 'px-4 py-2 bg-slate-800 border border-slate-700 rounded-xl text-gray-400 hover:text-white transition-colors' }}"
-                 wire:navigate>
-                {{ $type->getLabel() }} ({{ $typeCount }})
-              </a>
-            @endif
+          @if($type !== \App\Enums\AnimeTypeEnum::UNKNOWN && ($typeCounts[$type->value] ?? 0) > 0)
+            <a href="{{ route('seasons', ['year' => $season->year, 'season' => strtolower($season->season_of_year->name), 'type' => $type->slug()]) }}"
+               class="{{ $typeFilter === $type->slug() ? 'px-4 py-2 bg-gradient-to-r from-cyan-500 to-purple-600 rounded-xl font-medium text-white' : 'px-4 py-2 bg-slate-800 border border-slate-700 rounded-xl text-gray-400 hover:text-white transition-colors' }}"
+               wire:navigate>
+              {{ $type->getLabel() }} ({{ $typeCounts[$type->value] }})
+            </a>
           @endif
         @endforeach
       </div>

@@ -34,6 +34,16 @@ enum SeasonOfYearEnum: int implements HasColor, HasLabel
         };
     }
 
+    public function getEmoji(): string
+    {
+        return match ($this) {
+            self::Winter => '❄️',
+            self::Spring => '🌸',
+            self::Summer => '☀️',
+            self::Fall => '🍂',
+        };
+    }
+
     public function getLabel(): string
     {
         return match ($this) {

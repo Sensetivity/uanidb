@@ -50,6 +50,12 @@ class SeasonsControllerTest extends TestCase
             ->assertViewHas('season');
     }
 
+    public function test_index_returns_ok_with_no_seasons(): void
+    {
+        $this->get(route('seasons'))
+            ->assertOk();
+    }
+
     public function test_index_shows_season_anime(): void
     {
         $season = Season::factory()->create(['is_current' => true]);
