@@ -2,6 +2,7 @@
 
 namespace App\Services\Frontend;
 
+use App\Enums\StudioSortEnum;
 use App\Models\Studio;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
@@ -26,13 +27,19 @@ class StudioService
     /**
      * @return LengthAwarePaginator<int, Studio>
      */
-    public function getList(string $sortBy = 'name', int $perPage = 24): LengthAwarePaginator
+    public function getList(StudioSortEnum $sort = StudioSortEnum::AnimeCount, int $perPage = 24): LengthAwarePaginator
     {
-        $query = Studio::query()->with('media');
+        $query = Studio::query()
+            ->withCount('animes')
+            ->with([
+                'media',
+                'popularAnimes.media',
+                'recentAnimes.media',
+            ]);
 
-        return match ($sortBy) {
-            'anime_count' => $query->withCount('animes')->orderByDesc('animes_count')->paginate($perPage),
-            default => $query->orderBy('name')->paginate($perPage),
+        return match ($sort) {
+            StudioSortEnum::AnimeCount => $query->orderByDesc('animes_count')->paginate($perPage),
+            StudioSortEnum::Name => $query->orderBy('name')->paginate($perPage),
         };
     }
 }

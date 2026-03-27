@@ -85,15 +85,22 @@ class CatalogSeeder extends Seeder
                 continue;
             }
 
+            $sourceLogoUrl = trim($item['source_logo_url'] ?? '');
+
             $studio = Studio::query()->where('mal_id', $malId)->first();
 
             if ($studio) {
-                $studio->update(['name' => $name]);
+                $data = ['name' => $name];
+                if ($sourceLogoUrl !== '') {
+                    $data['source_logo_url'] = $sourceLogoUrl;
+                }
+                $studio->update($data);
                 $updated++;
             } else {
                 Studio::query()->create([
                     'mal_id' => $malId,
                     'name' => $name,
+                    'source_logo_url' => $sourceLogoUrl ?: null,
                 ]);
                 $created++;
             }

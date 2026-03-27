@@ -17,6 +17,7 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
  * @property int $id
  * @property int|null $mal_id
  * @property string $name
+ * @property string|null $name_japanese
  * @property string $slug
  * @property string|null $about
  * @property string|null $source_logo_url
@@ -74,6 +75,12 @@ class Studio extends BaseModel implements HasMedia
         return new StudioBuilder($query);
     }
 
+    /** @return BelongsToMany<Anime, $this> */
+    public function popularAnimes(): BelongsToMany
+    {
+        return $this->animes()->whereNotNull('score')->orderByDesc('score')->limit(3);
+    }
+
     /**
      * Get animes where this studio is a producer.
      *
@@ -84,6 +91,12 @@ class Studio extends BaseModel implements HasMedia
         return $this->belongsToMany(Anime::class, 'anime_producer')
             ->withPivot('role', 'is_main', 'order', 'notes')
             ->withTimestamps();
+    }
+
+    /** @return BelongsToMany<Anime, $this> */
+    public function recentAnimes(): BelongsToMany
+    {
+        return $this->animes()->latest('animes.id')->limit(3);
     }
 
     /**

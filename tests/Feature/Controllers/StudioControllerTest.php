@@ -20,6 +20,14 @@ class StudioControllerTest extends TestCase
             ->assertViewHas('studios');
     }
 
+    public function test_index_returns_ok_with_empty_results(): void
+    {
+        $response = $this->get(route('studios.index'));
+        $response->assertOk();
+
+        $this->assertEquals(0, $response->viewData('studios')->total());
+    }
+
     public function test_index_sorts_by_anime_count(): void
     {
         Studio::factory()->count(3)->create();
@@ -44,7 +52,7 @@ class StudioControllerTest extends TestCase
         Studio::factory()->count(5)->create();
 
         $service = app(StudioService::class);
-        $results = $service->getList('name', 3);
+        $results = $service->getList(perPage: 3);
 
         $this->assertEquals(5, $results->total());
         $this->assertCount(3, $results->items());
